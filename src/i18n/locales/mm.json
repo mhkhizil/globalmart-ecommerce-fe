@@ -1,0 +1,1495 @@
+{
+  "welcome": "Welcome to our application မြန်မာစာတန်း",
+  "title": "My Next.js App",
+  "language": "ဘာသာစကား",
+
+  "common": {
+    "registerTitle": "Create your account",
+    "loginTitle": "Login to your account",
+    "selectShop": "ဆိုင်ရွေးချယ်ပါ",
+    "phone": "ဖုန်း",
+    "close": "ပိတ်ပါ",
+    "save": "သိမ်းဆည်းပါ",
+    "cancel": "ပယ်ဖျက်ပါ",
+    "submit": "တင်သွင်းပါ",
+    "delete": "ဖျက်ပါ",
+    "edit": "ပြင်ဆင်ပါ",
+    "add": "ထည့်ပါ",
+    "remove": "ဖယ်ရှားပါ",
+    "view": "ကြည့်ရှုပါ",
+    "search": "ရှာဖွေပါ",
+    "filter": "စစ်ထုတ်ပါ",
+    "sort": "စီပါ",
+    "select": "ရွေးချယ်ပါ",
+    "image": "ပုံ",
+    "loading": "ဖွင့်နေသည်...",
+    "retry": "ပြန်ကြိုးစားပါ",
+    "error": "အမှား",
+    "success": "အောင်မြင်မှု",
+    "warning": "သတိပေးချက်",
+    "info": "အချက်အလက်",
+    "back": "နောက်သို့",
+    "next": "ရှေ့သို့",
+    "complete": "ပြီးဆုံးသည်",
+    "scrollLeft": "ဘယ်ဘက်သို့ ရွှေ့ပါ",
+    "scrollRight": "ညာဘက်သို့ ရွှေ့ပါ",
+    "goBack": "နောက်သို့ ပြန်သွားပါ",
+    "item": "ပစ္စည်း",
+    "items": "ပစ္စည်းများ",
+    "status": "အခြေအနေ",
+    "statuses": "အခြေအနေများ",
+    "contact": "ဆက်သွယ်ရန်",
+    "callDriver": "ယာဉ်မောင်းကို ခေါ်ဆိုပါ",
+    "refresh": "ပြန်လည်စတင်ပါ",
+    "viewAll": "အားလုံးကို ကြည့်ရှုပါ",
+    "noContactInfo": "ဆက်သွယ်ရန် အချက်အလက်မရှိပါ",
+    "yes": "ဟုတ်ပါတယ်",
+    "no": "မဟုတ်ပါ",
+    "continue": "ဆက်လက်ပါ",
+    "more": "ပို၍",
+    "less": "လျော့၍",
+    "pending": "ဆိုင်းငံ့ထားသည်",
+    "required": "လိုအပ်သည်",
+    "optional": "ရွေးပိုင်ခွင့်ရှိသည်",
+    "mm": "မြန်မာ",
+    "en": "အင်္ဂလိပ်",
+    "cn": "တရုတ်",
+    "th": "ထိုင်း",
+    "deliveryFee": "ပို့ဆောင်ခ",
+    "tryAgain": "ထပ်ကြိုးစားပါ",
+    "nevermind": "ရပါပြီ",
+    "customerService": "ဝန်ဆောင်မှု",
+    "customerServiceContact": "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုကို ဆက်သွယ်ပါ",
+    "wechat": "WeChat",
+    "telegram": "Telegram",
+    "telegramContactInfo": "အမြန်ဆုံး အကူအညီအတွက် Telegram တွင်လည်း ဆက်သွယ်နိုင်ပါသည်",
+    "copy": "ကူးယူပါ",
+    "copied": "ကူးယူပြီးပါပြီ!",
+    "support": "အကူအညီ",
+    "messageUs": "ကျွန်ုပ်တို့ကို စာပို့ရန်",
+    "wechatId": "WeChat အိုင်ဒီ",
+    "telegramId": "Telegram အိုင်ဒီ",
+    "phoneNumber": "ဖုန်းနံပါတ်",
+    "noPhoneNumbers": "ဖုန်းနံပါတ်များ မရရှိနိုင်ပါ",
+    "notAvailable": "မရရှိနိုင်ပါ",
+    "errorFetchingContact": "ဆက်သွယ်ရန် အချက်အလက်ကို ဖွင့်၍ မရပါ",
+    "noTelegramInfo": "Telegram အချက်အလက် မရရှိနိုင်ပါ",
+    "and": "နှင့်",
+    "share": "မျှဝေရန်"
+  },
+
+  "components": {
+    "fileUpload": {
+      "maxFilesAllowed": "အများဆုံး ဖိုင် {count} ခုသာ ခွင့်ပြုသည်",
+      "removeFile": "ဖိုင်ဖယ်ရှားရန်",
+      "clearAll": "အားလုံးရှင်းလင်းရန်",
+      "dropFilesHere": "{count, plural, one {ဖိုင်} other {ဖိုင်များ}}ကို ဤနေရာတွင် ချထားပါ",
+      "dragAndDrop": "{count, plural, one {ဖိုင်တစ်ခု} other {ဖိုင်များ}}ကို ဤနေရာသို့ ဆွဲယူလာပါ သို့မဟုတ် ရွေးချယ်ရန် နှိပ်ပါ",
+      "supportedFormat": "ထောက်ပံ့သော ပုံစံ: {format}",
+      "maxFiles": " (အများဆုံး {count} ဖိုင်)"
+    }
+  },
+
+  "onboarding": {
+    "s1": {
+      "header": "ဒေသဆိုင်ရာ ကောက်ယူမှု၊ ရိုးရှင်းစွာ။",
+      "content": "အနီးနားရှိဆိုင်များမှ အဆင်ပြေသော ပို့ဆောင်ဝန်ဆောင်မှုများကို စူးစမ်းပါ။ ကုန်စုံမှသည် လက်ဆောင်များအထိ၊ အားလုံးသည် တစ်ချက်နှိပ်ရုံဖြင့် ရရှိနိုင်သည်။"
+    },
+    "s2": {
+      "header": "Worry-free takeaway၊ ချက်ချင်းရရှိနိုင်သည်။",
+      "content": "ကမ္ဘာ့အရင်းအမြစ်များကို ယခုချက်ချင်းရယူပါ။ Worry-free takeawayသည် ဒစ်ဂျစ်တယ်ကုန်ပစ္စည်းများနှင့် ကမ္ဘာလုံးဆိုင်ရာဝန်ဆောင်မှုများသို့ ချက်ချင်းဝင်ရောက်ခွင့်ပေးသည်။"
+    },
+    "s3": {
+      "header": "Worry-free takeaway: သင့်ကမ္ဘာ၊ ပို့ဆောင်ပေးသည်။",
+      "content": "အရင်းအမြစ်များ၊ ဒစ်ဂျစ်တယ်ကုန်ပစ္စည်းများနှင့် နိုင်ငံတကာဝန်ဆောင်မှုများကို ရယူပါ။ Worry-free takeawayသည် သင်ရှိရင်သည့်နေရာမှ ကမ္ဘာ့အကောင်းဆုံးများကို သင့်လက်ဖျားထိပ်သို့ ယူဆောင်လာပါသည်။"
+    },
+    "metadata": {
+      "title": "Worry-free takeaway: Instant Access | Digital Goods & Services",
+      "keywords": "Worry-free takeaway, digital goods, global marketplace, global e-commerce, digital marketplace, international services, best digital goods for global business, virtual services, global e-commerce",
+      "description": "Access a world of digital goods, global services, and international resources instantly. Worry-free takeaway delivers what you need, wherever you are. Explore now! "
+    }
+  },
+
+  "auth": {
+    "createMerchantAccount": "ကုန်သည်အဖြစ် စာရင်းသွင်းရန်",
+    "passwordLessThan6": "စကားဝှက်သည် အနည်းဆုံး ၆ လုံးရှိရမည်",
+    "continue": "ဆက်လက်ရန်",
+    "login": "ဝင်ရောက်ရန်",
+    "register": "စာရင်းသွင်းရန်",
+    "logout": "ထွက်ရန်",
+    "email": "အီးမေးလ်",
+    "password": "စကားဝှက်",
+    "confirmPassword": "စကားဝှက်အတည်ပြုရန်",
+    "forgotPassword": "စကားဝှက်မေ့နေပါသလား؟",
+    "resetPassword": "စကားဝှက်ပြန်လည်သတ်မှတ်ရန်",
+    "dontHaveAccount": "အကောင့်မရှိပါသလား？",
+    "alreadyHaveAccount": "အကောင့်ရှိပြီးပါသလား？",
+    "signUp": "စာရင်းသွင်းရန်",
+    "signIn": "ဝင်ရောက်ရန်",
+    "termsAndConditions": "ဝန်ဆောင်မှုစည်းမျဉ်းများ",
+    "agreeToTerms": "စည်းမျဉ်းများကို သဘောတူရန်",
+    "passwordCriteria": "သင့်စကားဝှက်တွင် အက္ခရာအကြီး၊ အက္ခရာအသေး၊ ဂဏန်းနှင့် အထူးအက္ခရာတစ်ခုအနည်းဆုံးပါဝင်ရမည်",
+    "invalidEmail": "အီးမေးလ်ပုံစံမမှန်ကန်ပါ",
+    "passwordMismatch": "စကားဝှက်ကို အတည်ပြုပါ",
+    "pleaseSignIn": "သင့်အကောင့်သို့ ဝင်ရောက်ပါ",
+    "orSignInWith": "သို့မဟုတ် ၎င်းဖြင့်ဝင်ရောက်ရန်",
+    "skip": "ကျော်ရန်",
+    "createAccount": "အကောင့်ဖန်တီးရန်",
+    "emailAddress": "အီးမေးလ်လိပ်စာ",
+    "signInToYourAccount": "သင့်အကောင့်သို့ ဝင်ရောက်ပါ",
+    "selectContactDetails": "စကားဝှက်ပြန်လည်သတ်မှတ်ရန် အသုံးပြုမည့် ဆက်သွယ်ရန်အချက်အလက်များကို ရွေးချယ်ပါ",
+    "createAccountDescription": "သင်နှစ်သက်သောအစားအစာကို ရှာဖွေရန် အကောင့်ဖန်တီးပါ",
+    "orSignUpWith": "သို့မဟုတ် ၎င်းဖြင့်စာရင်းသွင်းရန်",
+    "name": "နာမည်",
+    "registerAsMerchant": "ကုန်သည်အဖြစ် စာရင်းသွင်းရန်",
+    "termsOfService": "ဝန်ဆောင်မှုစည်းမျဉ်းများ",
+    "privacyPolicy": "ကိုယ်ရေးအချက်အလက်မူဝါဒ",
+    "registerAsUser": "သုံးစွဲသူအဖြစ် စာရင်းသွင်းရန်",
+    "shopAddress": "ဆိုင်လိပ်စာ",
+    "country": "နိုင်ငံ",
+    "state": "ပြည်နယ်",
+    "city": "မြို့",
+    "phone": "ဖုန်း",
+    "phoneNumber": "ဖုန်းနံပါတ်",
+    "shopType": "ဆိုင်အမျိုးအစား",
+    "shopName": "ဆိုင်နာမည်",
+    "loginWithGoogle": "Google ဖြင့်ဝင်ရောက်ရန်",
+    "loginWithFacebook": "Facebook ဖြင့်ဝင်ရောက်ရန်",
+    "loginWithApple": "Apple ဖြင့်ဝင်ပါ",
+    "registerSuccess": "မှတ်ပုံတင်ခြင်း အောင်မြင်သည်! လမ်းကြောင်းပြောင်းနေသည်...",
+    "registrationFailed": "မှတ်ပုံတင်ခြင်း မအောင်မြင်ပါ။ နောက်မှ ထပ်ကြိုးစားပေးပါ။",
+    "termsNotAgreed": "ဝန်ဆောင်မှုစည်းမျဉ်းများနှင့် ကိုယ်ရေးကိုယ်တာမူဝါဒကို သဘောတူပေးပါ။"
+  },
+
+  "profile": {
+    "personalData": "ကိုယ်ရေးအချက်အလက်များ",
+    "fullName": "နာမည်အပြည့်အစုံ",
+    "address": "လိပ်စာ",
+    "phone": "ဖုန်း",
+    "email": "အီးမေးလ်",
+    "helpCenter": "အကူအညီဆက်တင်များ",
+    "updateProfile": "ပရိုဖိုင်း အပ်ဒိတ်လုပ်ရန်",
+    "profileUpdated": "ပရိုဖိုင်း အပ်ဒိတ်လုပ်ပြီးပါပြီ",
+    "updateError": "ပရိုဖိုင်း အပ်ဒိတ်လုပ်၍ မရပါ",
+    "location": "တည်နေရာ",
+    "profileSetting": "ပရိုဖိုင်း ဆက်တင်များ",
+    "logInNow": "ယခု ဝင်ရောက်ပါ",
+    "myOrders": "ကျွန်ုပ်၏ အော်ဒါများ",
+    "seeAll": "အားလုံးကြည့်ရန်",
+    "order": "အော်ဒါ",
+    "newOrder": "အော်ဒါသစ်",
+    "viewDetails": "အသေးစိတ်ကြည့်ရန်",
+    "noRecentOrders": "မကြာသေးမီ အော်ဒါများ မရှိပါ",
+    "signOut": "ထွက်ရန်",
+    "setting": "ဆက်တင်များ",
+    "support": "အကူအညီ"
+  },
+
+  "validation": {
+    "nameRequired": "အမည် လိုအပ်သည်",
+    "emailInvalid": "အီးမေးလ်လိပ်စာ မမှန်ကန်ပါ",
+    "passwordMinLength": "စကားဝှက်သည် အနည်းဆုံး ၆ လုံးရှိရမည်",
+    "confirmPasswordRequired": "စကားဝှက်အတည်ပြုရန် လိုအပ်သည်",
+    "passwordsDoNotMatch": "စကားဝှက်များ မကိုက်ညီပါ"
+  },
+
+  "errorBoundary": {
+    "title": "တစ်ခုခု မှားယွင်းသွားသည်!",
+    "message": "မမျှော်လင့်သော အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။ ထပ်ကြိုးစားပေးပါ။"
+  },
+
+  "category-list": {
+    "categories": "အမျိုးအစားများ"
+  },
+
+  "productListByShop": {
+    "noProductsAvailable": "ထုတ်ကုန်များမရရှိနိုင်ပါ",
+    "products": "ထုတ်ကုန်များ"
+  },
+
+  "merchant": {
+    "register": "ကုန်သည်မှတ်ပုံတင်ရန်",
+    "shopName": "ဆိုင်နာမည်",
+    "shopAddress": "ဆိုင်လိပ်စာ",
+    "shopDescription": "ဆိုင်ဖော်ပြချက်",
+    "shopOpenTime": "ဆိုင်ဖွင့်ချိန်",
+    "selectOpenTime": "ဖွင့်ချိန်ရွေးရန်",
+    "shopType": "ဆိုင်အမျိုးအစား",
+    "selectShopType": "ဆိုင်အမျိုးအစားရွေးရန်",
+    "merchantRegister": "ကုန်သည်မှတ်ပုံတင်ခြင်း",
+    "merchantProfile": "ကုန်သည်ပရိုဖိုင်း",
+    "merchantHome": "ကုန်သည်ပင်မစာမျက်နှာ",
+    "merchantShopList": "ကုန်သည်ဆိုင်စာရင်း",
+    "merchantShopDetail": "ကုန်သည်ဆိုင်အသေးစိတ်",
+    "merchantOrderList": "ကုန်သည်အော်ဒါစာရင်း",
+    "merchantOrderNotification": "ကုန်သည်အော်ဒါအသိပေးချက်များ",
+    "merchantPayment": "ကုန်သည်ငွေပေးချေမှု",
+    "orderDateTime": "အော်ဒါရက်စွဲနှင့်အချိန်",
+    "orderStatus": "အော်ဒါအခြေအနေ",
+    "customer": "ဖောက်သည်",
+    "actions": "လုပ်ဆောင်ချက်များ",
+    "viewOrder": "အော်ဒါကြည့်ရန်",
+    "orderDetails": "အော်ဒါအသေးစိတ်",
+    "orderNumber": "အော်ဒါနံပါတ်",
+    "orderItems": "အော်ဒါပစ္စည်းများ",
+    "quantity": "ပမာဏ",
+    "price": "စျေးနှုန်း",
+    "accept": "လက်ခံရန်",
+    "reject": "ပယ်ချရန်",
+    "complete": "ပြီးစီးရန်",
+    "cancel": "ပယ်ဖျက်ရန်",
+    "orderAccepted": "အော်ဒါလက်ခံပြီးပါပြီ",
+    "orderRejected": "အော်ဒါပယ်ချပြီးပါပြီ",
+    "orderCompleted": "အော်ဒါပြီးစီးပြီးပါပြီ",
+    "orderCancelled": "အော်ဒါပယ်ဖျက်ပြီးပါပြီ",
+    "notifications": "အသိပေးချက်များ",
+    "newOrders": "အော်ဒါသစ်များ"
+  },
+  "merchantProductList": {
+    "yourProducts": "သင်၏ထုတ်ကုန်များ",
+    "manageYourProductInventory": "သင်၏ထုတ်ကုန်စာရင်းကိုစီမံရန်",
+    "addProductsToGetStarted": "စတင်ရန်ထုတ်ကုန်များထည့်ပါ",
+    "noProductsAvailable": "ထုတ်ကုန်များမရရှိနိုင်ပါ"
+  },
+
+  "merchant_orderitem_detail": {
+    "metadata": {
+      "title": "အော်ဒါအချက်အလက်အသေးစိတ် | Worry-free takeaway",
+      "description": "သင့်အော်ဒါနှင့်ပတ်သက်သောအသေးစိတ်အချက်အလက်များကိုကြည့်ရှု၍ အော်ဒါအခြေအနေကိုစီမံခန့်ခွဲပြီး ပို့ဆောင်ရေးယာဉ်မောင်းများကိုသတ်မှတ်ပါ။",
+      "keywords": "အော်ဒါအသေးစိတ်, ကုန်သည်အော်ဒါ, ပို့ဆောင်ရေး, ယာဉ်မောင်းသတ်မှတ်ခြင်း, အော်ဒါစီမံခန့်ခွဲမှု"
+    },
+    "ordered": "မှာယူပြီး",
+    "total": "စုစုပေါင်း",
+    "merchant": "ကုန်သည်",
+    "pending": "ဆောင်ရွက်ဆဲ",
+    "confirmed": "အတည်ပြုထားသည်",
+    "cancelled": "ပယ်ဖျက်ထားသည်",
+    "shipped": "တင်ပို့ပြီး",
+    "rejected": "ငြင်းပယ်ထားသည်",
+    "completed": "ပြီးဆုံးပါပြီ",
+    "unknown": "အမျိုးအစားမသိရှိပါ",
+    "rejectOrder": "အော်ဒါကိုငြင်းပယ်ရန်",
+    "confirmOrder": "အော်ဒါကိုအတည်ပြုရန်",
+    "orderAccepted": "အော်ဒါကို အောင်မြင်စွာ အတည်ပြုပြီးပါပြီ",
+    "orderRejected": "အော်ဒါကို အောင်မြင်စွာ ငြင်းပယ်ပြီးပါပြီ",
+    "failedToConfirm": "အော်ဒါကို အတည်မပြုနိုင်ပါ",
+    "failedToReject": "အော်ဒါကို ငြင်းပယ်၍မရပါ",
+    "rejectOrderConfirmation": "ဤအော်ဒါကို ငြင်းပယ်လိုသည်မှာ သေချာပါသလား? ဤလုပ်ဆောင်ချက်ကို ပြန်လည်ပြုပြင်၍မရနိုင်ပါ။",
+    "rejectionReason": "ငြင်းပယ်ရသည့် အကြောင်းရင်း (ရေးမလည်းရ)",
+    "enterRejectionReason": "ငြင်းပယ်ရသည့် အကြောင်းရင်း ထည့်သွင်းပါ",
+    "cancel": "ပယ်ဖျက်ရန်",
+    "assignedDriver": "သတ်မှတ်ထားသော ယာဉ်မောင်း",
+    "deliveryDriverAssigned": "ပို့ဆောင်ရေးယာဉ်မောင်း သတ်မှတ်ပြီးပါပြီ",
+    "assignDriver": "ယာဉ်မောင်း သတ်မှတ်ရန်",
+    "assignedBy": "သတ်မှတ်ပေးသူ",
+    "assignedAt": "သတ်မှတ်ခဲ့ချိန်",
+    "itemsInThisOrder": "ဤအော်ဒါတွင်ပါဝင်သည့် ပစ္စည်းများ",
+    "noItemsFound": "ဤအော်ဒါအတွက် ပစ္စည်းများ မတွေ့ရှိပါ",
+    "totalItems": "ပစ္စည်း အရေအတွက် စုစုပေါင်း",
+    "quantity": "အရေအတွက်",
+    "availableDrivers": "ရရှိနိုင်သော ယာဉ်မောင်းများ",
+    "selectDriverToDeliver": "ဤအော်ဒါကိုပို့ဆောင်ရန် ယာဉ်မောင်းရွေးချယ်ပါ",
+    "noDriversAvailable": "လက်ရှိတွင် ယာဉ်မောင်းမရှိပါ",
+    "addNewDriver": "ယာဉ်မောင်းအသစ် ပေါင်းထည့်ရန်",
+    "registerNewDriver": "ယာဉ်မောင်းအသစ် မှတ်ပုံတင်ရန်"
+  },
+
+  "merchantPaymentForm": {
+    "payment": "ငွေပေးချေမှု",
+    "paymentMethod": "ငွေပေးချေမှုနည်းလမ်း",
+    "addPayment": "ငွေပေးချေမှုထည့်ရန်",
+    "updatePayment": "ငွေပေးချေမှုအပ်ဒိတ်လုပ်ရန်",
+    "cardNumber": "ကတ်နံပါတ်",
+    "cardHolder": "ကတ်ကိုင်ဆောင်သူ",
+    "expiryDate": "သက်တမ်းကုန်ဆုံးရက်",
+    "cvv": "CVV",
+    "completeYourBusinessProfile": "သင့်စီးပွားရေးအချက်အလက်များဖြည့်စွက်ပါ",
+    "completeYourMerchantProfile": "သင့်ကုန်သည်အချက်အလက်များဖြည့်စွက်ပါ",
+    "paymentSuccess": "ငွေပေးချေမှုအောင်မြင်ပါသည်",
+    "paymentFailed": "ငွေပေးချေမှုမအောင်မြင်ပါ",
+    "selectPaymentMethod": "ငွေပေးချေမှုနည်းလမ်းရွေးချယ်ပါ",
+    "noPaymentAvailable": "ငွေပေးချေမှုနည်းလမ်းမရှိပါ",
+    "confirm": "အတည်ပြုပါ",
+    "accountNo": "အကောင့်နံပါတ်",
+    "accountName": "အကောင့်အမည်",
+    "active": "သုံးနေဆဲ",
+    "inactive": "မသုံးတော့ပါ",
+    "chooseMethod": "နည်းလမ်းရွေးပါ"
+  },
+
+  "merchantPaymentV2": {
+    "pleaseUploadQRImage": "QR ပုံတင်ပါ",
+    "qrCode": "QR ကုဒ်",
+    "account": "အကောင့်",
+    "name": "အမည်",
+    "type": "အမျိုးအစား",
+    "errorDisplayingPayment": "ဤငွေပေးချေမှုနည်းလမ်းပြသရာတွင် အမှားရှိနေပါသည်",
+    "updatePaymentMethod": "ငွေပေးချေမှုနည်းလမ်း ပြင်ဆင်ရန်",
+    "addPaymentMethod": "ငွေပေးချေမှုနည်းလမ်း ထည့်ရန်",
+    "paymentType": "ငွေပေးချေမှုအမျိုးအစား",
+    "selectPaymentType": "ငွေပေးချေမှုအမျိုးအစားရွေးပါ",
+    "paymentMethod": "ငွေပေးချေမှုနည်းလမ်း",
+    "selectPaymentMethod": "ငွေပေးချေမှုနည်းလမ်းရွေးပါ",
+    "accountNumberRequired": "အကောင့်နံပါတ်လိုအပ်ပါသည်",
+    "accountNumber": "အကောင့်နံပါတ်",
+    "enterAccountNumber": "အကောင့်နံပါတ်ထည့်ပါ",
+    "accountNameRequired": "အကောင့်အမည်လိုအပ်ပါသည်",
+    "accountName": "အကောင့်အမည်",
+    "enterAccountName": "အကောင့်အမည်ထည့်ပါ",
+    "statusRequired": "အခြေအနေလိုအပ်ပါသည်",
+    "status": "အခြေအနေ",
+    "selectStatus": "အခြေအနေရွေးပါ",
+    "qrCodeImage": "QR ကုဒ်ပုံ",
+    "uploadOnlyIfUpdate": "(ပြင်ဆင်လိုပါက သာတင်ပါ)",
+    "newImageSelected": "ပုံအသစ်တင်ရန်ရွေးချယ်ပြီးပါပြီ",
+    "leaveEmptyToKeepExisting": "လက်ရှိ QR ကုဒ်ပုံကိုဆက်သုံးလိုပါက ဘာမှမထည့်ပါနှင့်",
+    "uploadClearQRImage": "သင့်ငွေပေးချေမှုအတွက် ရှင်းလင်းသော QR ကုဒ်ပုံတင်ပါ",
+    "updating": "ပြင်ဆင်နေသည်...",
+    "adding": "ထည့်သွင်းနေသည်...",
+    "paymentMethods": "ငွေပေးချေမှုနည်းလမ်းများ",
+    "noPaymentMethodsAdded": "ငွေပေးချေမှုနည်းလမ်းများ မထည့်ရသေးပါ",
+    "addFirstPaymentMethod": "ဖောင်ကိုသုံး၍ သင့်ပထမဆုံးငွေပေးချေမှုနည်းလမ်းကို ထည့်ပါ"
+  },
+
+  "driver": {
+    "locale": "mm-MM",
+    "readyForPickup": "ပို့ဆောင်ရန် အသင့်ဖြစ်သည်",
+    "sendingToCustomer": "ပို့ဆောင်နေသည်",
+    "myDeliveries": "ကျွန်ုပ်၏ ပို့ဆောင်မှုများ",
+    "loadingDeliveries": "ပို့ဆောင်မှုများ ဖွင့်နေသည်...",
+    "failedToLoadDeliveries": "ပို့ဆောင်မှုများ ဖွင့်ရန် မအောင်မြင်ပါ",
+    "noDeliveriesAvailable": "ပို့ဆောင်မှုများ မရှိပါ",
+    "orderPreparing": "အော်ဒါ ပြင်ဆင်နေသည်",
+    "readyForDelivery": "ပို့ဆောင်ရန် အသင့်ဖြစ်သည်",
+    "outForDelivery": "ပို့ဆောင်နေသည်",
+    "delivered": "ပို့ဆောင်ပြီးပြီ",
+    "orderNumber": "အော်ဒါ #{number}",
+    "orderTotal": "အော်ဒါ စုစုပေါင်း",
+    "startDelivery": "ပို့ဆောင်မှု စတင်ရန်",
+    "viewDetails": "အသေးစိတ် ကြည့်ရှုရန်",
+    "driverHome": "ယာဉ်မောင်း ပင်မစာမျက်နှာ",
+    "activeDeliveries": "လုပ်ဆောင်နေသော ပို့ဆောင်မှုများ",
+    "deliveryHistory": "ပို့ဆောင်မှု မှတ်တမ်း",
+    "earnings": "ဝင်ငွေ",
+    "totalEarnings": "စုစုပေါင်း ဝင်ငွေ",
+    "today": "ယနေ့",
+    "thisWeek": "ယခုအပတ်",
+    "thisMonth": "ယခုလ",
+    "registerAsDriver": "ယာဉ်မောင်းအဖြစ် မှတ်ပုံတင်ရန်",
+    "vehicleInformation": "ယာဉ် အချက်အလက်",
+    "licenseInformation": "လိုင်စင် အချက်အလက်",
+
+    "registerNewDriver": "ယာဉ်မောင်းသစ် မှတ်ပုံတင်ရန်",
+    "registerDriver": "ယာဉ်မောင်း မှတ်ပုံတင်ရန်",
+    "driverRegisteredSuccess": "ယာဉ်မောင်း အောင်မြင်စွာ မှတ်ပုံတင်ပြီးပါပြီ!",
+    "driverRegisteredSuccessfully": "ယာဉ်မောင်း အောင်မြင်စွာ မှတ်ပုံတင်ပြီးပါပြီ",
+    "registrationError": "မှတ်ပုံတင်စဉ် အမှားအယွင်း တစ်ခု ဖြစ်ပေါ်ခဲ့သည်",
+    "driverInformation": "ယာဉ်မောင်း အချက်အလက်",
+    "copied": "ကူးယူပြီးပါပြီ!",
+    "failedToCopy": "ယာဉ်မောင်း အချက်အလက် ကူးယူမှု မအောင်မြင်ပါ",
+    "copyInfo": "အချက်အလက် ကူးယူရန်",
+    "fileSizeExceedsLimit": "ဖိုင်အရွယ်အစား 5MB ကန့်သတ်ချက်ထက် ကျော်လွန်နေသည်",
+    "photoUploadedSuccess": "ဓာတ်ပုံ အောင်မြင်စွာ တင်ပြီးပါပြီ",
+    "nameRequired": "အမည် လိုအပ်သည် (အနည်းဆုံး စာလုံး ၂ လုံး)",
+    "validEmailRequired": "မှန်ကန်သော အီးမေးလ် လိုအပ်သည်",
+    "validPhoneRequired": "မှန်ကန်သော ဖုန်းနံပါတ် လိုအပ်သည်",
+    "validPasswordRequired": "စကားဝှက်သည် အနည်းဆုံး စာလုံး 6 လုံး ရှိရမည်",
+    "passwordsMustMatch": "စကားဝှက်များ တူညီရမည်",
+    "driverPhotoRequired": "ယာဉ်မောင်း ဓာတ်ပုံ လိုအပ်သည်",
+    "formSubmissionFailed": "ဖောင်တင်သွင်းမှု မအောင်မြင်ပါ။ ထပ်မံကြိုးစားကြည့်ပါ။",
+    "fullName": "အမည် အပြည့်အစုံ",
+    "enterDriverFullName": "ယာဉ်မောင်း၏ အမည်အပြည့်အစုံ ရိုက်ထည့်ပါ",
+    "nameError": "အမည်သည် အနည်းဆုံး စာလုံး ၂ လုံး ပါဝင်ရမည်",
+    "emailAddress": "အီးမေးလ် လိပ်စာ",
+    "enterEmailAddress": "အီးမေးလ် လိပ်စာ ရိုက်ထည့်ပါ",
+    "emailError": "မမှန်ကန်သော အီးမေးလ် လိပ်စာ",
+    "phoneNumber": "ဖုန်းနံပါတ်",
+    "enterPhoneNumber": "ဖုန်းနံပါတ် ရိုက်ထည့်ပါ",
+    "phoneError": "မှန်ကန်သော ဖုန်းနံပါတ် လိုအပ်သည်",
+    "driverPhoto": "ယာဉ်မောင်း ဓာတ်ပုံ",
+    "uploadClearPhoto": "ယာဉ်မောင်း၏ ရှင်းလင်းသော ဓာတ်ပုံကို တင်ပါ (JPG, PNG သာ, အများဆုံး 5MB)",
+    "photoUploaded": "ဓာတ်ပုံ တင်ပြီးပါပြီ",
+    "photo": "ဓာတ်ပုံ",
+    "imageUploadRequirement": "JPG, JPEG, သို့မဟုတ် PNG ဖိုင်တင်ရန် သေချာပါစေ",
+    "password": "စကားဝှက်",
+    "createStrongPassword": "အားကောင်းသော စကားဝှက်တစ်ခု ဖန်တီးပါ",
+    "passwordError": "စကားဝှက်သည် အနည်းဆုံး စာလုံး ၈ လုံး ရှိရမည်ဖြစ်ပြီး စာလုံးကြီး၊ စာလုံးငယ်၊ ဂဏန်းနှင့် အထူးစာလုံး ပါဝင်ရမည်",
+    "confirmPassword": "စကားဝှက် အတည်ပြုပါ",
+    "confirmYourPassword": "သင့်စကားဝှက်ကို အတည်ပြုပါ",
+    "confirmPasswordError": "စကားဝှက်များ မတူညီပါ",
+    "registering": "မှတ်ပုံတင်နေသည်...",
+    "name": "အမည်",
+    "email": "အီးမေးလ်",
+    "phone": "ဖုန်း",
+
+    "preparing": "ပြင်ဆင်နေသည်",
+    "ready": "အသင့်ဖြစ်ပြီ",
+    "delivering": "ပို့ဆောင်နေသည်",
+    "completed": "ပြီးဆုံးပါပြီ",
+    "unknown": "မသိရှိပါ",
+    "markAsReady": "အသင့်ဖြစ်ပြီဟု မှတ်သားရန်",
+    "markAsDelivered": "ပို့ဆောင်ပြီးဟု မှတ်သားရန်",
+    "orderCompleted": "အော်ဒါ ပြီးဆုံးပါပြီ",
+    "updatingStatus": "အခြေအနေ ပြောင်းလဲနေသည်",
+    "updatingStatusDescription": "ပို့ဆောင်မှု အခြေအနေကို ပြောင်းလဲနေသည်၊ ကြာမည်မဟုတ်ပါ",
+    "refreshingData": "ဒေတာ ပြန်လည်စတင်နေသည်",
+    "fetchingLatestInfo": "နောက်ဆုံး အော်ဒါ အချက်အလက် ရယူနေသည်...",
+    "statusUpdateSuccess": "ပို့ဆောင်မှု အခြေအနေ အောင်မြင်စွာ ပြောင်းလဲပြီးပါပြီ",
+    "statusUpdateFailed": "ပို့ဆောင်မှု အခြေအနေ ပြောင်းလဲရန် မအောင်မြင်ပါ",
+    "phoneCopied": "ဖုန်းနံပါတ် ကလစ်ဘုတ်သို့ ကူးယူပြီးပါပြီ",
+    "copyFailed": "ဖုန်းနံပါတ် ကူးယူရန် မအောင်မြင်ပါ",
+    "refreshing": "ပြန်လည်စတင်နေသည်...",
+    "deliveryProgress": "ပို့ဆောင်မှု တိုးတက်မှု",
+    "deliveryInformation": "ပို့ဆောင်မှု အချက်အလက်",
+    "customerDetailsForDelivery": "ပို့ဆောင်ရန် ဝယ်ယူသူ အသေးစိတ်",
+    "customer": "ဝယ်ယူသူ",
+    "contact": "ဆက်သွယ်ရန်",
+    "copyPhone": "ဖုန်းနံပါတ် ကူးယူရန်",
+    "deliveryAddress": "ပို့ဆောင်ရန် လိပ်စာ",
+    "driver": "ယာဉ်မောင်း",
+    "orderInformation": "အော်ဒါ အချက်အလက်",
+    "orderPlacedOn": "အော်ဒါကို {date} တွင် တင်ခဲ့သည်",
+    "orderNumberLabel": "အော်ဒါ နံပါတ်",
+    "voucherNumber": "ဘောက်ချာ နံပါတ်",
+    "currentStatus": "လက်ရှိ အခြေအနေ",
+    "confirmStatusUpdate": "အခြေအနေ ပြောင်းလဲမှု အတည်ပြုပါ",
+    "confirmStatusQuestion": "ပို့ဆောင်မှု အခြေအနေကို ပြောင်းလဲမည်မှာ သေချာပါသလား",
+    "confirm": "အတည်ပြုပါ",
+    "updating": "ပြောင်းလဲနေသည်...",
+    "pickupInformation": "ရယူရန် အချက်အလက်",
+
+    "merchantDetailsForPickup": "ရယူရန် ဆိုင်ရှင် အသေးစိတ်",
+    "merchant": "ဆိုင်ရှင်",
+    "idLabel": "ID",
+    "orderNotFound": "အော်ဒါ မတွေ့ရှိပါ",
+    "orderDetailsNotRetrieved": "အော်ဒါ အသေးစိတ် ရယူမရပါ",
+    "deliveryNumber": "ပို့ဆောင်မှု #{number}",
+    "preparingDescription": "အော်ဒါကို ဆိုင်ရှင်မှ ပြင်ဆင်နေပါသည်",
+    "readyDescription": "အော်ဒါ အသင့်ဖြစ်ပါပြီ၊ ယူဆောင်နိုင်ပါပြီ",
+    "deliveringDescription": "အော်ဒါကို ဝယ်ယူသူထံ ပို့ဆောင်နေပါသည်",
+    "deliveredDescription": "အော်ဒါကို ပို့ဆောင်ပြီး လက်ခံရရှိပြီး ဖြစ်ပါသည်",
+
+    "cancelOrder": "အော်ဒါပယ်ဖျက်ရန်",
+    "confirmCancellation": "ပယ်ဖျက်ခြင်း အတည်ပြုပါ",
+    "cancelOrderDescription": "ဤအော်ဒါကို ပယ်ဖျက်လိုသည်မှာ သေချာပါသလား? ဤလုပ်ဆောင်ချက်ကို နောက်ပြန်လုပ်၍မရပါ။",
+    "cancellationReason": "ပယ်ဖျက်ရသည့် အကြောင်းရင်း",
+    "forRecordsOnly": "သင့်မှတ်တမ်းအတွက်သာ",
+    "reasonPlaceholder": "ပယ်ဖျက်ရသည့် အကြောင်းရင်းကို ဖော်ပြပါ...",
+    "warningNotice": "သတိပေးချက်",
+    "cancellationWarning": "ပြင်ဆင်နေသည့် အဆင့်တွင် အော်ဒါပယ်ဖျက်ခြင်းကို နောက်ပြန်လုပ်၍မရပါ။ ပယ်ဖျက်ပြီးနောက် ပြဿနာတစ်စုံတစ်ရာရှိပါက အကူအညီဌာနကို ဆက်သွယ်ရန် လိုအပ်ပါမည်။",
+    "cancellingOrder": "အော်ဒါပယ်ဖျက်နေပါသည်",
+    "cancellingOrderDescription": "သင့်ပယ်ဖျက်မှုတောင်းဆိုချက်ကို ဆောင်ရွက်နေပါသည်။ မကြာမီ လမ်းကြောင်းပြောင်းပေးပါမည်။",
+    "confirmCancel": "ဟုတ်ကဲ့၊ အော်ဒါပယ်ဖျက်ပါ",
+    "cancelling": "ပယ်ဖျက်နေသည်...",
+    "noReasonProvided": "အကြောင်းရင်း မဖော်ပြထားပါ",
+    "orderCancelled": "အော်ဒါပယ်ဖျက်ပြီးပါပြီ",
+    "orderCancellationFailed": "အော်ဒါပယ်ဖျက်ရန် မအောင်မြင်ပါ"
+  },
+
+  "otp": {
+    "otpTitle": "OTP",
+    "emailVerification": "အီးမေးလ်အတည်ပြုခြင်း",
+    "enterVerificationCode": "ကျွန်ုပ်တို့သင့်ထံပေးပို့ထားသော အတည်ပြုကုဒ်ကို ထည့်ပါ:",
+    "didntReceiveCode": "ကုဒ်မရရှိခဲ့ပါသလား?",
+    "resend": "ပြန်ပို့ရန်",
+    "continue": "ဆက်လက်လုပ်ဆောင်ရန်"
+  },
+  "location": {
+    "country": "နိုင်ငံ",
+    "state": "ပြည်နယ်",
+    "city": "မြို့",
+    "selectCountry": "နိုင်ငံရွေးရန်",
+    "selectState": "ပြည်နယ်ရွေးရန်",
+    "selectCity": "မြို့ရွေးရန်",
+    "invalidCountry": "မမှန်ကန်သောနိုင်ငံ ID",
+    "invalidState": "မမှန်ကန်သောပြည်နယ် ID",
+    "invalidCity": "မမှန်�ကန်သောမြို့ ID"
+  },
+
+  "product": {
+    "youSave": "သင်သိမ်းဆည်းသည်",
+    "productList": "ထုတ်ကုန်စာရင်း",
+    "productDetail": "ထုတ်ကုန်အသေးစိတ်",
+    "price": "စျေးနှုန်း",
+    "stock": "စတော့",
+    "description": "ဖော်ပြချက်",
+    "available": "ရရှိနိုင်သည်",
+    "unavailable": "မရရှိနိုင်ပါ",
+    "addToCart": "စျေးဝယ်တွန်းလှည်းထဲထည့်ရန်",
+    "quantity": "ပမာဏ",
+    "category": "အမျိုးအစား",
+    "categoryList": "အမျိုးအစားစာရင်း",
+    "unnamedProduct": "အမည်မဖော်ထားသောထုတ်ကုန်",
+    "unknownRestaurant": "အမည်မသိစားသောက်ဆိုင်",
+    "unknownShop": "အမည်မသိဆိုင်",
+    "unknownCategory": "အမည်မသိအမျိုးအစား",
+    "viewDetailsFor": "{name} အတွက်အသေးစိတ်ကြည့်ရန်",
+    "notAvailable": "မရရှိနိုင်ပါ",
+    "productDetails": "ထုတ်ကုန်အသေးစိတ်",
+    "productNotAvailable": "ထုတ်ကုန်မရရှိနိုင်ပါ",
+    "noDescriptionAvailable": "ဖော်ပြချက်မရရှိနိုင်ပါ",
+    "itemsInStock": "စတော့ရှိပစ္စည်းများ",
+    "freeDelivery": "အခမဲ့ပို့ဆောင်ပေးသည်",
+    "decreaseQuantity": "ပမာဏလျှော့ရန်",
+    "increaseQuantity": "ပမာဏတိုးရန်",
+    "inStock": "စတော့ရှိသည်",
+    "outOfStock": "စတော့ကုန်သွားပါပြီ",
+    "noMoreItemsInStock": "စတော့တွင်ပစ္စည်းမရှိတော့ပါ",
+    "selectQuantityFirst": "ကျေးဇူးပြု၍ ပမာဏကိုအရင်ရွေးပါ",
+    "addedToCart": "ပစ္စည်းကို စျေးဝယ်တွန်းလှည်းထဲထည့်ပြီးပါပြီ",
+    "ratings": "အဆင့်သတ်မှတ်ချက်များ",
+    "reviews": "သုံးသပ်ချက်များ",
+    "relatedProducts": "ဆက်စပ်ထုတ်ကုန်များ",
+    "moreFromThisShop": "ဤဆိုင်မှထုတ်ကုန်များထပ်မံကြည့်ရန်",
+    "ingredients": "ပါဝင်ပစ္စည်းများ",
+    "nutritionalInfo": "အာဟာရအချက်အလက်",
+    "allergens": "ဓာတ်မတည့်မှုဖြစ်စေနိုင်သောပစ္စည်းများ",
+    "servingSize": "တစ်ကြိမ်စားသုံးမှုပမာဏ",
+    "preparation": "ပြင်ဆင်နည်း",
+    "viewCart": "စျေးဝယ်တွန်းလှည်းကြည့်ရန်",
+    "continueShoppingButton": "ဆက်လက်စျေးဝယ်ရန်",
+    "aboutThisMenu": "ဤမီနူးအကြောင်း",
+    "recommendedForYou": "သင့်အတွက်အကြံပြုထားသည်",
+    "seeAll": "အားလုံးကြည့်ရန်",
+    "noSimilarProducts": "ဆင်တူထုတ်ကုန်များမရှိပါ",
+    "noProductsAvailable": "ထုတ်ကုန်များမရရှိနိုင်ပါ"
+  },
+
+  "filterCategory": {
+    "selectFilter": "စစ်ထုတ်မှုရွေးရန်",
+    "reset": "ပြန်လည်သတ်မှတ်ရန်",
+    "apply": "အသုံးပြုရန်",
+    "sort": "စီရန်",
+    "offer": "ကမ်းလှမ်းချက်",
+    "shop": "ဆိုင်",
+    "selectSort": "စီရန်ရွေးရန်",
+    "selectOffer": "ကမ်းလှမ်းချက်ရွေးရန်",
+    "selectShop": "ဆိုင်ရွေးရန်"
+  },
+
+  "order": {
+    "orderList": "အော်ဒါစာရင်း",
+    "orderDetail": "အော်ဒါအသေးစိတ်",
+    "orderDate": "အော်ဒါရက်စွဲ",
+    "orderNumber": "အော်ဒါနံပါတ်",
+    "voucherNumber": "ဘောက်ချာနံပါတ်",
+    "total": "စုစုပေါင်း",
+    "confirmOrder": "အော်ဒါအတည်ပြုရန်",
+    "cancelOrder": "အော်ဒါပယ်ဖျက်ရန်",
+    "cancelling": "ပယ်ဖျက်နေသည်...",
+    "processing": "ဆောင်ရွက်နေသည်...",
+    "confirmCancel": "ဟုတ်ကဲ့၊ အော်ဒါပယ်ဖျက်ပါ",
+    "cancelSuccess": "အော်ဒါ အောင်မြင်စွာ ပယ်ဖျက်ပြီးပါပြီ",
+    "cancelSuccessDetails": "သင့်အော်ဒါကို ပယ်ဖျက်ပြီးပါပြီ။ အတည်ပြုအီးမေးလ် မကြာမီရရှိပါမည်။",
+    "cancelError": "အော်ဒါပယ်ဖျက်ရန် မအောင်မြင်ပါ။ ထပ်မံကြိုးစားကြည့်ပါ။",
+    "cancelConfirmTitle": "သင့်အော်ဒါကို ပယ်ဖျက်မည်လား?",
+    "cancelConfirmDescription": "ဤအော်ဒါကို ပယ်ဖျက်လိုသည်မှာ သေချာပါသလား? ဤလုပ်ဆောင်ချက်ကို နောက်ပြန်လုပ်၍မရပါ။",
+    "cancelWarning1": "ငွေပေးချေပြီးပါက ပယ်ဖျက်ခြင်းသည် ငွေပြန်အမ်းမှု ကြာမြင့်နိုင်ပါသည်။",
+    "cancelWarning2": "သင့်အော်ဒါအတွက် သီးသန့်ပြင်ဆင်ထားသည့် ပစ္စည်းများအတွက် ငွေပြန်အမ်းမှု မရရှိနိုင်ပါ။",
+    "orderConfirmed": "အော်ဒါအတည်ပြုပြီး",
+    "orderCancelled": "အော်ဒါပယ်ဖျက်ပြီး",
+    "orderItems": "အော်ဒါပစ္စည်းများ",
+    "orderItemDetail": "အော်ဒါပစ္စည်းအသေးစိတ်",
+    "orderDetails": "အော်ဒါအသေးစိတ်",
+    "deliveryStatus": "ပို့ဆောင်မှုအခြေအနေ",
+    "status": {
+      "pending": "ဆိုင်းငံ့ထားသည်",
+      "pendingDesc": "သင့်အော်ဒါကို လက်ခံရရှိပြီး လုပ်ဆောင်နေပါသည်",
+      "confirmed": "အတည်ပြုပြီး",
+      "confirmedDesc": "သင့်အော်ဒါကို အတည်ပြုပြီး ပြင်ဆင်နေပါသည်",
+      "shipped": "ပို့ဆောင်ပြီး",
+      "shippedDesc": "သင့်အော်ဒါသည် သင့်ထံသို့ လမ်းတွင်ရှိနေပါသည်",
+      "cancelled": "ပယ်ဖျက်ပြီး",
+      "cancelledDesc": "သင့်အော်ဒါကို ပယ်ဖျက်လိုက်ပါပြီ",
+      "rejected": "ပယ်ချပြီး",
+      "rejectedDesc": "သင့်အော်ဒါကို ပယ်ချလိုက်ပါပြီ",
+      "completed": "ပြီးစီးပြီး",
+      "completedDesc": "သင့်အော်ဒါကို အောင်မြင်စွာ ပို့ဆောင်ပြီးပါပြီ"
+    },
+    "info": {
+      "date": "ရက်စွဲ",
+      "time": "အချိန်",
+      "items": "ပစ္စည်းများ",
+      "voucher": "ဘောက်ချာ"
+    },
+    "tabs": {
+      "items": "အော်ဒါပစ္စည်းများ",
+      "timeline": "အော်ဒါအချိန်ဇယား"
+    },
+    "timeline": {
+      "orderPlaced": "အော်ဒါတင်ပြီး",
+      "orderConfirmed": "အော်ဒါအတည်ပြုပြီး",
+      "orderShipped": "အော်ဒါပို့ဆောင်ပြီး",
+      "orderCompleted": "အော်ဒါပြီးစီးပြီး",
+      "orderCancelled": "အော်ဒါပယ်ဖျက်ပြီး",
+      "orderRejected": "အော်ဒါပယ်ချပြီး",
+      "pendingStatus": "ဆိုင်းငံ့ထားသည်",
+      "onTheWayStatus": "သင့်အော်ဒါသည် လမ်းတွင်ရှိနေပါသည်",
+      "driver": "ပို့ဆောင်သူ",
+      "noContact": "ဆက်သွယ်မှုမရှိ",
+      "thankYou": "ကျေးဇူးတင်ပါသည်!"
+    },
+    "summary": {
+      "title": "အော်ဒါအကျဉ်းချုပ်",
+      "subtotal": "စုစုပေါင်းငွေ",
+      "discount": "လျှော့စျေး",
+      "total": "စုစုပေါင်း",
+      "from": "မှ"
+    },
+    "list": {
+      "myOrders": "ကျွန်ုပ်၏အော်ဒါများ",
+      "allOrders": "အော်ဒါအားလုံး",
+      "pending": "ဆိုင်းငံ့ထားသည်",
+      "confirmed": "အတည်ပြုပြီး",
+      "shipped": "ပို့ဆောင်ပြီး",
+      "cancelled": "ပယ်ဖျက်ပြီး",
+      "rejected": "ပယ်ချပြီး",
+      "completed": "ပြီးစီးပြီး",
+      "noOrdersFound": "အော်ဒါများမတွေ့ပါ",
+      "placeOrderToSee": "ဤနေရာတွင်ကြည့်ရန် အော်ဒါတင်ပါ",
+      "tryChangingFilter": "စစ်ထုတ်မှုပြောင်းကြည့်ပါ သို့မဟုတ် အော်ဒါတင်ပါ",
+      "errorLoading": "အော်ဒါများတင်ရာတွင် အမှားဖြစ်ပေါ်သည်",
+      "tryAgain": "ထပ်မံကြိုးစားပါ"
+    }
+  },
+
+  "cart": {
+    "cart": "စျေးဝယ်ခြင်း",
+    "emptyCart": "သင့်ရဲ့ စျေးဝယ်ခြင်းဟာ ဗလာဖြစ်နေပါတယ်",
+    "checkout": "ငွေရှင်းရန်",
+    "removeItem": "ပစ္စည်းကိုဖယ်ရှားရန်",
+    "decreaseQuantity": "အရေအတွက်ကို လျှော့ချရန်",
+    "increaseQuantity": "အရေအတွက်ကို တိုးမြှင့်ရန်",
+    "subtotal": "စုစုပေါင်း",
+    "discount": "လျှော့စျေး",
+    "total": "စုစုပေါင်း",
+    "continueShopping": "စျေးဝယ်ခြင်းကို ဆက်လုပ်ရန်",
+    "orderSubmittedSuccessfully": "အော်ဒါကို အောင်မြင်စွာ တင်သွင်းပြီးပါပြီ",
+    "orderSubmissionFailed": "အော်ဒါတင်သွင်းမှု မအောင်မြင်ပါ။ ကျေးဇူးပြု၍ ထပ်စမ်းကြည့်ပါ",
+    "pleaseLoginToSubmitOrder": "ကျေးဇူးပြု၍ အော်ဒါတင်ရန် အကောင့်ဝင်ပါ",
+    "yourCartIsEmpty": "သင့်ရဲ့ စျေးဝယ်ခြင်းဟာ ဗလာဖြစ်နေပါတယ်",
+    "seemsLikeYouHaveNotOrderedAnyFoodYet": "သင်ဟာ အစားအစာများကို မှာယူထားခြင်း မရှိသေးပါ",
+    "findFoods": "အစားအစာများကို ရှာရန်",
+    "myCart": "ကျွန်ုပ်၏ စျေးဝယ်ခြင်း",
+    "deliveryLocation": "ပို့ဆောင်ရမည့် နေရာ",
+    "home": "အိမ်",
+    "changeLocation": "နေရာပြောင်းရန်",
+    "promoCode": "ပရိုမိုကုဒ်...",
+    "apply": "လျှောက်ထားရန်",
+    "addMoreItems": "ပစ္စည်းများ ထပ်ထည့်ရန်",
+    "paymentSummary": "ငွေပေးချေမှု အကျဉ်းချုပ်",
+    "totalItems": "ပစ္စည်းအရေအတွက် ({count})",
+    "deliveryFee": "ပို့ဆောင်ခ",
+    "free": "အခမဲ့",
+    "ouchEmpty": "အို! စျေးဝယ်ခြင်းဟာ ဗလာဖြစ်နေပါတယ်",
+    "confirm": "အတည်ပြုရန်",
+    "login": "အကောင့်ဝင်ရန်",
+    "proceedToPayment": "ငွေပေးချေရန် ဆက်သွားပါ",
+    "youSaved": "သင် စုဆောင်းရရှိသည်",
+    "totalSavings": "စုစုပေါင်း စုဆောင်းငွေ",
+    "off": "လျှော့စျေး",
+    "metadata": {
+      "title": "စျေးဝယ်ခြင်း | စိတ်ချရသော အဝယ်ဝန်ဆောင်မှု",
+      "keywords": "စျေးဝယ်ခြင်း၊ ငွေရှင်းခြင်း၊ အစားအစာ မှာယူခြင်း၊ စိတ်ချရသော အဝယ်ဝန်ဆောင်မှု စျေးဝယ်ခြင်း",
+      "description": "သင်၏ စျေးဝယ်ခြင်းကို ကြည့်ပြီး စိတ်ချရသော အဝယ်ဝန်ဆောင်မှု ပေါ်တွင် အော်ဒါကို ပြီးဆုံးအောင် လုပ်ပါ။ အစားအစာ၊ ကုန်ပစ္စည်းများနှင့် ဒီဂျစ်တယ် ဝန်ဆောင်မှုများအတွက် လွယ်ကူသော ငွေရှင်းသည့် လုပ်ငန်းစဉ်။"
+    }
+  },
+  "promotion": {
+    "buyNow": "ယခုဝယ်ရန်",
+    "featured": "ထူးခြားချက်"
+  },
+  "payment": {
+    "payment": "ငွေပေးချေမှု",
+    "paymentMethod": "ငွေပေးချေမှုနည်းလမ်း",
+    "addPayment": "ငွေပေးချေမှုနည်းလမ်းထည့်ရန်",
+    "updatePayment": "ငွေပေးချေမှုနည်းလမ်းအပ်ဒိတ်လုပ်ရန်",
+    "cardNumber": "ကတ်နံပါတ်",
+    "cardHolder": "ကတ်ပိုင်ရှင်",
+    "expiryDate": "သက်တမ်းကုန်ဆုံးရက်",
+    "cvv": "CVV",
+    "paymentSuccess": "ငွေပေးချေမှုအောင်မြင်ပါသည်",
+    "paymentFailed": "ငွေပေးချေမှုမအောင်မြင်ပါ",
+    "selectPaymentMethod": "ငွေပေးချေမှုနည်းလမ်းရွေးရန်",
+    "noPaymentAvailable": "ငွေပေးချေမှုနည်းလမ်းမရရှိနိုင်ပါ",
+    "confirm": "အတည်ပြုရန်",
+    "accountNo": "အကောင့်နံပါတ်",
+    "accountName": "အကောင့်နာမည်",
+    "active": "အသက်ဝင်နေသည်",
+    "inactive": "အသက်မဝင်ပါ",
+    "chooseMethod": "နည်းလမ်းရွေးရန်",
+    "paymentMethodAddedSuccessfully": "ငွေပေးချေမှုနည်းလမ်းထည့်သွင်းမှု အောင်မြင်ပါသည်",
+    "unableToAddPaymentMethod": "ငွေပေးချေမှုနည်းလမ်းထည့်သွင်း၍ မရပါ",
+    "paymentMethodUpdatedSuccessfully": "ငွေပေးချေမှုနည်းလမ်းအပ်ဒိတ်လုပ်မှု အောင်မြင်ပါသည်",
+    "unableToUpdatePaymentMethod": "ငွေပေးချေမှုနည်းလမ်းအပ်ဒိတ်လုပ်၍ မရပါ",
+    "accNo": "အကောင့်နံပါတ်",
+    "accName": "အကောင့်နာမည်",
+    "update": "အပ်ဒိတ်လုပ်ရန်",
+    "orderSummary": "အော်ဒါအကျဉ်းချုပ်",
+    "totalItems": "စုစုပေါင်းပစ္စည်းများ",
+    "items": "ပစ္စည်းများ",
+    "deliveryFee": "ပို့ဆောင်ခ",
+    "free": "အခမဲ့",
+    "total": "စုစုပေါင်း",
+    "walletBalance": "ပိုက်ဆံအိတ်လက်ကျန်",
+    "currentBalance": "လက်ရှိလက်ကျန်",
+    "refillWallet": "ပိုက်ဆံအိတ်ဖြည့်ရန်",
+    "paymentMethods": "ငွေပေးချေမှုနည်းလမ်းများ",
+    "wallet": "ပိုက်ဆံအိတ်",
+    "payFromWallet": "ပိုက်ဆံအိတ်မှပေးချေရန်",
+    "insufficientBalanceWarning": "လက်ကျန်ငွေမလုံလောက်သည့်သတိပေးချက်",
+    "cashOnDelivery": "ပစ္စည်းရောက်မှငွေပေးချေရန်",
+    "payOnDelivery": "သင့်အော်ဒါလက်ခံရရှိချိန်တွင် ပေးချေပါ",
+    "pleaseSelectPaymentMethod": "ကျေးဇူးပြု၍ ငွေပေးချေမှုနည်းလမ်းရွေးပါ",
+    "placeOrder": "အော်ဒါတင်ရန်",
+    "orderSubmittedSuccess": "အော်ဒါတင်သွင်းမှု အောင်မြင်ပါသည်",
+    "orderSubmissionFailed": "အော်ဒါတင်သွင်းမှု မအောင်မြင်ပါ",
+    "insufficientBalance": "လက်ကျန်ငွေမလုံလောက်ပါ",
+    "loginRequired": "အော်ဒါတင်သွင်းရန် ကျေးဇူးပြု၍ ဝင်ရောက်ပါ",
+    "emptyCart": "သင့်စျေးဝယ်တွန်းလှည်းသည် ဗလာဖြစ်နေသည်"
+  },
+
+  "settings": {
+    "settings": "ဆက်တင်များ",
+    "account": "အကောင့်",
+    "notifications": "အသိပေးချက်များ",
+    "language": "ဘာသာစကား",
+    "theme": "အပြင်အဆင်",
+    "privacy": "ကိုယ်ရေးကာကွယ်မှု",
+    "security": "လုံခြုံရေး",
+    "help": "အကူအညီ",
+    "about": "အကြောင်းအရာ",
+    "logout": "ထွက်ရန်",
+    "other": "အခြား",
+    "aboutTickets": "လက်မှတ်များအကြောင်း",
+    "privacyPolicy": "ကိုယ်ရေးကာကွယ်မှုမူဝါဒ",
+    "termsAndConditions": "စည်းမျဉ်းစည်းကမ်းများ",
+    "profile": "ပရိုဖိုင်း",
+    "location": "တည်နေရာ"
+  },
+  "shopTypes": {
+    "grocerStore": "ကုန်စုံဆိုင်",
+    "chemistShop": "ဆေးဆိုင်",
+    "stationeryShop": "စာရေးကိရိယာဆိုင်",
+    "musicShop": "ဂီတဆိုင်",
+    "fruitShop": "သစ်သီးဆိုင်",
+    "vegetableShop": "ဟင်းသီးဟင်းရွက်ဆိုင်",
+    "flowerShop": "ပန်းဆိုင်",
+    "shoeShop": "ဖိနပ်ဆိုင်",
+    "toyShop": "ကစားစရာဆိုင်",
+    "dairyShop": "နို့ထွက်ပစ္စည်းဆိုင်",
+    "laundryService": "အဝတ်လျှော်ဝန်ဆောင်မှု",
+    "dryCleanersShop": "အဝတ်ခြောက်သန့်ရှင်းရေးဆိုင်",
+    "restaurant": "စားသောက်ဆိုင်",
+    "junkShop": "အမှိုက်ဆိုင်",
+    "furnitureShop": "ပရိဘောဂဆိုင်"
+  },
+  "categories": {
+    "burger": "ဘာဂါ",
+    "tarco": "တာကို",
+    "drink": "သောက်စရာ",
+    "pizza": "ပီဇာ"
+  },
+  "errors": {
+    "failedToLoad": "ဒေတာတင်ရန်မအောင်မြင်ပါ",
+    "invalidCredentials": "မမှန်ကန်သော အထောက်အထားများ",
+    "requiredField": "ဤနေရာသည် ဖြည့်စွမ်းရန်လိုအပ်သည်",
+    "serverError": "ဆာဗာအမှား၊ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ",
+    "networkError": "ကွန်ရက်အမှား၊ ကျေးဇူးပြု၍ သင့်ချိတ်ဆက်မှုကို စစ်ဆေးပါ",
+    "unknownError": "အမည်မသိအမှားတစ်ခု ဖြစ်ပေါ်ခဲ့သည်",
+    "loadingOrder": "အော်ဒါတင်ရာတွင် အမှား",
+    "orderDetailsLoadFailed": "အော်ဒါအသေးစိတ်ကို တင်မရပါ။ ထပ်မံကြိုးစားပါ။"
+  },
+  "languages": {
+    "english": "အင်္ဂလိပ်",
+    "chinese": "တရုတ်"
+  },
+  "home": {
+    "featuredProducts": "ထူးခြားသောထုတ်ကုန်များ",
+    "popularCategories": "လူကြိုက်များသောအမျိုးအစားများ",
+    "nearbyShops": "အနီးနားဆိုင်များ",
+    "specialOffers": "အထူးကမ်းလှမ်းချက်များ",
+    "viewAll": "အားလုံးကြည့်ရန်",
+    "search": "ထုတ်ကုန်များ၊ ဆိုင်များ စသည်တို့ကို ရှာဖွေရန်",
+    "yourLocation": "သင့်တည်နေရာ",
+    "findByCategory": "အမျိုးအစားအလိုက်ရှာရန်",
+    "seeAll": "အားလုံးကြည့်ရန်",
+    "promotional": "ပရိုမိုးရှင်း",
+    "more": "ထပ်မံ",
+    "metadata": {
+      "title": "ပင်မစာမျက်နှာ | Worry-free takeaway",
+      "keywords": "Worry-free takeaway, အစားအစာပို့ဆောင်မှု, အစားအစာစျေးကွက်, အနီးနားဆိုင်များ, ဒေသဆိုင်ရာပို့ဆောင်မှု, ဒစ်ဂျစ်တယ်ကုန်ပစ္စည်းများ, ကမ္ဘာလုံးဆိုင်ရာဝန်ဆောင်မှုများ",
+      "description": "အနီးနားဆိုင်များနှင့် ကမ္ဘာလုံးဆိုင်ရာ ဒစ်ဂျစ်တယ်ဝန်ဆောင်မှုများကို စူးစမ်းပါ။ Worry-free takeawayသည် သင်ရှိရင်သည့်နေရာမှ ကမ္ဘာ့အကောင်းဆုံးများကို သင့်လက်ဖျားထိပ်သို့ ယူဆောင်လာပါသည်။"
+    }
+  },
+  "search": {
+    "searchFood": "အစားအစာရှာရန်",
+    "searchFoodPlaceholder": "အစားအစာရှာဖွေရန်",
+    "noFoodFound": "အစားအစာမတွေ့ပါ။",
+    "suggestions": "အကြံပြုချက်များ",
+    "suggestionBurger": "ဘာဂါ",
+    "suggestionPizza": "ပီဇာ",
+    "suggestionCola": "ကိုလာ",
+    "recentSearches": "မကြာသေးမီကရှာဖွေမှုများ",
+    "deleteRecentSearches": "မကြာသေးမီကရှာဖွေမှုများကို ဖျက်ရန်",
+    "searchResults": "ရှာဖွေမှုရလဒ်များ",
+    "noResults": "ရလဒ်များမတွေ့ပါ",
+    "tryAgain": "ကျေးဇူးပြု၍ အခြားရှာဖွေရန်စကားလုံးကို ထပ်မံကြိုးစားပါ။",
+    "metadata": {
+      "title": "ရှာဖွေမှုရလဒ်များ | Worry-free takeaway",
+      "keywords": "ရှာဖွေရန်, ထုတ်ကုန်များရှာရန်, ဆိုင်များရှာရန်, Worry-free takeawayရှာဖွေမှု",
+      "description": "Worry-free takeawayတွင် ထုတ်ကုန်များ၊ ဆိုင်များနှင့် ဝန်ဆောင်မှုများကို ရှာဖွေပါ။ သင်ရှာဖွေနေသောအရာကို လျင်မြန်စွာနှင့် လွယ်ကူစွာ ရှာဖွေပါ။"
+    }
+  },
+
+  "merchant_order_notification": {
+    "order_notifications": "အော်ဒါအသိပေးချက်များ",
+    "see_more_order": "အော်ဒါများထပ်မံကြည့်ရန်",
+    "no_new_order_notifications": "အော်ဒါအသိပေးချက်သစ်မရှိပါ"
+  },
+  "merchant_payment_card": {
+    "edit": "ပြင်ဆင်ရန်"
+  },
+  "merchantHome": {
+    "runningOrders": "လည်ပတ်နေသောအော်ဒါများ",
+    "orderRequests": "အော်ဒါတောင်းဆိုမှုများ",
+    "requestList": "တောင်းဆိုမှုစာရင်း",
+    "runningList": "လည်ပတ်နေသောစာရင်း",
+    "totalRevenue": "စုစုပေါင်းဝင်ငွေ",
+    "seeDetails": "အသေးစိတ်ကြည့်ရန်",
+    "popularItems": "လူကြိုက်များသောပစ္စည်းများ",
+    "popularItemsThisWeek": "ဤအပတ်တွင် လူကြိုက်များသောပစ္စည်းများ",
+    "seeAll": "အားလုံးကြည့်ရန်",
+    "location": "တည်နေရာ",
+    "totalOrders": "စုစုပေါင်းအော်ဒါများ",
+    "totalCustomers": "စုစုပေါင်းဖောက်သည်များ",
+    "totalProducts": "စုစုပေါင်းထုတ်ကုန်များ",
+    "totalCategories": "စုစုပေါင်းအမျိုးအစားများ",
+    "yourShops": "သင့်ဆိုင်များ",
+    "addNew": "အသစ်ထည့်ရန်",
+    "createYourFirstShop": "သင့်ပထမဆိုင်ကိုဖန်တီးပါ",
+    "noShopsAvailable": "ဆိုင်များမရရှိနိုင်ပါ",
+    "availableProducts": "ရရှိနိုင်သောထုတ်ကုန်များ",
+    "noProductsAvailable": "ထုတ်ကုန်များမရရှိနိုင်ပါ",
+    "deliveryManagement": "ပို့ဆောင်ရေးစီမံခန့်ခွဲမှု",
+    "manageDeliveryDrivers": "ပို့ဆောင်သူများကို စီမံခန့်ခွဲရန်",
+    "registerNewDriver": "ပို့ဆောင်သူသစ်မှတ်ပုံတင်ရန်",
+    "driverDescription": "ပို့ဆောင်သူသစ်များကို မှတ်ပုံတင်ပါ သို့မဟုတ် သင့်ရှိပြီးသား ပို့ဆောင်ရေးအဖွဲ့ကို စီမံခန့်ခွဲပါ",
+    "noRevenueData": "ဝင်ငွေဒေတာမရရှိနိုင်ပါ",
+    "revenueDataDescription": "အော်ဒါများပြီးစီးပြီးသည့်နောက် ဝင်ငွေဒေတာသည် ဤနေရာတွင် ပေါ်လာပါမည်",
+    "retry": "ထပ်မံကြိုးစားရန်",
+    "failedToLoadRevenue": "ဝင်ငွေဒေတာတင်ရန် မအောင်မြင်ပါ",
+    "week": "အပတ်စဉ်",
+    "walletBalance": "ပိုက်ဆံအိတ်လက်ကျန်",
+    "refill": "ငွေဖြည့်ရန်",
+    "loadingBalance": "လက်ကျန်ငွေကို တင်နေသည်...",
+    "availableBalance": "သုံးစွဲနိုင်သော လက်ကျန်ငွေ",
+    "walletDescription": "သင့်ရန်ပုံငွေကို စီမံခန့်ခွဲပြီး သင့်ဝင်ငွေနှင့် အသုံးစရိတ်များကို တစ်နေရာတည်းတွင် ခြေရာခံပါ",
+    "withdrawHistory": "ဖိုင်ဖိုင်ရဲ့အကြောင်းအရာ"
+  },
+  "merchantShopList": {
+    "yourLocation": "သင့်တည်နေရာ",
+    "createShop": "ဆိုင်ဖန်တီးရန်",
+    "shopList": "ဆိုင်စာရင်း",
+    "noShopAvailable": "ဆိုင်များမရရှိနိုင်ပါ",
+    "businessTagline": "အော်ဒါတိုင်းနှင့် သင့်လုပ်ငန်းကို တိုးတက်စေပါ!"
+  },
+  "merchantOrders": {
+    "orders": "အော်ဒါများ",
+    "noOrdersAvailable": "အော်ဒါများမရရှိနိုင်ပါ",
+    "applyFilters": "စစ်ထုတ်မှုများအသုံးပြုရန်",
+    "allCategories": "အမျိုးအစားအားလုံး",
+    "allStatuses": "အားလုံးသောအခြေအနေများ",
+    "selectStatus": "အခြေအနေရွေးရန်",
+    "selectCategory": "အမျိုးအစားရွေးရန်",
+    "orderStatus": {
+      "pending": "ဆိုင်းငံ့ထားသည်",
+      "completed": "ပြီးစီးပြီး",
+      "cancelled": "ပယ်ဖျက်ပြီး",
+      "all": "အားလုံးသောအခြေအနေများ"
+    },
+    "orderCategories": {
+      "food": "အစားအစာ",
+      "drinks": "သောက်စရာများ",
+      "desserts": "အချိုပွဲများ",
+      "all": "အမျိုးအစားအားလုံး"
+    },
+    "filterByStatus": "အခြေအနေအလိုက် စစ်ထုတ်ရန်",
+    "filterByCategory": "အမျိုးအစားအလိုက် စစ်ထုတ်ရန်",
+    "loadingOrders": "အော်ဒါများတင်နေသည်...",
+    "failedToFetchOrders": "အော်ဒါများရယူရန် မအောင်မြင်ပါ"
+  },
+  "login": {
+    "metadata": {
+      "title": "Sign In | Worry-free takeaway",
+      "keywords": "login, sign in, access account, Worry-free takeaway login, secure login",
+      "description": "Sign in to your Worry-free takeaway account to access a world of digital goods and services instantly."
+    }
+  },
+  "register": {
+    "metadata": {
+      "title": "Create Account | Worry-free takeaway",
+      "keywords": "register, sign up, create account, Worry-free takeaway registration, new user",
+      "description": "Create your Worry-free takeaway account today and start exploring a world of digital goods and services."
+    }
+  },
+  "forgot_password": {
+    "metadata": {
+      "title": "Forgot Password | Worry-free takeaway",
+      "keywords": "forgot password, reset password, account recovery, password help",
+      "description": "Reset your Worry-free takeaway password to regain access to your account."
+    }
+  },
+  "reset_password": {
+    "metadata": {
+      "title": "Reset Password | Worry-free takeaway",
+      "keywords": "reset password, new password, change password, account security",
+      "description": "Set a new password for your Worry-free takeaway account and secure your access."
+    }
+  },
+  "otp_forgot_password": {
+    "metadata": {
+      "title": "Verify OTP | Worry-free takeaway",
+      "keywords": "verification code, OTP, one-time password, account verification",
+      "description": "Verify your identity with a one-time password to reset your Worry-free takeaway account."
+    }
+  },
+  "merchant_register": {
+    "metadata": {
+      "title": "Merchant Registration | Worry-free takeaway",
+      "keywords": "merchant signup, business registration, seller account, partner with Worry-free takeaway",
+      "description": "Register as a merchant on Worry-free takeaway to start selling your products and services to a global audience."
+    }
+  },
+  "shop_register": {
+    "metadata": {
+      "title": "Register Your Shop | Worry-free takeaway",
+      "keywords": "shop registration, add store, business listing, merchant shop setup",
+      "description": "Register your shop on Worry-free takeaway and start serving customers in your area and beyond."
+    }
+  },
+  "application": {
+    "metadata": {
+      "title": "Application | Worry-free takeaway",
+      "keywords": "Worry-free takeaway application, digital marketplace, shop products, services",
+      "description": "Browse and shop for products and services from local and global merchants on Worry-free takeaway."
+    },
+    "product_list_by_shop": {
+      "metadata": {
+        "title": "ဆိုင်ပုံကိုယ်စားလှယ်များ | Worry-free takeaway",
+        "keywords": "ဆိုင်ပုံကိုယ်စားလှယ်များ, ဆိုင်ပုံပုံကိုယ်စားလှယ်များ, Worry-free takeaway ဆိုင်ပုံကိုယ်စားလှယ်များ, ကိုယ်စားလှယ်များကိုယ်စားလှယ်များ",
+        "description": "ဆိုင်ပုံကိုယ်စားလှယ်များကိုကိုယ်စားလှယ်များကိုယ်စားလှယ်များ"
+      }
+    },
+    "EventList": {
+      "metadata": {
+        "title": "Event List | Worry-free takeaway",
+        "keywords": "event list, Worry-free takeaway event, event details, event schedule",
+        "description": "Explore upcoming events and activities on Worry-free takeaway. Find the best events and activities for your interests."
+      }
+    },
+    "event_detail": {
+      "metadata": {
+        "title": "Event Detail | Worry-free takeaway",
+        "keywords": "event detail, Worry-free takeaway event, event details, event schedule",
+        "description": "Explore upcoming events and activities on Worry-free takeaway. Find the best events and activities for your interests."
+      }
+    },
+    "home": {
+      "metadata": {
+        "title": "Home | Worry-free takeaway",
+        "keywords": "Worry-free takeaway home, food delivery app, local shops, digital marketplace",
+        "description": "Discover local shops and global digital services on the Worry-free takeaway app. Order food, groceries, and more with ease."
+      }
+    },
+    "faq": {
+      "frequently_asked_questions": "မကြာခဏမေးလေ့ရှိသောမေးခွန်းများ",
+      "faq_subtitle": "Worry-free takeaway အကြောင်း အဖြေများကို ရှာဖွေပါ",
+      "error_title": "FAQs တင်ရာတွင် အမှားရှိနေသည်",
+      "retry_button": "ထပ်မံကြိုးစားပါ",
+      "metadata": {
+        "title": "မကြာခဏမေးလေ့ရှိသောမေးခွန်းများ - Worry-free takeaway",
+        "description": "Worry-free takeaway အသုံးပြုခြင်းဆိုင်ရာ မကြာခဏမေးလေ့ရှိသော မေးခွန်းများအတွက် အဖြေများကို ရှာဖွေပါ",
+        "keywords": "FAQ, အကူအညီ, မေးခွန်းများ, အဖြေများ, Worry-free takeaway, ပံ့ပိုးမှု"
+      }
+    },
+    "cart": {
+      "metadata": {
+        "title": "Shopping Cart | Worry-free takeaway",
+        "keywords": "shopping cart, checkout, order food, Worry-free takeaway cart",
+        "description": "Review your shopping cart and complete your order on Worry-free takeaway. Easy checkout for food, goods, and digital services."
+      }
+    },
+    "profile": {
+      "metadata": {
+        "title": "User Profile | Worry-free takeaway",
+        "keywords": "user profile, account settings, Worry-free takeaway profile, personal details",
+        "description": "Manage your Worry-free takeaway profile, view order history, and update personal details."
+      }
+    },
+    "merchant_home": {
+      "metadata": {
+        "title": "Merchant Dashboard | Worry-free takeaway",
+        "keywords": "merchant dashboard, seller portal, business management, Worry-free takeaway merchant",
+        "description": "Manage your business, view orders, and track performance with the Worry-free takeaway merchant dashboard."
+      }
+    },
+    "search": {
+      "metadata": {
+        "title": "Search Results | Worry-free takeaway",
+        "keywords": "search, find products, find shops, Worry-free takeaway search",
+        "description": "Search for products, shops, and services on Worry-free takeaway. Find exactly what you're looking for quickly and easily."
+      }
+    },
+    "PromoList": {
+      "metadata": {
+        "title": "Promo List | Worry-free takeaway",
+        "keywords": "promo list, Worry-free takeaway promo, promo offers, promotional deals",
+        "description": "Explore the latest promotions and deals on Worry-free takeaway. Find the best offers and discounts for your favorite products and services."
+      }
+    },
+    "product_list": {
+      "metadata": {
+        "title": "Product List | Worry-free takeaway",
+        "keywords": "products, shop products, Worry-free takeaway products, browse products",
+        "description": "Browse our wide selection of quality products. Find the best deals and items for your needs on Worry-free takeaway."
+      }
+    },
+    "product_detail": {
+      "metadata": {
+        "title": "Product Details | Worry-free takeaway",
+        "keywords": "product details, buy product, product information, product specifications",
+        "description": "View detailed information about this product. Check specifications, reviews, and make an informed purchase on Worry-free takeaway."
+      }
+    },
+    "user_order_list": {
+      "metadata": {
+        "title": "My Orders | Worry-free takeaway",
+        "keywords": "my orders, order history, purchase history, track orders",
+        "description": "View your order history on Worry-free takeaway. Track your past and current orders, check delivery status, and manage your purchases."
+      }
+    },
+    "user_order_detail": {
+      "metadata": {
+        "title": "Order Details | Worry-free takeaway",
+        "keywords": "order details, order status, order tracking, delivery status",
+        "description": "View detailed information about your order. Check order status, track delivery, and manage your purchase on Worry-free takeaway."
+      }
+    },
+    "setting": {
+      "metadata": {
+        "title": "Settings | Worry-free takeaway",
+        "keywords": "account settings, app settings, preferences, Worry-free takeaway settings",
+        "description": "Manage your account settings and preferences on Worry-free takeaway. Customize your experience to suit your needs."
+      }
+    },
+    "category_list": {
+      "metadata": {
+        "title": "Categories | Worry-free takeaway",
+        "keywords": "categories, product categories, browse categories, Worry-free takeaway categories",
+        "description": "Browse products by category on Worry-free takeaway. Find items organized by type, making it easier to discover what you need."
+      }
+    },
+    "merchant_shop_list": {
+      "metadata": {
+        "title": "My Shops | Worry-free takeaway",
+        "keywords": "my shops, shop management, merchant shops, shop list",
+        "description": "Manage your shops on Worry-free takeaway. View, edit, and add new shops to your merchant profile."
+      }
+    },
+    "merchant_shop_detail": {
+      "metadata": {
+        "title": "Shop Details | Worry-free takeaway",
+        "keywords": "shop details, manage shop, shop profile, shop management",
+        "description": "View and manage detailed information about your shop on Worry-free takeaway. Update shop details, manage products, and more."
+      }
+    },
+    "customer_wallet": {
+      "metadata": {
+        "title": "My Wallet | Worry-free takeaway",
+        "keywords": "digital wallet, payment wallet, account balance, Worry-free takeaway wallet",
+        "description": "Manage your Worry-free takeaway wallet. Check your balance, view transaction history, and add funds to your account."
+      }
+    },
+    "customer_wallet_refill": {
+      "metadata": {
+        "title": "Add Funds | Worry-free takeaway",
+        "keywords": "add funds, recharge wallet, top up balance, wallet refill",
+        "description": "Add funds to your Worry-free takeaway wallet. Choose from multiple payment methods to securely top up your account balance."
+      }
+    },
+    "driver_home": {
+      "metadata": {
+        "title": "Driver Dashboard | Worry-free takeaway",
+        "keywords": "driver dashboard, delivery driver, driver portal, delivery management",
+        "description": "Access your driver dashboard on Worry-free takeaway. Manage deliveries, track orders, and optimize your delivery routes."
+      },
+      "currentLocation": "လက်ရှိတည်နေရာ",
+      "loading": "ဖတ်ရှုနေသည်...",
+      "locationError": "တည်နေရာအမှား",
+      "activeDeliveries": "လက်ရှိပို့ဆောင်မှုများ",
+      "activeDeliveriesList": "လက်ရှိပို့ဆောင်မှုစာရင်း ({count})",
+      "deliveryRequests": "ပို့ဆောင်မှုတောင်းဆိုမှုများ",
+      "deliveryRequestsList": "ပို့ဆောင်မှုတောင်းဆိုမှုစာရင်း ({count})",
+      "today": "ယနေ့",
+      "completedDeliveries": "ပြီးစီးသောပို့ဆောင်မှုများ",
+      "acceptedRequests": "လက်ခံထားသောတောင်းဆိုမှုများ",
+      "acceptedRequestsList": "လက်ခံထားသောတောင်းဆိုမှုစာရင်း ({count})",
+      "updateLocation": "တည်နေရာအသစ်ပြင်ဆင်ရန်",
+      "refreshOrders": "အမိန့်များကိုအသစ်ပြန်ယူရန်",
+      "completeDelivery": "ပို့ဆောင်မှုပြီးမြောက်ရန်",
+      "retry": "ပြန်လည်ကြိုးစားရန်",
+      "errorFetchingActiveDeliveries": "လက်ရှိပို့ဆောင်မှုများယူရန်အမှားအယွင်းဖြစ်ပွားသည်",
+      "errorFetchingDeliveryRequests": "ပို့ဆောင်မှုတောင်းဆိုမှုများယူရာတွင်အမှားအယွင်းဖြစ်ပွားသည်"
+    },
+    "driver_order_list": {
+      "metadata": {
+        "title": "Delivery Orders | Worry-free takeaway",
+        "keywords": "delivery orders, driver orders, delivery assignments, order list for drivers",
+        "description": "View your delivery order list on Worry-free takeaway. Manage your assigned deliveries and track order status efficiently."
+      },
+      "loadingOrders": "အမိန့်များကိုဖတ်ရှုနေသည်...",
+      "failedToLoadOrders": "အမိန့်များဖတ်ရန်မအောင်မြင်ပါ",
+      "failedToFetchOrders": "အမိန့်များယူရာတွင်မအောင်မြင်ပါ",
+      "noOrdersAvailable": "ရနိုင်သောအမိန့်များမရှိပါ",
+      "retry": "ပြန်လည်ကြိုးစားရန်",
+      "showingOrders": "အမိန့် {count} ခု ပြသနေသည် (စာမျက်နှာ: {page})",
+      "refresh": "အသစ်ပြန်သွားမည်",
+      "orderNumber": "အမိန့်နံပါတ် #{number}",
+      "id": "အိုင်ဒီ",
+      "orderPreparing": "အမိန့်ပြင်ဆင်နေသည်",
+      "deliveryPreparing": "ပို့ဆောင်မှုပြင်ဆင်နေသည်",
+      "deliverySending": "ပို့ဆောင်နေသည်",
+      "customerAccepted": "ဖောက်သည်လက်ခံပြီးပါပြီ",
+      "unknownStatus": "အခြေအနေမသိပါ",
+      "orderDate": "အမိန့်ချိန်နှင့်နေ့",
+      "notAvailable": "မရှိပါ",
+      "voucher": "ဗောက်ချာ",
+      "pickup": "လာယူမည်",
+      "driver": "ယာဉ်မောင်း",
+      "contact": "ဆက်သွယ်ရန်",
+      "total": "စုစုပေါင်း",
+      "viewDetails": "အသေးစိတ်ကြည့်ရန်"
+    },
+    "register_driver": {
+      "metadata": {
+        "title": "Become a Driver | Worry-free takeaway",
+        "keywords": "become a driver, driver registration, delivery partner, join as driver",
+        "description": "Register as a delivery driver on Worry-free takeaway. Join our network of delivery partners and start earning on your own schedule."
+      }
+    },
+    "transaction_history": {
+      "metadata": {
+        "title": "Transaction History | Worry-free takeaway",
+        "keywords": "transaction history, payment history, transaction records, financial activity",
+        "description": "View your complete transaction history on Worry-free takeaway. Track all your payments, refunds, and financial activity in one place."
+      }
+    },
+    "customer_payment_selection": {
+      "metadata": {
+        "title": "Payment Methods | Worry-free takeaway",
+        "keywords": "payment methods, payment options, checkout payment, select payment",
+        "description": "Choose your preferred payment method on Worry-free takeaway. Multiple secure payment options for a seamless checkout experience."
+      }
+    },
+    "payment": {
+      "metadata": {
+        "title": "Payment | Worry-free takeaway",
+        "keywords": "payment, checkout, complete order, secure payment",
+        "description": "Complete your payment on Worry-free takeaway. Secure and easy payment processing for your orders."
+      }
+    },
+    "merchant_product_list": {
+      "metadata": {
+        "title": "Merchant Products | Worry-free takeaway",
+        "keywords": "merchant products, seller items, product management, inventory",
+        "description": "Manage your products as a merchant on Worry-free takeaway. Add, edit, and organize your product inventory."
+      }
+    },
+    "get_product_by_merchantid": {
+      "metadata": {
+        "title": "ဆိုင်ထုတ်ကုန်များ | Worry-free takeaway",
+        "keywords": "ဆိုင်ထုတ်ကုန်များ, ကုန်သည်ကမ်းလှမ်းချက်များ, ဆိုင်ပစ္စည်းများ, ကုန်သည်စာရင်း",
+        "description": "Worry-free takeaway တွင် ဤကုန်သည်ထံမှ ထုတ်ကုန်အားလုံးကို ရှာဖွေပါ။ သူတို့၏ ကမ်းလှမ်းချက်စာရင်းအပြည့်အစုံကို ရှာဖွေပါ။"
+      },
+      "title": "ကုန်သည်ထုတ်ကုန်များ",
+      "searchPlaceholder": "ထုတ်ကုန်များရှာရန်...",
+      "failedToLoadProducts": "ထုတ်ကုန်များတင်ရန် မအောင်မြင်ပါ",
+      "retry": "ပြန်လည်ကြိုးစားကြည့်ပါ",
+      "noProductsFound": "ထုတ်ကုန်များမတွေ့ရှိပါ",
+      "tryDifferentSearchTerm": "အခြားရှာဖွေမှုစကားလုံးကို သုံးကြည့်ပါ",
+      "noProductsYet": "ဤကုန်သည်တွင် ထုတ်ကုန်များမရှိသေးပါ"
+    },
+    "personal_data": {
+      "metadata": {
+        "title": "Personal Data | Worry-free takeaway",
+        "keywords": "personal data, profile information, account details, user information",
+        "description": "Update and manage your personal information on Worry-free takeaway. Keep your profile details up to date for a better experience."
+      }
+    },
+    "merchant_payment": {
+      "metadata": {
+        "title": "Merchant Payment Settings | Worry-free takeaway",
+        "keywords": "merchant payment, payment settings, payment methods, payment configuration",
+        "description": "Manage your payment settings as a merchant on Worry-free takeaway. Set up payment methods and configure your payment options."
+      }
+    },
+
+    "merchant_product_create": {
+      "metadata": {
+        "title": "Create Product | Worry-free takeaway",
+        "keywords": "create product, add item, product listing, add merchandise",
+        "description": "Create and list new products as a merchant on Worry-free takeaway. Add product details, pricing, and make your items available to customers."
+      }
+    },
+    "merchant_order_list": {
+      "metadata": {
+        "title": "Merchant Orders | Worry-free takeaway",
+        "keywords": "merchant orders, seller orders, order management, track orders",
+        "description": "View and manage all your orders as a merchant on Worry-free takeaway. Track order status and handle customer purchases efficiently."
+      }
+    },
+    "merchant_order_notification": {
+      "metadata": {
+        "title": "Order Notifications | Worry-free takeaway",
+        "keywords": "order notifications, new orders, order alerts, merchant notifications",
+        "description": "Stay updated with order notifications for your merchant account on Worry-free takeaway. Never miss a new order with real-time alerts."
+      }
+    },
+    "merchant_orderitem_detail": {
+      "metadata": {
+        "title": "အော်ဒါအချက်အလက်အသေးစိတ် | Worry-free takeaway",
+        "description": "သင့်အော်ဒါနှင့်ပတ်သက်သောအသေးစိတ်အချက်အလက်များကိုကြည့်ရှု၍ အော်ဒါအခြေအနေကိုစီမံခန့်ခွဲပြီး ပို့ဆောင်ရေးယာဉ်မောင်းများကိုသတ်မှတ်ပါ။",
+        "keywords": "အော်ဒါအသေးစိတ်, ကုန်သည်အော်ဒါ, ပို့ဆောင်ရေး, ယာဉ်မောင်းသတ်မှတ်ခြင်း, အော်ဒါစီမံခန့်ခွဲမှု"
+      },
+      "ordered": "မှာယူပြီး",
+      "total": "စုစုပေါင်း",
+      "merchant": "ကုန်သည်",
+      "pending": "ဆောင်ရွက်ဆဲ",
+      "confirmed": "အတည်ပြုထားသည်",
+      "cancelled": "ပယ်ဖျက်ထားသည်",
+      "shipped": "တင်ပို့ပြီး",
+      "rejected": "ငြင်းပယ်ထားသည်",
+      "completed": "ပြီးဆုံးပါပြီ",
+      "unknown": "အမျိုးအစားမသိရှိပါ",
+      "rejectOrder": "အော်ဒါကိုငြင်းပယ်ရန်",
+      "confirmOrder": "အော်ဒါကိုအတည်ပြုရန်",
+      "orderAccepted": "အော်ဒါကို အောင်မြင်စွာ အတည်ပြုပြီးပါပြီ",
+      "orderRejected": "အော်ဒါကို အောင်မြင်စွာ ငြင်းပယ်ပြီးပါပြီ",
+      "failedToConfirm": "အော်ဒါကို အတည်မပြုနိုင်ပါ",
+      "failedToReject": "အော်ဒါကို ငြင်းပယ်၍မရပါ",
+      "rejectOrderConfirmation": "ဤအော်ဒါကို ငြင်းပယ်လိုသည်မှာ သေချာပါသလား? ဤလုပ်ဆောင်ချက်ကို ပြန်လည်ပြုပြင်၍မရနိုင်ပါ။",
+      "rejectionReason": "ငြင်းပယ်ရသည့် အကြောင်းရင်း (ရေးမလည်းရ)",
+      "enterRejectionReason": "ငြင်းပယ်ရသည့် အကြောင်းရင်း ထည့်သွင်းပါ",
+      "cancel": "ပယ်ဖျက်ရန်",
+      "assignedDriver": "သတ်မှတ်ထားသော ယာဉ်မောင်း",
+      "deliveryDriverAssigned": "ပို့ဆောင်ရေးယာဉ်မောင်း သတ်မှတ်ပြီးပါပြီ",
+      "assignDriver": "ယာဉ်မောင်း သတ်မှတ်ရန်",
+      "assignedBy": "သတ်မှတ်ပေးသူ",
+      "assignedAt": "သတ်မှတ်ခဲ့ချိန်",
+      "itemsInThisOrder": "ဤအော်ဒါတွင်ပါဝင်သည့် ပစ္စည်းများ",
+      "noItemsFound": "ဤအော်ဒါအတွက် ပစ္စည်းများ မတွေ့ရှိပါ",
+      "totalItems": "ပစ္စည်း အရေအတွက် စုစုပေါင်း",
+      "quantity": "အရေအတွက်",
+      "availableDrivers": "ရရှိနိုင်သော ယာဉ်မောင်းများ",
+      "selectDriverToDeliver": "ဤအော်ဒါကိုပို့ဆောင်ရန် ယာဉ်မောင်းရွေးချယ်ပါ",
+      "noDriversAvailable": "လက်ရှိတွင် ယာဉ်မောင်းမရှိပါ",
+      "addNewDriver": "ယာဉ်မောင်းအသစ် ပေါင်းထည့်ရန်",
+      "registerNewDriver": "ယာဉ်မောင်းအသစ် မှတ်ပုံတင်ရန်"
+    },
+    "home_v2": {
+      "metadata": {
+        "title": "Home | Worry-free takeaway",
+        "keywords": "home page, main page, Worry-free takeaway app, food delivery app",
+        "description": "Welcome to the enhanced Worry-free takeaway home page. Discover local shops, digital services, and global offerings with our improved interface."
+      }
+    },
+    "driver_order_detail": {
+      "metadata": {
+        "title": "Driver Order Detail | Worry-free takeaway",
+        "description": "View detailed information about your order, manage order status, and assign delivery drivers.",
+        "keywords": "order detail, merchant order, delivery, driver assignment, order management"
+      }
+    },
+    "merchant_withdraw_history": {
+      "metadata": {
+        "title": "ကုန်သည် ငွေထုတ်ယူမှုမှတ်တမ်း | Worry-free takeaway",
+        "keywords": "ကုန်သည် ငွေထုတ်ယူမှုမှတ်တမ်း, ငွေထုတ်ယူမှုများ, ငွေပေးချေမှုမှတ်တမ်း, ငွေလွှဲပြောင်းမှုမှတ်တမ်း",
+        "description": "Worry-free takeaway ရှိ သင့်ကုန်သည်အနေဖြင့် ငွေထုတ်ယူမှုမှတ်တမ်းကို ကြည့်ရှုပါ။ သင့်ငွေထုတ်ယူမှုများနှင့် ငွေပေးချေမှုမှတ်တမ်းကို ခြေရာခံပါ။"
+      },
+      "title": "ငွေထုတ်ယူမှုမှတ်တမ်း",
+      "subtitle": "သင့်ငွေထုတ်ယူမှုလုပ်ငန်းစဉ်အားလုံးကို ကြည့်ရှုပါ",
+      "noWithdrawals": "ငွေထုတ်ယူမှုမှတ်တမ်း မတွေ့ရှိပါ",
+      "amount": "ပမာဏ",
+      "date": "ရက်စွဲ",
+      "status": "အခြေအနေ",
+      "remark": "မှတ်ချက်",
+      "wallet": "ပိုက်ဆံအိတ်",
+      "detail": "အသေးစိတ်",
+      "id": "အိုင်ဒီ",
+      "noData": "ငွေထုတ်ယူမှုဒေတာ မရှိပါ",
+      "loading": "ငွေထုတ်ယူမှုမှတ်တမ်းကို ဖွင့်နေသည်...",
+      "retry": "ပြန်လည်ကြိုးစားပါ",
+      "actualWallet": "အမှန်တကယ် ပိုက်ဆံအိတ်",
+      "completedWallet": "ပြီးမြောက်သော ပိုက်ဆံအိတ်",
+      "withdrawAmount": "ငွေထုတ်ယူပမာဏ",
+      "createdAt": "ဖန်တီးခဲ့သည့်အချိန်",
+      "image": "ပုံ",
+      "viewImage": "ပုံကြည့်ရန်",
+      "close": "ပိတ်ရန်",
+      "refresh": "ပြန်လည်စတင်ရန်",
+      "viewDetails": "အသေးစိတ်ကြည့်ရန်"
+    }
+  },
+  "merchantProfile": {
+    "shopInformation": "ဆိုင်အချက်အလက်",
+    "shopType": "ဆိုင်အမျိုးအစား",
+    "shopName": "ဆိုင်နာမည်",
+    "businessPhone": "လုပ်ငန်းဖုန်း",
+    "openingHours": "ဖွင့်လှစ်ချိန်များ",
+    "openTime": "ဖွင့်ချိန်",
+    "closeTime": "ပိတ်ချိန်",
+    "address": "လိပ်စာ",
+    "description": "ဖော်ပြချက်",
+    "websiteLink": "ဝက်ဘ်ဆိုက်လင့်ခ် (ရွေးချယ်နိုင်သည်)",
+    "shopImages": "ဆိုင်ပုံများ",
+    "logoImage": "လိုဂိုပုံ",
+    "coverImage": "ကာဗာပုံ",
+    "dropImageHere": "ပုံကို ဤနေရာတွင်ထည့်ပါ သို့မဟုတ် ရှာဖွေရန်နှိပ်ပါ",
+    "imageRequirements": "JPG၊ PNG သို့မဟုတ် GIF၊ အများဆုံး 2MB",
+    "registerShop": "ဆိုင်မှတ်ပုံတင်ရန်",
+    "shopRegisteredSuccessfully": "ဆိုင်မှတ်ပုံတင်မှု အောင်မြင်ပါသည်!",
+    "failedToRegisterShop": "ဆိုင်မှတ်ပုံတင်ရန် မအောင်မြင်ပါ",
+    "enterAddressIn": "လိပ်စာကို ထည့်ပါ",
+    "enterDescriptionIn": "ဖော်ပြချက်ကို ထည့်ပါ",
+    "selectCloseTime": "ပိတ်ချိန်ရွေးရန်",
+    "backToShopList": "ဆိုင်စာရင်းသို့ ပြန်သွားရန်"
+  },
+  "merchantProduct": {
+    "productInformation": "ထုတ်ကုန်အချက်အလက်",
+    "category": "အမျိုးအစား",
+    "selectCategory": "အမျိုးအစားရွေးရန်",
+    "shop": "ဆိုင်",
+    "selectShop": "ဆိုင်ရွေးရန်",
+    "productName": "ထုတ်ကုန်နာမည်",
+    "price": "စျေးနှုန်း",
+    "stock": "စတော့",
+    "previewImage": "အကြိုကြည့်ရှုပုံ",
+    "productImages": "ထုတ်ကုန်ပုံများ",
+    "productDescription": "ထုတ်ကုန်ဖော်ပြချက်",
+    "enterDescriptionIn": "ဖော်ပြချက်ကို ထည့်ပါ",
+    "createProduct": "ထုတ်ကုန်ဖန်တီးရန်",
+    "backToDashboard": "ဒက်ရှ်ဘုတ်သို့ ပြန်သွားရန်",
+    "productCreatedSuccessfully": "ထုတ်ကုန်ဖန်တီးမှု အောင်မြင်ပါသည်!",
+    "failedToCreateProduct": "ထုတ်ကုန်ဖန်တီးရန် မအောင်မြင်ပါ",
+    "invalidPriceFormat": "မမှန်ကန်သော စျေးနှုန်းပုံစံ",
+    "stockMustBeWholeNumber": "စတော့သည် ပြည့်စုံသောနံပါတ်ဖြစ်ရမည်"
+  },
+  "navigation": {
+    "event": "Event",
+    "home": "ပင်မစာမျက်နှာ",
+    "cart": "စျေးဝယ်တွန်းလှည်း",
+    "profile": "ပရိုဖိုင်း",
+    "messages": "မက်ဆေ့ခ်ျများ",
+    "payment": "ငွေပေးချေမှု",
+    "shop": "ဆိုင်",
+    "orders": "အော်ဒါများ",
+    "itemLabel": "{name} သို့သွားရန်",
+    "unavailable": "လမ်းညွှန်မရရှိနိုင်ပါ",
+    "order list": "အော်ဒါစာရင်း"
+  },
+  "forgotPassword": {
+    "title": "စကားဝှက်မေ့နေပါသလား?",
+    "description": "သင့်အီးမေးလ်လိပ်စာကို ထည့်ပါ၊ ကျွန်ုပ်တို့သည် သင့်စကားဝှက်ပြန်လည်သတ်မှတ်ရန် အတည်ပြုကုဒ်ကို ပေးပို့ပါမည်",
+    "emailAddress": "အီးမေးလ်လိပ်စာ"
+  },
+  "delivery": {
+    "deliveryStatus": "ပို့ဆောင်မှုအခြေအနေ",
+    "deliveryInformation": "ပို့ဆောင်မှုအချက်အလက်",
+    "driver": "ပို့ဆောင်သူ",
+    "driverAssigned": "ပို့ဆောင်သူသတ်မှတ်ပြီး",
+    "awaitingDriver": "ပို့ဆောင်သူစောင့်ဆိုင်းနေသည်",
+    "unknownDriver": "အမည်မသိပို့ဆောင်သူ",
+    "liveTracking": "တိုက်ရိုက်ခြေရာခံခြင်း",
+    "noDeliveryInfoAvailable": "ပို့ဆောင်မှုအချက်အလက် မရရှိနိုင်ပါ",
+    "orderCancelledDeliveryInfo": "ပယ်ဖျက်ထားသော အော်ဒါများအတွက် ပို့ဆောင်မှုအချက်အလက် မရရှိနိုင်ပါ",
+    "orderRejectedDeliveryInfo": "ငြင်းပယ်ထားသော အော်ဒါများအတွက် ပို့ဆောင်မှုအချက်အလက် မရရှိနိုင်ပါ",
+    "status": {
+      "preparing": {
+        "short": "ပြင်ဆင်နေသည်",
+        "full": "အော်ဒါပြင်ဆင်နေသည်",
+        "desc": "သင့်အော်ဒါကို ကုန်သည်မှ ပြင်ဆင်နေပါသည်"
+      },
+      "deliveryPreparing": {
+        "short": "ပို့ဆောင်မှုပြင်ဆင်",
+        "full": "ပို့ဆောင်မှုပြင်ဆင်နေသည်",
+        "desc": "သင့်ပို့ဆောင်မှုကို ပြင်ဆင်နေပါသည်"
+      },
+      "onTheWay": {
+        "short": "လမ်းတွင်ရှိနေသည်",
+        "full": "လမ်းတွင်ရှိနေသည်",
+        "desc": "သင့်အော်ဒါသည် သင့်တည်နေရာသို့ လမ်းတွင်ရှိနေပါသည်"
+      },
+      "delivered": {
+        "short": "ပို့ဆောင်ပြီး",
+        "full": "ပို့ဆောင်ပြီး",
+        "desc": "သင့်အော်ဒါကို ပို့ဆောင်ပြီး လက်ခံရရှိပြီးပါပြီ"
+      }
+    }
+  },
+  "ads": {
+    "advertisement": "ကြော်ငြာ: {name}",
+    "viewOffer": "ကမ်းလှမ်းချက်ကြည့်ရန်",
+    "sponsored": "ထောက်ပံ့ထားသည်",
+    "promotion": "ပရိုမိုးရှင်း",
+    "limitedTimeOffer": "အကန့်အသတ်ရှိသော ကမ်းလှမ်းချက်",
+    "closeAd": "ကြော်ငြာပိတ်ရန်"
+  },
+  "wallet": {
+    "refillYourWallet": "သင့်ပိုက်ဆံအိတ်ကို ဖြည့်ပါ",
+    "addFundsDescription": "လျင်မြန်လွယ်ကူသော ငွေပေးချေမှုများပြုလုပ်ရန် သင့်ပိုက်ဆံအိတ်သို့ ငွေဖြည့်ပါ",
+    "amount": "ပမာဏ",
+    "enterAmount": "ပမာဏထည့်ပါ",
+    "selectPaymentMethod": "ငွေပေးချေမှုနည်းလမ်းရွေးရန်",
+    "selectPaymentMethodHelp": "လွှဲပြောင်းမှုအတွက် အကောင့်အသေးစိတ်အချက်အလက်များကို ကြည့်ရန် ငွေပေးချေမှုနည်းလမ်းတစ်ခုကို ရွေးချယ်ပါ",
+    "transferInstructions": "အရေးကြီးသော ငွေလွှဲညွှန်ကြားချက်များ",
+    "useOnlyTheseDetails": "အောက်ပါအကောင့်အသေးစိတ်သို့သာ ငွေလွှဲပါ။ အခြားအကောင့်အသေးစိတ်များကို အသုံးပြုခြင်းသည် သင့်ငွေပေးချေမှု ပျောက်ဆုံးသွားနိုင်သည်။",
+    "incorrectDetailsWarning": "သတိပေးချက်: မှားယွင်းသော အကောင့်အသေးစိတ်အချက်အလက်များကို အသုံးပြုခြင်းသည် သင့်ငွေလွှဲပြောင်းမှုကို နှောင့်နှေးစေနိုင်သည် သို့မဟုတ် ပျောက်ဆုံးသွားနိုင်သည်။ ငွေပေးချေမမီ သေချာစွာစစ်ဆေးပါ။",
+    "transactionID": "ငွေပေးငွေယူ ID",
+    "enterTransactionID": "ငွေပေးငွေယူ ID ထည့်ပါ",
+    "transactionScreenshot": "ငွေပေးငွေယူ မျက်နှာပြင်ဓာတ်ပုံ",
+    "uploadScreenshotInstructions": "သင့်ငွေပေးငွေယူ၏ မျက်နှာပြင်ဓာတ်ပုံကို တင်ပါ (JPEG, PNG, အများဆုံး 5MB)",
+    "screenshotUploaded": "မျက်နှာပြင်ဓာတ်ပုံ အောင်မြင်စွာ တင်ပြီးပါပြီ",
+    "recommendedForLargeAmounts": "$100 ထက်ပိုသော ပမာဏများအတွက် အကြံပြုသည်",
+    "remark": "မှတ်ချက်",
+    "additionalInformation": "နောက်ထပ်အချက်အလက်များ ထည့်ပါ",
+    "refillWallet": "ပိုက်ဆံအိတ်ဖြည့်ပါ",
+    "processingTimeInfo": "သင့်ငွေဖြည့်တောင်းဆိုမှုကို 24 နာရီအတွင်း ဆောင်ရွက်ပေးပါမည်။ ပြီးစီးသည်နှင့် သင့်ထံ အကြောင်းကြားပါမည်။",
+    "paymentHistory": "ငွေပေးချေမှုမှတ်တမ်း",
+    "fileExceedsLimit": "ဖိုင်အရွယ်အစားသည် 5MB ကန့်သတ်ချက်ကို ကျော်လွန်နေသည်",
+    "refillSuccess": "ပိုက်ဆံအိတ်ဖြည့်ခြင်း အောင်မြင်ပါသည်",
+    "refillFailed": "ပိုက်ဆံအိတ်ဖြည့်ခြင်း မအောင်မြင်ပါ",
+    "screenshotRequired": "$100 ထက်ပိုသော ပမာဏများအတွက် ငွေပေးငွေယူ မျက်နှာပြင်ဓာတ်ပုံ လိုအပ်သည်",
+    "selectValidPaymentMethod": "မှန်ကန်သော ငွေပေးချေမှုနည်းလမ်းကို ရွေးချယ်ပါ",
+    "yourBalance": "သင့်လက်ကျန်ငွေ",
+    "loadingBalance": "လက်ကျန်ငွေ ဖတ်နေသည်...",
+    "availableBalance": "အသုံးပြုနိုင်သော လက်ကျန်ငွေ",
+    "refill": "ငွေဖြည့်ပါ",
+    "scanQrCode": "QR ကုဒ်ကို စကင်ဖတ်ပါ",
+    "scanToTransfer": "ငွေလွှဲပြောင်းရန် သင့်ငွေပေးချေမှုအက်ပ်ဖြင့် စကင်ဖတ်ပါ"
+  },
+  "event": {
+    "title": "ပွဲများ",
+    "noEvents": "ပွဲများ မတွေ့ရှိပါ",
+    "noEventsDescription": "လက်ရှိတွင် ပွဲများ မရှိသေးပါ။ နောက်မှ ပြန်လာကြည့်ပါ!",
+    "loading": "ပွဲများကို ဖွင့်နေသည်...",
+    "error": "ပွဲများကို ဖွင့်၍မရပါ",
+    "errorDescription": "ပွဲများကို ဖွင့်ရာတွင် အမှားတစ်ခု ဖြစ်ပွားခဲ့သည်။ နောက်မှ ထပ်ကြိုးစားပါ။",
+    "description": "ဖော်ပြချက်",
+    "status": {
+      "upcoming": "လာမည့်",
+      "ongoing": "လက်ရှိ",
+      "completed": "ပြီးဆုံးပြီး",
+      "unknown": "မသိရှိ"
+    }
+  }
+}

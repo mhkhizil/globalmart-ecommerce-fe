@@ -1,0 +1,50 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:unicorn/recommended",
+    "plugin:import/recommended",
+    "plugin:playwright/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "@next/next/no-page-custom-font": "off",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/no-named-as-default": "off",
+    "unicorn/no-array-callback-reference": "off",
+    "unicorn/no-array-for-each": "off",
+    "unicorn/no-array-reduce": "off",
+    "@next/next/no-img-element": "off",
+    "unicorn/prevent-abbreviations": [
+      "error",
+      {
+        "allowList": {
+          "e2e": true
+        },
+        "replacements": {
+          "props": false,
+          "ref": false,
+          "params": false
+        }
+      }
+    ],
+    "unicorn/filename-case": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "unicorn/prefer-module": "off"
+      }
+    },
+    {
+      "files": ["**/components/common/LanguageProvider/CookieMigration.tsx"],
+      "rules": {
+        "unicorn/no-null": "off"
+      }
+    }
+  ]
+}

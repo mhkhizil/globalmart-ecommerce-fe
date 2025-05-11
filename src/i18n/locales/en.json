@@ -1,0 +1,1503 @@
+{
+  "welcome": "Welcome to our application",
+  "title": "My Next.js App",
+  "language": "Language",
+
+  "common": {
+    "registerTitle": "Create your account",
+    "loginTitle": "Login to your account",
+    "selectShop": "Select Shop",
+    "phone": "Phone",
+    "close": "Close",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "remove": "Remove",
+    "view": "View",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "select": "Select",
+    "image": "Image",
+    "loading": "Loading...",
+    "retry": "Retry",
+    "error": "Error",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "back": "Back",
+    "next": "Next",
+    "complete": "Complete",
+    "scrollLeft": "Scroll Left",
+    "scrollRight": "Scroll Right",
+    "goBack": "Go Back",
+    "item": "item",
+    "items": "items",
+    "status": "status",
+    "statuses": "statuses",
+    "contact": "Contact",
+    "callDriver": "Call Driver",
+    "refresh": "Refresh",
+    "viewAll": "View All",
+    "noContactInfo": "No contact information available",
+    "yes": "Yes",
+    "no": "No",
+    "continue": "Continue",
+    "more": "More",
+    "less": "Less",
+    "pending": "Pending",
+    "required": "Required",
+    "optional": "Optional",
+    "mm": "Myanmar",
+    "en": "English",
+    "cn": "Chinese",
+    "th": "Thai",
+    "deliveryFee": "Delivery Fee",
+    "tryAgain": "Try Again",
+    "nevermind": "Nevermind",
+    "customerService": "Customer Service",
+    "customerServiceContact": "Contact Our Customer Service",
+    "wechat": "WeChat",
+    "telegram": "Telegram",
+    "telegramContactInfo": "You can also reach us on Telegram for quick support",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "support": "Support",
+    "messageUs": "Message us on",
+    "wechatId": "WeChat ID",
+    "telegramId": "Telegram ID",
+    "phoneNumber": "Phone Number",
+    "noPhoneNumbers": "No phone numbers available",
+    "notAvailable": "N/A",
+    "errorFetchingContact": "Failed to load contact information",
+    "noTelegramInfo": "No Telegram information available",
+    "and": "and",
+    "share": "Share"
+  },
+
+  "components": {
+    "fileUpload": {
+      "maxFilesAllowed": "Maximum {count} files allowed",
+      "removeFile": "Remove file",
+      "clearAll": "Clear All",
+      "dropFilesHere": "Drop the {count, plural, one {file} other {files}} here",
+      "dragAndDrop": "Drag and drop {count, plural, one {a file} other {files}} here, or click to select",
+      "supportedFormat": "Supported format: {format}",
+      "maxFiles": " (max {count} files)"
+    }
+  },
+
+  "onboarding": {
+    "s1": {
+      "header": "Local Pickup, Simplified.",
+      "content": "Explore nearby shops offering convenient delivery services. From groceries to gifts, everything is just a click away."
+    },
+    "s2": {
+      "header": "Worry-free takeaway, Instantly Available.",
+      "content": "Access the world's resources, right now. Worry-free takeaway provides instant access to digitial goods, and global services."
+    },
+    "s3": {
+      "header": "Worry-free takeaway: Your World, Delivered.",
+      "content": "Access a world of resources, digital goods, and international services. Worry-free takeaway brings the best of the world to your fingertips, wherever you are."
+    },
+    "metadata": {
+      "title": "Worry-free takeaway: Instant Access | Digital Goods & Services",
+      "keywords": "Worry-free takeaway, digital goods, global marketplace, global e-commerce, digital marketplace, international services, best digital goods for global business, virtual services, global e-commerce",
+      "description": "Access a world of digital goods, global services, and international resources instantly. Worry-free takeaway delivers what you need, wherever you are. Explore now! "
+    }
+  },
+
+  "auth": {
+    "createMerchantAccount": "Create your merchant account",
+    "passwordLessThan6": "Password must be at least 6 characters",
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "email": "Email",
+    "continue": "Continue",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "dontHaveAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "signUp": "Sign Up",
+    "signIn": "Sign In",
+    "termsAndConditions": "Terms and Conditions",
+    "agreeToTerms": "I agree to the",
+    "passwordCriteria": "Your password must include at least one upper-case, lower-case, number and special character",
+    "invalidEmail": "Invalid email format",
+    "passwordMismatch": "Please confirm your password",
+    "pleaseSignIn": "Please sign in to your account",
+    "orSignInWith": "Or Sign in with",
+    "skip": "Skip",
+    "createAccount": "Create Account",
+    "emailAddress": "Email Address",
+    "signInToYourAccount": "Sign in to your account",
+    "selectContactDetails": "Select which contact details should we use to reset your password",
+    "createAccountDescription": "Create an account to start looking for the food you like",
+    "orSignUpWith": "Or Sign Up with",
+    "name": "Name",
+    "registerAsMerchant": "Register as Merchant",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "registerAsUser": "Register as User",
+    "shopAddress": "Shop Address",
+    "country": "Country",
+    "state": "State",
+    "city": "City",
+    "phone": "Phone",
+    "phoneNumber": "Phone Number",
+    "shopType": "Shop Type",
+    "shopName": "Shop Name",
+    "loginWithGoogle": "Login with Google",
+    "loginWithFacebook": "Login with Facebook",
+    "loginWithApple": "Login with Apple",
+    "registerSuccess": "Registration successful! Redirecting...",
+    "registrationFailed": "Registration failed. Please try again later.",
+    "termsNotAgreed": "Please agree to the terms of service and privacy policy."
+  },
+
+  "profile": {
+    "personalData": "Personal Data",
+    "fullName": "Full Name",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "updateProfile": "Update Profile",
+    "profileUpdated": "Profile updated",
+    "updateError": "Unable to update profile",
+    "location": "Location",
+    "profileSetting": "Profile Settings",
+    "logInNow": "Log In Now",
+    "myOrders": "My Orders",
+    "seeAll": "See All",
+    "order": "Order",
+    "newOrder": "New Order",
+    "viewDetails": "View Details",
+    "noRecentOrders": "No recent orders",
+    "signOut": "Sign Out",
+    "setting": "Settings",
+    "helpCenter": "Help Center",
+    "save": "Save",
+    "balance": "Balance",
+    "topUp": "Top Up",
+    "recentOrders": "Recent Orders",
+    "support": "Support"
+  },
+
+  "category-list": {
+    "categories": "Categories"
+  },
+
+  "merchant": {
+    "register": "Merchant Register",
+    "shopName": "Shop Name",
+    "shopAddress": "Shop Address",
+    "shopDescription": "Shop Description",
+    "shopOpenTime": "Shop Open Time",
+    "selectOpenTime": "Select open time",
+    "shopType": "Shop Type",
+    "selectShopType": "Select shop type",
+    "merchantRegister": "Merchant Registration",
+    "merchantProfile": "Merchant Profile",
+    "merchantHome": "Merchant Home",
+    "merchantShopList": "Merchant Shop List",
+    "merchantShopDetail": "Merchant Shop Detail",
+    "merchantOrderList": "Merchant Order List",
+    "merchantOrderNotification": "Merchant Order Notifications",
+    "merchantPayment": "Merchant Payment",
+    "orderDateTime": "Order Date & Time",
+    "orderStatus": "Order Status",
+    "customer": "Customer",
+    "actions": "Actions",
+    "viewOrder": "View Order",
+    "orderDetails": "Order Details",
+    "orderNumber": "Order #",
+    "orderItems": "Order Items",
+    "quantity": "Quantity",
+    "price": "Price",
+    "accept": "Accept",
+    "reject": "Reject",
+    "complete": "Complete",
+    "cancel": "Cancel",
+    "orderAccepted": "Order Accepted",
+    "orderRejected": "Order Rejected",
+    "orderCompleted": "Order Completed",
+    "orderCancelled": "Order Cancelled",
+    "notifications": "Notifications",
+    "newOrders": "new orders"
+  },
+
+  "merchantProductList": {
+    "yourProducts": "Your Products",
+    "manageYourProductInventory": "Manage Your Product Inventory",
+    "addProductsToGetStarted": "Add Products to Get Started",
+    "noProductsAvailable": "No products available"
+  },
+
+  "merchant_orderitem_detail": {
+    "metadata": {
+      "title": "Order Item Detail | Worry-free takeaway",
+      "description": "View detailed information about your order, manage order status, and assign delivery drivers.",
+      "keywords": "order detail, merchant order, delivery, driver assignment, order management"
+    },
+    "ordered": "Ordered",
+    "total": "Total",
+    "merchant": "Merchant",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "cancelled": "Cancelled",
+    "shipped": "Shipped",
+    "rejected": "Rejected",
+    "completed": "Completed",
+    "unknown": "Unknown",
+    "rejectOrder": "Reject Order",
+    "confirmOrder": "Confirm Order",
+    "orderAccepted": "Order confirmed successfully",
+    "orderRejected": "Order rejected successfully",
+    "failedToConfirm": "Failed to confirm order",
+    "failedToReject": "Failed to reject order",
+    "rejectOrderConfirmation": "Are you sure you want to reject this order? This action cannot be undone.",
+    "rejectionReason": "Rejection Reason (Optional)",
+    "enterRejectionReason": "Enter reason for rejection",
+    "cancel": "Cancel",
+    "assignedDriver": "Assigned Driver",
+    "deliveryDriverAssigned": "Delivery Driver Assigned",
+    "assignDriver": "Assign Driver",
+    "assignedBy": "Assigned by",
+    "assignedAt": "Assigned at",
+    "itemsInThisOrder": "Items in This Order",
+    "noItemsFound": "No items found for this order",
+    "totalItems": "Total Items",
+    "quantity": "Qty",
+    "availableDrivers": "Available Drivers",
+    "selectDriverToDeliver": "Select a driver to deliver this order",
+    "noDriversAvailable": "No drivers available at the moment",
+    "addNewDriver": "Add New Driver",
+    "registerNewDriver": "Register New Driver"
+  },
+
+  "merchantPaymentForm": {
+    "payment": "Payment",
+    "paymentMethod": "Payment Method",
+    "addPayment": "Add Payment",
+    "updatePayment": "Update Payment",
+    "cardNumber": "Card Number",
+    "cardHolder": "Card Holder",
+    "expiryDate": "Expiry Date",
+    "cvv": "CVV",
+    "completeYourBusinessProfile": "Complete Your Business Profile",
+    "completeYourMerchantProfile": "Complete Your Merchant Profile",
+    "paymentSuccess": "Payment Successful",
+    "paymentFailed": "Payment Failed",
+    "selectPaymentMethod": "Select Payment Method",
+    "noPaymentAvailable": "No Payment Available",
+    "confirm": "Confirm",
+    "accountNo": "Account Number",
+    "accountName": "Account Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "chooseMethod": "Choose Method"
+  },
+
+  "merchantPaymentV2": {
+    "pleaseUploadQRImage": "Please upload a QR image",
+    "qrCode": "QR Code",
+    "account": "Account",
+    "name": "Name",
+    "type": "Type",
+    "errorDisplayingPayment": "Error displaying this payment method",
+    "updatePaymentMethod": "Update Payment Method",
+    "addPaymentMethod": "Add Payment Method",
+    "paymentType": "Payment Type",
+    "selectPaymentType": "Select payment type",
+    "paymentMethod": "Payment Method",
+    "selectPaymentMethod": "Select payment method",
+    "accountNumberRequired": "Account number is required",
+    "accountNumber": "Account Number",
+    "enterAccountNumber": "Enter account number",
+    "accountNameRequired": "Account name is required",
+    "accountName": "Account Name",
+    "enterAccountName": "Enter account name",
+    "statusRequired": "Status is required",
+    "status": "Status",
+    "selectStatus": "Select status",
+    "qrCodeImage": "QR Code Image",
+    "uploadOnlyIfUpdate": "(Upload only if you want to update)",
+    "newImageSelected": "New image selected for upload",
+    "leaveEmptyToKeepExisting": "Leave empty to keep the existing QR code image",
+    "uploadClearQRImage": "Upload a clear image of your payment QR code",
+    "updating": "Updating...",
+    "adding": "Adding...",
+    "paymentMethods": "Payment Methods",
+    "noPaymentMethodsAdded": "No payment methods added yet",
+    "addFirstPaymentMethod": "Add your first payment method using the form"
+  },
+
+  "driver": {
+    "readyForPickup": "Ready for Pickup",
+    "sendingToCustomer": "Sending to Customer",
+    "myDeliveries": "My Deliveries",
+    "loadingDeliveries": "Loading Deliveries...",
+    "failedToLoadDeliveries": "Failed to load deliveries",
+    "noDeliveriesAvailable": "No deliveries available",
+    "orderPreparing": "Order Preparing",
+    "readyForDelivery": "Ready for Delivery",
+    "outForDelivery": "Out for Delivery",
+    "delivered": "Delivered",
+    "orderNumber": "Order #{number}",
+    "orderTotal": "Order Total",
+    "startDelivery": "Start Delivery",
+    "viewDetails": "View Details",
+    "driverHome": "Driver Home",
+    "activeDeliveries": "Active Deliveries",
+    "deliveryHistory": "Delivery History",
+    "earnings": "Earnings",
+    "totalEarnings": "Total Earnings",
+    "today": "Today",
+    "thisWeek": "This Week",
+    "thisMonth": "This Month",
+    "registerAsDriver": "Register as Driver",
+    "vehicleInformation": "Vehicle Information",
+    "licenseInformation": "License Information",
+
+    "registerNewDriver": "Register New Driver",
+    "registerDriver": "Register Driver",
+    "driverRegisteredSuccess": "Driver registered successfully!",
+    "driverRegisteredSuccessfully": "Driver registered successfully",
+    "registrationError": "Registration error",
+    "driverInformation": "Driver Information",
+    "failedToCopy": "Failed to copy driver information",
+    "copyInfo": "Copy Info",
+    "fileSizeExceedsLimit": "File size exceeds 5MB limit",
+    "photoUploadedSuccess": "Photo uploaded successfully",
+    "nameRequired": "Name is required",
+    "validEmailRequired": "Valid email is required",
+    "validPhoneRequired": "Valid phone number is required",
+    "validPasswordRequired": "Your password must be at least 6 characters",
+    "passwordsMustMatch": "Passwords must match",
+    "driverPhotoRequired": "Driver photo is required",
+    "formSubmissionFailed": "Form submission failed, please try again",
+    "fullName": "Full Name",
+    "enterDriverFullName": "Enter driver full name",
+    "nameError": "Name must be at least 2 characters",
+    "emailAddress": "Email Address",
+    "enterEmailAddress": "Enter email address",
+    "emailError": "Invalid email address",
+    "phoneNumber": "Phone Number",
+    "enterPhoneNumber": "Enter phone number",
+    "phoneError": "Valid phone number is required",
+    "driverPhoto": "Driver Photo",
+    "uploadClearPhoto": "Upload clear driver photo (only JPG, PNG, max 5MB)",
+    "photoUploaded": "Photo uploaded",
+    "photo": "Photo",
+    "imageUploadRequirement": "Ensure the uploaded file is a JPG, JPEG, or PNG format",
+    "password": "Password",
+    "createStrongPassword": "Create a strong password",
+    "passwordError": "Password must be at least 8 characters and include uppercase, lowercase, number and special character",
+    "confirmPassword": "Confirm Password",
+    "confirmYourPassword": "Confirm your password",
+    "confirmPasswordError": "Password does not match",
+    "registering": "Registering...",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+
+    "preparing": "Preparing",
+    "ready": "Ready",
+    "delivering": "Delivering",
+    "completed": "Completed",
+    "unknown": "Unknown",
+    "markAsReady": "Mark as Ready",
+    "markAsDelivered": "Mark as Delivered",
+    "orderCompleted": "Order Completed",
+    "updatingStatus": "Updating Status",
+    "updatingStatusDescription": "We are updating the delivery status, this will not take too long.",
+    "refreshingData": "Refreshing Data",
+    "fetchingLatestInfo": "Fetching latest order info...",
+    "statusUpdateSuccess": "Delivery status updated successfully",
+    "statusUpdateFailed": "Delivery status update failed",
+    "phoneCopied": "Phone number copied to clipboard",
+    "copyFailed": "Copy phone number failed",
+    "refreshing": "Refreshing...",
+    "deliveryProgress": "Delivery Progress",
+    "deliveryInformation": "Delivery Information",
+    "customerDetailsForDelivery": "Customer Details for Delivery",
+    "customer": "Customer",
+    "contact": "Contact",
+    "copyPhone": "Copy phone number",
+    "deliveryAddress": "Delivery Address",
+    "driver": "Driver",
+    "orderInformation": "Order Information",
+    "orderPlacedOn": "Order placed on {date}",
+    "orderNumberLabel": "Order Number",
+    "voucherNumber": "Voucher Number",
+    "currentStatus": "Current Status",
+    "confirmStatusUpdate": "Confirm Status Update",
+    "confirmStatusQuestion": "Are you sure you want to update the delivery status to",
+    "confirm": "Confirm",
+    "updating": "Updating...",
+    "pickupInformation": "Pickup Information",
+    "merchantDetailsForPickup": "Merchant Details for Pickup",
+    "merchant": "Merchant",
+    "idLabel": "ID",
+    "orderNotFound": "Order not found",
+    "orderDetailsNotRetrieved": "Unable to retrieve order details.",
+    "deliveryNumber": "Delivery #{number}",
+    "preparingDescription": "Order is being prepared by the merchant",
+    "readyDescription": "Order is ready for pickup",
+    "deliveringDescription": "Order is on the way to the customer",
+    "deliveredDescription": "Order has been delivered and received",
+    "locale": "en-US",
+
+    "cancelOrder": "Cancel Order",
+    "confirmCancellation": "Confirm Cancellation",
+    "cancelOrderDescription": "Are you sure you want to cancel this order? This action cannot be undone.",
+    "cancellationReason": "Cancellation Reason",
+    "forRecordsOnly": "for your records only",
+    "reasonPlaceholder": "Please provide a reason for cancellation...",
+    "warningNotice": "Warning Notice",
+    "cancellationWarning": "Cancelling an order in the preparation stage cannot be reversed. You will need to contact support for any issues after cancellation.",
+    "cancellingOrder": "Cancelling Order",
+    "cancellingOrderDescription": "Processing your cancellation request. You'll be redirected shortly.",
+    "confirmCancel": "Yes, Cancel Order",
+    "cancelling": "Cancelling...",
+    "noReasonProvided": "No reason provided",
+    "orderCancelled": "Order has been cancelled",
+    "orderCancellationFailed": "Failed to cancel order"
+  },
+
+  "otp": {
+    "otpTitle": "OTP",
+    "emailVerification": "Email verification",
+    "enterVerificationCode": "Enter the verification code we send you on:",
+    "didntReceiveCode": "Didn't receive code?",
+    "resend": "Resend",
+    "continue": "Continue"
+  },
+
+  "location": {
+    "country": "Country",
+    "state": "State",
+    "city": "City",
+    "selectCountry": "Select Country",
+    "selectState": "Select State",
+    "selectCity": "Select City",
+    "invalidCountry": "Invalid country id",
+    "invalidState": "Invalid state id",
+    "invalidCity": "Invalid city id"
+  },
+
+  "product": {
+    "youSave": "You save",
+    "productList": "Product List",
+    "productDetail": "Product Detail",
+    "price": "Price",
+    "stock": "Stock",
+    "description": "Description",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "addToCart": "Add to Cart",
+    "quantity": "Quantity",
+    "category": "Category",
+    "categoryList": "Category List",
+    "unnamedProduct": "Unnamed Product",
+    "unknownRestaurant": "Unknown Restaurant",
+    "unknownShop": "Unknown Shop",
+    "unknownCategory": "Unknown Category",
+    "viewDetailsFor": "View details for {name}",
+    "notAvailable": "N/A",
+    "productDetails": "Product Details",
+    "productNotAvailable": "Product Not Available",
+    "noDescriptionAvailable": "No description available",
+    "itemsInStock": "Items in stock",
+    "freeDelivery": "Free Delivery",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "noMoreItemsInStock": "No more items in stock",
+    "selectQuantityFirst": "Please select quantity first",
+    "addedToCart": "Item added to cart",
+    "ratings": "Ratings",
+    "reviews": "Reviews",
+    "relatedProducts": "Related Products",
+    "moreFromThisShop": "More from this Shop",
+    "ingredients": "Ingredients",
+    "nutritionalInfo": "Nutritional Information",
+    "allergens": "Allergens",
+    "servingSize": "Serving Size",
+    "preparation": "Preparation",
+    "viewCart": "View Cart",
+    "continueShoppingButton": "Continue Shopping",
+    "aboutThisMenu": "About this menu",
+    "recommendedForYou": "Recommended For You",
+    "seeAll": "See All",
+    "noSimilarProducts": "No similar products",
+    "noProductsAvailable": "No products available"
+  },
+
+  "productListByShop": {
+    "noProductsAvailable": "No products available",
+    "products": "Products"
+  },
+
+  "filterCategory": {
+    "selectFilter": "Select Filter",
+    "reset": "Reset",
+    "apply": "Apply",
+    "sort": "Sort",
+    "offer": "Offer",
+    "shop": "Shop",
+    "selectSort": "Select Sort",
+    "selectOffer": "Select Offer",
+    "selectShop": "Select Shop"
+  },
+
+  "order": {
+    "orderList": "Order List",
+    "orderDetail": "Order Detail",
+    "orderDate": "Order Date",
+    "orderNumber": "Order Number",
+    "voucherNumber": "Voucher Number",
+    "total": "Total",
+    "confirmOrder": "Confirm Order",
+    "cancelOrder": "Cancel Order",
+    "cancelling": "Cancelling...",
+    "processing": "Processing...",
+    "confirmCancel": "Yes, Cancel Order",
+    "cancelSuccess": "Order Cancelled Successfully",
+    "cancelSuccessDetails": "Your order has been cancelled. You'll receive a confirmation email shortly.",
+    "cancelError": "Failed to cancel order. Please try again.",
+    "cancelConfirmTitle": "Cancel Your Order?",
+    "cancelConfirmDescription": "Are you sure you want to cancel this order? This action cannot be undone.",
+    "cancelWarning1": "Cancellation may result in delayed refund processing if payment was already made.",
+    "cancelWarning2": "Items that were being prepared specifically for your order might not be refundable.",
+    "orderConfirmed": "Order Confirmed",
+    "orderCancelled": "Order Cancelled",
+    "orderItems": "Order Items",
+    "orderItemDetail": "Order Item Detail",
+    "orderDetails": "Order Details",
+    "deliveryStatus": "Delivery Status",
+    "status": {
+      "pending": "Pending",
+      "pendingDesc": "Your order has been received and is being processed",
+      "confirmed": "Confirmed",
+      "confirmedDesc": "Your order has been confirmed and is being prepared",
+      "shipped": "Shipped",
+      "shippedDesc": "Your order is on the way to you",
+      "cancelled": "Cancelled",
+      "cancelledDesc": "Your order has been cancelled",
+      "rejected": "Rejected",
+      "rejectedDesc": "Your order has been rejected",
+      "completed": "Completed",
+      "completedDesc": "Your order has been delivered successfully"
+    },
+    "info": {
+      "date": "Date",
+      "time": "Time",
+      "items": "Items",
+      "voucher": "Voucher"
+    },
+    "tabs": {
+      "items": "Order Items",
+      "timeline": "Order Timeline"
+    },
+    "timeline": {
+      "orderPlaced": "Order Placed",
+      "orderConfirmed": "Order Confirmed",
+      "orderShipped": "Order Shipped",
+      "orderCompleted": "Order Completed",
+      "orderCancelled": "Order Cancelled",
+      "orderRejected": "Order Rejected",
+      "pendingStatus": "Pending",
+      "onTheWayStatus": "Your order is on the way",
+      "driver": "Driver",
+      "noContact": "No contact",
+      "thankYou": "Thank you!"
+    },
+    "summary": {
+      "title": "Order Summary",
+      "subtotal": "Subtotal",
+      "discount": "Discount",
+      "total": "Total",
+      "from": "From"
+    },
+    "list": {
+      "myOrders": "My Orders",
+      "allOrders": "All Orders",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "shipped": "Shipped",
+      "cancelled": "Cancelled",
+      "rejected": "Rejected",
+      "completed": "Completed",
+      "noOrdersFound": "No orders found",
+      "placeOrderToSee": "Place an order to see it here",
+      "tryChangingFilter": "Try changing your filter or place an order",
+      "errorLoading": "Error loading orders",
+      "tryAgain": "Try Again"
+    }
+  },
+
+  "cart": {
+    "cart": "Cart",
+    "emptyCart": "Your cart is empty",
+    "checkout": "Checkout",
+    "removeItem": "Remove item",
+    "decreaseQuantity": "Decrease quantity",
+    "increaseQuantity": "Increase quantity",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "total": "Total",
+    "continueShopping": "Continue Shopping",
+    "orderSubmittedSuccessfully": "Order submitted successfully",
+    "orderSubmissionFailed": "Order submission failed. Please try again.",
+    "pleaseLoginToSubmitOrder": "Please log in to submit your order",
+    "yourCartIsEmpty": "Your cart is empty",
+    "seemsLikeYouHaveNotOrderedAnyFoodYet": "Seems like you haven't ordered any food yet",
+    "findFoods": "Find Foods",
+    "myCart": "My Cart",
+    "deliveryLocation": "Delivery Location",
+    "home": "Home",
+    "changeLocation": "Change Location",
+    "promoCode": "Promo code...",
+    "apply": "Apply",
+    "addMoreItems": "Add more items",
+    "paymentSummary": "Payment summary",
+    "totalItems": "Total items ({count})",
+    "deliveryFee": "Delivery fee",
+    "free": "Free",
+    "ouchEmpty": "Ouch! Cart is Empty",
+    "confirm": "Confirm",
+    "login": "Log in",
+    "proceedToPayment": "Proceed to Payment",
+    "youSaved": "You saved",
+    "totalSavings": "Total savings",
+    "off": "off",
+    "metadata": {
+      "title": "Cart | Takeout",
+      "keywords": "cart, checkout, order food, Takeout cart",
+      "description": "View your cart and complete your order on Takeout. Easy checkout process for food, goods, and digital services."
+    }
+  },
+
+  "promotion": {
+    "buyNow": "Buy Now",
+    "featured": "Featured"
+  },
+
+  "payment": {
+    "payment": "Payment",
+    "paymentMethod": "Payment Method",
+    "addPayment": "Add Payment Method",
+    "updatePayment": "Update Payment Method",
+    "cardNumber": "Card Number",
+    "cardHolder": "Card Holder",
+    "expiryDate": "Expiry Date",
+    "cvv": "CVV",
+    "paymentSuccess": "Payment Successful",
+    "paymentFailed": "Payment Failed",
+    "selectPaymentMethod": "Select Payment Method",
+    "noPaymentAvailable": "No Payment Available",
+    "confirm": "Confirm",
+    "accountNo": "Account Number",
+    "accountName": "Account Name",
+    "active": "Active",
+    "inactive": "Inactive",
+    "chooseMethod": "Choose Method",
+    "paymentMethodAddedSuccessfully": "Payment Method Added Successfully",
+    "unableToAddPaymentMethod": "Unable to Add Payment Method",
+    "paymentMethodUpdatedSuccessfully": "Payment Method Updated Successfully",
+    "unableToUpdatePaymentMethod": "Unable to Update Payment Method",
+    "accNo": "Account Number",
+    "accName": "Account Name",
+    "update": "Update",
+    "orderSummary": "Order Summary",
+    "totalItems": "Total Items",
+    "items": "items",
+    "deliveryFee": "Delivery Fee",
+    "free": "Free",
+    "total": "Total",
+    "walletBalance": "Wallet Balance",
+    "currentBalance": "Current Balance",
+    "refillWallet": "Refill Wallet",
+    "paymentMethods": "Payment Methods",
+    "wallet": "Wallet",
+    "payFromWallet": "Pay from your wallet",
+    "insufficientBalanceWarning": "Insufficient balance warning",
+    "cashOnDelivery": "Cash on Delivery",
+    "payOnDelivery": "Pay when you receive your order",
+    "pleaseSelectPaymentMethod": "Please select a payment method",
+    "placeOrder": "Place Order",
+    "orderSubmittedSuccess": "Order submitted successfully",
+    "orderSubmissionFailed": "Order submission failed",
+    "insufficientBalance": "Insufficient balance",
+    "loginRequired": "Please login to submit order",
+    "emptyCart": "Your cart is empty"
+  },
+
+  "settings": {
+    "settings": "Settings",
+    "account": "Account",
+    "notifications": "Notifications",
+    "language": "Language",
+    "theme": "Theme",
+    "privacy": "Privacy",
+    "security": "Security",
+    "help": "Help",
+    "about": "About",
+    "logout": "Logout",
+    "other": "Other",
+    "aboutTickets": "About Tickets",
+    "privacyPolicy": "Privacy Policy",
+    "termsAndConditions": "Terms and Conditions",
+    "profile": "Profile",
+    "location": "Location"
+  },
+
+  "shopTypes": {
+    "grocerStore": "Grocer Store",
+    "chemistShop": "Chemist Shop",
+    "stationeryShop": "Stationery Shop",
+    "musicShop": "Music Shop",
+    "fruitShop": "Fruit Shop",
+    "vegetableShop": "Vegetable Shop",
+    "flowerShop": "Flower Shop",
+    "shoeShop": "Shoe Shop",
+    "toyShop": "Toy Shop",
+    "dairyShop": "Dairy Shop",
+    "laundryService": "Laundry Service",
+    "dryCleanersShop": "Dry Cleaners Shop",
+    "restaurant": "Restaurant",
+    "junkShop": "Junk Shop",
+    "furnitureShop": "Furniture Shop"
+  },
+
+  "categories": {
+    "burger": "Burger",
+    "tarco": "Tarco",
+    "drink": "Drink",
+    "pizza": "Pizza"
+  },
+
+  "errors": {
+    "failedToLoad": "Failed to load data",
+    "invalidCredentials": "Invalid credentials",
+    "requiredField": "This field is required",
+    "serverError": "Server error, please try again later",
+    "networkError": "Network error, please check your connection",
+    "unknownError": "An unknown error occurred",
+    "loadingOrder": "Error Loading Order",
+    "orderDetailsLoadFailed": "We couldn't load the order details. Please try again."
+  },
+
+  "languages": {
+    "english": "English",
+    "chinese": "Chinese"
+  },
+
+  "home": {
+    "featuredProducts": "Featured Products",
+    "popularCategories": "Popular Categories",
+    "nearbyShops": "Nearby Shops",
+    "specialOffers": "Special Offers",
+    "viewAll": "View All",
+    "search": "Search for products, shops, etc.",
+    "yourLocation": "Your Location",
+    "findByCategory": "Find by Category",
+    "seeAll": "See All",
+    "promotional": "Promotional",
+    "more": "More",
+    "metadata": {
+      "title": "Worry-free takeaway: Your World, Delivered | Home",
+      "keywords": "Worry-free takeaway, food delivery, food marketplace, nearby shops, local delivery, digital goods, global services",
+      "description": "Explore nearby shops and global digital services. Worry-free takeaway brings the best of the world to your fingertips, wherever you are."
+    }
+  },
+
+  "search": {
+    "searchFood": "Search Food",
+    "searchFoodPlaceholder": "Search food",
+    "noFoodFound": "No food found.",
+    "suggestions": "Suggestions",
+    "suggestionBurger": "Burger",
+    "suggestionPizza": "Pizza",
+    "suggestionCola": "Cola",
+    "recentSearches": "Recent Searches",
+    "deleteRecentSearches": "Delete recent searches",
+    "searchResults": "Search Results",
+    "noResults": "No results found",
+    "tryAgain": "Please try another search term.",
+    "metadata": {
+      "title": "Search Results | Worry-free takeaway",
+      "keywords": "search, find products, find shops, Worry-free takeaway search",
+      "description": "Search for products, shops, and services on Worry-free takeaway. Find exactly what you're looking for quickly and easily."
+    }
+  },
+  "merchantHome": {
+    "runningOrders": "Running Orders",
+    "orderRequests": "Order Requests",
+    "requestList": "Request List",
+    "runningList": "Running List",
+    "totalRevenue": "Total Revenue",
+    "seeDetails": "See Details",
+    "popularItems": "Popular Items",
+    "popularItemsThisWeek": "Popular Items This Week",
+    "seeAll": "See All",
+    "location": "Location",
+    "totalOrders": "Total Orders",
+    "totalCustomers": "Total Customers",
+    "totalProducts": "Total Products",
+    "totalCategories": "Total Categories",
+    "yourShops": "Your Shops",
+    "addNew": "Add New",
+    "createYourFirstShop": "Create Your First Shop",
+    "noShopsAvailable": "No Shops Available",
+    "availableProducts": "Available Products",
+    "noProductsAvailable": "No Products Available",
+    "deliveryManagement": "Delivery Management",
+    "manageDeliveryDrivers": "Manage Delivery Drivers",
+    "registerNewDriver": "Register New Driver",
+    "driverDescription": "Register new drivers or manage your existing delivery team",
+    "noRevenueData": "No revenue data available",
+    "revenueDataDescription": "Revenue data will appear here once you have completed orders",
+    "retry": "Retry",
+    "failedToLoadRevenue": "Failed to load revenue data",
+    "week": "Weekly",
+    "walletBalance": "Wallet Balance",
+    "refill": "Refill",
+    "loadingBalance": "Loading balance...",
+    "availableBalance": "Available Balance",
+    "walletDescription": "Manage your funds and track your earnings and expenses in one place",
+    "withdrawHistory": "Withdrawal History"
+  },
+  "merchantShopList": {
+    "yourLocation": "Your Location",
+    "createShop": "Create Shop",
+    "shopList": "Shop List",
+    "noShopAvailable": "No Shop Available",
+    "businessTagline": "Grow Your Business with Every Order!"
+  },
+  "merchantOrders": {
+    "orders": "Orders",
+    "noOrdersAvailable": "No orders available",
+    "applyFilters": "Apply Filters",
+    "allCategories": "All Categories",
+    "allStatuses": "All Statuses",
+    "selectStatus": "Select status",
+    "selectCategory": "Select category",
+    "orderStatus": {
+      "pending": "Pending",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "all": "All Statuses"
+    },
+    "orderCategories": {
+      "food": "Food",
+      "drinks": "Drinks",
+      "desserts": "Desserts",
+      "all": "All Categories"
+    },
+    "filterByStatus": "Filter by status",
+    "filterByCategory": "Filter by category",
+    "loadingOrders": "Loading orders...",
+    "failedToFetchOrders": "Failed to fetch orders"
+  },
+  "login": {
+    "metadata": {
+      "title": "Sign In | Worry-free takeaway",
+      "keywords": "login, sign in, access account, Worry-free takeaway login, secure login",
+      "description": "Sign in to your Worry-free takeaway account to access a world of digital goods and services instantly."
+    }
+  },
+  "register": {
+    "metadata": {
+      "title": "Create Account | Worry-free takeaway",
+      "keywords": "register, sign up, create account, Worry-free takeaway registration, new user",
+      "description": "Create your Worry-free takeaway account today and start exploring a world of digital goods and services."
+    }
+  },
+  "forgot_password": {
+    "metadata": {
+      "title": "Forgot Password | Worry-free takeaway",
+      "keywords": "forgot password, reset password, account recovery, password help",
+      "description": "Reset your Worry-free takeaway password to regain access to your account."
+    }
+  },
+  "reset_password": {
+    "metadata": {
+      "title": "Reset Password | Worry-free takeaway",
+      "keywords": "reset password, new password, change password, account security",
+      "description": "Set a new password for your Worry-free takeaway account and secure your access."
+    }
+  },
+  "otp_forgot_password": {
+    "metadata": {
+      "title": "Verify OTP | Worry-free takeaway",
+      "keywords": "verification code, OTP, one-time password, account verification",
+      "description": "Verify your identity with a one-time password to reset your Worry-free takeaway account."
+    }
+  },
+  "merchant_register": {
+    "metadata": {
+      "title": "Merchant Registration | Worry-free takeaway",
+      "keywords": "merchant signup, business registration, seller account, partner with Worry-free takeaway",
+      "description": "Register as a merchant on Worry-free takeaway to start selling your products and services to a global audience."
+    }
+  },
+  "shop_register": {
+    "metadata": {
+      "title": "Register Your Shop | Worry-free takeaway",
+      "keywords": "shop registration, add store, business listing, merchant shop setup",
+      "description": "Register your shop on Worry-free takeaway and start serving customers in your area and beyond."
+    }
+  },
+  "merchant_order_notification": {
+    "order_notifications": "Order Notifications",
+    "see_more_order": "See more order",
+    "no_new_order_notifications": "No new order notifications"
+  },
+  "merchant_payment_card": {
+    "edit": "Edit"
+  },
+  "application": {
+    "metadata": {
+      "title": "Application | Worry-free takeaway",
+      "keywords": "Worry-free takeaway application, digital marketplace, shop products, services",
+      "description": "Browse and shop for products and services from local and global merchants on Worry-free takeaway."
+    },
+    "product_list_by_shop": {
+      "metadata": {
+        "title": "Product List by Shop | Worry-free takeaway",
+        "keywords": "product list, shop products, Worry-free takeaway products, browse products",
+        "description": "Browse all products from this shop on Worry-free takeaway. Discover their complete catalog of offerings."
+      }
+    },
+    "EventList": {
+      "metadata": {
+        "title": "Event List | Worry-free takeaway",
+        "keywords": "event list, Worry-free takeaway event, event details, event schedule",
+        "description": "Explore upcoming events and activities on Worry-free takeaway. Find the best events and activities for your interests."
+      }
+    },
+    "event_detail": {
+      "metadata": {
+        "title": "Event Detail | Worry-free takeaway",
+        "keywords": "event detail, Worry-free takeaway event, event details, event schedule",
+        "description": "Explore upcoming events and activities on Worry-free takeaway. Find the best events and activities for your interests."
+      }
+    },
+    "home": {
+      "metadata": {
+        "title": "Home | Worry-free takeaway",
+        "keywords": "Worry-free takeaway home, food delivery app, local shops, digital marketplace",
+        "description": "Discover local shops and global digital services on the Worry-free takeaway app. Order food, groceries, and more with ease."
+      }
+    },
+    "cart": {
+      "metadata": {
+        "title": "Shopping Cart | Worry-free takeaway",
+        "keywords": "shopping cart, checkout, order food, Worry-free takeaway cart",
+        "description": "Review your shopping cart and complete your order on Worry-free takeaway. Easy checkout for food, goods, and digital services."
+      }
+    },
+    "profile": {
+      "metadata": {
+        "title": "User Profile | Worry-free takeaway",
+        "keywords": "user profile, account settings, Worry-free takeaway profile, personal details",
+        "description": "Manage your Worry-free takeaway profile, view order history, and update personal details."
+      }
+    },
+    "merchant_home": {
+      "metadata": {
+        "title": "Merchant Dashboard | Worry-free takeaway",
+        "keywords": "merchant dashboard, seller portal, business management, Worry-free takeaway merchant",
+        "description": "Manage your business, view orders, and track performance with the Worry-free takeaway merchant dashboard."
+      }
+    },
+    "search": {
+      "metadata": {
+        "title": "Search Results | Worry-free takeaway",
+        "keywords": "search, find products, find shops, Worry-free takeaway search",
+        "description": "Search for products, shops, and services on Worry-free takeaway. Find exactly what you're looking for quickly and easily."
+      }
+    },
+    "PromoList": {
+      "metadata": {
+        "title": "Promo List | Worry-free takeaway",
+        "keywords": "promo list, Worry-free takeaway promo, promo offers, promotional deals",
+        "description": "Explore the latest promotions and deals on Worry-free takeaway. Find the best offers and discounts for your favorite products and services."
+      }
+    },
+    "product_list": {
+      "metadata": {
+        "title": "Product List | Worry-free takeaway",
+        "keywords": "products, shop products, Worry-free takeaway products, browse products",
+        "description": "Browse our wide selection of quality products. Find the best deals and items for your needs on Worry-free takeaway."
+      }
+    },
+    "product_detail": {
+      "metadata": {
+        "title": "Product Details | Worry-free takeaway",
+        "keywords": "product details, buy product, product information, product specifications",
+        "description": "View detailed information about this product. Check specifications, reviews, and make an informed purchase on Worry-free takeaway."
+      }
+    },
+    "user_order_list": {
+      "metadata": {
+        "title": "My Orders | Worry-free takeaway",
+        "keywords": "my orders, order history, purchase history, track orders",
+        "description": "View your order history on Worry-free takeaway. Track your past and current orders, check delivery status, and manage your purchases."
+      }
+    },
+    "user_order_detail": {
+      "metadata": {
+        "title": "Order Details | Worry-free takeaway",
+        "keywords": "order details, order status, order tracking, delivery status",
+        "description": "View detailed information about your order. Check order status, track delivery, and manage your purchase on Worry-free takeaway."
+      }
+    },
+    "setting": {
+      "metadata": {
+        "title": "Settings | Worry-free takeaway",
+        "keywords": "account settings, app settings, preferences, Worry-free takeaway settings",
+        "description": "Manage your account settings and preferences on Worry-free takeaway. Customize your experience to suit your needs."
+      }
+    },
+    "category_list": {
+      "metadata": {
+        "title": "Categories | Worry-free takeaway",
+        "keywords": "categories, product categories, browse categories, Worry-free takeaway categories",
+        "description": "Browse products by category on Worry-free takeaway. Find items organized by type, making it easier to discover what you need."
+      }
+    },
+    "merchant_shop_list": {
+      "metadata": {
+        "title": "My Shops | Worry-free takeaway",
+        "keywords": "my shops, shop management, merchant shops, shop list",
+        "description": "Manage your shops on Worry-free takeaway. View, edit, and add new shops to your merchant profile."
+      }
+    },
+    "merchant_shop_detail": {
+      "metadata": {
+        "title": "Shop Details | Worry-free takeaway",
+        "keywords": "shop details, manage shop, shop profile, shop management",
+        "description": "View and manage detailed information about your shop on Worry-free takeaway. Update shop details, manage products, and more."
+      }
+    },
+    "customer_wallet": {
+      "metadata": {
+        "title": "My Wallet | Worry-free takeaway",
+        "keywords": "digital wallet, payment wallet, account balance, Worry-free takeaway wallet",
+        "description": "Manage your Worry-free takeaway wallet. Check your balance, view transaction history, and add funds to your account."
+      }
+    },
+    "customer_wallet_refill": {
+      "metadata": {
+        "title": "Add Funds | Worry-free takeaway",
+        "keywords": "add funds, recharge wallet, top up balance, wallet refill",
+        "description": "Add funds to your Worry-free takeaway wallet. Choose from multiple payment methods to securely top up your account balance."
+      }
+    },
+    "driver_home": {
+      "metadata": {
+        "title": "Driver Dashboard | Worry-free takeaway",
+        "keywords": "driver dashboard, delivery driver, driver portal, delivery management",
+        "description": "Access your driver dashboard on Worry-free takeaway. Manage deliveries, track orders, and optimize your delivery routes."
+      },
+      "currentLocation": "Current Location",
+      "loading": "Loading...",
+      "locationError": "Location Error",
+      "activeDeliveries": "Active Deliveries",
+      "activeDeliveriesList": "Active Deliveries List ({count})",
+      "deliveryRequests": "Delivery Requests",
+      "deliveryRequestsList": "Delivery Requests List ({count})",
+      "today": "Today",
+      "completedDeliveries": "Completed Deliveries",
+      "acceptedRequests": "Accepted Requests",
+      "acceptedRequestsList": "Accepted Requests List ({count})",
+      "updateLocation": "Update Location",
+      "refreshOrders": "Refresh Orders",
+      "completeDelivery": "Complete Delivery",
+      "retry": "Retry",
+      "errorFetchingActiveDeliveries": "Error fetching active deliveries",
+      "errorFetchingDeliveryRequests": "Error fetching delivery requests"
+    },
+    "driver_order_list": {
+      "metadata": {
+        "title": "Delivery Orders | Worry-free takeaway",
+        "keywords": "delivery orders, driver orders, delivery assignments, order list for drivers",
+        "description": "View your delivery order list on Worry-free takeaway. Manage your assigned deliveries and track order status efficiently."
+      },
+      "loadingOrders": "Loading orders...",
+      "failedToLoadOrders": "Failed to load orders",
+      "failedToFetchOrders": "Failed to fetch orders",
+      "noOrdersAvailable": "No orders available",
+      "retry": "Retry",
+      "showingOrders": "Showing {count} orders (Page: {page})",
+      "refresh": "Refresh",
+      "orderNumber": "Order #{number}",
+      "id": "ID",
+      "orderPreparing": "Order Preparing",
+      "deliveryPreparing": "Delivery Preparing",
+      "deliverySending": "Delivery Sending",
+      "customerAccepted": "Customer Accepted",
+      "unknownStatus": "Unknown Status",
+      "orderDate": "Order Date",
+      "notAvailable": "N/A",
+      "voucher": "Voucher",
+      "pickup": "Pickup",
+      "driver": "Driver",
+      "contact": "Contact",
+      "total": "Total",
+      "viewDetails": "View Details"
+    },
+    "register_driver": {
+      "metadata": {
+        "title": "Become a Driver | Worry-free takeaway",
+        "keywords": "become a driver, driver registration, delivery partner, join as driver",
+        "description": "Register as a delivery driver on Worry-free takeaway. Join our network of delivery partners and start earning on your own schedule."
+      }
+    },
+    "transaction_history": {
+      "metadata": {
+        "title": "Transaction History | Worry-free takeaway",
+        "keywords": "transaction history, payment history, transaction records, financial activity",
+        "description": "View your complete transaction history on Worry-free takeaway. Track all your payments, refunds, and financial activity in one place."
+      }
+    },
+    "customer_payment_selection": {
+      "metadata": {
+        "title": "Payment Methods | Worry-free takeaway",
+        "keywords": "payment methods, payment options, checkout payment, select payment",
+        "description": "Choose your preferred payment method on Worry-free takeaway. Multiple secure payment options for a seamless checkout experience."
+      }
+    },
+    "payment": {
+      "metadata": {
+        "title": "Payment | Worry-free takeaway",
+        "keywords": "payment, checkout, complete order, secure payment",
+        "description": "Complete your payment on Worry-free takeaway. Secure and easy payment processing for your orders."
+      }
+    },
+    "merchant_product_list": {
+      "metadata": {
+        "title": "Merchant Products | Worry-free takeaway",
+        "keywords": "merchant products, seller items, product management, inventory",
+        "description": "Manage your products as a merchant on Worry-free takeaway. Add, edit, and organize your product inventory."
+      }
+    },
+    "get_product_by_merchantid": {
+      "metadata": {
+        "title": "Shop Products | Worry-free takeaway",
+        "keywords": "shop products, merchant offerings, store items, merchant catalog",
+        "description": "Browse all products from this merchant on Worry-free takeaway. Discover their complete catalog of offerings."
+      },
+      "title": "Merchant Products",
+      "searchPlaceholder": "Search products...",
+      "failedToLoadProducts": "Failed to load products",
+      "retry": "Retry",
+      "noProductsFound": "No products found",
+      "tryDifferentSearchTerm": "Try a different search term",
+      "noProductsYet": "This merchant has no products yet"
+    },
+    "personal_data": {
+      "metadata": {
+        "title": "Personal Data | Worry-free takeaway",
+        "keywords": "personal data, profile information, account details, user information",
+        "description": "Update and manage your personal information on Worry-free takeaway. Keep your profile details up to date for a better experience."
+      }
+    },
+    "merchant_payment": {
+      "metadata": {
+        "title": "Merchant Payment Settings | Worry-free takeaway",
+        "keywords": "merchant payment, payment settings, payment methods, payment configuration",
+        "description": "Manage your payment settings as a merchant on Worry-free takeaway. Set up payment methods and configure your payment options."
+      }
+    },
+    "merchant_withdraw_history": {
+      "metadata": {
+        "title": "Merchant Withdraw History | Worry-free takeaway",
+        "keywords": "merchant withdraw history, withdrawals, payment history, transaction history",
+        "description": "View your withdraw history as a merchant on Worry-free takeaway. Track your withdrawals and payment history."
+      },
+      "title": "Withdrawal History",
+      "subtitle": "View all your withdrawal transactions",
+      "noWithdrawals": "No withdrawal history found",
+      "amount": "Amount",
+      "date": "Date",
+      "status": "Status",
+      "remark": "Remark",
+      "wallet": "Wallet",
+      "detail": "Detail",
+      "id": "ID",
+      "noData": "No withdrawal data available",
+      "loading": "Loading withdrawal history...",
+      "retry": "Retry",
+      "actualWallet": "Actual Wallet",
+      "completedWallet": "Completed Wallet",
+      "withdrawAmount": "Withdraw Amount",
+      "createdAt": "Created At",
+      "image": "Image",
+      "viewImage": "View Image",
+      "close": "Close",
+      "refresh": "Refresh",
+      "viewDetails": "View Details"
+    },
+    "merchant_product_create": {
+      "metadata": {
+        "title": "Create Product | Worry-free takeaway",
+        "keywords": "create product, add item, product listing, add merchandise",
+        "description": "Create and list new products as a merchant on Worry-free takeaway. Add product details, pricing, and make your items available to customers."
+      }
+    },
+    "merchant_order_list": {
+      "metadata": {
+        "title": "Merchant Orders | Worry-free takeaway",
+        "keywords": "merchant orders, seller orders, order management, track orders",
+        "description": "View and manage all your orders as a merchant on Worry-free takeaway. Track order status and handle customer purchases efficiently."
+      }
+    },
+    "merchant_order_notification": {
+      "metadata": {
+        "title": "Order Notifications | Worry-free takeaway",
+        "keywords": "order notifications, new orders, order alerts, merchant notifications",
+        "description": "Stay updated with order notifications for your merchant account on Worry-free takeaway. Never miss a new order with real-time alerts."
+      }
+    },
+    "merchant_orderitem_detail": {
+      "metadata": {
+        "title": "Order Item Detail | Worry-free takeaway",
+        "description": "View detailed information about your order, manage order status, and assign delivery drivers.",
+        "keywords": "order detail, merchant order, delivery, driver assignment, order management"
+      },
+      "ordered": "Ordered",
+      "total": "Total",
+      "merchant": "Merchant",
+      "pending": "Pending",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "shipped": "Shipped",
+      "rejected": "Rejected",
+      "completed": "Completed",
+      "unknown": "Unknown",
+      "rejectOrder": "Reject Order",
+      "confirmOrder": "Confirm Order",
+      "orderAccepted": "Order confirmed successfully",
+      "orderRejected": "Order rejected successfully",
+      "failedToConfirm": "Failed to confirm order",
+      "failedToReject": "Failed to reject order",
+      "rejectOrderConfirmation": "Are you sure you want to reject this order? This action cannot be undone.",
+      "rejectionReason": "Rejection Reason (Optional)",
+      "enterRejectionReason": "Enter reason for rejection",
+      "cancel": "Cancel",
+      "assignedDriver": "Assigned Driver",
+      "deliveryDriverAssigned": "Delivery Driver Assigned",
+      "assignDriver": "Assign Driver",
+      "assignedBy": "Assigned by",
+      "assignedAt": "Assigned at",
+      "itemsInThisOrder": "Items in This Order",
+      "noItemsFound": "No items found for this order",
+      "totalItems": "Total Items",
+      "quantity": "Qty",
+      "availableDrivers": "Available Drivers",
+      "selectDriverToDeliver": "Select a driver to deliver this order",
+      "noDriversAvailable": "No drivers available at the moment",
+      "addNewDriver": "Add New Driver",
+      "registerNewDriver": "Register New Driver"
+    },
+    "home_v2": {
+      "metadata": {
+        "title": "Home | Worry-free takeaway",
+        "keywords": "home page, main page, Worry-free takeaway app, food delivery app",
+        "description": "Welcome to the enhanced Worry-free takeaway home page. Discover local shops, digital services, and global offerings with our improved interface."
+      }
+    },
+    "driver_order_detail": {
+      "metadata": {
+        "title": "Driver Order Detail | Worry-free takeaway",
+        "description": "View detailed information about your order, manage order status, and assign delivery drivers.",
+        "keywords": "order detail, merchant order, delivery, driver assignment, order management"
+      }
+    },
+    "faq": {
+      "frequently_asked_questions": "Frequently Asked Questions",
+      "faq_subtitle": "Find answers to the most common questions about Worry-free takeaway",
+      "error_title": "Error Loading FAQs",
+      "retry_button": "Try Again",
+      "metadata": {
+        "title": "FAQ - Worry-free takeaway",
+        "description": "Find answers to frequently asked questions about using Worry-free takeaway",
+        "keywords": "FAQ, help, questions, answers, Worry-free takeaway, support"
+      }
+    }
+  },
+  "merchantProfile": {
+    "shopInformation": "Shop Information",
+    "shopType": "Shop Type",
+    "shopName": "Shop Name",
+    "businessPhone": "Business Phone",
+    "openingHours": "Opening Hours",
+    "openTime": "Open Time",
+    "closeTime": "Close Time",
+    "address": "Address",
+    "description": "Description",
+    "websiteLink": "Website Link (Optional)",
+    "shopImages": "Shop Images",
+    "logoImage": "Logo Image",
+    "coverImage": "Cover Image",
+    "dropImageHere": "Drop image here or click to browse",
+    "imageRequirements": "JPG, PNG or GIF, Max 2MB",
+    "registerShop": "Register Shop",
+    "shopRegisteredSuccessfully": "Shop registered successfully!",
+    "failedToRegisterShop": "Failed to register shop",
+    "enterAddressIn": "Enter address in",
+    "enterDescriptionIn": "Enter description in",
+    "selectCloseTime": "Select closing time",
+    "backToShopList": "Back to Shop List"
+  },
+  "merchantProduct": {
+    "productInformation": "Product Information",
+    "category": "Category",
+    "selectCategory": "Select category",
+    "shop": "Shop",
+    "selectShop": "Select shop",
+    "productName": "Product Name",
+    "price": "Price",
+    "stock": "Stock",
+    "previewImage": "Preview Image",
+    "productImages": "Product Images",
+    "productDescription": "Product Description",
+    "enterDescriptionIn": "Enter description in",
+    "createProduct": "Create Product",
+    "backToDashboard": "Back to Dashboard",
+    "productCreatedSuccessfully": "Product created successfully!",
+    "failedToCreateProduct": "Failed to create product",
+    "invalidPriceFormat": "Invalid price format",
+    "stockMustBeWholeNumber": "Stock must be a whole number"
+  },
+  "navigation": {
+    "event": "Event",
+    "home": "Home",
+    "cart": "Cart",
+    "profile": "Profile",
+    "messages": "Messages",
+    "payment": "Payment",
+    "shop": "Shop",
+    "orders": "Orders",
+    "itemLabel": "Go to {name}",
+    "unavailable": "Navigation unavailable",
+    "order list": "Order List"
+  },
+  "forgotPassword": {
+    "title": "Forgot password?",
+    "description": "Enter your email address and we'll send you confirmation code to reset your password",
+    "emailAddress": "Email Address"
+  },
+  "delivery": {
+    "deliveryStatus": "Delivery Status",
+    "deliveryInformation": "Delivery Information",
+    "driver": "Driver",
+    "driverAssigned": "Driver Assigned",
+    "awaitingDriver": "Awaiting Driver",
+    "unknownDriver": "Unknown Driver",
+    "liveTracking": "Live Tracking",
+    "noDeliveryInfoAvailable": "No delivery information available",
+    "orderCancelledDeliveryInfo": "Delivery information is not available for cancelled orders",
+    "orderRejectedDeliveryInfo": "Delivery information is not available for rejected orders",
+    "status": {
+      "preparing": {
+        "short": "Preparing",
+        "full": "Preparing Order",
+        "desc": "Your order is being prepared by the merchant"
+      },
+      "deliveryPreparing": {
+        "short": "Delivery Prep",
+        "full": "Delivery Preparing",
+        "desc": "Your delivery is being prepared"
+      },
+      "onTheWay": {
+        "short": "On the Way",
+        "full": "On The Way",
+        "desc": "Your order is on the way to your location"
+      },
+      "delivered": {
+        "short": "Delivered",
+        "full": "Delivered",
+        "desc": "Your order has been delivered and accepted"
+      }
+    }
+  },
+  "ads": {
+    "advertisement": "Advertisement: {name}",
+    "viewOffer": "View Offer",
+    "sponsored": "Sponsored",
+    "promotion": "Promotion",
+    "limitedTimeOffer": "Limited Time Offer",
+    "closeAd": "Close advertisement"
+  },
+  "wallet": {
+    "refillYourWallet": "Refill Your Wallet",
+    "addFundsDescription": "Add funds to your wallet to make quick and easy payments",
+    "amount": "Amount",
+    "enterAmount": "Enter amount",
+    "selectPaymentMethod": "Select payment method",
+    "selectPaymentMethodHelp": "Select a payment method to see account details for your transfer",
+    "transferInstructions": "Important Transfer Instructions",
+    "useOnlyTheseDetails": "Please transfer ONLY to the account details below. Using any other account details may result in your payment being lost.",
+    "incorrectDetailsWarning": "Warning: Using incorrect account details may result in your transfer being delayed or lost. Please double-check before making your payment.",
+    "transactionID": "Transaction ID",
+    "enterTransactionID": "Enter transaction ID",
+    "transactionScreenshot": "Transaction Screenshot",
+    "uploadScreenshotInstructions": "Upload a screenshot of your transaction (JPEG, PNG, max 5MB)",
+    "screenshotUploaded": "Screenshot uploaded successfully",
+    "recommendedForLargeAmounts": "Recommended for amounts over $100",
+    "remark": "Remark",
+    "additionalInformation": "Add any additional information",
+    "refillWallet": "Refill Wallet",
+    "processingTimeInfo": "Your refill request will be processed within 24 hours. You will receive a notification once completed.",
+    "paymentHistory": "Payment History",
+    "fileExceedsLimit": "File size exceeds 5MB limit",
+    "refillSuccess": "Wallet Refilled Successfully",
+    "refillFailed": "Wallet Refill Failed",
+    "screenshotRequired": "Transaction screenshot is required for amounts over $100",
+    "selectValidPaymentMethod": "Please select a valid payment method",
+    "yourBalance": "Your Balance",
+    "loadingBalance": "Loading balance...",
+    "availableBalance": "Available Balance",
+    "refill": "Refill",
+    "scanQrCode": "Scan QR Code",
+    "scanToTransfer": "Scan with your payment app to transfer funds"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "emailInvalid": "Invalid email address",
+    "passwordMinLength": "Password must be at least 6 characters long",
+    "confirmPasswordRequired": "Confirm password is required",
+    "passwordsDoNotMatch": "Passwords do not match"
+  },
+  "errorBoundary": {
+    "title": "Something went wrong!",
+    "message": "An unexpected error occurred. Please try again."
+  },
+  "event": {
+    "title": "Events",
+    "noEvents": "No events found",
+    "noEventsDescription": "There are no events available at the moment. Check back later!",
+    "loading": "Loading events...",
+    "error": "Failed to load events",
+    "errorDescription": "There was an error loading the events. Please try again later.",
+    "description": "Description",
+    "status": {
+      "upcoming": "Upcoming",
+      "ongoing": "Ongoing",
+      "completed": "Completed",
+      "unknown": "Unknown"
+    }
+  }
+}

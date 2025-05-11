@@ -1,0 +1,1533 @@
+{
+  "welcome": "欢迎使用我们的应用程序",
+  "title": "我的 Next.js 应用",
+  "language": "语言",
+
+  "common": {
+    "registerTitle": "创建您的账户",
+    "loginTitle": "登录您的账户",
+    "selectShop": "选择商店",
+    "phone": "电话",
+    "close": "关闭",
+    "save": "保存",
+    "cancel": "取消",
+    "submit": "提交",
+    "delete": "删除",
+    "edit": "编辑",
+    "add": "添加",
+    "remove": "移除",
+    "view": "查看",
+    "search": "搜索",
+    "filter": "筛选",
+    "sort": "排序",
+    "select": "选择",
+    "image": "图片",
+    "loading": "加载中...",
+    "retry": "重试",
+    "error": "错误",
+    "success": "成功",
+    "warning": "警告",
+    "info": "信息",
+    "back": "返回",
+    "next": "下一步",
+    "complete": "完成",
+    "scrollLeft": "向左滚动",
+    "scrollRight": "向右滚动",
+    "goBack": "返回",
+    "item": "项",
+    "items": "项",
+    "status": "状态",
+    "statuses": "状态",
+    "contact": "联系",
+    "callDriver": "联系司机",
+    "refresh": "刷新",
+    "viewAll": "查看全部",
+    "noContactInfo": "无可用的联系信息",
+    "yes": "是",
+    "no": "否",
+    "continue": "继续",
+    "more": "更多",
+    "less": "更少",
+    "pending": "待处理",
+    "required": "必填",
+    "optional": "选填",
+    "mm": "缅甸语",
+    "en": "英语",
+    "cn": "中文",
+    "th": "泰语",
+    "deliveryFee": "配送费",
+    "tryAgain": "重试",
+    "nevermind": "没关系",
+    "customerService": "客户服务",
+    "customerServiceContact": "联系我们的客户服务",
+    "wechat": "微信",
+    "telegram": "Telegram",
+    "telegramContactInfo": "您也可以通过Telegram快速联系我们获取支持",
+    "copy": "复制",
+    "copied": "已复制！",
+    "support": "支持",
+    "messageUs": "在以下平台上给我们发消息",
+    "wechatId": "微信ID",
+    "telegramId": "Telegram ID",
+    "phoneNumber": "电话号码",
+    "noPhoneNumbers": "无可用电话号码",
+    "notAvailable": "不可用",
+    "errorFetchingContact": "无法加载联系信息",
+    "noTelegramInfo": "无可用的Telegram信息",
+    "and": "和",
+    "share": "分享"
+  },
+
+  "components": {
+    "fileUpload": {
+      "maxFilesAllowed": "最多允许{count}个文件",
+      "removeFile": "删除文件",
+      "clearAll": "清除全部",
+      "dropFilesHere": "将{count, plural, one {文件} other {文件}}拖放到这里",
+      "dragAndDrop": "将{count, plural, one {文件} other {文件}}拖放到这里，或点击选择",
+      "supportedFormat": "支持的格式: {format}",
+      "maxFiles": " (最多{count}个文件)"
+    }
+  },
+
+  "onboarding": {
+    "s1": {
+      "header": "本地取餐，简化流程",
+      "content": "探索附近提供便捷送餐服务的商店。从杂货到礼品，一切尽在点击之间。"
+    },
+    "s2": {
+      "header": "无忧外卖，即刻可用",
+      "content": "立即获取世界各地的资源。无忧外卖为您提供数字商品和全球服务的即时访问。"
+    },
+    "s3": {
+      "header": "无忧外卖：您的世界，送达您手",
+      "content": "获取世界各地的资源、数字商品和国际服务。无论您身在何处，无忧外卖都能将世界上最好的东西送到您的指尖。"
+    },
+    "metadata": {
+      "title": "无忧外卖: 即时访问 | 数字商品和服务",
+      "keywords": "无忧外卖、数字商品、全球市场、全球电子商务、数字市场、国际服务、全球商业最佳数字商品、虚拟服务、全球电子商务",
+      "description": "立即访问数字商品、全球服务和国际资源的世界。无论您身在何处，无忧外卖 都能为您提供所需的一切。立即探索！"
+    }
+  },
+
+  "auth": {
+    "createMerchantAccount": "创建您的商家账户",
+    "passwordLessThan6": "密码必须至少包含 6 个字符",
+    "continue": "继续",
+    "login": "登录",
+    "register": "注册",
+    "logout": "登出",
+    "email": "邮箱",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "forgotPassword": "忘记密码？",
+    "resetPassword": "重置密码",
+    "dontHaveAccount": "还没有账号？",
+    "alreadyHaveAccount": "已有账号？",
+    "signUp": "注册",
+    "signIn": "登录",
+    "termsAndConditions": "条款和条件",
+    "agreeToTerms": "我同意",
+    "passwordCriteria": "您的密码必须包含至少一个大写字母、一个小写字母、一个数字和一个特殊字符",
+    "invalidEmail": "无效的邮箱格式",
+    "passwordMismatch": "请确认您的密码",
+    "pleaseSignIn": "请登录您的账户",
+    "orSignInWith": "或使用以下方式登录",
+    "skip": "跳过",
+    "createAccount": "创建账户",
+    "emailAddress": "电子邮件地址",
+    "signInToYourAccount": "登录您的账户",
+    "selectContactDetails": "选择我们应该用哪些联系方式来重置您的密码",
+    "createAccountDescription": "创建一个账户，开始寻找您喜欢的食物",
+    "orSignUpWith": "或通过以下方式注册",
+    "name": "姓名",
+    "registerAsMerchant": "注册为商家",
+    "termsOfService": "服务条款",
+    "privacyPolicy": "隐私政策",
+    "registerAsUser": "注册为用户",
+    "shopAddress": "店铺地址",
+    "country": "国家",
+    "state": "省份",
+    "city": "城市",
+    "phone": "电话",
+    "phoneNumber": "电话号码",
+    "shopType": "商店类型",
+    "shopName": "商店名称",
+    "loginWithGoogle": "使用谷歌登录",
+    "loginWithFacebook": "使用脸书登录",
+    "loginWithApple": "使用 Apple 登录",
+    "registerSuccess": "注册成功！正在重定向...",
+    "registrationFailed": "注册失败。请稍后重试。",
+    "termsNotAgreed": "请同意服务条款和隐私政策。"
+  },
+
+  "profile": {
+    "personalData": "个人资料",
+    "fullName": "全名",
+    "address": "地址",
+    "phone": "电话",
+    "email": "电子邮箱",
+    "updateProfile": "更新资料",
+    "profileUpdated": "资料已更新",
+    "updateError": "无法更新资料",
+    "location": "位置",
+    "profileSetting": "个人资料设置",
+    "logInNow": "立即登录",
+    "myOrders": "我的订单",
+    "seeAll": "查看全部",
+    "order": "订单",
+    "newOrder": "新订单",
+    "viewDetails": "查看详情",
+    "noRecentOrders": "没有最近的订单",
+    "signOut": "退出登录",
+    "setting": "设置",
+    "helpCenter": "帮助中心",
+    "save": "保存",
+    "support": "支持",
+    "metadata": {
+      "title": "用户资料 | 无忧外卖",
+      "keywords": "用户资料, 账户设置, 无忧外卖 资料, 个人详情",
+      "description": "管理您的 无忧外卖 资料，查看订单历史，并更新个人详情。"
+    }
+  },
+  "category-list": {
+    "categories": "类别"
+  },
+
+  "merchant": {
+    "register": "商家注册",
+    "shopName": "商店名称",
+    "shopAddress": "店铺地址",
+    "shopDescription": "店铺描述",
+    "shopOpenTime": "店铺营业时间",
+    "selectOpenTime": "选择营业时间",
+    "shopType": "商店类型",
+    "selectShopType": "选择店铺类型",
+    "merchantRegister": "商家注册",
+    "merchantProfile": "商家资料",
+    "merchantHome": "商家主页",
+    "merchantShopList": "商家店铺列表",
+    "merchantShopDetail": "商家店铺详情",
+    "merchantOrderList": "商家订单列表",
+    "merchantOrderNotification": "商家订单通知",
+    "merchantPayment": "商家支付",
+    "orderDateTime": "订单日期和时间",
+    "orderStatus": "订单状态",
+    "customer": "客户",
+    "actions": "操作",
+    "viewOrder": "查看订单",
+    "orderDetails": "订单详情",
+    "orderNumber": "订单 #",
+    "orderItems": "订单商品",
+    "quantity": "数量",
+    "price": "价格",
+    "accept": "接受",
+    "reject": "拒绝",
+    "complete": "完成",
+    "cancel": "取消",
+    "orderAccepted": "订单已接受",
+    "orderRejected": "订单已拒绝",
+    "orderCompleted": "订单已完成",
+    "orderCancelled": "订单已取消",
+    "notifications": "通知",
+    "newOrders": "新订单"
+  },
+
+  "driver": {
+    "readyForPickup": "准备取餐",
+    "sendingToCustomer": "正在配送",
+    "myDeliveries": "我的配送",
+    "loadingDeliveries": "正在加载配送...",
+    "failedToLoadDeliveries": "配送加载失败",
+    "noDeliveriesAvailable": "没有可用的配送",
+    "orderPreparing": "订单准备中",
+    "readyForDelivery": "准备配送",
+    "outForDelivery": "配送中",
+    "delivered": "已送达",
+    "orderNumber": "订单 #{number}",
+    "orderTotal": "订单总额",
+    "startDelivery": "开始配送",
+    "viewDetails": "查看详情",
+    "driverHome": "骑手主页",
+    "activeDeliveries": "进行中的配送",
+    "deliveryHistory": "配送历史",
+    "earnings": "收益",
+    "totalEarnings": "总收益",
+    "today": "今天",
+    "thisWeek": "本周",
+    "thisMonth": "本月",
+    "registerAsDriver": "注册成为骑手",
+    "vehicleInformation": "车辆信息",
+    "licenseInformation": "驾照信息",
+
+    "registerNewDriver": "注册新骑手",
+    "registerDriver": "注册骑手",
+    "driverRegisteredSuccess": "骑手注册成功！",
+    "driverRegisteredSuccessfully": "骑手注册成功",
+    "registrationError": "注册过程中出现错误",
+    "driverInformation": "骑手信息",
+    "failedToCopy": "复制骑手信息失败",
+    "copyInfo": "复制信息",
+    "fileSizeExceedsLimit": "文件大小超过5MB限制",
+    "photoUploadedSuccess": "照片上传成功",
+    "nameRequired": "需要输入姓名（至少2个字符）",
+    "validEmailRequired": "需要有效的电子邮箱",
+    "validPhoneRequired": "需要有效的电话号码",
+    "validPasswordRequired": "您的密码必须至少包含6个字符",
+    "passwordsMustMatch": "密码必须匹配",
+    "driverPhotoRequired": "需要骑手照片",
+    "formSubmissionFailed": "表单提交失败，请重试",
+    "fullName": "全名",
+    "enterDriverFullName": "输入骑手全名",
+    "nameError": "姓名必须至少包含2个字符",
+    "emailAddress": "电子邮箱地址",
+    "enterEmailAddress": "输入电子邮箱地址",
+    "emailError": "无效的电子邮箱地址",
+    "phoneNumber": "电话号码",
+    "enterPhoneNumber": "输入电话号码",
+    "phoneError": "需要有效的电话号码",
+    "driverPhoto": "骑手照片",
+    "uploadClearPhoto": "上传清晰的骑手照片（仅限JPG、PNG，最大5MB）",
+    "photoUploaded": "照片已上传",
+    "photo": "照片",
+    "imageUploadRequirement": "确保上传JPG、JPEG或PNG格式的文件",
+    "password": "密码",
+    "createStrongPassword": "创建强密码",
+    "passwordError": "密码必须至少包含8个字符，并包含大写字母、小写字母、数字和特殊字符",
+    "confirmPassword": "确认密码",
+    "confirmYourPassword": "确认您的密码",
+    "confirmPasswordError": "密码不匹配",
+    "registering": "注册中...",
+    "name": "姓名",
+    "email": "电子邮箱",
+    "phone": "电话",
+
+    "preparing": "准备中",
+    "ready": "就绪",
+    "delivering": "配送中",
+    "completed": "已完成",
+    "unknown": "未知",
+    "markAsReady": "标记为就绪",
+    "markAsDelivered": "标记为已送达",
+    "orderCompleted": "订单已完成",
+    "updatingStatus": "更新状态",
+    "updatingStatusDescription": "我们正在更新配送状态，这不会花太长时间。",
+    "refreshingData": "刷新数据",
+    "fetchingLatestInfo": "获取最新订单信息...",
+    "statusUpdateSuccess": "配送状态更新成功",
+    "statusUpdateFailed": "配送状态更新失败",
+    "phoneCopied": "电话号码已复制到剪贴板",
+    "copyFailed": "复制电话号码失败",
+    "refreshing": "刷新中...",
+    "deliveryProgress": "配送进度",
+    "deliveryInformation": "配送信息",
+    "customerDetailsForDelivery": "配送客户详情",
+    "customer": "客户",
+    "contact": "联系方式",
+    "copyPhone": "复制电话号码",
+    "deliveryAddress": "配送地址",
+    "driver": "骑手",
+    "orderInformation": "订单信息",
+    "orderPlacedOn": "订单下单于 {date}",
+    "orderNumberLabel": "订单编号",
+    "voucherNumber": "优惠券编号",
+    "currentStatus": "当前状态",
+    "confirmStatusUpdate": "确认状态更新",
+    "confirmStatusQuestion": "您确定要将配送状态更改为",
+    "confirm": "确认",
+    "updating": "更新中...",
+    "pickupInformation": "取餐信息",
+    "merchantDetailsForPickup": "取餐商家详情",
+    "merchant": "商家",
+    "idLabel": "ID",
+    "orderNotFound": "订单未找到",
+    "orderDetailsNotRetrieved": "无法获取订单详情。",
+    "deliveryNumber": "配送 #{number}",
+    "preparingDescription": "订单正在由商家准备",
+    "readyDescription": "订单已准备好，可以取餐配送",
+    "deliveringDescription": "订单正在运送到客户处",
+    "deliveredDescription": "订单已送达并接收",
+    "locale": "zh-CN",
+
+    "cancelOrder": "取消订单",
+    "confirmCancellation": "确认取消",
+    "cancelOrderDescription": "您确定要取消此订单吗？此操作无法撤销。",
+    "cancellationReason": "取消原因",
+    "forRecordsOnly": "仅供记录",
+    "reasonPlaceholder": "请提供取消原因...",
+    "warningNotice": "警告通知",
+    "cancellationWarning": "在准备阶段取消订单无法撤销。取消后如有任何问题，需联系客服。",
+    "cancellingOrder": "正在取消订单",
+    "cancellingOrderDescription": "正在处理您的取消请求。您将很快被重定向。",
+    "confirmCancel": "是的，取消订单",
+    "cancelling": "取消中...",
+    "noReasonProvided": "未提供原因",
+    "orderCancelled": "订单已取消",
+    "orderCancellationFailed": "订单取消失败"
+  },
+
+  "merchantOrders": {
+    "orders": "订单",
+    "noOrdersAvailable": "没有可用的订单",
+    "applyFilters": "应用筛选",
+    "allCategories": "所有类别",
+    "allStatuses": "所有状态",
+    "selectStatus": "选择状态",
+    "selectCategory": "选择类别",
+    "orderStatus": {
+      "pending": "待处理",
+      "completed": "已完成",
+      "cancelled": "已取消",
+      "all": "所有状态"
+    },
+    "orderCategories": {
+      "food": "食物",
+      "drinks": "饮料",
+      "desserts": "甜点",
+      "all": "所有类别"
+    },
+    "filterByStatus": "按状态筛选",
+    "filterByCategory": "按类别筛选",
+    "loadingOrders": "加载订单中...",
+    "failedToFetchOrders": "获取订单失败"
+  },
+
+  "promotion": {
+    "buyNow": "立即购买",
+    "featured": "精选"
+  },
+
+  "filterCategory": {
+    "selectFilter": "选择筛选",
+    "reset": "重置",
+    "apply": "应用",
+    "sort": "排序",
+    "offer": "优惠",
+    "shop": "店铺",
+    "selectSort": "选择排序",
+    "selectOffer": "选择优惠",
+    "selectShop": "选择店铺"
+  },
+
+  "location": {
+    "country": "国家",
+    "state": "省/州",
+    "city": "城市",
+    "selectCountry": "选择国家",
+    "selectState": "选择省/州",
+    "selectCity": "选择城市",
+    "invalidCountry": "无效的国家ID",
+    "invalidState": "无效的省/州ID",
+    "invalidCity": "无效的城市ID"
+  },
+
+  "product": {
+    "youSave": "您节省了",
+    "productList": "产品列表",
+    "productDetail": "产品详情",
+    "price": "价格",
+    "stock": "库存",
+    "description": "描述",
+    "available": "可用",
+    "unavailable": "不可用",
+    "addToCart": "加入购物车",
+    "quantity": "数量",
+    "category": "类别",
+    "categoryList": "类别列表",
+    "unnamedProduct": "未命名产品",
+    "unknownRestaurant": "未知餐厅",
+    "unknownShop": "未知商店",
+    "unknownCategory": "未知类别",
+    "viewDetailsFor": "查看{name}的详细信息",
+    "notAvailable": "暂无",
+    "productDetails": "产品详情",
+    "productNotAvailable": "产品不可用",
+    "noDescriptionAvailable": "暂无描述",
+    "itemsInStock": "库存数量",
+    "freeDelivery": "免费配送",
+    "decreaseQuantity": "减少数量",
+    "increaseQuantity": "增加数量",
+    "inStock": "有货",
+    "outOfStock": "缺货",
+    "noMoreItemsInStock": "库存不足",
+    "selectQuantityFirst": "请先选择数量",
+    "addedToCart": "已添加到购物车",
+    "ratings": "评分",
+    "reviews": "评论",
+    "relatedProducts": "相关产品",
+    "moreFromThisShop": "来自此店铺的更多产品",
+    "ingredients": "成分",
+    "nutritionalInfo": "营养信息",
+    "allergens": "过敏原",
+    "servingSize": "份量",
+    "preparation": "准备方法",
+    "viewCart": "查看购物车",
+    "continueShoppingButton": "继续购物",
+    "aboutThisMenu": "关于此菜单",
+    "recommendedForYou": "为您推荐",
+    "seeAll": "查看全部",
+    "noSimilarProducts": "没有相似的产品",
+    "noProductsAvailable": "没有可用的产品"
+  },
+
+  "productListByShop": {
+    "noProductsAvailable": "没有可用的产品",
+    "products": "产品"
+  },
+
+  "order": {
+    "orderList": "订单列表",
+    "orderDetail": "订单详情",
+    "orderDate": "订单日期",
+    "orderNumber": "订单号",
+    "voucherNumber": "优惠券号",
+    "total": "总计",
+    "confirmOrder": "确认订单",
+    "cancelOrder": "取消订单",
+    "cancelling": "取消中...",
+    "processing": "处理中...",
+    "confirmCancel": "是的，取消订单",
+    "cancelSuccess": "订单已成功取消",
+    "cancelSuccessDetails": "您的订单已被取消。您将很快收到确认邮件。",
+    "cancelError": "取消订单失败。请重试。",
+    "cancelConfirmTitle": "取消您的订单？",
+    "cancelConfirmDescription": "您确定要取消此订单吗？此操作无法撤销。",
+    "cancelWarning1": "如果已付款，取消订单可能导致退款处理延迟。",
+    "cancelWarning2": "专门为您订单准备的商品可能无法退款。",
+    "orderConfirmed": "订单已确认",
+    "orderCancelled": "订单已取消",
+    "orderItems": "订单商品",
+    "orderItemDetail": "订单商品详情",
+    "orderDetails": "订单详情",
+    "deliveryStatus": "配送状态",
+    "status": {
+      "pending": "待处理",
+      "pendingDesc": "您的订单已收到并正在处理中",
+      "confirmed": "已确认",
+      "confirmedDesc": "您的订单已确认并正在准备中",
+      "shipped": "已发货",
+      "shippedDesc": "您的订单正在运送途中",
+      "cancelled": "已取消",
+      "cancelledDesc": "您的订单已被取消",
+      "rejected": "已拒绝",
+      "rejectedDesc": "您的订单已被拒绝",
+      "completed": "已完成",
+      "completedDesc": "您的订单已成功送达"
+    },
+    "info": {
+      "date": "日期",
+      "time": "时间",
+      "items": "商品",
+      "voucher": "优惠券"
+    },
+    "tabs": {
+      "items": "订单商品",
+      "timeline": "订单时间线"
+    },
+    "timeline": {
+      "orderPlaced": "订单已下",
+      "orderConfirmed": "订单已确认",
+      "orderShipped": "订单已发货",
+      "orderCompleted": "订单已完成",
+      "orderCancelled": "订单已取消",
+      "orderRejected": "订单已拒绝",
+      "pendingStatus": "待处理",
+      "onTheWayStatus": "您的订单正在运送途中",
+      "driver": "司机",
+      "noContact": "无联系方式",
+      "thankYou": "谢谢！"
+    },
+    "summary": {
+      "title": "订单摘要",
+      "subtotal": "小计",
+      "discount": "折扣",
+      "total": "总计",
+      "from": "来自"
+    },
+    "list": {
+      "myOrders": "我的订单",
+      "allOrders": "全部订单",
+      "pending": "待处理",
+      "confirmed": "已确认",
+      "shipped": "已发货",
+      "cancelled": "已取消",
+      "rejected": "已拒绝",
+      "completed": "已完成",
+      "noOrdersFound": "未找到订单",
+      "placeOrderToSee": "下单后将在此处显示",
+      "tryChangingFilter": "尝试更改过滤条件或下单",
+      "errorLoading": "加载订单时出错",
+      "tryAgain": "重试"
+    }
+  },
+
+  "cart": {
+    "cart": "购物车",
+    "emptyCart": "您的购物车是空的",
+    "checkout": "结账",
+    "removeItem": "移除商品",
+    "decreaseQuantity": "减少数量",
+    "increaseQuantity": "增加数量",
+    "subtotal": "小计",
+    "discount": "折扣",
+    "total": "总计",
+    "continueShopping": "继续购物",
+    "orderSubmittedSuccessfully": "订单提交成功",
+    "orderSubmissionFailed": "订单提交失败。请重试。",
+    "pleaseLoginToSubmitOrder": "请登录以提交订单",
+    "yourCartIsEmpty": "您的购物车是空的",
+    "seemsLikeYouHaveNotOrderedAnyFoodYet": "看起来您还没有订购任何食物",
+    "findFoods": "寻找食物",
+    "myCart": "我的购物车",
+    "deliveryLocation": "配送地点",
+    "home": "家庭",
+    "changeLocation": "更改位置",
+    "promoCode": "促销代码...",
+    "apply": "应用",
+    "addMoreItems": "添加更多商品",
+    "paymentSummary": "付款摘要",
+    "totalItems": "商品总数 ({count})",
+    "deliveryFee": "配送费",
+    "free": "免费",
+    "ouchEmpty": "哎呀！购物车是空的",
+    "confirm": "确认",
+    "login": "登录",
+    "proceedToPayment": "前往付款",
+    "youSaved": "您节省了",
+    "totalSavings": "总节省",
+    "off": "折扣",
+    "metadata": {
+      "title": "购物车 | 无忧外卖",
+      "keywords": "购物车, 结账, 订购食品, 无忧外卖 购物车",
+      "description": "在 无忧外卖 上查看您的购物车并完成订单。为食品、商品和数字服务提供简便的结账流程。"
+    }
+  },
+
+  "payment": {
+    "payment": "支付",
+    "paymentMethod": "支付方式",
+    "addPayment": "添加支付方式",
+    "updatePayment": "更新支付方式",
+    "cardNumber": "卡号",
+    "cardHolder": "持卡人",
+    "expiryDate": "到期日",
+    "cvv": "CVV",
+    "paymentSuccess": "支付成功",
+    "paymentFailed": "支付失败",
+    "noPaymentAvailable": "没有可用的支付方式",
+    "confirm": "确认",
+    "accountNo": "账户号",
+    "accountName": "账户名称",
+    "active": "活动",
+    "inactive": "不活动",
+    "chooseMethod": "选择方法",
+    "paymentMethodAddedSuccessfully": "支付方式添加成功",
+    "unableToAddPaymentMethod": "无法添加支付方式",
+    "paymentMethodUpdatedSuccessfully": "支付方式更新成功",
+    "unableToUpdatePaymentMethod": "无法更新支付方式",
+    "accNo": "账户号",
+    "accName": "账户名称",
+    "update": "更新",
+    "orderSummary": "订单摘要",
+    "totalItems": "商品总数",
+    "items": "件",
+    "deliveryFee": "配送费",
+    "free": "免费",
+    "total": "总计",
+    "walletBalance": "钱包余额",
+    "currentBalance": "当前余额",
+    "refillWallet": "充值钱包",
+    "paymentMethods": "支付方式",
+    "wallet": "钱包",
+    "payFromWallet": "从钱包支付",
+    "insufficientBalanceWarning": "余额不足警告",
+    "cashOnDelivery": "货到付款",
+    "payOnDelivery": "收到订单时付款",
+    "pleaseSelectPaymentMethod": "请选择支付方式",
+    "placeOrder": "下单",
+    "orderSubmittedSuccess": "订单提交成功",
+    "orderSubmissionFailed": "订单提交失败",
+    "insufficientBalance": "余额不足",
+    "loginRequired": "请登录以提交订单",
+    "emptyCart": "您的购物车是空的",
+    "selectPaymentMethod": "请选择支付方式",
+    "metadata": {
+      "title": "支付 | 无忧外卖",
+      "keywords": "支付, 结账, 完成订单, 安全支付",
+      "description": "在 无忧外卖 完成您的支付。为您的订单提供安全简便的支付处理。"
+    }
+  },
+
+  "settings": {
+    "settings": "设置",
+    "account": "账户",
+    "notifications": "通知",
+    "language": "语言",
+    "theme": "主题",
+    "privacy": "隐私",
+    "security": "安全",
+    "help": "帮助",
+    "about": "关于",
+    "logout": "退出登录",
+    "other": "其他",
+    "aboutTickets": "关于票务",
+    "privacyPolicy": "隐私政策",
+    "termsAndConditions": "条款和条件",
+    "profile": "个人资料",
+    "location": "位置",
+    "metadata": {
+      "title": "设置 | 无忧外卖",
+      "keywords": "账户设置, 应用设置, 偏好设置, 无忧外卖 设置",
+      "description": "管理您的 无忧外卖 账户设置和偏好。根据您的需求自定义您的体验。"
+    }
+  },
+
+  "shopTypes": {
+    "grocerStore": "杂货店",
+    "chemistShop": "药店",
+    "stationeryShop": "文具店",
+    "musicShop": "音乐店",
+    "fruitShop": "水果店",
+    "vegetableShop": "蔬菜店",
+    "flowerShop": "花店",
+    "shoeShop": "鞋店",
+    "toyShop": "玩具店",
+    "dairyShop": "乳制品店",
+    "laundryService": "洗衣服务",
+    "dryCleanersShop": "干洗店",
+    "restaurant": "餐厅",
+    "junkShop": "废品店",
+    "furnitureShop": "家具店"
+  },
+
+  "categories": {
+    "burger": "汉堡",
+    "tarco": "塔可",
+    "drink": "饮料",
+    "pizza": "披萨"
+  },
+
+  "errors": {
+    "failedToLoad": "加载数据失败",
+    "invalidCredentials": "无效的凭据",
+    "requiredField": "此字段为必填项",
+    "serverError": "服务器错误，请稍后再试",
+    "networkError": "网络错误，请检查您的连接",
+    "unknownError": "发生未知错误",
+    "loadingOrder": "加载订单出错",
+    "orderDetailsLoadFailed": "无法加载订单详情，请重试。"
+  },
+
+  "languages": {
+    "english": "英语",
+    "chinese": "中文"
+  },
+
+  "home": {
+    "featuredProducts": "精选产品",
+    "popularCategories": "热门类别",
+    "nearbyShops": "附近商店",
+    "specialOffers": "特别优惠",
+    "viewAll": "查看全部",
+    "search": "搜索产品、商店等",
+    "yourLocation": "您的位置",
+    "findByCategory": "按类别查找",
+    "seeAll": "查看全部",
+    "promotional": "促销",
+    "more": "更多",
+    "metadata": {
+      "title": "首页 | 无忧外卖",
+      "keywords": "无忧外卖 首页, 食品配送应用, 本地商店, 数字市场",
+      "description": "在 无忧外卖 应用上发现本地商店和全球数字服务。轻松订购食品、杂货等。"
+    }
+  },
+
+  "search": {
+    "searchFood": "搜索食物",
+    "searchFoodPlaceholder": "搜索食物",
+    "noFoodFound": "未找到食物。",
+    "suggestions": "建议",
+    "suggestionBurger": "汉堡",
+    "suggestionPizza": "披萨",
+    "suggestionCola": "可乐",
+    "recentSearches": "最近搜索",
+    "deleteRecentSearches": "删除最近搜索",
+    "searchResults": "搜索结果",
+    "noResults": "未找到结果",
+    "tryAgain": "请尝试其他搜索词。",
+    "metadata": {
+      "title": "搜索结果 | 无忧外卖",
+      "keywords": "搜索, 查找产品, 查找商店, 无忧外卖 搜索",
+      "description": "在 无忧外卖 上搜索产品、商店和服务。快速简便地找到您所需的内容。"
+    }
+  },
+
+  "merchantShopList": {
+    "yourLocation": "您的位置",
+    "createShop": "创建店铺",
+    "shopList": "店铺列表",
+    "noShopAvailable": "没有可用的店铺",
+    "businessTagline": "通过每一个订单发展您的业务！"
+  },
+
+  "merchantHome": {
+    "runningOrders": "运行中的订单",
+    "orderRequests": "订单请求",
+    "requestList": "请求列表",
+    "runningList": "运行中的列表",
+    "totalRevenue": "总收入",
+    "seeDetails": "查看详情",
+    "popularItems": "热门商品",
+    "popularItemsThisWeek": "本周热门商品",
+    "seeAll": "查看全部",
+    "location": "位置",
+    "totalOrders": "总订单",
+    "totalCustomers": "总客户",
+    "totalProducts": "总产品",
+    "totalCategories": "总类别",
+    "yourShops": "您的店铺",
+    "addNew": "添加新店铺",
+    "createYourFirstShop": "创建您的第一个店铺",
+    "noShopsAvailable": "没有可用的店铺",
+    "availableProducts": "可用产品",
+    "noProductsAvailable": "没有可用的产品",
+    "deliveryManagement": "配送管理",
+    "manageDeliveryDrivers": "管理配送司机",
+    "registerNewDriver": "注册新司机",
+    "driverDescription": "注册新司机或管理您现有的配送团队",
+    "noRevenueData": "没有收入数据",
+    "revenueDataDescription": "完成订单后，收入数据将在此处显示",
+    "retry": "重试",
+    "failedToLoadRevenue": "加载收入数据失败",
+    "week": "每周",
+    "walletBalance": "钱包余额",
+    "refill": "充值",
+    "loadingBalance": "加载余额中...",
+    "availableBalance": "可用余额",
+    "walletDescription": "在一个地方管理您的资金并跟踪您的收入和支出",
+    "withdrawHistory": "提现历史",
+    "metadata": {
+      "title": "商家仪表板 | 无忧外卖",
+      "keywords": "商家仪表板, 卖家门户, 业务管理, 无忧外卖 商家",
+      "description": "使用 无忧外卖 商家仪表板管理您的业务，查看订单，并跟踪绩效。"
+    }
+  },
+
+  "merchantProfile": {
+    "shopInformation": "店铺信息",
+    "shopType": "店铺类型",
+    "shopName": "店铺名称",
+    "businessPhone": "商务电话",
+    "openingHours": "营业时间",
+    "openTime": "开业时间",
+    "closeTime": "关闭时间",
+    "address": "地址",
+    "description": "描述",
+    "websiteLink": "网站链接（可选）",
+    "shopImages": "店铺图片",
+    "logoImage": "标志图片",
+    "coverImage": "封面图片",
+    "dropImageHere": "拖放图片到这里或点击浏览",
+    "imageRequirements": "JPG、PNG或GIF，最大2MB",
+    "registerShop": "注册店铺",
+    "shopRegisteredSuccessfully": "店铺注册成功！",
+    "failedToRegisterShop": "店铺注册失败",
+    "enterAddressIn": "输入地址（使用",
+    "enterDescriptionIn": "输入描述（使用",
+    "selectCloseTime": "选择关闭时间",
+    "backToShopList": "返回店铺列表"
+  },
+
+  "merchantProduct": {
+    "productInformation": "产品信息",
+    "category": "类别",
+    "selectCategory": "选择类别",
+    "shop": "店铺",
+    "selectShop": "选择店铺",
+    "productName": "产品名称",
+    "price": "价格",
+    "stock": "库存",
+    "previewImage": "预览图片",
+    "productImages": "产品图片",
+    "productDescription": "产品描述",
+    "enterDescriptionIn": "输入描述（使用",
+    "createProduct": "创建产品",
+    "backToDashboard": "返回仪表板",
+    "productCreatedSuccessfully": "产品创建成功！",
+    "failedToCreateProduct": "产品创建失败",
+    "invalidPriceFormat": "无效的价格格式",
+    "stockMustBeWholeNumber": "库存必须是整数"
+  },
+
+  "merchant_order_notification": {
+    "order_notifications": "订单通知",
+    "see_more_order": "查看更多订单",
+    "no_new_order_notifications": "没有新的订单通知"
+  },
+
+  "merchant_payment_card": {
+    "edit": "编辑"
+  },
+
+  "merchantPaymentForm": {
+    "payment": "支付",
+    "paymentMethod": "支付方式",
+    "addPayment": "添加支付",
+    "updatePayment": "更新支付",
+    "cardNumber": "卡号",
+    "cardHolder": "持卡人",
+    "expiryDate": "到期日",
+    "cvv": "安全码",
+    "completeYourBusinessProfile": "完善您的商家资料",
+    "completeYourMerchantProfile": "完善您的商家资料",
+    "paymentSuccess": "支付成功",
+    "paymentFailed": "支付失败",
+    "selectPaymentMethod": "选择支付方式",
+    "noPaymentAvailable": "没有可用的支付方式",
+    "confirm": "确认",
+    "accountNo": "账号",
+    "accountName": "账户名",
+    "active": "激活",
+    "inactive": "未激活",
+    "chooseMethod": "选择方式"
+  },
+
+  "merchantPaymentV2": {
+    "pleaseUploadQRImage": "请上传二维码图片",
+    "qrCode": "二维码",
+    "account": "账号",
+    "name": "姓名",
+    "type": "类型",
+    "errorDisplayingPayment": "显示此支付方式时出错",
+    "updatePaymentMethod": "更新支付方式",
+    "addPaymentMethod": "添加支付方式",
+    "paymentType": "支付类型",
+    "selectPaymentType": "选择支付类型",
+    "paymentMethod": "支付方式",
+    "selectPaymentMethod": "选择支付方式",
+    "accountNumberRequired": "账号为必填项",
+    "accountNumber": "账号",
+    "enterAccountNumber": "输入账号",
+    "accountNameRequired": "账户名为必填项",
+    "accountName": "账户名",
+    "enterAccountName": "输入账户名",
+    "statusRequired": "状态为必填项",
+    "status": "状态",
+    "selectStatus": "选择状态",
+    "qrCodeImage": "二维码图片",
+    "uploadOnlyIfUpdate": "（仅在需要更新时上传）",
+    "newImageSelected": "已选择新图片上传",
+    "leaveEmptyToKeepExisting": "留空以保留现有二维码图片",
+    "uploadClearQRImage": "上传清晰的支付二维码图片",
+    "updating": "更新中...",
+    "adding": "添加中...",
+    "paymentMethods": "支付方式",
+    "noPaymentMethodsAdded": "尚未添加支付方式",
+    "addFirstPaymentMethod": "使用表单添加您的第一个支付方式"
+  },
+
+  "merchantProductList": {
+    "yourProducts": "您的商品",
+    "manageYourProductInventory": "管理您的商品库存",
+    "addProductsToGetStarted": "添加商品以开始",
+    "noProductsAvailable": "没有可用的商品"
+  },
+  "merchant_orderitem_detail": {
+    "metadata": {
+      "title": "订单详情 | 无忧外卖",
+      "description": "查看订单的详细信息，管理订单状态和分配配送驾驶员。",
+      "keywords": "订单详情, 商家订单, 配送, 驾驶员分配, 订单管理"
+    },
+    "ordered": "已下单",
+    "total": "总计",
+    "merchant": "商家",
+    "pending": "待处理",
+    "confirmed": "已确认",
+    "cancelled": "已取消",
+    "shipped": "已发货",
+    "rejected": "已拒绝",
+    "completed": "已完成",
+    "unknown": "未知",
+    "rejectOrder": "拒绝订单",
+    "confirmOrder": "确认订单",
+    "orderAccepted": "订单已确认成功",
+    "orderRejected": "订单已拒绝成功",
+    "failedToConfirm": "确认订单失败",
+    "failedToReject": "拒绝订单失败",
+    "rejectOrderConfirmation": "您确定要拒绝此订单吗？此操作无法撤销。",
+    "rejectionReason": "拒绝原因（可选）",
+    "enterRejectionReason": "输入拒绝原因",
+    "cancel": "取消",
+    "assignedDriver": "已分配驾驶员",
+    "deliveryDriverAssigned": "已分配配送驾驶员",
+    "assignDriver": "分配驾驶员",
+    "assignedBy": "分配者",
+    "assignedAt": "分配于",
+    "itemsInThisOrder": "此订单中的商品",
+    "noItemsFound": "未找到此订单的商品",
+    "totalItems": "商品总数",
+    "quantity": "数量",
+    "availableDrivers": "可用驾驶员",
+    "selectDriverToDeliver": "选择驾驶员配送此订单",
+    "noDriversAvailable": "目前没有可用的驾驶员",
+    "addNewDriver": "添加新驾驶员",
+    "registerNewDriver": "注册新驾驶员"
+  },
+
+  "login": {
+    "metadata": {
+      "title": "登录 | 无忧外卖",
+      "keywords": "登录, 账户访问, 无忧外卖 登录, 安全登录",
+      "description": "登录您的 无忧外卖 账户，立即访问数字商品和服务的世界。"
+    }
+  },
+
+  "register": {
+    "metadata": {
+      "title": "创建账户 | 无忧外卖",
+      "keywords": "注册, 创建账户, 无忧外卖 注册, 新用户",
+      "description": "立即创建您的 无忧外卖 账户，开始探索数字商品和服务的世界。"
+    }
+  },
+
+  "forgot_password": {
+    "metadata": {
+      "title": "忘记密码 | 无忧外卖",
+      "keywords": "忘记密码, 重置密码, 账户恢复, 密码帮助",
+      "description": "重置您的 无忧外卖 密码，重新获取账户访问权限。"
+    }
+  },
+
+  "reset_password": {
+    "metadata": {
+      "title": "重置密码 | 无忧外卖",
+      "keywords": "重置密码, 新密码, 更改密码, 账户安全",
+      "description": "为您的 无忧外卖 账户设置新密码，保障您的访问安全。"
+    }
+  },
+
+  "otp_forgot_password": {
+    "metadata": {
+      "title": "验证 OTP | 无忧外卖",
+      "keywords": "验证码, OTP, 一次性密码, 账户验证",
+      "description": "使用一次性密码验证您的身份，重置您的 无忧外卖 账户。"
+    }
+  },
+
+  "merchant_register": {
+    "metadata": {
+      "title": "商家注册 | 无忧外卖",
+      "keywords": "商家注册, 企业注册, 卖家账户, 与 无忧外卖 合作",
+      "description": "在 无忧外卖 上注册为商家，开始向全球客户销售您的产品和服务。"
+    }
+  },
+
+  "shop_register": {
+    "metadata": {
+      "title": "注册您的店铺 | 无忧外卖",
+      "keywords": "店铺注册, 添加商店, 企业名录, 商家店铺设置",
+      "description": "在 无忧外卖 上注册您的店铺，开始服务您所在地区及其他地区的客户。"
+    }
+  },
+
+  "application": {
+    "metadata": {
+      "title": "应用程序 | 无忧外卖",
+      "keywords": "无忧外卖 应用程序, 数字市场, 商店产品, 服务",
+      "description": "在 无忧外卖 上浏览和购买来自本地和全球商家的产品和服务。"
+    },
+    "product_list_by_shop": {
+      "metadata": {
+        "title": "店铺产品列表 | 无忧外卖",
+        "keywords": "店铺产品列表, 店铺产品, 无忧外卖 店铺产品, 浏览店铺产品",
+        "description": "浏览此店铺的所有产品。发现他们的完整产品目录。"
+      }
+    },
+    "EventList": {
+      "metadata": {
+        "title": "活动列表 | 无忧外卖",
+        "keywords": "活动列表, 无忧外卖 活动, 活动详情, 活动日程",
+        "description": "探索无忧外卖上的最新活动和活动。找到最适合您兴趣的活动。"
+      }
+    },
+    "event_detail": {
+      "metadata": {
+        "title": "活动详情 | 无忧外卖",
+        "keywords": "活动详情, 无忧外卖 活动, 活动详情, 活动日程",
+        "description": "探索无忧外卖上的最新活动和活动。找到最适合您兴趣的活动。"
+      }
+    },
+    "home": {
+      "metadata": {
+        "title": "首页 | 无忧外卖",
+        "keywords": "无忧外卖 首页, 食品配送应用, 本地商店, 数字市场",
+        "description": "在 无忧外卖 应用上发现本地商店和全球数字服务。轻松订购食品、杂货等。"
+      }
+    },
+    "cart": {
+      "metadata": {
+        "title": "购物车 | 无忧外卖",
+        "keywords": "购物车, 结账, 订购食品, 无忧外卖 购物车",
+        "description": "在 无忧外卖 上查看您的购物车并完成订单。为食品、商品和数字服务提供简便的结账流程。"
+      }
+    },
+    "payment": {
+      "metadata": {
+        "title": "支付 | 无忧外卖",
+        "keywords": "支付, 结账, 完成订单, 安全支付",
+        "description": "在 无忧外卖 上选择您首选的支付方式。多种安全支付选项，提供无缝结账体验。"
+      }
+    },
+    "profile": {
+      "metadata": {
+        "title": "用户资料 | 无忧外卖",
+        "keywords": "用户资料, 账户设置, 无忧外卖 资料, 个人详情",
+        "description": "管理您的 无忧外卖 资料，查看订单历史，并更新个人详情。"
+      }
+    },
+    "merchant_home": {
+      "metadata": {
+        "title": "商家仪表板 | 无忧外卖",
+        "keywords": "商家仪表板, 卖家门户, 业务管理, 无忧外卖 商家",
+        "description": "使用 无忧外卖 商家仪表板管理您的业务，查看订单，并跟踪绩效。"
+      }
+    },
+    "search": {
+      "metadata": {
+        "title": "搜索结果 | 无忧外卖",
+        "keywords": "搜索, 查找产品, 查找商店, 无忧外卖 搜索",
+        "description": "在 无忧外卖 上搜索产品、商店和服务。快速简便地找到您所需的内容。"
+      }
+    },
+    "PromoList": {
+      "metadata": {
+        "title": "促销列表 | 无忧外卖",
+        "keywords": "促销列表, 无忧外卖 促销, 促销优惠, 促销交易",
+        "description": "探索 无忧外卖 上的最新促销和交易。找到您最喜欢的商品和服务的最佳优惠和折扣。"
+      }
+    },
+    "product_list": {
+      "metadata": {
+        "title": "产品列表 | 无忧外卖",
+        "keywords": "产品, 商店产品, 无忧外卖 产品, 浏览产品",
+        "description": "浏览我们丰富多样的优质产品。在 无忧外卖 上找到最适合您需求的商品和优惠。"
+      }
+    },
+    "product_detail": {
+      "metadata": {
+        "title": "产品详情 | 无忧外卖",
+        "keywords": "产品详情, 购买产品, 产品信息, 产品规格",
+        "description": "查看产品的详细信息。在 无忧外卖 上了解产品规格、评价，做出明智的购买决定。"
+      }
+    },
+    "user_order_list": {
+      "metadata": {
+        "title": "我的订单 | 无忧外卖",
+        "keywords": "我的订单, 订单历史, 购买历史, 跟踪订单",
+        "description": "在 无忧外卖 上查看您的订单历史。跟踪您的过去和当前订单，检查配送状态，管理您的购买。"
+      }
+    },
+    "user_order_detail": {
+      "metadata": {
+        "title": "订单详情 | 无忧外卖",
+        "keywords": "订单详情, 订单状态, 订单跟踪, 配送状态",
+        "description": "查看您订单的详细信息。在 无忧外卖 上检查订单状态，跟踪配送，管理您的购买。"
+      }
+    },
+    "setting": {
+      "metadata": {
+        "title": "设置 | 无忧外卖",
+        "keywords": "账户设置, 应用设置, 偏好设置, 无忧外卖 设置",
+        "description": "管理您的 无忧外卖 账户设置和偏好。根据您的需求自定义您的体验。"
+      }
+    },
+    "category_list": {
+      "metadata": {
+        "title": "类别 | 无忧外卖",
+        "keywords": "类别, 产品类别, 浏览类别, 无忧外卖 类别",
+        "description": "在 无忧外卖 上按类别浏览产品。查找按类型组织的商品，更容易发现您需要的东西。"
+      }
+    },
+    "merchant_shop_list": {
+      "metadata": {
+        "title": "我的店铺 | 无忧外卖",
+        "keywords": "我的店铺, 店铺管理, 商家店铺, 店铺列表",
+        "description": "在 无忧外卖 上管理您的店铺。查看、编辑和添加新店铺到您的商家资料。"
+      }
+    },
+    "merchant_shop_detail": {
+      "metadata": {
+        "title": "店铺详情 | 无忧外卖",
+        "keywords": "店铺详情, 管理店铺, 店铺资料, 店铺管理",
+        "description": "在 无忧外卖 上查看和管理您店铺的详细信息。更新店铺详情，管理产品等。"
+      }
+    },
+    "merchant_order_list": {
+      "metadata": {
+        "title": "商家订单 | 无忧外卖",
+        "keywords": "商家订单, 卖家订单, 订单管理, 跟踪订单",
+        "description": "查看和管理您在 无忧外卖 上的所有订单。跟踪订单状态并高效处理客户购买。"
+      }
+    },
+    "merchant_product_create": {
+      "metadata": {
+        "title": "创建产品 | 无忧外卖",
+        "keywords": "创建产品, 添加商品, 产品列表, 添加商品",
+        "description": "在 无忧外卖 上作为商家创建和列出新商品。添加产品详情、定价，并使您的商品可供客户购买。"
+      }
+    },
+    "customer_wallet": {
+      "metadata": {
+        "title": "我的钱包 | 无忧外卖",
+        "keywords": "数字钱包, 支付钱包, 账户余额, 无忧外卖 钱包",
+        "description": "管理您的 无忧外卖 钱包。查看您的余额，查看交易历史，向您的账户添加资金。"
+      }
+    },
+    "customer_wallet_refill": {
+      "metadata": {
+        "title": "充值 | 无忧外卖",
+        "keywords": "充值, 充值钱包, 充值余额, 钱包充值",
+        "description": "向您的 无忧外卖 钱包充值。选择多种支付方式安全地充值您的账户余额。"
+      }
+    },
+    "driver_home": {
+      "metadata": {
+        "title": "司机仪表板 | 无忧外卖",
+        "keywords": "司机仪表板, 配送司机, 司机门户, 配送管理",
+        "description": "访问您的 无忧外卖 司机仪表板。管理配送, 追踪订单, 优化您的配送路线。"
+      },
+      "currentLocation": "当前位置",
+      "loading": "加载中...",
+      "locationError": "位置错误",
+      "activeDeliveries": "进行中的配送",
+      "activeDeliveriesList": "进行中的配送列表 ({count})",
+      "deliveryRequests": "配送请求",
+      "deliveryRequestsList": "配送请求列表 ({count})",
+      "today": "今天",
+      "completedDeliveries": "已完成配送",
+      "acceptedRequests": "已接受请求",
+      "acceptedRequestsList": "已接受请求列表 ({count})",
+      "updateLocation": "更新位置",
+      "refreshOrders": "刷新订单",
+      "completeDelivery": "完成配送",
+      "retry": "重试",
+      "errorFetchingActiveDeliveries": "获取进行中的配送时出错",
+      "errorFetchingDeliveryRequests": "获取配送请求时出错"
+    },
+    "driver_order_list": {
+      "metadata": {
+        "title": "配送订单 | 无忧外卖",
+        "keywords": "配送订单, 司机订单, 配送任务, 司机订单列表",
+        "description": "查看您的 无忧外卖 配送订单列表。高效管理您的指派配送并追踪订单状态。"
+      },
+      "loadingOrders": "正在加载订单...",
+      "failedToLoadOrders": "加载订单失败",
+      "failedToFetchOrders": "获取订单失败",
+      "noOrdersAvailable": "没有可用订单",
+      "retry": "重试",
+      "showingOrders": "显示 {count} 个订单（页码：{page}）",
+      "refresh": "刷新",
+      "orderNumber": "订单 #{number}",
+      "id": "ID",
+      "orderPreparing": "订单准备中",
+      "deliveryPreparing": "配送准备中",
+      "deliverySending": "配送中",
+      "customerAccepted": "客户已接收",
+      "unknownStatus": "未知状态",
+      "orderDate": "订单日期",
+      "notAvailable": "暂无",
+      "voucher": "优惠券",
+      "pickup": "取货地点",
+      "driver": "司机",
+      "contact": "联系方式",
+      "total": "总计",
+      "viewDetails": "查看详情"
+    },
+    "register_driver": {
+      "metadata": {
+        "title": "成为司机 | 无忧外卖",
+        "keywords": "成为司机, 司机注册, 配送合作伙伴, 加入成为司机",
+        "description": "在 无忧外卖 注册成为配送司机。加入我们的配送合作伙伴网络, 按照您自己的时间表开始赚钱。"
+      }
+    },
+    "transaction_history": {
+      "metadata": {
+        "title": "交易历史 | 无忧外卖",
+        "keywords": "交易历史, 支付历史, 交易记录, 财务活动",
+        "description": "查看您在 无忧外卖 的完整交易历史。在一个地方追踪您的所有支付, 退款和财务活动。"
+      }
+    },
+    "customer_payment_selection": {
+      "metadata": {
+        "title": "支付方式 | 无忧外卖",
+        "keywords": "支付方式, 支付选项, 结账支付, 选择支付",
+        "description": "在 无忧外卖 上选择您首选的支付方式。多种安全支付选项，提供无缝结账体验。"
+      }
+    },
+    "merchant_product_list": {
+      "metadata": {
+        "title": "商家产品 | 无忧外卖",
+        "keywords": "商家产品, 卖家物品, 产品管理, 库存",
+        "description": "作为 无忧外卖 的商家管理您的产品。添加、编辑和组织您的产品库存。"
+      }
+    },
+    "get_product_by_merchantid": {
+      "metadata": {
+        "title": "店铺产品 | 无忧外卖",
+        "keywords": "店铺产品, 商家商品, 店铺物品, 商家目录",
+        "description": "在 无忧外卖 上浏览该商家的所有产品。探索他们完整的商品目录。"
+      },
+      "title": "商家产品",
+      "searchPlaceholder": "搜索产品...",
+      "failedToLoadProducts": "加载产品失败",
+      "retry": "重试",
+      "noProductsFound": "未找到产品",
+      "tryDifferentSearchTerm": "尝试使用其他搜索词",
+      "noProductsYet": "该商家还没有产品"
+    },
+    "personal_data": {
+      "metadata": {
+        "title": "个人资料 | 无忧外卖",
+        "keywords": "个人资料, 个人信息, 账户详情, 用户信息",
+        "description": "在 无忧外卖 上更新和管理您的个人信息。保持您的个人资料最新以获得更好的体验。"
+      }
+    },
+    "merchant_payment": {
+      "metadata": {
+        "title": "商家支付设置 | 无忧外卖",
+        "keywords": "商家支付, 支付设置, 支付方式, 支付配置",
+        "description": "在 无忧外卖 上管理您的商家支付设置。设置支付方式并配置您的支付选项。"
+      }
+    },
+    "merchant_withdraw_history": {
+      "metadata": {
+        "title": "商家提现记录 | 无忧外卖",
+        "keywords": "商家提现记录, 提现, 支付历史, 交易历史",
+        "description": "在无忧外卖查看您的商家提现记录。追踪您的提现和支付历史。"
+      },
+      "title": "提现记录",
+      "subtitle": "查看您的所有提现交易",
+      "noWithdrawals": "未找到提现记录",
+      "amount": "金额",
+      "date": "日期",
+      "status": "状态",
+      "remark": "备注",
+      "wallet": "钱包",
+      "detail": "详情",
+      "id": "编号",
+      "noData": "无提现数据",
+      "loading": "正在加载提现记录...",
+      "retry": "重试",
+      "actualWallet": "实际钱包",
+      "completedWallet": "已完成钱包",
+      "withdrawAmount": "提现金额",
+      "createdAt": "创建时间",
+      "image": "图片",
+      "viewImage": "查看图片",
+      "close": "关闭",
+      "refresh": "刷新",
+      "viewDetails": "查看详情"
+    },
+    "merchant_order_notification": {
+      "metadata": {
+        "title": "订单通知 | 无忧外卖",
+        "keywords": "订单通知, 新订单, 订单提醒, 商家通知",
+        "description": "通过 无忧外卖 商家账户接收订单通知更新。借助实时提醒，不会错过任何新订单。"
+      }
+    },
+    "merchant_orderitem_detail": {
+      "metadata": {
+        "title": "订单项详情 | 无忧外卖",
+        "description": "查看订单详细信息，管理订单状态并分配送货司机。",
+        "keywords": "订单详情, 商家订单, 配送, 司机分配, 订单管理"
+      },
+      "ordered": "下单时间",
+      "total": "总计",
+      "merchant": "商家",
+      "pending": "待处理",
+      "confirmed": "已确认",
+      "cancelled": "已取消",
+      "rejectOrder": "拒绝订单",
+      "confirmOrder": "确认订单",
+      "orderAccepted": "订单确认成功",
+      "orderRejected": "订单拒绝成功",
+      "failedToConfirm": "确认订单失败",
+      "failedToReject": "拒绝订单失败",
+      "rejectOrderConfirmation": "您确定要拒绝此订单吗？此操作无法撤销。",
+      "rejectionReason": "拒绝原因（可选）",
+      "enterRejectionReason": "输入拒绝原因",
+      "cancel": "取消",
+      "assignedDriver": "已分配驾驶员",
+      "deliveryDriverAssigned": "已分配送货司机",
+      "assignDriver": "分配司机",
+      "assignedBy": "分配者",
+      "assignedAt": "分配时间",
+      "itemsInThisOrder": "此订单中的项目",
+      "noItemsFound": "此订单中没有找到项目",
+      "totalItems": "总项目数",
+      "quantity": "数量"
+    },
+    "home_v2": {
+      "metadata": {
+        "title": "首页 | 无忧外卖",
+        "keywords": "首页, 主页, 无忧外卖 应用, 食品配送应用",
+        "description": "欢迎来到改进版 无忧外卖 首页。通过我们的改进界面，探索本地商店、数字服务和全球产品。"
+      }
+    },
+    "driver_order_detail": {
+      "metadata": {
+        "title": "司机订单详情 | 无忧外卖",
+        "keywords": "司机订单详情, 司机订单, 配送订单, 司机订单列表",
+        "description": "查看您的 无忧外卖 配送订单详情。高效管理您的指派配送并追踪订单状态。"
+      }
+    },
+    "faq": {
+      "frequently_asked_questions": "常见问题",
+      "faq_subtitle": "查找有关无忧外卖的最常见问题的答案",
+      "error_title": "加载常见问题时出错",
+      "retry_button": "重试",
+      "metadata": {
+        "title": "常见问题 - 无忧外卖",
+        "description": "查找有关使用无忧外卖的常见问题的答案",
+        "keywords": "常见问题, 帮助, 问题, 答案, 无忧外卖, 支持"
+      }
+    }
+  },
+
+  "navigation": {
+    "event": "活动",
+    "home": "首页",
+    "cart": "购物车",
+    "profile": "个人资料",
+    "messages": "消息",
+    "payment": "支付",
+    "shop": "商店",
+    "orders": "订单",
+    "itemLabel": "前往{name}",
+    "unavailable": "导航不可用",
+    "unavailableDescription": "请检查您的网络连接并刷新页面。",
+    "order list": "订单列表"
+  },
+
+  "otp": {
+    "otpTitle": "验证码",
+    "emailVerification": "邮箱验证",
+    "enterVerificationCode": "请输入我们发送到以下邮箱的验证码：",
+    "didntReceiveCode": "没有收到验证码？",
+    "resend": "重新发送",
+    "continue": "继续"
+  },
+
+  "forgotPassword": {
+    "title": "忘记密码？",
+    "description": "输入您的电子邮件地址，我们将向您发送确认码以重置密码",
+    "emailAddress": "电子邮件地址"
+  },
+
+  "delivery": {
+    "deliveryStatus": "配送状态",
+    "deliveryInformation": "配送信息",
+    "driver": "司机",
+    "driverAssigned": "司机已分配",
+    "awaitingDriver": "等待司机",
+    "unknownDriver": "未知司机",
+    "liveTracking": "实时跟踪",
+    "noDeliveryInfoAvailable": "无配送信息",
+    "orderCancelledDeliveryInfo": "已取消订单无配送信息",
+    "orderRejectedDeliveryInfo": "已拒绝订单无配送信息",
+    "status": {
+      "preparing": {
+        "short": "准备中",
+        "full": "订单准备中",
+        "desc": "商家正在准备您的订单"
+      },
+      "deliveryPreparing": {
+        "short": "配送准备",
+        "full": "配送准备中",
+        "desc": "您的配送正在准备中"
+      },
+      "onTheWay": {
+        "short": "配送中",
+        "full": "配送中",
+        "desc": "您的订单正在配送到您的位置"
+      },
+      "delivered": {
+        "short": "已送达",
+        "full": "已送达",
+        "desc": "您的订单已送达并被接收"
+      }
+    }
+  },
+
+  "ads": {
+    "advertisement": "广告: {name}",
+    "viewOffer": "查看优惠",
+    "sponsored": "赞助内容",
+    "promotion": "促销",
+    "limitedTimeOffer": "限时优惠",
+    "closeAd": "关闭广告"
+  },
+
+  "wallet": {
+    "refillYourWallet": "充值钱包",
+    "addFundsDescription": "为您的钱包添加资金，以便快速轻松地付款",
+    "amount": "金额",
+    "enterAmount": "输入金额",
+    "selectPaymentMethod": "选择支付方式",
+    "selectPaymentMethodHelp": "选择支付方式以查看转账的账户详情",
+    "transferInstructions": "重要转账说明",
+    "useOnlyTheseDetails": "请只转账到以下账户详情。使用任何其他账户详情可能导致您的付款丢失。",
+    "incorrectDetailsWarning": "警告：使用不正确的账户详情可能导致您的转账延迟或丢失。请在付款前仔细核对。",
+    "transactionID": "交易ID",
+    "enterTransactionID": "输入交易ID",
+    "transactionScreenshot": "交易截图",
+    "uploadScreenshotInstructions": "上传交易截图（JPEG、PNG，最大5MB）",
+    "screenshotUploaded": "截图上传成功",
+    "recommendedForLargeAmounts": "建议100美元以上的金额使用",
+    "remark": "备注",
+    "additionalInformation": "添加任何附加信息",
+    "refillWallet": "充值钱包",
+    "processingTimeInfo": "您的充值请求将在24小时内处理。完成后您将收到通知。",
+    "paymentHistory": "支付历史",
+    "fileExceedsLimit": "文件大小超过5MB限制",
+    "refillSuccess": "钱包充值成功",
+    "refillFailed": "钱包充值失败",
+    "screenshotRequired": "100美元以上的金额需要交易截图",
+    "selectValidPaymentMethod": "请选择有效的支付方式",
+    "yourBalance": "您的余额",
+    "loadingBalance": "正在加载余额...",
+    "availableBalance": "可用余额",
+    "refill": "充值",
+    "scanQrCode": "扫描二维码",
+    "scanToTransfer": "使用您的支付应用扫描以转账"
+  },
+
+  "validation": {
+    "nameRequired": "姓名是必需的",
+    "emailInvalid": "无效的电子邮件地址",
+    "passwordMinLength": "密码必须至少包含 6 个字符",
+    "confirmPasswordRequired": "确认密码是必需的",
+    "passwordsDoNotMatch": "密码不匹配"
+  },
+
+  "errorBoundary": {
+    "title": "出错了！",
+    "message": "发生意外错误。请重试。"
+  },
+
+  "event": {
+    "title": "活动",
+    "noEvents": "未找到活动",
+    "noEventsDescription": "暂时没有可用的活动。稍后再来查看！",
+    "loading": "正在加载活动...",
+    "error": "加载活动失败",
+    "errorDescription": "加载活动时出现错误。请稍后再试。",
+    "description": "描述",
+    "status": {
+      "upcoming": "即将开始",
+      "ongoing": "进行中",
+      "completed": "已结束",
+      "unknown": "未知"
+    }
+  }
+}

@@ -1,0 +1,1551 @@
+{
+  "welcome": "ยินดีต้อนรับสู่แอพพลิเคชั่นของเรา",
+  "title": "แอพ Next.js ของฉัน",
+  "language": "ภาษา",
+
+  "common": {
+    "registerTitle": "สร้างบัญชีของคุณ",
+    "loginTitle": "เข้าสู่ระบบของคุณ",
+    "selectShop": "เลือกร้านค้า",
+    "phone": "โทรศัพท์",
+    "close": "ปิด",
+    "save": "บันทึก",
+    "cancel": "ยกเลิก",
+    "submit": "ส่ง",
+    "delete": "ลบ",
+    "edit": "แก้ไข",
+    "add": "เพิ่ม",
+    "remove": "ลบ",
+    "view": "ดู",
+    "search": "ค้นหา",
+    "filter": "กรอง",
+    "sort": "เรียง",
+    "select": "เลือก",
+    "image": "รูปภาพ",
+    "loading": "กำลังโหลด...",
+    "retry": "ลองอีกครั้ง",
+    "error": "ข้อผิดพลาด",
+    "success": "สำเร็จ",
+    "warning": "คำเตือน",
+    "info": "ข้อมูล",
+    "back": "กลับ",
+    "next": "ถัดไป",
+    "complete": "เสร็จสิ้น",
+    "scrollLeft": "เลื่อนซ้าย",
+    "scrollRight": "เลื่อนขวา",
+    "goBack": "กลับ",
+    "item": "รายการ",
+    "items": "รายการ",
+    "status": "สถานะ",
+    "statuses": "สถานะ",
+    "contact": "ติดต่อ",
+    "callDriver": "โทรหาคนขับ",
+    "refresh": "รีเฟรช",
+    "viewAll": "ดูทั้งหมด",
+    "noContactInfo": "ไม่มีข้อมูลติดต่อที่มีอยู่",
+    "yes": "ใช่",
+    "no": "ไม่",
+    "continue": "ดำเนินการต่อ",
+    "more": "เพิ่มเติม",
+    "less": "น้อยลง",
+    "pending": "รอดำเนินการ",
+    "required": "จำเป็น",
+    "optional": "ไม่บังคับ",
+    "mm": "พม่า",
+    "en": "อังกฤษ",
+    "cn": "จีน",
+    "th": "ไทย",
+    "deliveryFee": "ค่าจัดส่ง",
+    "tryAgain": "ลองอีกครั้ง",
+    "nevermind": "ไม่เป็นไร",
+    "customerService": "บริการลูกค้า",
+    "customerServiceContact": "ติดต่อฝ่ายบริการลูกค้าของเรา",
+    "wechat": "WeChat",
+    "telegram": "Telegram",
+    "telegramContactInfo": "คุณยังสามารถติดต่อเราทาง Telegram เพื่อรับการสนับสนุนอย่างรวดเร็ว",
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว!",
+    "support": "สนับสนุน",
+    "messageUs": "ส่งข้อความถึงเราทาง",
+    "wechatId": "รหัส WeChat",
+    "telegramId": "รหัส Telegram",
+    "phoneNumber": "หมายเลขโทรศัพท์",
+    "noPhoneNumbers": "ไม่มีหมายเลขโทรศัพท์ที่มีอยู่",
+    "notAvailable": "ไม่มี",
+    "errorFetchingContact": "ไม่สามารถโหลดข้อมูลการติดต่อได้",
+    "noTelegramInfo": "ไม่มีข้อมูล Telegram ที่มีอยู่",
+    "and": "และ",
+    "share": "แชร์"
+  },
+
+  "components": {
+    "fileUpload": {
+      "maxFilesAllowed": "อนุญาตให้มีไฟล์สูงสุด {count} ไฟล์",
+      "removeFile": "ลบไฟล์",
+      "clearAll": "ล้างทั้งหมด",
+      "dropFilesHere": "วาง{count, plural, one {ไฟล์} other {ไฟล์}}ที่นี่",
+      "dragAndDrop": "ลากและวาง{count, plural, one {ไฟล์} other {ไฟล์}}ที่นี่ หรือคลิกเพื่อเลือก",
+      "supportedFormat": "รูปแบบที่รองรับ: {format}",
+      "maxFiles": " (สูงสุด {count} ไฟล์)"
+    }
+  },
+
+  "onboarding": {
+    "metadata": {
+      "title": "บริการสั่งกลับบ้านสบายใจหายห่วง: เข้าถึงได้ทันที | สินค้าและบริการดิจิทัล",
+      "keywords": "บริการสั่งกลับบ้านสบายใจหายห่วง สินค้าดิจิทัล ตลาดโลก อีคอมเมิร์ซโลก ตลาดดิจิทัล บริการระหว่างประเทศ สินค้าดิจิทัลที่ดีที่สุดสำหรับธุรกิจระดับโลก บริการเสมือนจริง อีคอมเมิร์ซโลก",
+      "description": "เข้าถึงโลกของสินค้าดิจิทัล บริการระดับโลก และทรัพยากรระดับนานาชาติได้ทันที สั่งกลับบ้านสบายใจหายห่วง จัดส่งสิ่งที่คุณต้องการไม่ว่าคุณจะอยู่ที่ไหน สำรวจเลยตอนนี้!"
+    },
+    "s1": {
+      "header": "การรับสินค้าในท้องถิ่น แบบง่ายๆ",
+      "content": "สำรวจร้านค้าใกล้เคียงที่ให้บริการจัดส่งที่สะดวกสบาย จากของชำถึงของขวัญ ทุกอย่างอยู่ห่างเพียงแค่คลิกเดียว"
+    },
+    "s2": {
+      "header": "บริการสั่งกลับบ้านสบายใจหายห่วง พร้อมให้บริการทันที",
+      "content": "เข้าถึงทรัพยากรของโลกได้ทันที บริการสั่งกลับบ้านสบายใจหายห่วง ช่วยให้เข้าถึงสินค้าดิจิทัลและบริการระดับโลกได้ทันที"
+    },
+    "s3": {
+      "header": "บริการสั่งกลับบ้านสบายใจหายห่วง: โลกของคุณ จัดส่งถึงคุณ",
+      "content": "เข้าถึงแหล่งข้อมูล สินค้าดิจิทัล และบริการระดับนานาชาติจากทั่วโลก บริการสั่งกลับบ้านสบายใจหายห่วง ช่วยให้คุณเข้าถึงสิ่งที่ดีที่สุดของโลกได้ทุกที่ทุกเวลา"
+    }
+  },
+
+  "auth": {
+    "createMerchantAccount": "สร้างบัญชีร้านค้าของคุณ",
+    "passwordLessThan6": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร",
+    "login": "เข้าสู่ระบบ",
+    "register": "ลงทะเบียน",
+    "logout": "ออกจากระบบ",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "confirmPassword": "ยืนยันรหัสผ่าน",
+    "forgotPassword": "ลืมรหัสผ่าน?",
+    "resetPassword": "รีเซ็ตรหัสผ่าน",
+    "dontHaveAccount": "ยังไม่มีบัญชี?",
+    "alreadyHaveAccount": "มีบัญชีแล้ว?",
+    "signUp": "สมัครสมาชิก",
+    "signIn": "เข้าสู่ระบบ",
+    "termsAndConditions": "ข้อกำหนดและเงื่อนไข",
+    "agreeToTerms": "ฉันยอมรับ",
+    "passwordCriteria": "รหัสผ่านของคุณต้องมีตัวอักษรพิมพ์ใหญ่少なくหนึ่งตัว ตัวอักษรพิมพ์เล็ก少なくหนึ่งตัว ตัวเลข少なくหนึ่งตัว และอักขระพิเศษ少なくหนึ่งตัว",
+    "invalidEmail": "รูปแบบอีเมลไม่ถูกต้อง",
+    "passwordMismatch": "กรุณายืนยันรหัสผ่านของคุณ",
+    "pleaseSignIn": "กรุณาเข้าสู่ระบบบัญชีของคุณ",
+    "orSignInWith": "หรือเข้าสู่ระบบด้วย",
+    "skip": "ข้าม",
+    "createAccount": "สร้างบัญชี",
+    "emailAddress": "ที่อยู่อีเมล",
+    "signInToYourAccount": "เข้าสู่ระบบบัญชีของคุณ",
+    "selectContactDetails": "เลือกข้อมูลการติดต่อที่เราควรใช้เพื่อรีเซ็ตรหัสผ่านของคุณ",
+    "continue": "ดำเนินการต่อ",
+    "createAccountDescription": "สร้างบัญชีเพื่อเริ่มค้นหาอาหารที่คุณชื่นชอบ",
+    "orSignUpWith": "หรือสมัครสมาชิกด้วย",
+    "name": "ชื่อ",
+    "registerAsMerchant": "ลงทะเบียนเป็นร้านค้า",
+    "termsOfService": "เงื่อนไขการให้บริการ",
+    "privacyPolicy": "นโยบายความเป็นส่วนตัว",
+    "registerAsUser": "ลงทะเบียนเป็นผู้ใช้",
+    "shopAddress": "ที่อยู่ร้านค้า",
+    "country": "ประเทศ",
+    "state": "จังหวัด",
+    "city": "เมือง",
+    "phone": "โทรศัพท์",
+    "phoneNumber": "หมายเลขโทรศัพท์",
+    "shopType": "ประเภทร้านค้า",
+    "shopName": "ชื่อร้านค้า",
+    "loginWithGoogle": "เข้าสู่ระบบด้วย Google",
+    "loginWithFacebook": "เข้าสู่ระบบด้วย Facebook",
+    "loginWithApple": "เข้าสู่ระบบด้วย Apple",
+    "registerSuccess": "ลงทะเบียนสำเร็จ! กำลังเปลี่ยนเส้นทาง...",
+    "registrationFailed": "การลงทะเบียนล้มเหลว โปรดลองอีกครั้งในภายหลัง",
+    "termsNotAgreed": "โปรดยอมรับข้อกำหนดในการให้บริการและนโยบายความเป็นส่วนตัว"
+  },
+
+  "category-list": {
+    "categories": "หมวดหมู่"
+  },
+
+  "profile": {
+    "personalData": "ข้อมูลส่วนตัว",
+    "fullName": "ชื่อเต็ม",
+    "address": "ที่อยู่",
+    "phone": "โทรศัพท์",
+    "email": "อีเมล",
+    "updateProfile": "อัปเดตโปรไฟล์",
+    "profileUpdated": "โปรไฟล์ได้รับการอัปเดต",
+    "updateError": "ไม่สามารถอัปเดตโปรไฟล์ได้",
+    "location": "ตำแหน่ง",
+    "profileSetting": "การตั้งค่าโปรไฟล์",
+    "logInNow": "เข้าสู่ระบบตอนนี้",
+    "myOrders": "คำสั่งซื้อของฉัน",
+    "seeAll": "ดูทั้งหมด",
+    "order": "คำสั่งซื้อ",
+    "newOrder": "คำสั่งซื้อใหม่",
+    "viewDetails": "ดูรายละเอียด",
+    "noRecentOrders": "ไม่มีคำสั่งซื้อล่าสุด",
+    "signOut": "ออกจากระบบ",
+    "setting": "การตั้งค่า",
+    "support": "สนับสนุน",
+    "helpCenter": "ศูนย์ช่วยเหลือ",
+    "save": "บันทึก",
+    "metadata": {
+      "title": "โปรไฟล์ผู้ใช้ | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "โปรไฟล์ผู้ใช้, การตั้งค่าบัญชี, โปรไฟล์ สั่งกลับบ้านสบายใจหายห่วง, รายละเอียดส่วนตัว",
+      "description": "จัดการโปรไฟล์ สั่งกลับบ้านสบายใจหายห่วง ของคุณ ดูประวัติคำสั่งซื้อ และอัปเดตรายละเอียดส่วนตัว"
+    }
+  },
+  "validation": {
+    "nameRequired": "အမည် လိုအပ်သည်",
+    "emailInvalid": "အီးမေးလ်လိပ်စာ မမှန်ကန်ပါ",
+    "passwordMinLength": "စကားဝှက်သည် အနည်းဆုံး ၆ လုံးရှိရမည်",
+    "confirmPasswordRequired": "စကားဝှက်အတည်ပြုရန် လိုအပ်သည်",
+    "passwordsDoNotMatch": "စကားဝှက်များ မကိုက်ညီပါ"
+  },
+
+  "merchant": {
+    "register": "ลงทะเบียนร้านค้า",
+    "shopName": "ชื่อร้านค้า",
+    "shopAddress": "ที่อยู่ร้านค้า",
+    "shopDescription": "คำอธิบายร้านค้า",
+    "shopOpenTime": "เวลาทำการของร้านค้า",
+    "selectOpenTime": "เลือกเวลาทำการ",
+    "shopType": "ประเภทร้านค้า",
+    "selectShopType": "เลือกประเภทร้านค้า",
+    "merchantRegister": "ลงทะเบียนร้านค้า",
+    "merchantProfile": "โปรไฟล์ร้านค้า",
+    "merchantHome": "หน้าหลักร้านค้า",
+    "merchantShopList": "รายการร้านค้าของร้านค้า",
+    "merchantShopDetail": "รายละเอียดร้านค้าของร้านค้า",
+    "merchantOrderList": "รายการคำสั่งซื้อของร้านค้า",
+    "merchantOrderNotification": "การแจ้งเตือนคำสั่งซื้อของร้านค้า",
+    "merchantPayment": "การชำระเงินของร้านค้า",
+    "orderDateTime": "วันที่และเวลาของคำสั่งซื้อ",
+    "orderStatus": "สถานะคำสั่งซื้อ",
+    "customer": "ลูกค้า",
+    "actions": "การดำเนินการ",
+    "viewOrder": "ดูคำสั่งซื้อ",
+    "orderDetails": "รายละเอียดคำสั่งซื้อ",
+    "orderNumber": "คำสั่งซื้อ #",
+    "orderItems": "รายการในคำสั่งซื้อ",
+    "quantity": "จำนวน",
+    "price": "ราคา",
+    "accept": "ยอมรับ",
+    "reject": "ปฏิเสธ",
+    "complete": "เสร็จสิ้น",
+    "cancel": "ยกเลิก",
+    "orderAccepted": "คำสั่งซื้อได้รับการยอมรับ",
+    "orderRejected": "คำสั่งซื้อถูกปฏิเสธ",
+    "orderCompleted": "คำสั่งซื้อเสร็จสิ้น",
+    "orderCancelled": "คำสั่งซื้อถูกยกเลิก",
+    "notifications": "การแจ้งเตือน",
+    "newOrders": "คำสั่งซื้อใหม่"
+  },
+
+  "driver": {
+    "readyForPickup": "พร้อมสำหรับรับสินค้า",
+    "sendingToCustomer": "กำลังจัดส่งไปยังลูกค้า",
+    "myDeliveries": "การจัดส่งของฉัน",
+    "loadingDeliveries": "กำลังโหลดการจัดส่ง...",
+    "failedToLoadDeliveries": "โหลดการจัดส่งล้มเหลว",
+    "noDeliveriesAvailable": "ไม่มีการจัดส่งที่พร้อมใช้งาน",
+    "orderPreparing": "คำสั่งซื้อกำลังเตรียม",
+    "readyForDelivery": "พร้อมสำหรับการจัดส่ง",
+    "outForDelivery": "กำลังจัดส่ง",
+    "delivered": "จัดส่งแล้ว",
+    "orderNumber": "คำสั่งซื้อ #{number}",
+    "orderTotal": "ยอดรวมคำสั่งซื้อ",
+    "startDelivery": "เริ่มการจัดส่ง",
+    "viewDetails": "ดูรายละเอียด",
+    "driverHome": "หน้าหลักคนขับ",
+    "activeDeliveries": "การจัดส่งที่กำลังดำเนินการ",
+    "deliveryHistory": "ประวัติการจัดส่ง",
+    "earnings": "รายได้",
+    "totalEarnings": "รายได้รวม",
+    "today": "วันนี้",
+    "thisWeek": "สัปดาห์นี้",
+    "thisMonth": "เดือนนี้",
+    "registerAsDriver": "ลงทะเบียนเป็นคนขับ",
+    "vehicleInformation": "ข้อมูลยานพาหนะ",
+    "licenseInformation": "ข้อมูลใบขับขี่",
+
+    "registerNewDriver": "ลงทะเบียนคนขับใหม่",
+    "registerDriver": "ลงทะเบียนคนขับ",
+    "driverRegisteredSuccess": "ลงทะเบียนคนขับสำเร็จ!",
+    "driverRegisteredSuccessfully": "ลงทะเบียนคนขับสำเร็จ",
+    "registrationError": "เกิดข้อผิดพลาดระหว่างการลงทะเบียน",
+    "driverInformation": "ข้อมูลคนขับ",
+    "copied": "คัดลอกแล้ว!",
+    "failedToCopy": "ไม่สามารถคัดลอกข้อมูลคนขับได้",
+    "copyInfo": "คัดลอกข้อมูล",
+    "fileSizeExceedsLimit": "ขนาดไฟล์เกิน 5MB",
+    "photoUploadedSuccess": "อัปโหลดรูปภาพเรียบร้อยแล้ว",
+    "nameRequired": "ต้องระบุชื่อ (อย่างน้อย 2 ตัวอักษร)",
+    "validEmailRequired": "ต้องระบุอีเมลที่ถูกต้อง",
+    "validPhoneRequired": "ต้องระบุหมายเลขโทรศัพท์ที่ถูกต้อง",
+    "validPasswordRequired": "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษรและมีตัวพิมพ์ใหญ่ ตัวพิมพ์เล็ก ตัวเลข และอักขระพิเศษ",
+    "passwordsMustMatch": "รหัสผ่านต้องตรงกัน",
+    "driverPhotoRequired": "ต้องใส่รูปคนขับ",
+    "formSubmissionFailed": "ไม่สามารถส่งแบบฟอร์มได้ กรุณาลองอีกครั้ง",
+    "fullName": "ชื่อเต็ม",
+    "enterDriverFullName": "ใส่ชื่อเต็มของคนขับ",
+    "nameError": "ชื่อต้องมีอย่างน้อย 2 ตัวอักษร",
+    "emailAddress": "ที่อยู่อีเมล",
+    "enterEmailAddress": "ใส่ที่อยู่อีเมล",
+    "emailError": "ที่อยู่อีเมลไม่ถูกต้อง",
+    "phoneNumber": "หมายเลขโทรศัพท์",
+    "enterPhoneNumber": "ใส่หมายเลขโทรศัพท์",
+    "phoneError": "ต้องระบุหมายเลขโทรศัพท์ที่ถูกต้อง",
+    "driverPhoto": "รูปคนขับ",
+    "uploadClearPhoto": "อัปโหลดภาพที่ชัดเจนของคนขับ (เฉพาะ JPG, PNG, ขนาดไม่เกิน 5MB)",
+    "photoUploaded": "อัปโหลดรูปภาพแล้ว",
+    "photo": "รูปภาพ",
+    "imageUploadRequirement": "ตรวจสอบให้แน่ใจว่าได้อัปโหลดไฟล์ JPG, JPEG หรือ PNG",
+    "password": "รหัสผ่าน",
+    "createStrongPassword": "สร้างรหัสผ่านที่รัดกุม",
+    "passwordError": "รหัสผ่านต้องมีอย่างน้อย 8 ตัวอักษรและมีตัวพิมพ์ใหญ่ ตัวพิมพ์เล็ก ตัวเลข และอักขระพิเศษ",
+    "confirmPassword": "ยืนยันรหัสผ่าน",
+    "confirmYourPassword": "ยืนยันรหัสผ่านของคุณ",
+    "confirmPasswordError": "รหัสผ่านไม่ตรงกัน",
+    "registering": "กำลังลงทะเบียน...",
+    "name": "ชื่อ",
+    "email": "อีเมล",
+    "phone": "โทรศัพท์",
+
+    "preparing": "กำลังเตรียม",
+    "ready": "พร้อม",
+    "delivering": "กำลังจัดส่ง",
+    "completed": "เสร็จสิ้น",
+    "unknown": "ไม่ทราบ",
+    "markAsReady": "ทำเครื่องหมายว่าพร้อม",
+    "markAsDelivered": "ทำเครื่องหมายว่าจัดส่งแล้ว",
+    "orderCompleted": "คำสั่งซื้อเสร็จสิ้น",
+    "updatingStatus": "กำลังอัปเดตสถานะ",
+    "updatingStatusDescription": "เรากำลังอัปเดตสถานะการจัดส่ง จะไม่ใช้เวลานาน",
+    "refreshingData": "กำลังรีเฟรชข้อมูล",
+    "fetchingLatestInfo": "กำลังดึงข้อมูลคำสั่งซื้อล่าสุด...",
+    "statusUpdateSuccess": "อัปเดตสถานะการจัดส่งสำเร็จ",
+    "statusUpdateFailed": "อัปเดตสถานะการจัดส่งล้มเหลว",
+    "phoneCopied": "คัดลอกหมายเลขโทรศัพท์ไปยังคลิปบอร์ดแล้ว",
+    "copyFailed": "คัดลอกหมายเลขโทรศัพท์ล้มเหลว",
+    "refreshing": "กำลังรีเฟรช...",
+    "deliveryProgress": "ความคืบหน้าการจัดส่ง",
+    "deliveryInformation": "ข้อมูลการจัดส่ง",
+    "customerDetailsForDelivery": "รายละเอียดลูกค้าสำหรับการจัดส่ง",
+    "customer": "ลูกค้า",
+    "contact": "ข้อมูลการติดต่อ",
+    "copyPhone": "คัดลอกหมายเลขโทรศัพท์",
+    "deliveryAddress": "ที่อยู่จัดส่ง",
+    "driver": "คนขับ",
+    "orderInformation": "ข้อมูลคำสั่งซื้อ",
+    "orderPlacedOn": "คำสั่งซื้อถูกวางเมื่อ {date}",
+    "orderNumberLabel": "หมายเลขคำสั่งซื้อ",
+    "voucherNumber": "หมายเลขคูปอง",
+    "currentStatus": "สถานะปัจจุบัน",
+    "confirmStatusUpdate": "ยืนยันการอัปเดตสถานะ",
+    "confirmStatusQuestion": "คุณแน่ใจหรือไม่ว่าต้องการเปลี่ยนสถานะการจัดส่งเป็น",
+    "confirm": "ยืนยัน",
+    "updating": "กำลังอัปเดต...",
+    "pickupInformation": "ข้อมูลการรับสินค้า",
+    "merchantDetailsForPickup": "รายละเอียดร้านค้าสำหรับการรับสินค้า",
+    "merchant": "ร้านค้า",
+    "idLabel": "ID",
+    "orderNotFound": "ไม่พบคำสั่งซื้อ",
+    "orderDetailsNotRetrieved": "ไม่สามารถดึงรายละเอียดคำสั่งซื้อได้",
+    "deliveryNumber": "การจัดส่ง #{number}",
+    "preparingDescription": "คำสั่งซื้อกำลังถูกเตรียมโดยร้านค้า",
+    "readyDescription": "คำสั่งซื้อพร้อมแล้ว สามารถรับและจัดส่งได้",
+    "deliveringDescription": "คำสั่งซื้อกำลังถูกจัดส่งไปยังลูกค้า",
+    "deliveredDescription": "คำสั่งซื้อถูกจัดส่งและรับแล้ว",
+    "locale": "th-TH",
+
+    "cancelOrder": "ยกเลิกคำสั่งซื้อ",
+    "confirmCancellation": "ยืนยันการยกเลิก",
+    "cancelOrderDescription": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคำสั่งซื้อนี้? การกระทำนี้ไม่สามารถยกเลิกได้",
+    "cancellationReason": "เหตุผลในการยกเลิก",
+    "forRecordsOnly": "สำหรับบันทึกของคุณเท่านั้น",
+    "reasonPlaceholder": "กรุณาให้เหตุผลในการยกเลิก...",
+    "warningNotice": "ประกาศเตือน",
+    "cancellationWarning": "การยกเลิกคำสั่งซื้อในขั้นตอนการเตรียมการไม่สามารถย้อนกลับได้ คุณจำเป็นต้องติดต่อฝ่ายสนับสนุนสำหรับปัญหาใดๆ หลังการยกเลิก",
+    "cancellingOrder": "กำลังยกเลิกคำสั่งซื้อ",
+    "cancellingOrderDescription": "กำลังดำเนินการคำขอยกเลิกของคุณ คุณจะถูกนำไปยังหน้าอื่นในไม่ช้า",
+    "confirmCancel": "ใช่ ยกเลิกคำสั่งซื้อ",
+    "cancelling": "กำลังยกเลิก...",
+    "noReasonProvided": "ไม่ได้ระบุเหตุผล",
+    "orderCancelled": "คำสั่งซื้อถูกยกเลิกแล้ว",
+    "orderCancellationFailed": "ยกเลิกคำสั่งซื้อไม่สำเร็จ"
+  },
+
+  "merchantOrders": {
+    "orders": "คำสั่งซื้อ",
+    "noOrdersAvailable": "ไม่มีคำสั่งซื้อที่พร้อมใช้งาน",
+    "applyFilters": "ใช้ตัวกรอง",
+    "allCategories": "ทุกหมวดหมู่",
+    "allStatuses": "ทุกสถานะ",
+    "selectStatus": "เลือกสถานะ",
+    "selectCategory": "เลือกหมวดหมู่",
+    "orderStatus": {
+      "pending": "รอดำเนินการ",
+      "completed": "เสร็จสิ้น",
+      "cancelled": "ยกเลิก",
+      "all": "ทุกสถานะ"
+    },
+    "orderCategories": {
+      "food": "อาหาร",
+      "drinks": "เครื่องดื่ม",
+      "desserts": "ของหวาน",
+      "all": "ทุกหมวดหมู่"
+    },
+    "filterByStatus": "กรองตามสถานะ",
+    "filterByCategory": "กรองตามหมวดหมู่",
+    "loadingOrders": "กำลังโหลดคำสั่งซื้อ...",
+    "failedToFetchOrders": "ดึงคำสั่งซื้อล้มเหลว"
+  },
+
+  "promotion": {
+    "buyNow": "ซื้อตอนนี้",
+    "featured": "สำคัญ"
+  },
+
+  "filterCategory": {
+    "selectFilter": "เลือกตัวกรอง",
+    "reset": "รีเซ็ต",
+    "apply": "ใช้",
+    "sort": "เรียงลำดับ",
+    "offer": "ข้อเสนอ",
+    "shop": "ร้านค้า",
+    "selectSort": "เลือกการเรียงลำดับ",
+    "selectOffer": "เลือกข้อเสนอ",
+    "selectShop": "เลือกร้านค้า"
+  },
+
+  "location": {
+    "country": "ประเทศ",
+    "state": "จังหวัด",
+    "city": "เมือง",
+    "selectCountry": "เลือกประเทศ",
+    "selectState": "เลือกจังหวัด",
+    "selectCity": "เลือกเมือง",
+    "invalidCountry": "ID ประเทศไม่ถูกต้อง",
+    "invalidState": "ID จังหวัดไม่ถูกต้อง",
+    "invalidCity": "ID เมืองไม่ถูกต้อง"
+  },
+
+  "product": {
+    "youSave": "คุณประหยัด",
+    "productList": "รายการสินค้า",
+    "productDetail": "รายละเอียดสินค้า",
+    "price": "ราคา",
+    "stock": "สต็อก",
+    "description": "คำอธิบาย",
+    "available": "มีสินค้า",
+    "unavailable": "ไม่มีสินค้า",
+    "addToCart": "เพิ่มลงตะกร้า",
+    "quantity": "จำนวน",
+    "category": "หมวดหมู่",
+    "categoryList": "รายการหมวดหมู่",
+    "unnamedProduct": "สินค้าไม่มีชื่อ",
+    "unknownRestaurant": "ร้านอาหารไม่ทราบชื่อ",
+    "unknownShop": "ร้านค้าไม่ทราบชื่อ",
+    "unknownCategory": "หมวดหมู่ไม่ทราบชื่อ",
+    "viewDetailsFor": "ดูรายละเอียดของ {name}",
+    "notAvailable": "ไม่มี",
+    "productDetails": "รายละเอียดสินค้า",
+    "productNotAvailable": "สินค้าไม่มี",
+    "noDescriptionAvailable": "ไม่มีคำอธิบาย",
+    "itemsInStock": "จำนวนสินค้าในสต็อก",
+    "freeDelivery": "จัดส่งฟรี",
+    "decreaseQuantity": "ลดจำนวน",
+    "increaseQuantity": "เพิ่มจำนวน",
+    "inStock": "มีสินค้า",
+    "outOfStock": "หมดสต็อก",
+    "noMoreItemsInStock": "สต็อกไม่เพียงพอ",
+    "selectQuantityFirst": "กรุณาเลือกจำนวนก่อน",
+    "addedToCart": "เพิ่มลงตะกร้าแล้ว",
+    "ratings": "คะแนน",
+    "reviews": "รีวิว",
+    "relatedProducts": "สินค้าที่เกี่ยวข้อง",
+    "moreFromThisShop": "สินค้าเพิ่มเติมจากร้านนี้",
+    "ingredients": "ส่วนผสม",
+    "nutritionalInfo": "ข้อมูลโภชนาการ",
+    "allergens": "สารก่อภูมิแพ้",
+    "servingSize": "ขนาดเสิร์ฟ",
+    "preparation": "วิธีการเตรียม",
+    "viewCart": "ดูตะกร้าสินค้า",
+    "continueShoppingButton": "ช็อปปิ้งต่อ",
+    "aboutThisMenu": "เกี่ยวกับเมนูนี้",
+    "recommendedForYou": "แนะนำสำหรับคุณ",
+    "seeAll": "ดูทั้งหมด",
+    "noSimilarProducts": "ไม่มีสินค้าที่คล้ายกัน",
+    "noProductsAvailable": "ไม่มีสินค้าที่พร้อมใช้งาน"
+  },
+
+  "order": {
+    "orderList": "รายการคำสั่งซื้อ",
+    "orderDetail": "รายละเอียดคำสั่งซื้อ",
+    "orderDate": "วันที่สั่งซื้อ",
+    "orderNumber": "หมายเลขคำสั่งซื้อ",
+    "voucherNumber": "หมายเลขคูปอง",
+    "total": "รวม",
+    "confirmOrder": "ยืนยันคำสั่งซื้อ",
+    "cancelOrder": "ยกเลิกคำสั่งซื้อ",
+    "cancelling": "กำลังยกเลิก...",
+    "processing": "กำลังดำเนินการ...",
+    "confirmCancel": "ใช่ ยกเลิกคำสั่งซื้อ",
+    "cancelSuccess": "ยกเลิกคำสั่งซื้อสำเร็จแล้ว",
+    "cancelSuccessDetails": "คำสั่งซื้อของคุณถูกยกเลิกแล้ว คุณจะได้รับอีเมลยืนยันในไม่ช้า",
+    "cancelError": "ไม่สามารถยกเลิกคำสั่งซื้อได้ โปรดลองอีกครั้ง",
+    "cancelConfirmTitle": "ยกเลิกคำสั่งซื้อของคุณ?",
+    "cancelConfirmDescription": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคำสั่งซื้อนี้? การกระทำนี้ไม่สามารถย้อนกลับได้",
+    "cancelWarning1": "หากมีการชำระเงินแล้ว การยกเลิกอาจทำให้การคืนเงินล่าช้า",
+    "cancelWarning2": "สินค้าที่เตรียมไว้เฉพาะสำหรับคำสั่งซื้อของคุณอาจไม่สามารถคืนเงินได้",
+    "orderConfirmed": "ยืนยันคำสั่งซื้อแล้ว",
+    "orderCancelled": "ยกเลิกคำสั่งซื้อแล้ว",
+    "orderItems": "รายการในคำสั่งซื้อ",
+    "orderItemDetail": "รายละเอียดรายการในคำสั่งซื้อ",
+    "orderDetails": "รายละเอียดคำสั่งซื้อ",
+    "deliveryStatus": "สถานะการจัดส่ง",
+    "status": {
+      "pending": "รอดำเนินการ",
+      "pendingDesc": "คำสั่งซื้อของคุณได้รับแล้วและกำลังดำเนินการ",
+      "confirmed": "ยืนยันแล้ว",
+      "confirmedDesc": "คำสั่งซื้อของคุณได้รับการยืนยันและกำลังเตรียมการ",
+      "shipped": "จัดส่งแล้ว",
+      "shippedDesc": "คำสั่งซื้อของคุณกำลังอยู่ในระหว่างการจัดส่ง",
+      "cancelled": "ยกเลิก",
+      "cancelledDesc": "คำสั่งซื้อของคุณถูกยกเลิก",
+      "rejected": "ถูกปฏิเสธ",
+      "rejectedDesc": "คำสั่งซื้อของคุณถูกปฏิเสธ",
+      "completed": "เสร็จสิ้น",
+      "completedDesc": "คำสั่งซื้อของคุณจัดส่งสำเร็จแล้ว"
+    },
+    "info": {
+      "date": "วันที่",
+      "time": "เวลา",
+      "items": "สินค้า",
+      "voucher": "คูปอง"
+    },
+    "tabs": {
+      "items": "สินค้าในคำสั่งซื้อ",
+      "timeline": "ไทม์ไลน์คำสั่งซื้อ"
+    },
+    "timeline": {
+      "orderPlaced": "วางคำสั่งซื้อแล้ว",
+      "orderConfirmed": "คำสั่งซื้อได้รับการยืนยัน",
+      "orderShipped": "คำสั่งซื้อจัดส่งแล้ว",
+      "orderCompleted": "คำสั่งซื้อเสร็จสิ้น",
+      "orderCancelled": "คำสั่งซื้อถูกยกเลิก",
+      "orderRejected": "คำสั่งซื้อถูกปฏิเสธ",
+      "pendingStatus": "รอดำเนินการ",
+      "onTheWayStatus": "คำสั่งซื้อของคุณกำลังอยู่ในระหว่างการจัดส่ง",
+      "driver": "คนขับ",
+      "noContact": "ไม่มีข้อมูลการติดต่อ",
+      "thankYou": "ขอบคุณ!"
+    },
+    "summary": {
+      "title": "สรุปคำสั่งซื้อ",
+      "subtotal": "ยอดรวมย่อย",
+      "discount": "ส่วนลด",
+      "total": "ยอดรวม",
+      "from": "จาก"
+    },
+    "list": {
+      "myOrders": "คำสั่งซื้อของฉัน",
+      "allOrders": "คำสั่งซื้อทั้งหมด",
+      "pending": "รอดำเนินการ",
+      "confirmed": "ยืนยันแล้ว",
+      "shipped": "จัดส่งแล้ว",
+      "cancelled": "ยกเลิก",
+      "rejected": "ถูกปฏิเสธ",
+      "completed": "เสร็จสิ้น",
+      "noOrdersFound": "ไม่พบคำสั่งซื้อ",
+      "placeOrderToSee": "วางคำสั่งซื้อเพื่อดูที่นี่",
+      "tryChangingFilter": "ลองเปลี่ยนตัวกรองหรือวางคำสั่งซื้อ",
+      "errorLoading": "เกิดข้อผิดพลาดขณะโหลดคำสั่งซื้อ",
+      "tryAgain": "ลองใหม่"
+    }
+  },
+
+  "productListByShop": {
+    "noProductsAvailable": "ไม่มีสินค้าที่พร้อมใช้งาน",
+    "products": "สินค้า"
+  },
+
+  "cart": {
+    "cart": "ตะกร้าสินค้า",
+    "emptyCart": "ตะกร้าสินค้าของคุณว่างเปล่า",
+    "checkout": "ชำระเงิน",
+    "removeItem": "ลบรายการ",
+    "decreaseQuantity": "ลดจำนวน",
+    "increaseQuantity": "เพิ่มจำนวน",
+    "subtotal": "ยอดรวมย่อย",
+    "discount": "ส่วนลด",
+    "total": "ยอดรวม",
+    "continueShopping": "ช็อปปิ้งต่อ",
+    "orderSubmittedSuccessfully": "ส่งคำสั่งซื้อสำเร็จ",
+    "orderSubmissionFailed": "การส่งคำสั่งซื้อล้มเหลว กรุณาลองใหม่",
+    "pleaseLoginToSubmitOrder": "กรุณาเข้าสู่ระบบเพื่อส่งคำสั่งซื้อ",
+    "yourCartIsEmpty": "ตะกร้าสินค้าของคุณว่างเปล่า",
+    "seemsLikeYouHaveNotOrderedAnyFoodYet": "ดูเหมือนคุณยังไม่ได้สั่งอาหารเลย",
+    "findFoods": "ค้นหาอาหาร",
+    "myCart": "ตะกร้าสินค้าของฉัน",
+    "deliveryLocation": "สถานที่จัดส่ง",
+    "home": "บ้าน",
+    "changeLocation": "เปลี่ยนสถานที่",
+    "promoCode": "รหัสโปรโมชั่น...",
+    "apply": "ใช้",
+    "addMoreItems": "เพิ่มรายการเพิ่มเติม",
+    "paymentSummary": "สรุปการชำระเงิน",
+    "totalItems": "รายการทั้งหมด ({count})",
+    "deliveryFee": "ค่าส่ง",
+    "free": "ฟรี",
+    "ouchEmpty": "อุ๊ย! ตะกร้าสินค้าว่างเปล่า",
+    "confirm": "ยืนยัน",
+    "login": "เข้าสู่ระบบ",
+    "proceedToPayment": "ไปที่การชำระเงิน",
+    "youSaved": "คุณประหยัดได้",
+    "totalSavings": "ประหยัดทั้งหมด",
+    "off": "ลด",
+    "metadata": {
+      "title": "ตะกร้าสินค้า | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "ตะกร้าสินค้า, ชำระเงิน, สั่งอาหาร, ตะกร้าสินค้า สั่งกลับบ้านสบายใจหายห่วง",
+      "description": "ดูตะกร้าสินค้าของคุณและดำเนินการสั่งซื้อบน สั่งกลับบ้านสบายใจหายห่วง ขั้นตอนการชำระเงินง่าย ๆ สำหรับอาหาร สินค้า และบริการดิจิทัล"
+    }
+  },
+
+  "payment": {
+    "payment": "การชำระเงิน",
+    "paymentMethod": "วิธีการชำระเงิน",
+    "addPayment": "เพิ่มวิธีการชำระเงิน",
+    "updatePayment": "อัปเดตวิธีการชำระเงิน",
+    "cardNumber": "หมายเลขบัตร",
+    "cardHolder": "ชื่อผู้ถือบัตร",
+    "expiryDate": "วันหมดอายุ",
+    "cvv": "CVV",
+    "paymentSuccess": "ชำระเงินสำเร็จ",
+    "paymentFailed": "ชำระเงินล้มเหลว",
+    "noPaymentAvailable": "ไม่มีวิธีการชำระเงินที่พร้อมใช้งาน",
+    "confirm": "ยืนยัน",
+    "accountNo": "หมายเลขบัญชี",
+    "accountName": "ชื่อบัญชี",
+    "active": "ใช้งาน",
+    "inactive": "ไม่ใช้งาน",
+    "chooseMethod": "เลือกวิธี",
+    "paymentMethodAddedSuccessfully": "เพิ่มวิธีการชำระเงินสำเร็จ",
+    "unableToAddPaymentMethod": "ไม่สามารถเพิ่มวิธีการชำระเงินได้",
+    "paymentMethodUpdatedSuccessfully": "อัปเดตวิธีการชำระเงินสำเร็จ",
+    "unableToUpdatePaymentMethod": "ไม่สามารถอัปเดตวิธีการชำระเงินได้",
+    "accNo": "หมายเลขบัญชี",
+    "accName": "ชื่อบัญชี",
+    "update": "อัปเดต",
+    "orderSummary": "สรุปคำสั่งซื้อ",
+    "totalItems": "รายการทั้งหมด",
+    "items": "ชิ้น",
+    "deliveryFee": "ค่าส่ง",
+    "free": "ฟรี",
+    "total": "ยอดรวม",
+    "walletBalance": "ยอดเงินในกระเป๋า",
+    "currentBalance": "ยอดเงินปัจจุบัน",
+    "refillWallet": "เติมเงินในกระเป๋า",
+    "paymentMethods": "วิธีการชำระเงิน",
+    "wallet": "กระเป๋าเงิน",
+    "payFromWallet": "ชำระจากกระเป๋าเงิน",
+    "insufficientBalanceWarning": "คำเตือนยอดเงินไม่เพียงพอ",
+    "cashOnDelivery": "ชำระเงินปลายทาง",
+    "payOnDelivery": "ชำระเงินเมื่อได้รับสินค้า",
+    "pleaseSelectPaymentMethod": "กรุณาเลือกวิธีการชำระเงิน",
+    "placeOrder": "สั่งซื้อ",
+    "orderSubmittedSuccess": "ส่งคำสั่งซื้อสำเร็จ",
+    "orderSubmissionFailed": "ส่งคำสั่งซื้อล้มเหลว",
+    "insufficientBalance": "ยอดเงินไม่เพียงพอ",
+    "loginRequired": "กรุณาเข้าสู่ระบบเพื่อส่งคำสั่งซื้อ",
+    "emptyCart": "ตะกร้าสินค้าของคุณว่างเปล่า",
+    "selectPaymentMethod": "กรุณาเลือกวิธีการชำระเงิน",
+    "metadata": {
+      "title": "การชำระเงิน | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "การชำระเงิน, ชำระเงิน, เสร็จสิ้นคำสั่งซื้อ, การชำระเงินปลอดภัย",
+      "description": "ดำเนินการชำระเงินของคุณบน สั่งกลับบ้านสบายใจหายห่วง การประมวลผลการชำระเงินที่ปลอดภัยและง่ายดายสำหรับคำสั่งซื้อของคุณ"
+    }
+  },
+
+  "settings": {
+    "settings": "การตั้งค่า",
+    "account": "บัญชี",
+    "notifications": "การแจ้งเตือน",
+    "language": "ภาษา",
+    "theme": "ธีม",
+    "privacy": "ความเป็นส่วนตัว",
+    "security": "ความปลอดภัย",
+    "help": "ช่วยเหลือ",
+    "about": "เกี่ยวกับ",
+    "logout": "ออกจากระบบ",
+    "other": "อื่น ๆ",
+    "aboutTickets": "เกี่ยวกับตั๋ว",
+    "privacyPolicy": "นโยบายความเป็นส่วนตัว",
+    "termsAndConditions": "ข้อกำหนดและเงื่อนไข",
+    "profile": "โปรไฟล์",
+    "location": "ตำแหน่ง",
+    "metadata": {
+      "title": "การตั้งค่า | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "การตั้งค่าบัญชี, การตั้งค่าแอป, การตั้งค่าความชอบ, การตั้งค่า สั่งกลับบ้านสบายใจหายห่วง",
+      "description": "จัดการการตั้งค่าบัญชีและความชอบของคุณใน สั่งกลับบ้านสบายใจหายห่วง ปรับแต่งประสบการณ์ของคุณตามความต้องการ"
+    }
+  },
+
+  "shopTypes": {
+    "grocerStore": "ร้านขายของชำ",
+    "chemistShop": "ร้านขายยา",
+    "stationeryShop": "ร้านเครื่องเขียน",
+    "musicShop": "ร้านเพลง",
+    "fruitShop": "ร้านผลไม้",
+    "vegetableShop": "ร้านผัก",
+    "flowerShop": "ร้านดอกไม้",
+    "shoeShop": "ร้านรองเท้า",
+    "toyShop": "ร้านของเล่น",
+    "dairyShop": "ร้านผลิตภัณฑ์นม",
+    "laundryService": "บริการซักรีด",
+    "dryCleanersShop": "ร้านซักแห้ง",
+    "restaurant": "ร้านอาหาร",
+    "junkShop": "ร้านของเก่า",
+    "furnitureShop": "ร้านเฟอร์นิเจอร์"
+  },
+
+  "categories": {
+    "burger": "เบอร์เกอร์",
+    "tarco": "ทาโก้",
+    "drink": "เครื่องดื่ม",
+    "pizza": "พิซซ่า"
+  },
+
+  "errors": {
+    "failedToLoad": "โหลดข้อมูลล้มเหลว",
+    "invalidCredentials": "ข้อมูลรับรองไม่ถูกต้อง",
+    "requiredField": "ช่องนี้จำเป็นต้องกรอก",
+    "serverError": "ข้อผิดพลาดของเซิร์ฟเวอร์ กรุณาลองใหม่ภายหลัง",
+    "networkError": "ข้อผิดพลาดของเครือข่าย กรุณาตรวจสอบการเชื่อมต่อของคุณ",
+    "unknownError": "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ",
+    "loadingOrder": "โหลดคำสั่งซื้อผิดพลาด",
+    "orderDetailsLoadFailed": "ไม่สามารถโหลดรายละเอียดคำสั่งซื้อได้ กรุณาลองใหม่"
+  },
+
+  "languages": {
+    "english": "อังกฤษ",
+    "chinese": "จีน"
+  },
+
+  "home": {
+    "featuredProducts": "สินค้าแนะนำ",
+    "popularCategories": "หมวดหมู่ยอดนิยม",
+    "nearbyShops": "ร้านค้าใกล้เคียง",
+    "specialOffers": "ข้อเสนอพิเศษ",
+    "viewAll": "ดูทั้งหมด",
+    "search": "ค้นหาสินค้า ร้านค้า ฯลฯ",
+    "yourLocation": "ตำแหน่งของคุณ",
+    "findByCategory": "ค้นหาตามหมวดหมู่",
+    "seeAll": "ดูทั้งหมด",
+    "promotional": "โปรโมชั่น",
+    "more": "เพิ่มเติม",
+    "metadata": {
+      "title": "หน้าแรก | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "หน้าแรก สั่งกลับบ้านสบายใจหายห่วง, แอปส่งอาหาร, ร้านค้าท้องถิ่น, ตลาดดิจิทัล",
+      "description": "ค้นพบร้านค้าท้องถิ่นและบริการดิจิทัลทั่วโลกบนแอป สั่งกลับบ้านสบายใจหายห่วง สั่งอาหาร ของชำ และอื่น ๆ ได้อย่างง่ายดาย"
+    }
+  },
+
+  "search": {
+    "searchFood": "ค้นหาอาหาร",
+    "searchFoodPlaceholder": "ค้นหาอาหาร",
+    "noFoodFound": "ไม่พบอาหาร",
+    "suggestions": "คำแนะนำ",
+    "suggestionBurger": "เบอร์เกอร์",
+    "suggestionPizza": "พิซซ่า",
+    "suggestionCola": "โคล่า",
+    "recentSearches": "การค้นหาล่าสุด",
+    "deleteRecentSearches": "ลบการค้นหาล่าสุด",
+    "searchResults": "ผลการค้นหา",
+    "noResults": "ไม่พบผลลัพธ์",
+    "tryAgain": "กรุณาลองคำค้นหาอื่น",
+    "metadata": {
+      "title": "ผลการค้นหา | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "ค้นหา, ค้นหาสินค้า, ค้นหาร้านค้า, การค้นหา สั่งกลับบ้านสบายใจหายห่วง",
+      "description": "ค้นหาสินค้า ร้านค้า และบริการบน สั่งกลับบ้านสบายใจหายห่วง ค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและง่ายดาย"
+    }
+  },
+
+  "merchantShopList": {
+    "yourLocation": "ตำแหน่งของคุณ",
+    "createShop": "สร้างร้านค้า",
+    "shopList": "รายการร้านค้า",
+    "noShopAvailable": "ไม่มีร้านค้าที่พร้อมใช้งาน",
+    "businessTagline": "เติบโตธุรกิจของคุณด้วยทุกคำสั่งซื้อ!"
+  },
+
+  "merchantHome": {
+    "runningOrders": "คำสั่งซื้อที่กำลังดำเนินการ",
+    "orderRequests": "คำขอสั่งซื้อ",
+    "requestList": "รายการคำขอ",
+    "runningList": "รายการที่กำลังดำเนินการ",
+    "totalRevenue": "รายได้รวม",
+    "seeDetails": "ดูรายละเอียด",
+    "popularItems": "สินค้ายอดนิยม",
+    "popularItemsThisWeek": "สินค้ายอดนิยมประจำสัปดาห์นี้",
+    "seeAll": "ดูทั้งหมด",
+    "location": "ตำแหน่ง",
+    "totalOrders": "คำสั่งซื้อทั้งหมด",
+    "totalCustomers": "ลูกค้าทั้งหมด",
+    "totalProducts": "สินค้าทั้งหมด",
+    "totalCategories": "หมวดหมู่ทั้งหมด",
+    "yourShops": "ร้านค้าของคุณ",
+    "addNew": "เพิ่มร้านค้าใหม่",
+    "createYourFirstShop": "สร้างร้านค้าแรกของคุณ",
+    "noShopsAvailable": "ไม่มีร้านค้าที่พร้อมใช้งาน",
+    "availableProducts": "สินค้าที่มี",
+    "noProductsAvailable": "ไม่มีสินค้าที่พร้อมใช้งาน",
+    "deliveryManagement": "การจัดการการจัดส่ง",
+    "manageDeliveryDrivers": "จัดการคนขับส่งของ",
+    "registerNewDriver": "ลงทะเบียนคนขับใหม่",
+    "driverDescription": "ลงทะเบียนคนขับใหม่หรือจัดการทีมจัดส่งที่มีอยู่ของคุณ",
+    "noRevenueData": "ไม่มีข้อมูลรายได้",
+    "revenueDataDescription": "ข้อมูลรายได้จะแสดงที่นี่เมื่อคำสั่งซื้อเสร็จสิ้น",
+    "retry": "ลองใหม่",
+    "failedToLoadRevenue": "โหลดข้อมูลรายได้ล้มเหลว",
+    "week": "รายสัปดาห์",
+    "walletBalance": "ยอดเงินในกระเป๋าเงิน",
+    "refill": "เติมเงิน",
+    "loadingBalance": "กำลังโหลดยอดเงิน...",
+    "availableBalance": "ยอดเงินที่สามารถใช้ได้",
+    "walletDescription": "จัดการเงินของคุณและติดตามรายรับและรายจ่ายในที่เดียว",
+    "withdrawHistory": "ประวัติการถอนเงิน",
+    "metadata": {
+      "title": "แดชบอร์ดร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "แดชบอร์ดร้านค้า, พอร์ทัลผู้ขาย, การจัดการธุรกิจ, ร้านค้า สั่งกลับบ้านสบายใจหายห่วง",
+      "description": "จัดการธุรกิจของคุณด้วยแดชบอร์ดร้านค้า สั่งกลับบ้านสบายใจหายห่วง ดูคำสั่งซื้อและติดตามผลการดำเนินงาน"
+    }
+  },
+
+  "merchantProfile": {
+    "shopInformation": "ข้อมูลร้านค้า",
+    "shopType": "ประเภทร้านค้า",
+    "shopName": "ชื่อร้านค้า",
+    "businessPhone": "โทรศัพท์ธุรกิจ",
+    "openingHours": "เวลาทำการ",
+    "openTime": "เวลาเปิด",
+    "closeTime": "เวลาปิด",
+    "address": "ที่อยู่",
+    "description": "คำอธิบาย",
+    "websiteLink": "ลิงก์เว็บไซต์ (ไม่บังคับ)",
+    "shopImages": "รูปภาพร้านค้า",
+    "logoImage": "รูปภาพโลโก้",
+    "coverImage": "รูปภาพปก",
+    "dropImageHere": "วางรูปภาพที่นี่หรือคลิกเพื่อเรียกดู",
+    "imageRequirements": "JPG, PNG หรือ GIF, สูงสุด 2MB",
+    "registerShop": "ลงทะเบียนร้านค้า",
+    "shopRegisteredSuccessfully": "ลงทะเบียนร้านค้าสำเร็จ!",
+    "failedToRegisterShop": "ลงทะเบียนร้านค้าล้มเหลว",
+    "enterAddressIn": "ป้อนที่อยู่ (ใช้",
+    "enterDescriptionIn": "ป้อนคำอธิบาย (ใช้",
+    "selectCloseTime": "เลือกเวลาปิด",
+    "backToShopList": "กลับไปที่รายการร้านค้า"
+  },
+
+  "merchantProduct": {
+    "productInformation": "ข้อมูลสินค้า",
+    "category": "หมวดหมู่",
+    "selectCategory": "เลือกหมวดหมู่",
+    "shop": "ร้านค้า",
+    "selectShop": "เลือกร้านค้า",
+    "productName": "ชื่อสินค้า",
+    "price": "ราคา",
+    "stock": "สต็อก",
+    "previewImage": "รูปภาพตัวอย่าง",
+    "productImages": "รูปภาพสินค้า",
+    "productDescription": "คำอธิบายสินค้า",
+    "enterDescriptionIn": "ป้อนคำอธิบาย (ใช้",
+    "createProduct": "สร้างสินค้า",
+    "backToDashboard": "กลับไปที่แดชบอร์ด",
+    "productCreatedSuccessfully": "สร้างสินค้าสำเร็จ!",
+    "failedToCreateProduct": "สร้างสินค้าล้มเหลว",
+    "invalidPriceFormat": "รูปแบบราคาไม่ถูกต้อง",
+    "stockMustBeWholeNumber": "สต็อกต้องเป็นจำนวนเต็ม"
+  },
+
+  "merchant_order_notification": {
+    "order_notifications": "การแจ้งเตือนคำสั่งซื้อ",
+    "see_more_order": "ดูคำสั่งซื้อเพิ่มเติม",
+    "no_new_order_notifications": "ไม่มีการแจ้งเตือนคำสั่งซื้อใหม่"
+  },
+
+  "merchant_payment_card": {
+    "edit": "แก้ไข"
+  },
+
+  "merchantPaymentForm": {
+    "payment": "การชำระเงิน",
+    "paymentMethod": "วิธีการชำระเงิน",
+    "addPayment": "เพิ่มการชำระเงิน",
+    "updatePayment": "อัปเดตการชำระเงิน",
+    "cardNumber": "หมายเลขบัตร",
+    "cardHolder": "ชื่อผู้ถือบัตร",
+    "expiryDate": "วันหมดอายุ",
+    "cvv": "รหัส CVV",
+    "completeYourBusinessProfile": "กรอกข้อมูลธุรกิจของคุณให้ครบถ้วน",
+    "completeYourMerchantProfile": "กรอกข้อมูลร้านค้าของคุณให้ครบถ้วน",
+    "paymentSuccess": "การชำระเงินสำเร็จ",
+    "paymentFailed": "การชำระเงินล้มเหลว",
+    "selectPaymentMethod": "เลือกวิธีการชำระเงิน",
+    "noPaymentAvailable": "ไม่มีวิธีการชำระเงินที่ใช้ได้",
+    "confirm": "ยืนยัน",
+    "accountNo": "หมายเลขบัญชี",
+    "accountName": "ชื่อบัญชี",
+    "active": "เปิดใช้งาน",
+    "inactive": "ปิดใช้งาน",
+    "chooseMethod": "เลือกวิธีการ"
+  },
+
+  "merchantPaymentV2": {
+    "pleaseUploadQRImage": "กรุณาอัปโหลดรูปภาพ QR",
+    "qrCode": "รหัส QR",
+    "account": "บัญชี",
+    "name": "ชื่อ",
+    "type": "ประเภท",
+    "errorDisplayingPayment": "เกิดข้อผิดพลาดในการแสดงวิธีการชำระเงินนี้",
+    "updatePaymentMethod": "อัปเดตวิธีการชำระเงิน",
+    "addPaymentMethod": "เพิ่มวิธีการชำระเงิน",
+    "paymentType": "ประเภทการชำระเงิน",
+    "selectPaymentType": "เลือกประเภทการชำระเงิน",
+    "paymentMethod": "วิธีการชำระเงิน",
+    "selectPaymentMethod": "เลือกวิธีการชำระเงิน",
+    "accountNumberRequired": "จำเป็นต้องระบุหมายเลขบัญชี",
+    "accountNumber": "หมายเลขบัญชี",
+    "enterAccountNumber": "ใส่หมายเลขบัญชี",
+    "accountNameRequired": "จำเป็นต้องระบุชื่อบัญชี",
+    "accountName": "ชื่อบัญชี",
+    "enterAccountName": "ใส่ชื่อบัญชี",
+    "statusRequired": "จำเป็นต้องระบุสถานะ",
+    "status": "สถานะ",
+    "selectStatus": "เลือกสถานะ",
+    "qrCodeImage": "รูปภาพรหัส QR",
+    "uploadOnlyIfUpdate": "(อัปโหลดเฉพาะเมื่อต้องการอัปเดต)",
+    "newImageSelected": "เลือกรูปภาพใหม่สำหรับอัปโหลด",
+    "leaveEmptyToKeepExisting": "เว้นว่างไว้เพื่อใช้รูปภาพรหัส QR เดิม",
+    "uploadClearQRImage": "อัปโหลดรูปภาพรหัส QR ที่ชัดเจน",
+    "updating": "กำลังอัปเดต...",
+    "adding": "กำลังเพิ่ม...",
+    "paymentMethods": "วิธีการชำระเงิน",
+    "noPaymentMethodsAdded": "ยังไม่ได้เพิ่มวิธีการชำระเงิน",
+    "addFirstPaymentMethod": "เพิ่มวิธีการชำระเงินวิธีแรกโดยใช้แบบฟอร์ม"
+  },
+
+  "merchantProductList": {
+    "yourProducts": "สินค้าของคุณ",
+    "manageYourProductInventory": "จัดการสินค้าคงคลังของคุณ",
+    "addProductsToGetStarted": "เพิ่มสินค้าเพื่อเริ่มต้น",
+    "noProductsAvailable": "ไม่มีสินค้าที่พร้อมใช้งาน"
+  },
+
+  "merchant_orderitem_detail": {
+    "metadata": {
+      "title": "รายละเอียดรายการคำสั่งซื้อ | สั่งกลับบ้านสบายใจหายห่วง",
+      "description": "ดูข้อมูลโดยละเอียดเกี่ยวกับคำสั่งซื้อของคุณ จัดการสถานะคำสั่งซื้อ และมอบหมายคนขับส่งสินค้า",
+      "keywords": "รายละเอียดคำสั่งซื้อ, คำสั่งซื้อร้านค้า, การจัดส่ง, การมอบหมายคนขับ, การจัดการคำสั่งซื้อ"
+    },
+    "ordered": "สั่งซื้อแล้ว",
+    "total": "รวม",
+    "merchant": "ร้านค้า",
+    "pending": "รอดำเนินการ",
+    "confirmed": "ยืนยันแล้ว",
+    "cancelled": "ยกเลิกแล้ว",
+    "shipped": "จัดส่งแล้ว",
+    "rejected": "ปฏิเสธแล้ว",
+    "completed": "เสร็จสมบูรณ์",
+    "unknown": "ไม่ทราบ",
+    "rejectOrder": "ปฏิเสธคำสั่งซื้อ",
+    "confirmOrder": "ยืนยันคำสั่งซื้อ",
+    "orderAccepted": "คำสั่งซื้อได้รับการยืนยันเรียบร้อยแล้ว",
+    "orderRejected": "คำสั่งซื้อถูกปฏิเสธเรียบร้อยแล้ว",
+    "failedToConfirm": "ไม่สามารถยืนยันคำสั่งซื้อได้",
+    "failedToReject": "ไม่สามารถปฏิเสธคำสั่งซื้อได้",
+    "rejectOrderConfirmation": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธคำสั่งซื้อนี้? การกระทำนี้ไม่สามารถยกเลิกได้",
+    "rejectionReason": "เหตุผลในการปฏิเสธ (ไม่บังคับ)",
+    "enterRejectionReason": "ป้อนเหตุผลในการปฏิเสธ",
+    "cancel": "ยกเลิก",
+    "assignedDriver": "คนขับที่ได้รับมอบหมาย",
+    "deliveryDriverAssigned": "มอบหมายคนขับส่งสินค้าแล้ว",
+    "assignDriver": "มอบหมายคนขับ",
+    "assignedBy": "มอบหมายโดย",
+    "assignedAt": "มอบหมายเมื่อ",
+    "itemsInThisOrder": "รายการในคำสั่งซื้อนี้",
+    "noItemsFound": "ไม่พบรายการสำหรับคำสั่งซื้อนี้",
+    "totalItems": "รายการทั้งหมด",
+    "quantity": "จำนวน",
+    "availableDrivers": "คนขับที่พร้อมให้บริการ",
+    "selectDriverToDeliver": "เลือกคนขับเพื่อจัดส่งคำสั่งซื้อนี้",
+    "noDriversAvailable": "ไม่มีคนขับพร้อมให้บริการในขณะนี้",
+    "addNewDriver": "เพิ่มคนขับใหม่",
+    "registerNewDriver": "ลงทะเบียนคนขับใหม่"
+  },
+
+  "login": {
+    "metadata": {
+      "title": "เข้าสู่ระบบ | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "เข้าสู่ระบบ, การเข้าถึงบัญชี, การเข้าสู่ระบบ สั่งกลับบ้านสบายใจหายห่วง, การเข้าสู่ระบบปลอดภัย",
+      "description": "เข้าสู่ระบบบัญชี สั่งกลับบ้านสบายใจหายห่วง ของคุณ เข้าถึงโลกของสินค้าและบริการดิจิทัลได้ทันที"
+    }
+  },
+
+  "register": {
+    "metadata": {
+      "title": "สร้างบัญชี | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "ลงทะเบียน, สร้างบัญชี, การลงทะเบียน สั่งกลับบ้านสบายใจหายห่วง, ผู้ใช้ใหม่",
+      "description": "สร้างบัญชี สั่งกลับบ้านสบายใจหายห่วง ของคุณทันที เริ่มสำรวจโลกของสินค้าและบริการดิจิทัล"
+    }
+  },
+
+  "forgot_password": {
+    "metadata": {
+      "title": "ลืมรหัสผ่าน | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "ลืมรหัสผ่าน, รีเซ็ตรหัสผ่าน, การกู้คืนบัญชี, ความช่วยเหลือเกี่ยวกับรหัสผ่าน",
+      "description": "รีเซ็ตรหัสผ่าน สั่งกลับบ้านสบายใจหายห่วง ของคุณ กู้คืนการเข้าถึงบัญชีของคุณ"
+    }
+  },
+
+  "reset_password": {
+    "metadata": {
+      "title": "รีเซ็ตรหัสผ่าน | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "รีเซ็ตรหัสผ่าน, รหัสผ่านใหม่, เปลี่ยนรหัสผ่าน, ความปลอดภัยของบัญชี",
+      "description": "ตั้งรหัสผ่านใหม่สำหรับบัญชี สั่งกลับบ้านสบายใจหายห่วง ของคุณ รักษาความปลอดภัยในการเข้าถึงของคุณ"
+    }
+  },
+
+  "otp_forgot_password": {
+    "metadata": {
+      "title": "ยืนยัน OTP | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "รหัสยืนยัน, OTP, รหัสผ่านครั้งเดียว, การยืนยันบัญชี",
+      "description": "ยืนยันตัวตนของคุณด้วยรหัสผ่านครั้งเดียวเพื่อรีเซ็ตบัญชี สั่งกลับบ้านสบายใจหายห่วง ของคุณ"
+    }
+  },
+
+  "merchant_register": {
+    "metadata": {
+      "title": "ลงทะเบียนร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "ลงทะเบียนร้านค้า, การลงทะเบียนธุรกิจ, บัญชีผู้ขาย, ร่วมงานกับ สั่งกลับบ้านสบายใจหายห่วง",
+      "description": "ลงทะเบียนเป็นร้านค้าบน สั่งกลับบ้านสบายใจหายห่วง เริ่มขายสินค้าและบริการของคุณให้กับลูกค้าทั่วโลก"
+    }
+  },
+
+  "shop_register": {
+    "metadata": {
+      "title": "ลงทะเบียนร้านค้าของคุณ | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "ลงทะเบียนร้านค้า, เพิ่มร้านค้า, รายชื่อธุรกิจ, การตั้งค่าร้านค้าของร้านค้า",
+      "description": "ลงทะเบียนร้านค้าของคุณบน สั่งกลับบ้านสบายใจหายห่วง เริ่มให้บริการลูกค้าในพื้นที่ของคุณและทั่วโลก"
+    }
+  },
+
+  "application": {
+    "metadata": {
+      "title": "แอปพลิเคชัน | สั่งกลับบ้านสบายใจหายห่วง",
+      "keywords": "แอป สั่งกลับบ้านสบายใจหายห่วง, ตลาดดิจิทัล, สินค้าร้านค้า, บริการ",
+      "description": "เรียกดูและซื้อสินค้าและบริการจากร้านค้าท้องถิ่นและทั่วโลกบน สั่งกลับบ้านสบายใจหายห่วง"
+    },
+    "product_list_by_shop": {
+      "metadata": {
+        "title": "รายการสินค้าโดยร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "รายการสินค้าโดยร้านค้า, รายการสินค้า, ร้านค้า, สินค้า สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "ดูรายการสินค้าของร้านค้าโดยร้านค้า สั่งกลับบ้านสบายใจหายห่วง รายละเอียดสินค้าและราคา"
+      }
+    },
+    "EventList": {
+      "metadata": {
+        "title": "แอปพลิเคชัน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "แอป สั่งกลับบ้านสบายใจหายห่วง, ตลาดดิจิทัล, สินค้าร้านค้า, บริการ",
+        "description": "เรียกดูและซื้อสินค้าและบริการจากร้านค้าท้องถิ่นและทั่วโลกบน สั่งกลับบ้านสบายใจหายห่วง"
+      }
+    },
+    "event_detail": {
+      "metadata": {
+        "title": "แอปพลิเคชัน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "แอป สั่งกลับบ้านสบายใจหายห่วง, ตลาดดิจิทัล, สินค้าร้านค้า, บริการ",
+        "description": "เรียกดูและซื้อสินค้าและบริการจากร้านค้าท้องถิ่นและทั่วโลกบน สั่งกลับบ้านสบายใจหายห่วง"
+      }
+    },
+    "home": {
+      "metadata": {
+        "title": "หน้าแรก | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "หน้าแรก สั่งกลับบ้านสบายใจหายห่วง, แอปส่งอาหาร, ร้านค้าท้องถิ่น, ตลาดดิจิทัล",
+        "description": "ค้นพบร้านค้าท้องถิ่นและบริการดิจิทัลทั่วโลกบนแอป สั่งกลับบ้านสบายใจหายห่วง สั่งอาหาร ของชำ และอื่น ๆ ได้อย่างง่ายดาย"
+      }
+    },
+    "cart": {
+      "metadata": {
+        "title": "ตะกร้าสินค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "ตะกร้าสินค้า, ชำระเงิน, สั่งอาหาร, ตะกร้าสินค้า สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "ดูตะกร้าสินค้าของคุณและดำเนินการสั่งซื้อบน สั่งกลับบ้านสบายใจหายห่วง ขั้นตอนการชำระเงินง่าย ๆ สำหรับอาหาร สินค้า และบริการดิจิทัล"
+      }
+    },
+    "payment": {
+      "metadata": {
+        "title": "การชำระเงิน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "การชำระเงิน, ชำระเงิน, เสร็จสิ้นคำสั่งซื้อ, การชำระเงินปลอดภัย",
+        "description": "เลือกวิธีการชำระเงินที่คุณต้องการบน สั่งกลับบ้านสบายใจหายห่วง ตัวเลือกการชำระเงินที่ปลอดภัยหลากหลายเพื่อประสบการณ์การชำระเงินที่ราบรื่น"
+      }
+    },
+    "profile": {
+      "metadata": {
+        "title": "โปรไฟล์ผู้ใช้ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "โปรไฟล์ผู้ใช้, การตั้งค่าบัญชี, โปรไฟล์ สั่งกลับบ้านสบายใจหายห่วง, รายละเอียดส่วนตัว",
+        "description": "จัดการโปรไฟล์ สั่งกลับบ้านสบายใจหายห่วง ของคุณ ดูประวัติคำสั่งซื้อ และอัปเดตรายละเอียดส่วนตัว"
+      }
+    },
+    "merchant_home": {
+      "metadata": {
+        "title": "แดชบอร์ดร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "แดชบอร์ดร้านค้า, พอร์ทัลผู้ขาย, การจัดการธุรกิจ, ร้านค้า สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "จัดการธุรกิจของคุณด้วยแดชบอร์ดร้านค้า สั่งกลับบ้านสบายใจหายห่วง ดูคำสั่งซื้อและติดตามผลการดำเนินงาน"
+      }
+    },
+    "search": {
+      "metadata": {
+        "title": "ผลการค้นหา | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "ค้นหา, ค้นหาสินค้า, ค้นหาร้านค้า, การค้นหา สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "ค้นหาสินค้า ร้านค้า และบริการบน สั่งกลับบ้านสบายใจหายห่วง ค้นหาสิ่งที่คุณต้องการได้อย่างรวดเร็วและง่ายดาย"
+      }
+    },
+    "PromoList": {
+      "metadata": {
+        "title": "Promo List | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "promo list, สั่งกลับบ้านสบายใจหายห่วง promo, promo offers, promotional deals",
+        "description": "Explore the latest promotions and deals on สั่งกลับบ้านสบายใจหายห่วง. Find the best offers and discounts for your favorite products and services."
+      }
+    },
+    "product_list": {
+      "metadata": {
+        "title": "รายการสินค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "สินค้า, สินค้าร้านค้า, สินค้า สั่งกลับบ้านสบายใจหายห่วง, เรียกดูสินค้า",
+        "description": "เรียกดูสินค้าคุณภาพหลากหลายของเรา ค้นหาสินค้าและข้อเสนอที่เหมาะกับความต้องการของคุณบน สั่งกลับบ้านสบายใจหายห่วง"
+      }
+    },
+    "product_detail": {
+      "metadata": {
+        "title": "รายละเอียดสินค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "รายละเอียดสินค้า, ซื้อสินค้า, ข้อมูลสินค้า, ข้อมูลจำเพาะของสินค้า",
+        "description": "ดูรายละเอียดสินค้าโดยละเอียด เรียนรู้ข้อมูลจำเพาะของสินค้า รีวิว และตัดสินใจซื้ออย่างชาญฉลาดบน สั่งกลับบ้านสบายใจหายห่วง"
+      }
+    },
+    "user_order_list": {
+      "metadata": {
+        "title": "คำสั่งซื้อของฉัน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "คำสั่งซื้อของฉัน, ประวัติคำสั่งซื้อ, ประวัติการซื้อ, ติดตามคำสั่งซื้อ",
+        "description": "ดูประวัติคำสั่งซื้อของคุณบน สั่งกลับบ้านสบายใจหายห่วง ติดตามคำสั่งซื้อที่ผ่านมาและปัจจุบัน ตรวจสอบสถานะการจัดส่ง จัดการการซื้อของคุณ"
+      }
+    },
+    "user_order_detail": {
+      "metadata": {
+        "title": "รายละเอียดคำสั่งซื้อ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "รายละเอียดคำสั่งซื้อ, สถานะคำสั่งซื้อ, การติดตามคำสั่งซื้อ, สถานะการจัดส่ง",
+        "description": "ดูรายละเอียดคำสั่งซื้อของคุณ ตรวจสอบสถานะคำสั่งซื้อ ติดตามการจัดส่ง และจัดการการซื้อของคุณบน สั่งกลับบ้านสบายใจหายห่วง"
+      }
+    },
+    "setting": {
+      "metadata": {
+        "title": "การตั้งค่า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "การตั้งค่าบัญชี, การตั้งค่าแอป, การตั้งค่าความชอบ, การตั้งค่า สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "จัดการการตั้งค่าบัญชีและความชอบของคุณใน สั่งกลับบ้านสบายใจหายห่วง ปรับแต่งประสบการณ์ของคุณตามความต้องการ"
+      }
+    },
+    "category_list": {
+      "metadata": {
+        "title": "หมวดหมู่ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "หมวดหมู่, หมวดหมู่สินค้า, เรียกดูหมวดหมู่, หมวดหมู่ สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "เรียกดูสินค้าตามหมวดหมู่บน สั่งกลับบ้านสบายใจหายห่วง ค้นหาสินค้าที่จัดเรียงตามประเภท ทำให้ค้นหาสิ่งที่คุณต้องการได้ง่ายขึ้น"
+      }
+    },
+    "merchant_shop_list": {
+      "metadata": {
+        "title": "ร้านค้าของฉัน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "ร้านค้าของฉัน, การจัดการร้านค้า, ร้านค้าของร้านค้า, รายการร้านค้า",
+        "description": "จัดการร้านค้าของคุณบน สั่งกลับบ้านสบายใจหายห่วง ดู แก้ไข และเพิ่มร้านค้าใหม่ในโปรไฟล์ร้านค้าของคุณ"
+      }
+    },
+    "merchant_shop_detail": {
+      "metadata": {
+        "title": "รายละเอียดร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "รายละเอียดร้านค้า, จัดการร้านค้า, โปรไฟล์ร้านค้า, การจัดการร้านค้า",
+        "description": "ดูและจัดการรายละเอียดร้านค้าของคุณบน สั่งกลับบ้านสบายใจหายห่วง อัปเดตรายละเอียดร้านค้า จัดการสินค้า ฯลฯ"
+      }
+    },
+    "customer_wallet": {
+      "metadata": {
+        "title": "กระเป๋าเงินของฉัน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "กระเป๋าเงินดิจิทัล, กระเป๋าเงินชำระเงิน, ยอดเงินในบัญชี, กระเป๋าเงิน สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "จัดการกระเป๋าเงิน สั่งกลับบ้านสบายใจหายห่วง ของคุณ ดูยอดเงิน ดูประวัติการทำธุรกรรม เพิ่มเงินในบัญชีของคุณ"
+      }
+    },
+    "customer_wallet_refill": {
+      "metadata": {
+        "title": "เติมเงิน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "เติมเงิน, เติมเงินในกระเป๋า, เติมยอดเงิน, การเติมเงินในกระเป๋า",
+        "description": "เติมเงินในกระเป๋าเงิน สั่งกลับบ้านสบายใจหายห่วง ของคุณ เลือกวิธีการชำระเงินที่หลากหลายเพื่อเติมยอดเงินในบัญชีของคุณอย่างปลอดภัย"
+      }
+    },
+    "driver_home": {
+      "metadata": {
+        "title": "แดชบอร์ดคนขับ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "แดชบอร์ดคนขับ, คนขับส่งของ, พอร์ทัลคนขับ, การจัดการการจัดส่ง",
+        "description": "เข้าถึงแดชบอร์ดคนขับ สั่งกลับบ้านสบายใจหายห่วง ของคุณ จัดการการจัดส่ง ติดตามคำสั่งซื้อ ปรับปรุงเส้นทางการจัดส่งของคุณ"
+      },
+      "currentLocation": "ตำแหน่งปัจจุบัน",
+      "loading": "กำลังโหลด...",
+      "locationError": "ข้อผิดพลาดตำแหน่ง",
+      "activeDeliveries": "การจัดส่งที่กำลังดำเนินการ",
+      "activeDeliveriesList": "รายการการจัดส่งที่กำลังดำเนินการ ({count})",
+      "deliveryRequests": "คำขอการจัดส่ง",
+      "deliveryRequestsList": "รายการคำขอการจัดส่ง ({count})",
+      "today": "วันนี้",
+      "completedDeliveries": "การจัดส่งที่เสร็จสิ้น",
+      "acceptedRequests": "คำขอที่ยอมรับ",
+      "acceptedRequestsList": "รายการคำขอที่ยอมรับ ({count})",
+      "updateLocation": "อัปเดตตำแหน่ง",
+      "refreshOrders": "รีเฟรชคำสั่งซื้อ",
+      "completeDelivery": "การจัดส่งเสร็จสิ้น",
+      "retry": "ลองใหม่",
+      "errorFetchingActiveDeliveries": "เกิดข้อผิดพลาดขณะดึงการจัดส่งที่กำลังดำเนินการ",
+      "errorFetchingDeliveryRequests": "เกิดข้อผิดพลาดขณะดึงคำขอการจัดส่ง"
+    },
+    "driver_order_list": {
+      "metadata": {
+        "title": "คำสั่งซื้อการจัดส่ง | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "คำสั่งซื้อการจัดส่ง, คำสั่งซื้อของคนขับ, งานจัดส่ง, รายการคำสั่งซื้อของคนขับ",
+        "description": "ดูรายการคำสั่งซื้อการจัดส่งของคุณบน สั่งกลับบ้านสบายใจหายห่วง จัดการการจัดส่งที่ได้รับมอบหมายและติดตามสถานะคำสั่งซื้ออย่างมีประสิทธิภาพ"
+      },
+      "loadingOrders": "กำลังโหลดคำสั่งซื้อ...",
+      "failedToLoadOrders": "โหลดคำสั่งซื้อล้มเหลว",
+      "failedToFetchOrders": "ดึงคำสั่งซื้อล้มเหลว",
+      "noOrdersAvailable": "ไม่มีคำสั่งซื้อที่พร้อมใช้งาน",
+      "retry": "ลองใหม่",
+      "showingOrders": "แสดง {count} คำสั่งซื้อ (หน้า: {page})",
+      "refresh": "รีเฟรช",
+      "orderNumber": "คำสั่งซื้อ #{number}",
+      "id": "ID",
+      "orderPreparing": "คำสั่งซื้อกำลังเตรียม",
+      "deliveryPreparing": "การจัดส่งกำลังเตรียม",
+      "deliverySending": "กำลังจัดส่ง",
+      "customerAccepted": "ลูกค้ารับแล้ว",
+      "unknownStatus": "สถานะไม่ทราบ",
+      "orderDate": "วันที่สั่งซื้อ",
+      "notAvailable": "ไม่มี",
+      "voucher": "คูปอง",
+      "pickup": "สถานที่รับ",
+      "driver": "คนขับ",
+      "contact": "ข้อมูลการติดต่อ",
+      "total": "ยอดรวม",
+      "viewDetails": "ดูรายละเอียด"
+    },
+    "register_driver": {
+      "metadata": {
+        "title": "มาเป็นคนขับ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "มาเป็นคนขับ, ลงทะเบียนคนขับ, พันธมิตรการจัดส่ง, เข้าร่วมเป็นคนขับ",
+        "description": "ลงทะเบียนเป็นคนขับส่งของกับ สั่งกลับบ้านสบายใจหายห่วง เข้าร่วมเครือข่ายพันธมิตรการจัดส่งของเรา เริ่มสร้างรายได้ตามตารางเวลาของคุณเอง"
+      }
+    },
+    "transaction_history": {
+      "metadata": {
+        "title": "ประวัติการทำธุรกรรม | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "ประวัติการทำธุรกรรม, ประวัติการชำระเงิน, บันทึกการทำธุรกรรม, กิจกรรมทางการเงิน",
+        "description": "ดูประวัติการทำธุรกรรมทั้งหมดของคุณบน สั่งกลับบ้านสบายใจหายห่วง ติดตามการชำระเงิน การคืนเงิน และกิจกรรมทางการเงินทั้งหมดของคุณในที่เดียว"
+      }
+    },
+    "customer_payment_selection": {
+      "metadata": {
+        "title": "วิธีการชำระเงิน | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "วิธีการชำระเงิน, ตัวเลือกการชำระเงิน, การชำระเงินที่ชำระเงิน, เลือกการชำระเงิน",
+        "description": "เลือกวิธีการชำระเงินที่คุณต้องการบน สั่งกลับบ้านสบายใจหายห่วง ตัวเลือกการชำระเงินที่ปลอดภัยหลากหลายเพื่อประสบการณ์การชำระเงินที่ราบรื่น"
+      }
+    },
+    "merchant_product_list": {
+      "metadata": {
+        "title": "สินค้าของร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "สินค้าของร้านค้า, สินค้าของผู้ขาย, การจัดการสินค้า, สินค้าคงคลัง",
+        "description": "จัดการสินค้าของคุณในฐานะร้านค้าบน สั่งกลับบ้านสบายใจหายห่วง เพิ่ม แก้ไข และจัดระเบียบสินค้าคงคลังของคุณ"
+      }
+    },
+    "get_product_by_merchantid": {
+      "metadata": {
+        "title": "สินค้าร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "สินค้าร้านค้า, สินค้าผู้ค้า, รายการสินค้าร้านค้า, แคตตาล็อกผู้ค้า",
+        "description": "เรียกดูสินค้าทั้งหมดจากผู้ค้ารายนี้บน สั่งกลับบ้านสบายใจหายห่วง ค้นพบแคตตาล็อกสินค้าที่สมบูรณ์ของพวกเขา"
+      },
+      "title": "สินค้าผู้ค้า",
+      "searchPlaceholder": "ค้นหาสินค้า...",
+      "failedToLoadProducts": "ไม่สามารถโหลดสินค้าได้",
+      "retry": "ลองใหม่",
+      "noProductsFound": "ไม่พบสินค้า",
+      "tryDifferentSearchTerm": "ลองใช้คำค้นหาอื่น",
+      "noProductsYet": "ผู้ค้ารายนี้ยังไม่มีสินค้า"
+    },
+    "personal_data": {
+      "metadata": {
+        "title": "ข้อมูลส่วนตัว | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "ข้อมูลส่วนตัว, ข้อมูลส่วนบุคคล, รายละเอียดบัญชี, ข้อมูลผู้ใช้",
+        "description": "อัปเดตและจัดการข้อมูลส่วนตัวของคุณบน สั่งกลับบ้านสบายใจหายห่วง รักษาโปรไฟล์ของคุณให้เป็นปัจจุบันเพื่อประสบการณ์ที่ดีขึ้น"
+      }
+    },
+    "merchant_payment": {
+      "metadata": {
+        "title": "การตั้งค่าการชำระเงินของร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "การชำระเงินของร้านค้า, การตั้งค่าการชำระเงิน, วิธีการชำระเงิน, การกำหนดค่าการชำระเงิน",
+        "description": "จัดการการตั้งค่าการชำระเงินของร้านค้าของคุณบน สั่งกลับบ้านสบายใจหายห่วง ตั้งค่าวิธีการชำระเงินและกำหนดตัวเลือกการชำระเงินของคุณ"
+      }
+    },
+
+    "merchant_product_create": {
+      "metadata": {
+        "title": "สร้างสินค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "สร้างสินค้า, เพิ่มรายการ, การลงรายการสินค้า, เพิ่มสินค้า",
+        "description": "สร้างและลงรายการสินค้าใหม่ในฐานะร้านค้าบน สั่งกลับบ้านสบายใจหายห่วง เพิ่มรายละเอียดสินค้า ราคา และทำให้สินค้าของคุณพร้อมให้ลูกค้าซื้อ"
+      }
+    },
+    "merchant_order_list": {
+      "metadata": {
+        "title": "คำสั่งซื้อของร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "คำสั่งซื้อของร้านค้า, คำสั่งซื้อของผู้ขาย, การจัดการคำสั่งซื้อ, ติดตามคำสั่งซื้อ",
+        "description": "ดูและจัดการคำสั่งซื้อของร้านค้าทั้งหมดของคุณบน สั่งกลับบ้านสบายใจหายห่วง ติดตามสถานะคำสั่งซื้อและประมวลผลการซื้อของลูกค้าอย่างมีประสิทธิภาพ"
+      }
+    },
+    "merchant_order_notification": {
+      "metadata": {
+        "title": "การแจ้งเตือนคำสั่งซื้อ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "การแจ้งเตือนคำสั่งซื้อ, คำสั่งซื้อใหม่, การเตือนคำสั่งซื้อ, การแจ้งเตือนของร้านค้า",
+        "description": "รับการอัปเดตการแจ้งเตือนคำสั่งซื้อผ่านบัญชีร้านค้า สั่งกลับบ้านสบายใจหายห่วง ด้วยการแจ้งเตือนแบบเรียลไทม์ คุณจะไม่พลาดคำสั่งซื้อใหม่"
+      }
+    },
+    "merchant_orderitem_detail": {
+      "metadata": {
+        "title": "รายละเอียดรายการคำสั่งซื้อ | สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "ดูรายละเอียดคำสั่งซื้อ จัดการสถานะคำสั่งซื้อ และกำหนดคนขับส่งของ",
+        "keywords": "รายละเอียดคำสั่งซื้อ, คำสั่งซื้อร้านค้า, การจัดส่ง, การกำหนดคนขับ, การจัดการคำสั่งซื้อ"
+      },
+      "ordered": "เวลาสั่งซื้อ",
+      "total": "ยอดรวม",
+      "merchant": "ร้านค้า",
+      "pending": "รอดำเนินการ",
+      "confirmed": "ยืนยันแล้ว",
+      "cancelled": "ยกเลิก",
+      "rejectOrder": "ปฏิเสธคำสั่งซื้อ",
+      "confirmOrder": "ยืนยันคำสั่งซื้อ",
+      "orderAccepted": "คำสั่งซื้อได้รับการยอมรับสำเร็จ",
+      "orderRejected": "คำสั่งซื้อถูกปฏิเสธสำเร็จ",
+      "failedToConfirm": "ยืนยันคำสั่งซื้อล้มเหลว",
+      "failedToReject": "ปฏิเสธคำสั่งซื้อล้มเหลว",
+      "rejectOrderConfirmation": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธคำสั่งซื้อนี้? การดำเนินการนี้ไม่สามารถยกเลิกได้",
+      "rejectionReason": "เหตุผลในการปฏิเสธ (ไม่บังคับ)",
+      "enterRejectionReason": "ป้อนเหตุผลในการปฏิเสธ",
+      "cancel": "ยกเลิก",
+      "assignedDriver": "คนขับที่ได้รับมอบหมาย",
+      "deliveryDriverAssigned": "กำหนดคนขับส่งของแล้ว",
+      "assignDriver": "กำหนดคนขับ",
+      "assignedBy": "กำหนดโดย",
+      "assignedAt": "กำหนดเมื่อ",
+      "itemsInThisOrder": "รายการในคำสั่งซื้อนี้",
+      "noItemsFound": "ไม่พบรายการในคำสั่งซื้อนี้",
+      "totalItems": "จำนวนรายการทั้งหมด",
+      "quantity": "จำนวน",
+      "availableDrivers": "คนขับที่พร้อมใช้งาน",
+      "selectDriverToDeliver": "เลือกคนขับเพื่อจัดส่งคำสั่งซื้อนี้",
+      "noDriversAvailable": "ไม่มีคนขับที่พร้อมใช้งานในขณะนี้",
+      "addNewDriver": "เพิ่มคนขับใหม่",
+      "registerNewDriver": "ลงทะเบียนคนขับใหม่"
+    },
+    "home_v2": {
+      "metadata": {
+        "title": "หน้าแรก | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "หน้าแรก, หน้าหลัก, แอป สั่งกลับบ้านสบายใจหายห่วง, แอปส่งอาหาร",
+        "description": "ยินดีต้อนรับสู่หน้าแรก สั่งกลับบ้านสบายใจหายห่วง ที่ได้รับการปรับปรุง สำรวจร้านค้าท้องถิ่น บริการดิจิทัล และสินค้าทั่วโลกผ่านอินเทอร์เฟซที่ได้รับการปรับปรุงของเรา"
+      }
+    },
+    "driver_order_detail": {
+      "metadata": {
+        "title": "รายละเอียดคำสั่งซื้อของคนขับ | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "รายละเอียดคำสั่งซื้อของคนขับ, คำสั่งซื้อของคนขับ, คำสั่งซื้อการจัดส่ง, รายการคำสั่งซื้อของคนขับ",
+        "description": "ดูรายละเอียดคำสั่งซื้อการจัดส่งของคุณบน สั่งกลับบ้านสบายใจหายห่วง จัดการการจัดส่งที่ได้รับมอบหมายและติดตามสถานะคำสั่งซื้ออย่างมีประสิทธิภาพ"
+      }
+    },
+    "merchant_withdraw_history": {
+      "metadata": {
+        "title": "ประวัติการถอนเงินของร้านค้า | สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "ประวัติการถอนเงินของร้านค้า, การถอนเงิน, ประวัติการชำระเงิน, ประวัติธุรกรรม",
+        "description": "ดูประวัติการถอนเงินของคุณในฐานะร้านค้าบน สั่งกลับบ้านสบายใจหายห่วง ติดตามการถอนเงินและประวัติการชำระเงินของคุณ"
+      },
+      "title": "ประวัติการถอนเงิน",
+      "subtitle": "ดูธุรกรรมการถอนเงินทั้งหมดของคุณ",
+      "noWithdrawals": "ไม่พบประวัติการถอนเงิน",
+      "amount": "จำนวนเงิน",
+      "date": "วันที่",
+      "status": "สถานะ",
+      "remark": "หมายเหตุ",
+      "wallet": "กระเป๋าเงิน",
+      "detail": "รายละเอียด",
+      "id": "รหัส",
+      "noData": "ไม่มีข้อมูลการถอนเงิน",
+      "loading": "กำลังโหลดประวัติการถอนเงิน...",
+      "retry": "ลองใหม่",
+      "actualWallet": "กระเป๋าเงินจริง",
+      "completedWallet": "กระเป๋าเงินที่ดำเนินการเสร็จสิ้น",
+      "withdrawAmount": "จำนวนเงินที่ถอน",
+      "createdAt": "สร้างเมื่อ",
+      "image": "รูปภาพ",
+      "viewImage": "ดูรูปภาพ",
+      "close": "ปิด",
+      "refresh": "รีเฟรช",
+      "viewDetails": "ดูรายละเอียด"
+    },
+    "faq": {
+      "frequently_asked_questions": "คำถามที่พบบ่อย",
+      "faq_subtitle": "ค้นหาคำตอบสำหรับคำถามที่พบบ่อยเกี่ยวกับ สั่งกลับบ้านสบายใจหายห่วง",
+      "error_title": "เกิดข้อผิดพลาดในการโหลด FAQ",
+      "retry_button": "ลองอีกครั้ง",
+      "metadata": {
+        "title": "คำถามที่พบบ่อย - สั่งกลับบ้านสบายใจหายห่วง",
+        "description": "ค้นหาคำตอบสำหรับคำถามที่พบบ่อยเกี่ยวกับการใช้ สั่งกลับบ้านสบายใจหายห่วง",
+        "keywords": "FAQ, ช่วยเหลือ, คำถาม, คำตอบ, สั่งกลับบ้านสบายใจหายห่วง, สนับสนุน"
+      }
+    }
+  },
+
+  "navigation": {
+    "event": "Event",
+    "home": "หน้าแรก",
+    "cart": "ตะกร้าสินค้า",
+    "profile": "โปรไฟล์",
+    "messages": "ข้อความ",
+    "payment": "การชำระเงิน",
+    "shop": "ร้านค้า",
+    "orders": "คำสั่งซื้อ",
+    "itemLabel": "ไปที่ {name}",
+    "unavailable": "การนำทางไม่พร้อมใช้งาน",
+    "unavailableDescription": "กรุณาตรวจสอบการเชื่อมต่อเครือข่ายของคุณและรีเฟรชหน้า",
+    "order list": "รายการคำสั่งซื้อ"
+  },
+
+  "otp": {
+    "otpTitle": "รหัสยืนยัน",
+    "emailVerification": "การยืนยันอีเมล",
+    "enterVerificationCode": "กรุณาป้อนรหัสยืนยันที่เราส่งไปยังอีเมลต่อไปนี้:",
+    "didntReceiveCode": "ไม่ได้รับรหัส?",
+    "resend": "ส่งใหม่",
+    "continue": "ดำเนินการต่อ"
+  },
+
+  "forgotPassword": {
+    "title": "ลืมรหัสผ่าน?",
+    "description": "ป้อนที่อยู่อีเมลของคุณ เราจะส่งรหัสยืนยันให้คุณเพื่อรีเซ็ตรหัสผ่าน",
+    "emailAddress": "ที่อยู่อีเมล"
+  },
+
+  "delivery": {
+    "deliveryStatus": "สถานะการจัดส่ง",
+    "deliveryInformation": "ข้อมูลการจัดส่ง",
+    "driver": "คนขับ",
+    "driverAssigned": "กำหนดคนขับแล้ว",
+    "awaitingDriver": "รอคนขับ",
+    "unknownDriver": "คนขับไม่ทราบชื่อ",
+    "liveTracking": "การติดตามแบบเรียลไทม์",
+    "noDeliveryInfoAvailable": "ไม่มีข้อมูลการจัดส่ง",
+    "orderCancelledDeliveryInfo": "ไม่มีข้อมูลการจัดส่งสำหรับคำสั่งซื้อที่ถูกยกเลิก",
+    "orderRejectedDeliveryInfo": "ไม่มีข้อมูลการจัดส่งสำหรับคำสั่งซื้อที่ถูกปฏิเสธ",
+    "status": {
+      "preparing": {
+        "short": "กำลังเตรียม",
+        "full": "คำสั่งซื้อกำลังเตรียม",
+        "desc": "ร้านค้ากำลังเตรียมคำสั่งซื้อของคุณ"
+      },
+      "deliveryPreparing": {
+        "short": "เตรียมจัดส่ง",
+        "full": "การจัดส่งกำลังเตรียม",
+        "desc": "การจัดส่งของคุณกำลังเตรียมการ"
+      },
+      "onTheWay": {
+        "short": "กำลังจัดส่ง",
+        "full": "กำลังจัดส่ง",
+        "desc": "คำสั่งซื้อของคุณกำลังถูกจัดส่งไปยังตำแหน่งของคุณ"
+      },
+      "delivered": {
+        "short": "จัดส่งแล้ว",
+        "full": "จัดส่งแล้ว",
+        "desc": "คำสั่งซื้อของคุณถูกจัดส่งและรับแล้ว"
+      }
+    }
+  },
+
+  "ads": {
+    "advertisement": "โฆษณา: {name}",
+    "viewOffer": "ดูข้อเสนอ",
+    "sponsored": "เนื้อหาสปอนเซอร์",
+    "promotion": "โปรโมชั่น",
+    "limitedTimeOffer": "ข้อเสนอจำกัดเวลา",
+    "closeAd": "ปิดโฆษณา"
+  },
+
+  "wallet": {
+    "refillYourWallet": "เติมเงินกระเป๋าเงินของคุณ",
+    "addFundsDescription": "เพิ่มเงินในกระเป๋าเงินของคุณเพื่อการชำระเงินที่รวดเร็วและง่ายดาย",
+    "amount": "จำนวนเงิน",
+    "enterAmount": "ใส่จำนวนเงิน",
+    "selectPaymentMethod": "เลือกวิธีการชำระเงิน",
+    "selectPaymentMethodHelp": "เลือกวิธีการชำระเงินเพื่อดูรายละเอียดบัญชีสำหรับการโอนเงิน",
+    "transferInstructions": "คำแนะนำการโอนเงินที่สำคัญ",
+    "useOnlyTheseDetails": "กรุณาโอนเงินเฉพาะไปยังรายละเอียดบัญชีด้านล่างนี้เท่านั้น การใช้รายละเอียดบัญชีอื่นอาจทำให้การชำระเงินของคุณสูญหาย",
+    "incorrectDetailsWarning": "คำเตือน: การใช้รายละเอียดบัญชีที่ไม่ถูกต้องอาจทำให้การโอนเงินของคุณล่าช้าหรือสูญหาย โปรดตรวจสอบให้แน่ใจก่อนทำการชำระเงิน",
+    "transactionID": "รหัสธุรกรรม",
+    "enterTransactionID": "ใส่รหัสธุรกรรม",
+    "transactionScreenshot": "ภาพหน้าจอธุรกรรม",
+    "uploadScreenshotInstructions": "อัปโหลดภาพหน้าจอธุรกรรมของคุณ (JPEG, PNG, สูงสุด 5MB)",
+    "screenshotUploaded": "อัปโหลดภาพหน้าจอสำเร็จ",
+    "recommendedForLargeAmounts": "แนะนำสำหรับจำนวนเงินมากกว่า $100",
+    "remark": "หมายเหตุ",
+    "additionalInformation": "เพิ่มข้อมูลเพิ่มเติม",
+    "refillWallet": "เติมเงินกระเป๋าเงิน",
+    "processingTimeInfo": "คำขอเติมเงินของคุณจะได้รับการประมวลผลภายใน 24 ชั่วโมง คุณจะได้รับการแจ้งเตือนเมื่อเสร็จสิ้น",
+    "paymentHistory": "ประวัติการชำระเงิน",
+    "fileExceedsLimit": "ขนาดไฟล์เกิน 5MB",
+    "refillSuccess": "เติมเงินกระเป๋าเงินสำเร็จ",
+    "refillFailed": "เติมเงินกระเป๋าเงินล้มเหลว",
+    "screenshotRequired": "จำเป็นต้องมีภาพหน้าจอธุรกรรมสำหรับจำนวนเงินมากกว่า $100",
+    "selectValidPaymentMethod": "กรุณาเลือกวิธีการชำระเงินที่ถูกต้อง",
+    "yourBalance": "ยอดเงินของคุณ",
+    "loadingBalance": "กำลังโหลดยอดเงิน...",
+    "availableBalance": "ยอดเงินที่ใช้ได้",
+    "refill": "เติมเงิน",
+    "scanQrCode": "สแกนคิวอาร์โค้ด",
+    "scanToTransfer": "สแกนด้วยแอปการชำระเงินของคุณเพื่อโอนเงิน"
+  },
+
+  "cancelOrder": "ยกเลิกคำสั่งซื้อ",
+  "confirmCancellation": "ยืนยันการยกเลิก",
+  "cancelOrderDescription": "คุณแน่ใจหรือไม่ว่าต้องการยกเลิกคำสั่งซื้อนี้? การกระทำนี้ไม่สามารถยกเลิกได้",
+  "cancellationReason": "เหตุผลในการยกเลิก",
+  "forRecordsOnly": "สำหรับบันทึกของคุณเท่านั้น",
+  "reasonPlaceholder": "กรุณาให้เหตุผลในการยกเลิก...",
+  "warningNotice": "ประกาศเตือน",
+  "cancellationWarning": "การยกเลิกคำสั่งซื้อในขั้นตอนการเตรียมการไม่สามารถย้อนกลับได้ คุณจำเป็นต้องติดต่อฝ่ายสนับสนุนสำหรับปัญหาใดๆ หลังการยกเลิก",
+  "cancellingOrder": "กำลังยกเลิกคำสั่งซื้อ",
+  "cancellingOrderDescription": "กำลังดำเนินการคำขอยกเลิกของคุณ คุณจะถูกนำไปยังหน้าอื่นในไม่ช้า",
+  "confirmCancel": "ใช่ ยกเลิกคำสั่งซื้อ",
+  "cancelling": "กำลังยกเลิก...",
+  "noReasonProvided": "ไม่ได้ระบุเหตุผล",
+  "orderCancelled": "คำสั่งซื้อถูกยกเลิกแล้ว",
+  "orderCancellationFailed": "ยกเลิกคำสั่งซื้อไม่สำเร็จ",
+  "event": {
+    "title": "กิจกรรม",
+    "noEvents": "ไม่พบกิจกรรม",
+    "noEventsDescription": "ไม่มีกิจกรรมที่พร้อมใช้งานในขณะนี้ กรุณากลับมาตรวจสอบในภายหลัง!",
+    "loading": "กำลังโหลดกิจกรรม...",
+    "error": "ไม่สามารถโหลดกิจกรรมได้",
+    "errorDescription": "เกิดข้อผิดพลาดในการโหลดกิจกรรม กรุณาลองอีกครั้งในภายหลัง",
+    "description": "รายละเอียด",
+    "status": {
+      "upcoming": "กำลังจะมาถึง",
+      "ongoing": "กำลังดำเนินการ",
+      "completed": "เสร็จสิ้นแล้ว",
+      "unknown": "ไม่ทราบ"
+    }
+  }
+}

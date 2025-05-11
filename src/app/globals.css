@@ -1,0 +1,163 @@
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+
+/* Import fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.slick-dots.custom-dots li {
+  margin: 0 5px;
+}
+
+.slick-dots.custom-dots li div {
+  background-color: #c2c2c2;
+  transition: background-color 0.3s;
+}
+
+.slick-dots.custom-dots li.slick-active div {
+  background-color: white;
+}
+
+.slick-dots.product-slider li {
+  margin: 0 0.1rem;
+  width: 2rem;
+  height: 0.25rem;
+}
+
+.slick-dots.product-slider li div {
+  background-color: white;
+  transition: background-color 0.3s;
+  gap: 1px;
+  width: 100%;
+}
+
+.slick-dots.product-slider li.slick-active div {
+  background-color: #fe8c00;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
+
+@layer utilities {
+  /*Custom scrollbar*/
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 21px;
+    height: 21px;
+    background-color: #ffff;
+    padding: 10px;
+    border-radius: 100vh;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #ffff;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #c8854b;
+    border-radius: 100vh;
+    border: 3px solid #c8854b;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #c8854b;
+    border-radius: 100vh;
+    border: 3px solid #c8854b;
+  }
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .vice-city {
+    @apply bg-gradient-to-tr from-vice-start to-vice-stop;
+  }
+
+  .hidden-actions[data-state='open'] {
+    opacity: 1;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  /* ::-webkit-scrollbar-thumb {
+     @apply rounded-rounded bg-grey-30;
+   }
+ 
+   ::-webkit-scrollbar-thumb:hover {
+     @apply bg-grey-40;
+   }
+ 
+   .accordion-margin-transition {
+     @apply transition-[margin] duration-300 ease-[cubic-bezier(0.87,0,0.13,1)];
+   }
+ 
+   .col-tree:last-child .bottom-half-dash {
+     @apply border-none;
+   } */
+}
+
+.scrolling-touch {
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling-auto {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.fallback-loader {
+  width: 50px;
+  aspect-ratio: 1;
+  --_c: no-repeat radial-gradient(farthest-side, #fe8c00 92%, #0000);
+  background:
+    var(--_c) top,
+    var(--_c) left,
+    var(--_c) right,
+    var(--_c) bottom;
+  background-size: 12px 12px;
+  animation: l7 1s infinite;
+}
+@keyframes l7 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+
+@layer utilities {
+  .radix-scrollbar-hidden [data-radix-scroll-area-scrollbar] {
+    display: none !important;
+  }
+}
