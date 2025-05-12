@@ -92,16 +92,16 @@
 
   "onboarding": {
     "s1": {
-      "header": "Local Pickup, Simplified.",
-      "content": "Explore nearby shops offering convenient delivery services. From groceries to gifts, everything is just a click away."
+      "header": "Choose Products",
+      "content": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."
     },
     "s2": {
-      "header": "Worry-free takeaway, Instantly Available.",
-      "content": "Access the world's resources, right now. Worry-free takeaway provides instant access to digitial goods, and global services."
+      "header": "Make Payment",
+      "content": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."
     },
     "s3": {
-      "header": "Worry-free takeaway: Your World, Delivered.",
-      "content": "Access a world of resources, digital goods, and international services. Worry-free takeaway brings the best of the world to your fingertips, wherever you are."
+      "header": "Get Your Order",
+      "content": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit."
     },
     "metadata": {
       "title": "Worry-free takeaway: Instant Access | Digital Goods & Services",
