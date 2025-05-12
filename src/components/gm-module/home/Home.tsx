@@ -4,6 +4,7 @@ import SearchBar from '@/components/gm-module/common/SearchBar';
 
 import CategoryPreview from '../category/CategoryPreview';
 import PromotionList from '../promotion/PromotionList';
+import DealOfTheDay from './DealOfTheDay';
 
 function Home() {
   return (
@@ -11,6 +12,10 @@ function Home() {
       <SearchBar />
       <CategoryPreview />
       <PromotionList />
+      <div className="flex w-full">
+        <DealOfTheDay />
+      </div>
+      <div className="flex w-full"></div>
     </div>
   );
 }
