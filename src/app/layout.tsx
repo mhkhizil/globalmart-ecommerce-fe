@@ -69,7 +69,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden overflow-y-hidden h-[100dvh] flex w-full items-center justify-center bg-gray-100`}
       >
-        <div className="md:max-w-[430px] w-full border-[0.5px] border-gray-400 h-full bg-white">
+        <div className="md:max-w-[430px] w-full border-[0.5px] border-gray-400 h-full bg-[#FDFDFD]">
           <ReduxProvider>
             <ReduxPersistProvider>
               <TanStackQueryClientProvider>

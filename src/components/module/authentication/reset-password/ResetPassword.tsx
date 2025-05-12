@@ -27,8 +27,7 @@ function ResetPassword() {
       </span>
 
       <span className="text-[14px] font-[500] leading-[20px] text-[#878787] mt-[8px]">
-        Your new password must be different from the previously used
-        password{' '}
+        Your new password must be different from the previously used password{' '}
       </span>
       <div className="flex h-full w-full items-center justify-center mb-[24px] mt-[32px]">
         <ConfirmPassword />

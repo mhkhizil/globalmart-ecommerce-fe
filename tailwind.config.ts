@@ -29,6 +29,7 @@ export default {
       fontFamily: {
         poppins: ['Poppins'],
         merienda: ['Merienda'],
+        montserrat: ['Montserrat', ...fontFamily.sans],
       },
       scrollbar: {
         none: {

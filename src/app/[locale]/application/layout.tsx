@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex w-full h-16">
         <NavigationBar />
       </div>
-      <FloatingButton />
+      {/* <FloatingButton /> */}
     </div>
   );
 }
