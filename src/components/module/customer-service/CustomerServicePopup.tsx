@@ -131,7 +131,7 @@ const CustomerServicePopup = () => {
         >
           <Button
             variant="outline"
-            className="bg-gradient-to-r from-[#FE8C00] to-[#F83600] text-white border-none shadow-md hover:shadow-lg transition-all duration-300 group px-4 py-2 h-auto"
+            className="bg-gradient-to-r from-red-500 to-red-900 text-white border-none shadow-md hover:shadow-lg transition-all duration-300 group px-4 py-2 h-auto"
           >
             <div className="flex items-center gap-2">
               <div className="relative">
