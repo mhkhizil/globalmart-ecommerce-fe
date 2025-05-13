@@ -31,7 +31,8 @@
         }
       }
     ],
-    "unicorn/filename-case": "off"
+    "unicorn/filename-case": "off",
+    "unicorn/no-null": "off"
   },
   "overrides": [
     {
