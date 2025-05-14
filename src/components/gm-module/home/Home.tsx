@@ -8,6 +8,7 @@ import PromotionList from '../promotion/PromotionList';
 import DealOfTheDay from './DealOfTheDay';
 import NewArrivalbanner from './NewArrivalbanner';
 import SpecialOffers from './SpecialOffers';
+import SponsorBanner from './SponsorBanner';
 import TrendingProducts from './TrendingProducts';
 
 function Home() {
@@ -22,14 +23,18 @@ function Home() {
       <div className="flex w-full">
         <SpecialOffers />
       </div>
-      <div className="flex w-full">
-        <NewArrivalbanner />
-      </div>
+
       <div className="flex w-full">
         <ProductPreviewList />
       </div>
       <div className="flex w-full">
         <TrendingProducts />
+      </div>
+      <div className="flex w-full">
+        <NewArrivalbanner />
+      </div>
+      <div className="flex w-full">
+        <SponsorBanner />
       </div>
     </div>
   );
