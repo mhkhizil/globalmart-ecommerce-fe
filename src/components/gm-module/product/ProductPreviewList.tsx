@@ -13,8 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { ProductDetail } from '@/core/entity/Product';
-import { Product } from '@/core/models/Product';
+import { Product, ProductDetail } from '@/core/entity/Product';
 import { useGetProductList } from '@/lib/hooks/service/product/useGetProductList';
 import { Locale } from '@/lib/redux/slices/LanguageSlice';
 
@@ -158,26 +157,30 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
     }
   };
 
-  // Map the API response to our model format
-  const mappedProducts: Product[] = productList.product.map(
-    (item: ProductDetail) => ({
-      id: item.id.toString(),
-      name: item.p_name,
-      description: getLocalizedDescription(item),
-      discountedPrice: item.discount_amount
-        ? Number(item.p_price) - Number(item.discount_amount)
-        : Number(item.p_price),
-      originalPrice: Number(item.p_price),
-      rating: 4, // Assuming default rating since it's not in the API
-      reviewCount: Math.floor(Math.random() * 10_000), // Random review count for demo
-      imageUrl:
-        item.p_image ||
-        (item.product_image && item.product_image.length > 0
-          ? item.product_image[0].link
-          : ''),
-      category: item.c_name,
-    })
-  );
+  // Map the API response to our entity Product format
+  const mappedProducts = productList.product.map((item: ProductDetail) => ({
+    id: Number.parseInt(item.id.toString()),
+    c_id: item.c_id,
+    m_id: item.m_id,
+    name: item.p_name,
+    description: getLocalizedDescription(item),
+    price: Number(item.p_price),
+    stock: item.p_stock,
+    is_available: item.p_is_available,
+    sortBy: item.p_sortBy,
+    image:
+      item.p_image ||
+      (item.product_image && item.product_image.length > 0
+        ? item.product_image[0].link
+        : ''),
+    created_at: new Date().toISOString(), // Default value if not available
+    updated_at: new Date().toISOString(), // Default value if not available
+    // Add promotion fields
+    discountType: item.discount_type,
+    discountPercent: item.discount_percent,
+    discountAmount: Number(item.discount_amount || 0),
+    originalPrice: Number(item.p_price),
+  }));
 
   // Custom navigation buttons matching Figma design
   const CustomPreviousButton = () => (

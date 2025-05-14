@@ -1,24 +1,45 @@
 import Image from 'next/image';
 import React from 'react';
 
-import { Product } from '@/core/models/Product';
+import { Product } from '@/core/entity/Product';
 
 type ProductCardProps = {
-  product: Product;
+  product: Product & {
+    discountType?: 'percentage' | 'fixed';
+    discountPercent?: number;
+    discountAmount?: number;
+    originalPrice?: number;
+  };
 };
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  // Calculate discount percentage
-  const discountPercentage = Math.round(
-    ((product.originalPrice - product.discountedPrice) /
-      product.originalPrice) *
-      100
-  );
+  // Calculate discount percentage based on discount type
+  const hasDiscount =
+    product.discountType &&
+    (product.discountType === 'percentage'
+      ? product.discountPercent! > 0
+      : product.discountAmount! > 0);
 
-  // Generate star rating elements
+  // Calculate the discounted price
+  const discountedPrice = hasDiscount
+    ? product.discountType === 'percentage'
+      ? Math.round(
+          product.price - product.price * (product.discountPercent! / 100)
+        )
+      : Math.round(product.price - (product.discountAmount || 0))
+    : product.price;
+
+  const discountPercentage = hasDiscount
+    ? product.discountType === 'percentage'
+      ? product.discountPercent!
+      : Math.round((product.discountAmount! / product.price) * 100)
+    : 0;
+
+  // Generate star rating elements - using a default rating of 4
   const renderRating = () => {
     const stars = [];
-    const fullStars = Math.floor(product.rating);
+    const rating = 4; // Default rating since it's not in the entity
+    const fullStars = Math.floor(rating);
 
     // Add filled stars
     for (let index = 0; index < fullStars; index++) {
@@ -46,7 +67,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Image */}
       <div className="relative h-[180px] w-full overflow-hidden rounded-t-[4px]">
         <Image
-          src={product.imageUrl}
+          src={product.image}
           alt={product.name}
           fill
           className="object-cover"
@@ -64,36 +85,45 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
         {/* Description */}
         <p className="text-[10px] font-normal font-montserrat leading-[1.6em] text-black line-clamp-2 h-8">
-          {product.description}
+          {product.description || ''}
         </p>
 
-        {/* Price */}
-        <div className="flex items-center gap-2 mt-1">
-          <span className="text-sm font-medium font-montserrat text-black">
-            ₹{product.discountedPrice}
-          </span>
-          {product.originalPrice > product.discountedPrice && (
-            <div className="flex items-center">
-              <span className="text-xs font-light font-montserrat text-[#808488] line-through">
-                ₹{product.originalPrice}
-              </span>
-              <div className="border-b border-[#808488] w-full absolute"></div>
-            </div>
-          )}
-        </div>
+        {/* Price Section - only manage the promotion area height */}
+        <div className="mt-1 flex flex-col">
+          {/* Current Price */}
+          <div className="flex items-baseline">
+            <span className="text-lg font-semibold text-black">
+              ₹{discountedPrice}
+            </span>
+          </div>
 
-        {/* Discount */}
-        {discountPercentage > 0 && (
-          <span className="text-[10px] font-normal font-montserrat text-[#FE735C]">
-            {discountPercentage}%Off
-          </span>
-        )}
+          {/* Use a fixed height container for promo info to ensure consistent height */}
+          <div className="h-[28px]">
+            {hasDiscount && (
+              <div className="flex gap-x-3">
+                <div className="flex items-center">
+                  <span className="text-sm text-gray-500 line-through">
+                    ₹{product.price}
+                  </span>
+                </div>
+
+                {/* Discount Percentage */}
+                <div className="flex items-center">
+                  <span className="text-sm font-medium text-[#FE735C]">
+                    {discountPercentage}%Off
+                  </span>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Rating */}
         <div className="flex items-center gap-1 mt-1">
           <div className="flex">{renderRating()}</div>
           <span className="text-[10px] font-normal font-montserrat text-[#A4A9B3] ml-1">
-            {product.reviewCount}
+            {Math.floor(Math.random() * 10_000)}{' '}
+            {/* Random review count for demo */}
           </span>
         </div>
       </div>
