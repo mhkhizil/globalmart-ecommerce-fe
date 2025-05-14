@@ -69,7 +69,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       : '');
 
   return (
-    <div className="flex flex-col w-[180px] bg-white rounded-[6px] shadow-sm overflow-hidden transition-transform duration-300 hover:shadow-md hover:-translate-y-1">
+    <div className="flex flex-col flex-1 h-full w-[180px] bg-white rounded-[6px] shadow-sm overflow-hidden transition-transform duration-300 hover:shadow-md hover:-translate-y-1">
       {/* Product Image */}
       <div className="relative h-[180px] w-full overflow-hidden rounded-t-[4px]">
         <Image
@@ -98,13 +98,13 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="mt-1 flex flex-col">
           {/* Current Price */}
           <div className="flex items-baseline">
-            <span className="text-lg font-semibold text-black">
+            <span className="text-sm font-semibold text-black">
               ₹{discountedPrice}
             </span>
           </div>
 
           {/* Use a fixed height container for promo info to ensure consistent height */}
-          <div className="h-[28px]">
+          <div className="">
             {hasDiscount && (
               <div className="flex gap-x-3">
                 <div className="flex items-center">
@@ -126,7 +126,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
         {/* Rating - conditionally render based on showRating prop */}
         {showRating && (
-          <div className="flex items-center gap-1 mt-1">
+          <div className="flex items-center gap-1 ">
             <div className="flex">{renderRating()}</div>
             <span className="text-[10px] font-normal font-montserrat text-[#A4A9B3] ml-1">
               {Math.floor(Math.random() * 10_000)}{' '}

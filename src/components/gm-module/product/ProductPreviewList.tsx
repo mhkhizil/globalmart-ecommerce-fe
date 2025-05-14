@@ -208,7 +208,7 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
             {localizedProducts.map((product: ProductDetail) => (
               <div
                 key={product.id}
-                className="flex-[0_0_auto] min-w-0 px-1.5 first:pl-4 last:pr-4"
+                className="flex-[0_0_auto] min-h-[330px] min-w-0 px-1.5 first:pl-4 last:pr-4"
               >
                 <ProductCard product={product} />
               </div>
