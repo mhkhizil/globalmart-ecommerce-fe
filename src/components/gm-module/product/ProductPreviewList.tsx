@@ -13,7 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Product, ProductDetail } from '@/core/entity/Product';
+import { ProductDetail } from '@/core/entity/Product';
 import { useGetProductList } from '@/lib/hooks/service/product/useGetProductList';
 import { Locale } from '@/lib/redux/slices/LanguageSlice';
 
@@ -139,48 +139,27 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
     return null;
   }
 
-  // Get description based on locale
-  const getLocalizedDescription = (item: ProductDetail) => {
-    switch (locale) {
-      case 'cn': {
-        return item.cn_description || item.en_description;
+  // Get description based on locale and prepare products
+  const getLocalizedProducts = () => {
+    return productList.product.map((item: ProductDetail) => {
+      // Create a copy of the item to avoid mutation
+      let localizedItem = { ...item };
+
+      // Update the description based on locale
+      if (locale === 'cn' && item.cn_description) {
+        localizedItem.en_description = item.cn_description;
+      } else if (locale === 'mm' && item.mm_description) {
+        localizedItem.en_description = item.mm_description;
+      } else if (locale === 'th' && item.th_description) {
+        localizedItem.en_description = item.th_description;
       }
-      case 'mm': {
-        return item.mm_description || item.en_description;
-      }
-      case 'th': {
-        return item.th_description || item.en_description;
-      }
-      default: {
-        return item.en_description;
-      }
-    }
+
+      return localizedItem;
+    });
   };
 
-  // Map the API response to our entity Product format
-  const mappedProducts = productList.product.map((item: ProductDetail) => ({
-    id: Number.parseInt(item.id.toString()),
-    c_id: item.c_id,
-    m_id: item.m_id,
-    name: item.p_name,
-    description: getLocalizedDescription(item),
-    price: Number(item.p_price),
-    stock: item.p_stock,
-    is_available: item.p_is_available,
-    sortBy: item.p_sortBy,
-    image:
-      item.p_image ||
-      (item.product_image && item.product_image.length > 0
-        ? item.product_image[0].link
-        : ''),
-    created_at: new Date().toISOString(), // Default value if not available
-    updated_at: new Date().toISOString(), // Default value if not available
-    // Add promotion fields
-    discountType: item.discount_type,
-    discountPercent: item.discount_percent,
-    discountAmount: Number(item.discount_amount || 0),
-    originalPrice: Number(item.p_price),
-  }));
+  // Get products with localized descriptions
+  const localizedProducts = getLocalizedProducts();
 
   // Custom navigation buttons matching Figma design
   const CustomPreviousButton = () => (
@@ -226,7 +205,7 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
       <div className="relative" ref={containerRef}>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
-            {mappedProducts.map((product: Product) => (
+            {localizedProducts.map((product: ProductDetail) => (
               <div
                 key={product.id}
                 className="flex-[0_0_auto] min-w-0 px-1.5 first:pl-4 last:pr-4"
