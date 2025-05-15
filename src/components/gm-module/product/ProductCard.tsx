@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { ProductDetail } from '@/core/entity/Product';
@@ -60,6 +61,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
     return stars;
   };
+  const router = useRouter();
 
   // Get product image from either p_image or product_image array
   const productImage =
@@ -69,7 +71,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
       : '');
 
   return (
-    <div className="flex flex-col flex-1 h-full w-[180px] bg-white rounded-[6px] shadow-sm overflow-hidden transition-transform duration-300 hover:shadow-md hover:-translate-y-1">
+    <div
+      className="flex flex-col flex-1 h-full w-[180px] bg-white rounded-[6px] shadow-sm overflow-hidden transition-transform duration-300 hover:shadow-md hover:-translate-y-1"
+      onClick={() => {
+        router.push(`/application/product/detail/${product.p_id}`);
+      }}
+    >
       {/* Product Image */}
       <div className="relative h-[180px] w-full overflow-hidden rounded-t-[4px]">
         <Image

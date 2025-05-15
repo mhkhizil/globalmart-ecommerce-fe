@@ -1,0 +1,82 @@
+/* Product Slider Custom Styles */
+.product-slider-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 30px; /* Add padding at the bottom for the dots */
+}
+
+.product-slider-container .slick-slide {
+  padding: 0 0px;
+}
+
+.slick-dots.custom-dots {
+  bottom: -10px; /* Move dots below the slider container */
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.slick-dots.custom-dots li {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+}
+
+.slick-dots.custom-dots li .custom-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #dedbdb; /* Changed to gray for visibility outside slider */
+  transition: all 0.2s ease;
+}
+
+.slick-dots.custom-dots li.slick-active .custom-dot {
+  width: 10px; /* Make active dot slightly larger */
+  height: 10px; /* Make active dot slightly larger */
+  background-color: #f83758; /* Changed to match promotion card background */
+  /* transform: scale(1); */
+  transform: translateY(-1px); /* Scale up active dot */
+}
+
+/* Explicitly define navigation buttons style and position */
+.navigation-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navigation-button:hover {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Position for prev/next buttons */
+.prev-button {
+  left: 8px;
+}
+
+.next-button {
+  right: 8px;
+}
+
+/* Hide navigation buttons on small screens */
+@media (max-width: 640px) {
+  .navigation-button {
+    display: none;
+  }
+}
