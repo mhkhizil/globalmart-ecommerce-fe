@@ -6,6 +6,7 @@ import CategoryPreview from '../category/CategoryPreview';
 import ProductPreviewList from '../product/ProductPreviewList';
 import PromotionList from '../promotion/PromotionList';
 import DealOfTheDay from './DealOfTheDay';
+import HomeNav from './HomeNav';
 import NewArrivalbanner from './NewArrivalbanner';
 import SpecialOffers from './SpecialOffers';
 import SponsorBanner from './SponsorBanner';
@@ -13,7 +14,8 @@ import TrendingProducts from './TrendingProducts';
 
 function Home() {
   return (
-    <div className="flex w-full flex-col h-full scrollbar-none overflow-y-auto pb-2 px-4 space-y-5">
+    <div className="flex w-full flex-col h-full scrollbar-none overflow-y-auto pb-2 pt-4 px-4 space-y-5">
+      <HomeNav />
       <SearchBar />
       <CategoryPreview />
       <PromotionList />
