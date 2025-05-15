@@ -85,12 +85,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
       {/* Product Details */}
       <div className="p-3 flex flex-col gap-1">
         {/* Title */}
-        <h3 className="text-sm font-medium font-montserrat line-clamp-1 text-black">
+        <h3 className="text-sm font-medium font-['Montserrat'] line-clamp-1 text-black">
           {product.p_name}
         </h3>
 
         {/* Description */}
-        <p className="text-[10px] font-normal font-montserrat leading-[1.6em] text-black line-clamp-2 h-8">
+        <p className="text-[10px] font-normal font-['Montserrat'] leading-[1.6em] text-black line-clamp-2 h-8">
           {product.en_description || ''}
         </p>
 
@@ -128,7 +128,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         {showRating && (
           <div className="flex items-center gap-1 ">
             <div className="flex">{renderRating()}</div>
-            <span className="text-[10px] font-normal font-montserrat text-[#A4A9B3] ml-1">
+            <span className="text-[10px] font-normal font-['Montserrat'] text-[#A4A9B3] ml-1">
               {Math.floor(Math.random() * 10_000)}{' '}
               {/* Random review count for demo */}
             </span>

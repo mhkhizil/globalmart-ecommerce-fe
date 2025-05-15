@@ -38,19 +38,19 @@ const PromotionCard = ({
       <div className="absolute inset-0 z-10 flex flex-col justify-between p-6">
         <div className="flex flex-col gap-1">
           <h3
-            className="font-montserrat text-[20px] font-bold leading-[1.1em] text-white"
+            className="font-['Montserrat'] text-[20px] font-bold leading-[1.1em] text-white"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             {title}
           </h3>
           <p
-            className="font-montserrat text-[12px] font-normal leading-[1.33em] text-white"
+            className="font-['Montserrat'] text-[12px] font-normal leading-[1.33em] text-white"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             {subtitle}
           </p>
           <p
-            className="font-montserrat text-[12px] font-normal leading-[1.33em] text-white"
+            className="font-['Montserrat'] text-[12px] font-normal leading-[1.33em] text-white"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             {text}
@@ -62,7 +62,7 @@ const PromotionCard = ({
           className="flex w-fit items-center justify-center gap-1 rounded-[6px] border border-white px-2 py-2 text-white"
         >
           <span
-            className="font-montserrat text-[12px] font-semibold leading-[1.33em]"
+            className="font-['Montserrat'] text-[12px] font-semibold leading-[1.33em]"
             style={{ fontFamily: 'Montserrat, sans-serif' }}
           >
             Shop Now

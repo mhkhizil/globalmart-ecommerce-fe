@@ -199,7 +199,9 @@ function TrendingProductList({ title, categoryId }: ProductPreviewListProps) {
   return (
     <div className="w-full py-4">
       {title && (
-        <h2 className="text-xl font-semibold font-montserrat mb-4">{title}</h2>
+        <h2 className="text-xl font-semibold font-['Montserrat'] mb-4">
+          {title}
+        </h2>
       )}
 
       <div className="relative" ref={containerRef}>

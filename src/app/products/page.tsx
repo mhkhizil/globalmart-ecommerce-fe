@@ -4,7 +4,7 @@ import ProductPreviewList from '@/components/gm-module/product/ProductPreviewLis
 
 export default function ProductsPage() {
   return (
-    <div className="container mx-auto px-4 py-8 font-montserrat">
+    <div className="container mx-auto px-4 py-8 font-['Montserrat']">
       <h1 className="text-2xl font-bold mb-6">Featured Products</h1>
 
       <ProductPreviewList title="Popular Products" />

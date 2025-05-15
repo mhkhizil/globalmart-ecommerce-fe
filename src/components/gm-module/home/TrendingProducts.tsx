@@ -13,7 +13,7 @@ const TrendingProducts = () => {
       transition={{ duration: 0.5, delay: 0.1 }}
     >
       <div className="flex flex-col gap-2">
-        <h2 className="font-montserrat font-medium text-white text-base leading-5">
+        <h2 className="font-['Montserrat'] font-medium text-white text-base leading-5">
           Trending Products
         </h2>
         <div className="flex items-center gap-1">
@@ -23,7 +23,7 @@ const TrendingProducts = () => {
             width={16}
             height={16}
           />
-          <span className="font-montserrat font-normal text-white text-xs leading-4">
+          <span className="font-['Montserrat'] font-normal text-white text-xs leading-4">
             Last Date 29/02/22
           </span>
         </div>
@@ -32,7 +32,7 @@ const TrendingProducts = () => {
         href="/trending"
         className="flex items-center gap-1 border border-white rounded px-[10px] py-[6px]"
       >
-        <span className="font-montserrat font-semibold text-white text-xs leading-4">
+        <span className="font-['Montserrat'] font-semibold text-white text-xs leading-4">
           View all
         </span>
         <Image

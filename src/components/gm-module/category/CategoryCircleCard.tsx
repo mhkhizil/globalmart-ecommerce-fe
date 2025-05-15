@@ -64,7 +64,7 @@ const CategoryCircleCard = memo(
             )}
           </div>
         </div>
-        <span className="text-center text-[10px] font-normal font-['Montserrat'] leading-[1.6em] text-[#21003D]">
+        <span className="text-center text-[10px] font-normal font-['Montserrat'] text-wrap leading-[1.6em] text-[#21003D]">
           {name}
         </span>
       </div>

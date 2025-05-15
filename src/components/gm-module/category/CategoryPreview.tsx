@@ -133,7 +133,7 @@ function CategoryPreview({
             {/* Sort Button */}
             <Drawer open={sortOpen} onOpenChange={setSortOpen}>
               <DrawerTrigger asChild>
-                <div className="flex items-center gap-1 bg-white font-montserrat font-[400] rounded-md px-2 py-1 shadow-[1px_1px_16px_0px_rgba(0,0,0,0.08)] cursor-pointer">
+                <div className="flex items-center gap-1 bg-white font-['Montserrat'] font-[400] rounded-md px-2 py-1 shadow-[1px_1px_16px_0px_rgba(0,0,0,0.08)] cursor-pointer">
                   <span className="text-sm">Sort</span>
                   <div className="flex flex-col items-center">
                     <img
@@ -174,7 +174,7 @@ function CategoryPreview({
             {/* Filter Button */}
             <Drawer open={filterOpen} onOpenChange={setFilterOpen}>
               <DrawerTrigger asChild>
-                <div className="flex items-center gap-1 bg-white font-montserrat font-[400] text-[12px] rounded-md px-2 py-1 shadow-[1px_1px_16px_0px_rgba(0,0,0,0.08)] cursor-pointer">
+                <div className="flex items-center gap-1 bg-white font-['Montserrat'] font-[400] text-[12px] rounded-md px-2 py-1 shadow-[1px_1px_16px_0px_rgba(0,0,0,0.08)] cursor-pointer">
                   <span className="text-sm">Filter</span>
                   <div className="flex items-center">
                     <img

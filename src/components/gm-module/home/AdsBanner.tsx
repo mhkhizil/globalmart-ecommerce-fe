@@ -26,7 +26,7 @@ function AdsBanner() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-montserrat font-medium text-[#232327] text-md leading-4"
+              className="font-['Montserrat'] font-medium text-[#232327] text-md leading-4"
             >
               Flat and Heels
             </motion.h2>
@@ -35,7 +35,7 @@ function AdsBanner() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="font-montserrat font-normal text-[#232327] text-xs leading-4 mb-6"
+              className="font-['Montserrat'] font-normal text-[#232327] text-xs leading-4 mb-6"
             >
               Stand a chance to get rewarded
             </motion.p>
@@ -50,7 +50,7 @@ function AdsBanner() {
           >
             <Link
               href="#"
-              className="inline-flex items-center gap-2 rounded-[4px] font-montserrat bg-[#EF5466] px-2 py-1 text-base font-medium text-white transition-colors hover:bg-[#D63F51]"
+              className="inline-flex items-center gap-2 rounded-[4px] font-['Montserrat'] bg-[#EF5466] px-2 py-1 text-base font-medium text-white transition-colors hover:bg-[#D63F51]"
             >
               <span>Visit now</span>
               <Image
