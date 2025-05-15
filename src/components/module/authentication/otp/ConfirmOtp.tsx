@@ -51,7 +51,7 @@ function ConfirmOtp() {
         <span className="text-[#878787]  text-[14px] font-[500] leading-[20px]">
           {t('otp.didntReceiveCode')}&nbsp;
         </span>
-        <span className="text-[#FE8C00] text-[14px] font-[500] leading-[20px]">
+        <span className="text-red-500 text-[14px] font-[500] leading-[20px]">
           {t('otp.resend')}
         </span>
       </div>
@@ -64,7 +64,7 @@ function ConfirmOtp() {
       </div>
 
       <div className="flex w-full h-full items-end">
-        <button className="bg-[#FE8C00] rounded-[100px] py-[16px] w-full text-[14px] font-semibold leading-[20px] text-white">
+        <button className="bg-red-500 rounded-[100px] py-[16px] w-full text-[14px] font-semibold leading-[20px] text-white">
           {t('otp.continue')}
         </button>
       </div>

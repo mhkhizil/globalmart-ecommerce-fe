@@ -87,62 +87,62 @@ function CredentialRegister() {
     <form className="flex w-full  flex-col" onSubmit={handleRegister}>
       <Toaster position="top-center" />
       <div className="mb-[14px]">
-        <span>{t('auth.name')}</span>
+        {/* <span>{t('auth.name')}</span> */}
         <Input
           label={t('auth.name')}
           {...register('name')}
           className={clsx(
             'py-[16px] focus:outline-gray-500 border-[1px]',
-            errors.name ? 'border-red-500' : 'border-[#D6D6D6]'
+            errors.name ? 'border-red-900' : 'border-[#D6D6D6]'
           )}
         />
         {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+          <p className="text-red-900 text-sm mt-1">{errors.name.message}</p>
         )}
       </div>
       <div className="mb-[14px]">
-        <span>{t('auth.emailAddress')}</span>
+        {/* <span>{t('auth.emailAddress')}</span> */}
         <Input
           label={t('auth.emailAddress')}
           {...register('email')}
           className={clsx(
             'py-[16px] focus:outline-gray-500 border-[1px]',
-            errors.email ? 'border-red-500' : 'border-[#D6D6D6]'
+            errors.email ? 'border-red-900' : 'border-[#D6D6D6]'
           )}
         />
         {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+          <p className="text-red-900 text-sm mt-1">{errors.email.message}</p>
         )}
       </div>
 
       <div className="mb-[24px]">
-        <span>{t('auth.password')}</span>
+        {/* <span>{t('auth.password')}</span> */}
         <Input
           label={t('auth.password')}
           {...register('password')}
           type="password"
           className={clsx(
             'py-[16px] focus:outline-gray-500 border-[1px]',
-            errors.password ? 'border-red-500' : 'border-[#D6D6D6]'
+            errors.password ? 'border-red-900' : 'border-[#D6D6D6]'
           )}
         />
         {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+          <p className="text-red-900 text-sm mt-1">{errors.password.message}</p>
         )}
       </div>
       <div className="mb-[24px]">
-        <span>{t('auth.confirmPassword')}</span>
+        {/* <span>{t('auth.confirmPassword')}</span> */}
         <Input
           label={t('auth.confirmPassword')}
           {...register('confirm_password')}
           type="password"
           className={clsx(
             'py-[16px] focus:outline-gray-500 border-[1px]',
-            errors.confirm_password ? 'border-red-500' : 'border-[#D6D6D6]'
+            errors.confirm_password ? 'border-red-900' : 'border-[#D6D6D6]'
           )}
         />
         {errors.confirm_password && (
-          <p className="text-red-500 text-sm mt-1">
+          <p className="text-red-900 text-sm mt-1">
             {errors.confirm_password.message}
           </p>
         )}
@@ -159,22 +159,22 @@ function CredentialRegister() {
         />
         <div className="text-[14px] font-[500] leading-[20px] flex-shrink ">
           {t('auth.agreeToTerms')}{' '}
-          <span className="text-[#FE8C00]">
+          <span className="text-red-500">
             <Link href="#">{t('auth.termsOfService')}</Link>
           </span>{' '}
           {t('common.and')}{' '}
-          <span className="text-[#FE8C00]">
+          <span className="text-red-500">
             <Link href="#">{t('auth.privacyPolicy')}</Link>
           </span>
         </div>
       </div>
       <div className="w-full flex items-center justify-center">
-        <Link
+        {/* <Link
           href={'/merchant-register'}
-          className="text-[#FE8C00] text-[14px] font-[500] leading-[20px]  text-center underline mb-[1.5rem]"
+          className="text-red-500 text-[14px] font-[500] leading-[20px]  text-center underline mb-[1.5rem]"
         >
           {t('auth.registerAsMerchant')}
-        </Link>
+        </Link> */}
       </div>
       <div className="flex w-full">
         <button
@@ -182,8 +182,8 @@ function CredentialRegister() {
           className={clsx(
             ' rounded-[100px] py-[16px] min-h-[52px] w-full text-[14px] font-semibold leading-[20px] text-white',
             {
-              'bg-[#FE8C00]': !isLoading,
-              'bg-[#FE8C00]/70': isLoading,
+              'bg-red-500': !isLoading,
+              'bg-red-500/70': isLoading,
             }
           )}
         >

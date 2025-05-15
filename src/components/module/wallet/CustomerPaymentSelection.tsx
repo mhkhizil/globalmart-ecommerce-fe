@@ -307,7 +307,7 @@ function CustomerPaymentMethod() {
                 </div>
                 {isLoadingWallet ? (
                   <div className="flex ">
-                    <Loader color="#FE8C00" />
+                    <Loader color="#f56565" />
                   </div>
                 ) : (
                   <span className="font-semibold text-[1rem]">

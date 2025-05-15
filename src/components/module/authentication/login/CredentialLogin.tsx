@@ -65,7 +65,7 @@ function CredentialLogin() {
     <form className="flex w-full  flex-col" onSubmit={loginHandler}>
       <Toaster />
       <div className="mb-[14px]">
-        <span>{t('auth.email')}</span>
+        {/* <span>{t('auth.email')}</span> */}
         <Input
           label={t('auth.email')}
           {...register('email', { required: 'email required' })}
@@ -73,7 +73,7 @@ function CredentialLogin() {
         />
       </div>
       <div className="mb-[24px]">
-        <span>{t('auth.password')}</span>
+        {/* <span>{t('auth.password')}</span> */}
         <Input
           label={t('auth.password')}
           {...register('password', { required: 'password required' })}
@@ -90,8 +90,8 @@ function CredentialLogin() {
           className={clsx(
             ' rounded-[100px] py-[16px] min-h-[52px] w-full text-[14px] font-semibold leading-[20px] text-white',
             {
-              'bg-[#FE8C00]': !isPending,
-              'bg-[#FE8C00]/70': isPending,
+              'bg-red-500': !isPending,
+              'bg-red-500/70': isPending,
             }
           )}
         >

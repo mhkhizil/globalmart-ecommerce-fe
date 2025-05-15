@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import FaceBookIcon from '@/components/common/icons/FacebookIcon';
+import GoogleIcon from '@/components/common/icons/GoogleIcon';
+
 import SocialLogin from '../login/SocialLogin';
 import CredentialRegister from './CredentialRegister';
 
@@ -17,6 +20,14 @@ function Register() {
       <div className="flex w-full items-center justify-center mb-[24px] mt-[32px]">
         <CredentialRegister />
       </div>
+      <div className=" flex  justify-center items-center gap-4">
+        <div className=" rounded-full w-12 h-12 flex items-center justify-center border border-red-500">
+          <GoogleIcon />
+        </div>
+        <div className=" rounded-full w-12 h-12 flex items-center justify-center border border-red-500">
+          <FaceBookIcon />
+        </div>
+      </div>
       {/* <div className="flex w-full items-center justify-center  gap-x-[16px]">
         <div className="w-full border-[0.5px] border-[#878787]"></div>
         <span className="text-nowrap text-[#878787] text-[14px] font-[500] leading-[20px]">
@@ -29,7 +40,7 @@ function Register() {
       </div> */}
       <div className="flex w-full items-center justify-center text-[16px] font-[400] leading-[24px]  gap-x-[5px]">
         <span className="text-black">{t('auth.alreadyHaveAccount')}</span>
-        <Link className="text-[#FE8C00]" href={'/login'}>
+        <Link className="text-red-500" href={'/login'}>
           {t('auth.signIn')}
         </Link>
       </div>

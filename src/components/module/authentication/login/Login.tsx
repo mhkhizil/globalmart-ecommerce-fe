@@ -4,6 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
+import FaceBookIcon from '@/components/common/icons/FacebookIcon';
+import GoogleIcon from '@/components/common/icons/GoogleIcon';
 import { RootState } from '@/lib/redux/ReduxStore';
 import { Locale, setLocale } from '@/lib/redux/slices/LanguageSlice';
 
@@ -41,6 +43,14 @@ function Login({ locale }: { locale: string }) {
       <div className="flex w-full items-center justify-center mb-[24px] mt-[32px]">
         <CredentialLogin />
       </div>
+      <div className=" flex  justify-center items-center gap-4">
+        <div className=" rounded-full w-12 h-12 flex items-center justify-center border border-red-500">
+          <GoogleIcon />
+        </div>
+        <div className=" rounded-full w-12 h-12 flex items-center justify-center border border-red-500">
+          <FaceBookIcon />
+        </div>
+      </div>
       {/* <div className="flex w-full items-center justify-center  gap-x-[16px]">
         <div className="w-full border-[0.5px] border-[#878787]"></div>
         <span className="text-nowrap text-[#878787] text-[14px] font-[500] leading-[20px]">
@@ -55,7 +65,7 @@ function Login({ locale }: { locale: string }) {
         <button
           onClick={() => router.push('/application//home')}
           type="button"
-          className="text-white gap-x-2  items-center justify-center rounded-[5px] flex bg-[#FE8C00] px-[2rem] font-[600] py-[0.2rem]"
+          className="text-white gap-x-2  items-center justify-center rounded-[5px] flex bg-red-500 px-[2rem] font-[600] py-[0.2rem]"
         >
           {t('auth.skip')}
           {/* <svg
@@ -76,7 +86,7 @@ function Login({ locale }: { locale: string }) {
       </div>
       <div className="flex w-full items-center justify-center text-[16px] font-[400] leading-[24px] mt-[32px] gap-x-[5px]">
         <span className="text-black">{t('auth.dontHaveAccount')}</span>
-        <Link className="text-[#FE8C00]" href={'/register'}>
+        <Link className="text-red-500" href={'/register'}>
           {' '}
           {t('auth.register')}
         </Link>

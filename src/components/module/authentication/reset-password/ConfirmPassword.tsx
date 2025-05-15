@@ -53,7 +53,7 @@ function ConfirmPassword() {
       </div>
 
       <div className="flex w-full h-full items-end mb-[20px]">
-        <button className="bg-[#FE8C00] rounded-[100px] py-[16px] w-full text-[14px] font-semibold leading-[20px] text-white">
+        <button className="bg-red-500 rounded-[100px] py-[16px] w-full text-[14px] font-semibold leading-[20px] text-white">
           Verify Account
         </button>
       </div>
