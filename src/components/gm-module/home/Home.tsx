@@ -6,6 +6,7 @@ import CategoryPreview from '../category/CategoryPreview';
 import ProductPreviewList from '../product/ProductPreviewList';
 import TrendingProductList from '../product/TrendingProductList';
 import PromotionList from '../promotion/PromotionList';
+import AdsBanner from './AdsBanner';
 import DealOfTheDay from './DealOfTheDay';
 import HomeNav from './HomeNav';
 import NewArrivalbanner from './NewArrivalbanner';
@@ -28,6 +29,9 @@ function Home() {
       </div>
       <div className="flex w-full">
         <SpecialOffers />
+      </div>
+      <div className="flex w-full">
+        <AdsBanner />
       </div>
       <div className="flex w-full">
         <TrendingProducts />
