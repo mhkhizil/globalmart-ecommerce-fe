@@ -659,8 +659,8 @@
     "orderSubmissionFailed": "Order submission failed. Please try again.",
     "pleaseLoginToSubmitOrder": "Please log in to submit your order",
     "yourCartIsEmpty": "Your cart is empty",
-    "seemsLikeYouHaveNotOrderedAnyFoodYet": "Seems like you haven't ordered any food yet",
-    "findFoods": "Find Foods",
+    "seemsLikeYouHaveNotOrderedAnyFoodYet": "Seems like you haven't ordered any products yet",
+    "findFoods": "Find Products",
     "myCart": "My Cart",
     "deliveryLocation": "Delivery Location",
     "home": "Home",
@@ -681,8 +681,36 @@
     "off": "off",
     "metadata": {
       "title": "Cart | Takeout",
-      "keywords": "cart, checkout, order food, Takeout cart",
-      "description": "View your cart and complete your order on Takeout. Easy checkout process for food, goods, and digital services."
+      "keywords": "cart, checkout, order products, Global mart cart",
+      "description": "View your cart and complete your order on Global mart. Easy checkout process for products, goods, and digital services."
+    }
+  },
+
+  "shipping": {
+    "shippingAddress": "Shipping Address",
+    "fullName": "Full Name",
+    "addressLine1": "Address Line 1",
+    "addressLine2": "Address Line 2",
+    "optional": "Optional",
+    "city": "City",
+    "state": "State/Province",
+    "zipCode": "Zip/Postal Code",
+    "phone": "Phone Number",
+    "setAsDefault": "Set as default shipping address",
+    "saveAddress": "Save Address",
+    "addressSaved": "Address saved successfully",
+    "errorSavingAddress": "Error saving address. Please try again.",
+    "selectShippingAddress": "Select Shipping Address",
+    "addNewAddress": "Add New Address",
+    "editAddress": "Edit Address",
+    "deleteAddress": "Delete Address",
+    "confirmDeleteAddress": "Are you sure you want to delete this address?",
+    "noAddressFound": "No shipping addresses found. Please add one.",
+    "useDifferentAddress": "Use a different address",
+    "metadata": {
+      "title": "Shipping Address | Global Mart",
+      "keywords": "shipping, address, delivery, e-commerce",
+      "description": "Manage your shipping addresses for product delivery on Global Mart."
     }
   },
 

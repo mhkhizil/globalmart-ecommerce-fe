@@ -12,13 +12,13 @@ function EmptyCartIcon() {
           cx="146.078"
           cy="103.5"
           r="103.5"
-          fill="#FFAF0B"
+          fill="#ef4444"
           fillOpacity="0.14"
         />
-        <circle cx="39.3438" cy="32.3438" r="9.70312" fill="#FE8C00" />
-        <circle cx="34.4922" cy="181.125" r="12.9375" fill="#FE8C00" />
-        <circle cx="265.75" cy="58.2188" r="12.9375" fill="#FE8C00" />
-        <circle cx="247.961" cy="14.5547" r="8.08594" fill="#FE8C00" />
+        <circle cx="39.3438" cy="32.3438" r="9.70312" fill="#ef4444" />
+        <circle cx="34.4922" cy="181.125" r="12.9375" fill="#ef4444" />
+        <circle cx="265.75" cy="58.2188" r="12.9375" fill="#ef4444" />
+        <circle cx="247.961" cy="14.5547" r="8.08594" fill="#ef4444" />
         <g filter="url(#filter0_dd_1007_9214)">
           <path
             fillRule="evenodd"
@@ -52,7 +52,7 @@ function EmptyCartIcon() {
             width="90.5625"
             height="90.5625"
             rx="45.2812"
-            fill="#FE8C00"
+            fill="#ef4444"
           />
           <path
             d="M163.059 159.293L156.455 152.689M161.172 141.369C161.172 150.226 153.992 157.406 145.135 157.406C136.278 157.406 129.098 150.226 129.098 141.369C129.098 132.512 136.278 125.332 145.135 125.332C153.992 125.332 161.172 132.512 161.172 141.369Z"
@@ -157,7 +157,7 @@ function EmptyCartIcon() {
             y2="155.25"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#FFAF0B" stopOpacity="0.44" />
+            <stop stopColor="#ef4444" stopOpacity="0.44" />
             <stop offset="0.997917" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
@@ -168,7 +168,7 @@ function EmptyCartIcon() {
             y2="155.25"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#FFAF0B" stopOpacity="0.44" />
+            <stop stopColor="#ef4444" stopOpacity="0.44" />
             <stop offset="0.997917" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <linearGradient
@@ -179,7 +179,7 @@ function EmptyCartIcon() {
             y2="155.25"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#FFAF0B" stopOpacity="0.44" />
+            <stop stopColor="#ef4444" stopOpacity="0.44" />
             <stop offset="0.997917" stopColor="white" stopOpacity="0" />
           </linearGradient>
         </defs>

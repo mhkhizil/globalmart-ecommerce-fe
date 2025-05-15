@@ -16,6 +16,7 @@ import PromoCodeIcon from '@/components/common/icons/PromoCodeIcon';
 import Loader from '@/components/common/loader/Loader';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
+import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
 
 import CartItem from './Cartitem';
@@ -26,6 +27,7 @@ function Cart() {
   const sessionUser = useMemo(() => session?.user, [session?.user]);
   const { items, addToCart, decreaseQuantity, removeFromCart, clearCart } =
     useCart();
+  const { currentAddress } = useShippingAddress();
 
   const [confirmItems, setConfirmItem] = useState<number[]>([]);
   const [promoCode, setPromoCode] = useState<string>('');
@@ -201,7 +203,7 @@ function Cart() {
         </div>
 
         <div className="flex w-full h-full flex-col items-center justify-start px-[1.75rem] pt-[3.5rem]">
-          <EmptyCartIcon />
+          <EmptyCartIcon/>
           <h2 className="mt-[3.5rem] text-[#101010] text-[1.5rem] leading-[2rem] font-[700]">
             {t('cart.ouchEmpty')}
           </h2>
@@ -211,7 +213,7 @@ function Cart() {
 
           <button
             onClick={navigateToProductList}
-            className="flex w-full items-center mt-[2.5rem] justify-center bg-[#FE8C00] py-[1rem] rounded-[6.25rem] hover:bg-[#e07e00] transition-colors"
+            className="flex w-full items-center mt-[2.5rem] justify-center bg-red-500 py-[1rem] rounded-[6.25rem] hover:bg-red-500/70 transition-colors"
           >
             <span className="text-white text-[0.875rem] leading-[1.25rem] font-[600]">
               {t('cart.findFoods')}
@@ -241,20 +243,32 @@ function Cart() {
             <span className="text-[#878787] text-[0.875rem] font-[400] leading-[1.25rem]">
               {t('cart.deliveryLocation')}
             </span>
-            <span className="text-[#101010] text-[0.875rem] font-[600] leading-[1.25rem]">
-              {t('cart.home')}
-            </span>
+            {currentAddress ? (
+              <span className="text-[#101010] text-[0.875rem] font-[600] leading-[1.25rem]">
+                {currentAddress.addressLine1.length > 25
+                  ? `${currentAddress.addressLine1.substring(0, 25)}...`
+                  : currentAddress.addressLine1}
+              </span>
+            ) : (
+              <span className="text-[#101010] text-[0.875rem] font-[600] leading-[1.25rem]">
+                {t('cart.home')}
+              </span>
+            )}
           </div>
           <button
             onClick={() =>
               sessionUser
-                ? router.push('/application/personal-data')
+                ? router.push('/application/shipping/address')
                 : router.push('/login')
             }
-            className="py-[0.5rem] px-[0.875rem] border-[#FE8C00] border-[0.5px] rounded-[100px] text-[#FE8C00] text-[0.625rem] font-[600] leading-[1rem] hover:bg-[#FE8C00]/10 transition-colors"
+            className="py-[0.5rem] px-[0.875rem] border-red-900 border-[0.5px] rounded-[100px] text-red-500 text-[0.625rem] font-[600] leading-[1rem] hover:bg-[#FE8C00]/10 transition-colors"
             aria-label="Change delivery location"
           >
-            {sessionUser ? t('cart.changeLocation') : t('cart.login')}
+            {sessionUser
+              ? currentAddress
+                ? t('shipping.editAddress')
+                : t('shipping.addNewAddress')
+              : t('cart.login')}
           </button>
         </div>
 

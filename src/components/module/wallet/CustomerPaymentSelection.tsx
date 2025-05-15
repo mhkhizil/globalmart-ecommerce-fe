@@ -27,6 +27,7 @@ import { useGetCustomerWallet } from '@/lib/hooks/service/payment/useGetCustomer
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
+import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
 
 // Animation variants
 const containerVariants = {
@@ -87,6 +88,7 @@ function CustomerPaymentMethod() {
   const { data: session } = useSession();
   const sessionUser = useMemo(() => session?.user, [session?.user]);
   const { items, clearCart } = useCart();
+  const { currentAddress } = useShippingAddress();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     'wallet' | 'cash_on_delivery' | undefined
   >();
@@ -195,6 +197,13 @@ function CustomerPaymentMethod() {
         return;
       }
 
+      // Check for shipping address
+      if (!currentAddress) {
+        toast.error(t('shipping.noAddressFound'));
+        router.push('/application/shipping/address');
+        return;
+      }
+
       // If payment method is wallet, check if balance is sufficient
       if (data.payment_method === 'wallet' && !hasSufficientBalance) {
         toast.error(t('payment.insufficientBalance'));
@@ -222,13 +231,30 @@ function CustomerPaymentMethod() {
             discount_amt: 0,
             merchant_id: item.merchant_id,
           })),
-          // Note: payment_method would be added here when backend is ready
+          // Shipping address would be included here in a real implementation
+          shipping_address: currentAddress && {
+            full_name: currentAddress.fullName,
+            address_line1: currentAddress.addressLine1,
+            address_line2: currentAddress.addressLine2 || '',
+            city: currentAddress.city,
+            state: currentAddress.state,
+            zip_code: currentAddress.zipCode,
+            phone: currentAddress.phone,
+          },
         });
       } catch {
         // Error is handled in the onError callback of useCreateOrder
       }
     },
-    [items, createOrder, sessionUser, hasSufficientBalance, t]
+    [
+      items,
+      createOrder,
+      sessionUser,
+      hasSufficientBalance,
+      currentAddress,
+      router,
+      t,
+    ]
   );
 
   // If no items in cart, redirect to cart page
@@ -248,17 +274,64 @@ function CustomerPaymentMethod() {
           <BackIcon />
         </button>
         <span className="text-[1rem] font-semibold">
-          {t('payment.selectPaymentMethod')}
+          {t('payment.payment')}
         </span>
-        <div className="w-6" /> {/* Empty div for alignment */}
+        <div style={{ width: '24px' }}></div> {/* Placeholder for alignment */}
       </div>
 
       <motion.div
+        className="px-6 py-4"
+        variants={containerVariants}
         initial="hidden"
         animate="visible"
-        variants={containerVariants}
-        className="flex flex-col w-full px-[1.5rem] pt-[1.5rem] pb-[2rem]"
       >
+        {/* Shipping Address Section */}
+        <motion.div variants={itemVariants} className="mb-6">
+          <div className="flex justify-between items-center mb-2">
+            <h2 className="text-[1.25rem] font-semibold">
+              {t('shipping.shippingAddress')}
+            </h2>
+            <Button
+              onClick={() => router.push('/application/shipping/address')}
+              variant="ghost"
+              className="text-[#FE8C00] hover:text-[#e07e00] hover:bg-[#FE8C00]/10 p-1 h-auto"
+            >
+              {t('shipping.editAddress')}
+            </Button>
+          </div>
+          <Card className="border-[#EDEDED] shadow-sm">
+            <CardContent className="p-4">
+              {currentAddress ? (
+                <>
+                  <p className="font-semibold">{currentAddress.fullName}</p>
+                  <p>{currentAddress.addressLine1}</p>
+                  {currentAddress.addressLine2 && (
+                    <p>{currentAddress.addressLine2}</p>
+                  )}
+                  <p>
+                    {currentAddress.city}, {currentAddress.state}{' '}
+                    {currentAddress.zipCode}
+                  </p>
+                  <p className="mt-1">{currentAddress.phone}</p>
+                </>
+              ) : (
+                <div className="flex flex-col items-center justify-center py-2">
+                  <p className="text-[#878787] mb-2">
+                    {t('shipping.noAddressFound')}
+                  </p>
+                  <Button
+                    onClick={() => router.push('/application/shipping/address')}
+                    variant="outline"
+                    className="border-[#FE8C00] text-[#FE8C00] hover:bg-[#FE8C00]/10"
+                  >
+                    {t('shipping.addNewAddress')}
+                  </Button>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
+
         {/* Order Summary */}
         <motion.div variants={itemVariants} className="mb-6">
           <h2 className="text-[1.25rem] font-semibold mb-2">
