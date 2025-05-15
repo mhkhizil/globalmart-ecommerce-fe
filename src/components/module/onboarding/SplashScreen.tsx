@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const logoVariants = {
   initial: {
@@ -58,24 +58,24 @@ const petalVariants = {
     opacity: 0,
     scale: 0,
   },
-  animate: (i: number) => ({
+  animate: (index: number) => ({
     opacity: [0, 0.8, 0],
     scale: [0, 1, 0],
     x: [
-      Math.cos(i * 30) * 50,
-      Math.cos(i * 30 + 180) * 200,
-      Math.cos(i * 30 + 360) * 50,
+      Math.cos(index * 30) * 50,
+      Math.cos(index * 30 + 180) * 200,
+      Math.cos(index * 30 + 360) * 50,
     ],
     y: [
-      Math.sin(i * 30) * 50,
-      Math.sin(i * 30 + 180) * 200,
-      Math.sin(i * 30 + 360) * 50,
+      Math.sin(index * 30) * 50,
+      Math.sin(index * 30 + 180) * 200,
+      Math.sin(index * 30 + 360) * 50,
     ],
     rotate: [0, 720],
     transition: {
       duration: 6,
       repeat: Infinity,
-      delay: i * 0.1,
+      delay: index * 0.1,
       ease: 'easeInOut',
     },
   }),
@@ -112,8 +112,8 @@ export default function SplashScreen() {
           className="absolute inset-0"
         >
           {/* Petals */}
-          {[...Array(24)].map((_, i) => (
-            <Petal key={i} index={i} />
+          {Array.from({ length: 24 }).map((_, index) => (
+            <Petal key={index} index={index} />
           ))}
         </motion.div>
 

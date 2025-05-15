@@ -1,12 +1,13 @@
 'use client';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
+import { useLocale, useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+
 import OnboardingPageSlider from '@/components/module/onboarding/slider';
-import { getOnboardingSlides } from '@/lib/constants/onboarding';
 import SplashScreen from '@/components/module/onboarding/SplashScreen';
+import { getOnboardingSlides } from '@/lib/constants/onboarding';
 
 function OnboardingPageClient() {
   const router = useRouter();

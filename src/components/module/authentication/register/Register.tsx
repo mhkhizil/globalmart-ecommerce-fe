@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
+import FaceBookIcon from '@/components/common/icons/FacebookIcon';
+import GoogleIcon from '@/components/common/icons/GoogleIcon';
+
 import SocialLogin from '../login/SocialLogin';
 import CredentialRegister from './CredentialRegister';
-import GoogleIcon from '@/components/common/icons/GoogleIcon';
-import FaceBookIcon from '@/components/common/icons/FacebookIcon';
 
 function Register() {
   const t = useTranslations();
@@ -21,10 +22,10 @@ function Register() {
       </div>
       <div className=" flex  justify-center items-center gap-4">
         <div className=" rounded-full w-12 h-12 flex items-center justify-center border border-red-500">
-          <GoogleIcon  />
+          <GoogleIcon />
         </div>
         <div className=" rounded-full w-12 h-12 flex items-center justify-center border border-red-500">
-          <FaceBookIcon  />
+          <FaceBookIcon />
         </div>
       </div>
       {/* <div className="flex w-full items-center justify-center  gap-x-[16px]">

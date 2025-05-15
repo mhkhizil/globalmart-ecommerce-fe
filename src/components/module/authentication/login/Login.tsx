@@ -4,14 +4,14 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useDispatch, useSelector } from 'react-redux';
 
+import FaceBookIcon from '@/components/common/icons/FacebookIcon';
+import GoogleIcon from '@/components/common/icons/GoogleIcon';
 import { RootState } from '@/lib/redux/ReduxStore';
 import { Locale, setLocale } from '@/lib/redux/slices/LanguageSlice';
 
 import CustomerServicePopup from '../../customer-service/CustomerServicePopup';
 import CredentialLogin from './CredentialLogin';
 import SocialLogin from './SocialLogin';
-import GoogleIcon from '@/components/common/icons/GoogleIcon';
-import FaceBookIcon from '@/components/common/icons/FacebookIcon';
 
 function Login({ locale }: { locale: string }) {
   const t = useTranslations();
