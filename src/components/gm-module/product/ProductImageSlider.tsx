@@ -119,9 +119,9 @@ function ProductImageSlider({
         </div>
       </button>
       <button
-        onClick={goPrevious}
+        onClick={goNext}
         className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)]`}
-        aria-label="Previous slide"
+        aria-label="Next slide"
       >
         <div className="rotate-0">
           <Image

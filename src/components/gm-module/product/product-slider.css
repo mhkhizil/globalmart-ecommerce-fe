@@ -4,7 +4,7 @@
   max-width: 100%;
   overflow: hidden;
   position: relative;
-  padding-bottom: 30px; /* Add padding at the bottom for the dots */
+  padding-bottom: 16px; /* Add padding at the bottom for the dots */
 }
 
 .product-slider-container .slick-slide {
