@@ -4,6 +4,7 @@ import SearchBar from '@/components/gm-module/common/SearchBar';
 
 import CategoryPreview from '../category/CategoryPreview';
 import ProductPreviewList from '../product/ProductPreviewList';
+import TrendingProductList from '../product/TrendingProductList';
 import PromotionList from '../promotion/PromotionList';
 import DealOfTheDay from './DealOfTheDay';
 import HomeNav from './HomeNav';
@@ -23,14 +24,16 @@ function Home() {
         <DealOfTheDay />
       </div>
       <div className="flex w-full">
-        <SpecialOffers />
-      </div>
-
-      <div className="flex w-full">
         <ProductPreviewList />
       </div>
       <div className="flex w-full">
+        <SpecialOffers />
+      </div>
+      <div className="flex w-full">
         <TrendingProducts />
+      </div>
+      <div className="flex w-full">
+        <TrendingProductList />
       </div>
       <div className="flex w-full">
         <NewArrivalbanner />
