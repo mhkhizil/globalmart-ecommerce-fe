@@ -1,15 +1,17 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeftIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { memo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { ProductDetail } from '@/core/entity/Product';
 import { RootState } from '@/lib/redux/ReduxStore';
 import { addItem } from '@/lib/redux/slices/CartSlice';
 
+import ProductAction from './ProductAction';
 import ProductImageSlider from './ProductImageSlider';
 
 // Custom SVG components to match Figma designs
@@ -38,6 +40,31 @@ const StoreIcon = () => (
     </defs>
   </svg>
 );
+
+const CartIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="32"
+    height="32"
+    viewBox="0 0 32 32"
+    fill="none"
+  >
+    <rect width="32" height="32" rx="16" fill="#F2F2F2" />
+    <g clip-path="url(#clip0_126_7)">
+      <path
+        d="M12.8334 21C11.9167 21 11.175 21.75 11.175 22.6666C11.175 23.5833 11.9167 24.3333 12.8334 24.3333C13.75 24.3333 14.5 23.5833 14.5 22.6666C14.5 21.75 13.75 21 12.8334 21ZM21.1667 21C20.25 21 19.5084 21.75 19.5084 22.6666C19.5084 23.5833 20.25 24.3333 21.1667 24.3333C22.0834 24.3333 22.8334 23.5833 22.8334 22.6666C22.8334 21.75 22.0834 21 21.1667 21ZM19.9584 16.8333C20.5834 16.8333 21.1334 16.4916 21.4167 15.975L24.4 10.5666C24.7084 10.0166 24.3084 9.33329 23.675 9.33329H11.3417L10.5584 7.66663H7.83337V9.33329H9.50004L12.5 15.6583L11.375 17.6916C10.7667 18.8083 11.5667 20.1666 12.8334 20.1666H22.8334V18.5H12.8334L13.75 16.8333H19.9584ZM12.1334 11H22.2584L19.9584 15.1666H14.1084L12.1334 11Z"
+        fill="#323232"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_126_7">
+        <rect width="20" height="20" fill="white" transform="translate(7 6)" />
+      </clipPath>
+    </defs>
+  </svg>
+);
+
+const MemoizedProductAction = memo(ProductAction);
 
 interface ProductDetailProps {
   product: ProductDetail;
@@ -129,8 +156,24 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     setShowCartOptions(true);
   };
 
+  const handleViewSimilar = () => {
+    // Handle view similar logic
+    console.log('View similar products');
+  };
+
+  const handleReviews = () => {
+    // Handle reviews logic
+    console.log('View reviews');
+  };
+
   return (
     <div className="flex flex-col px-4">
+      <div className="flex w-full justify-between items-center py-4">
+        <ChevronLeftIcon className="cursor-pointer" />
+        <div className="cursor-pointer">
+          <CartIcon />
+        </div>
+      </div>
       <div className="relative w-full">
         <ProductImageSlider
           images={product.product_image}
@@ -390,6 +433,12 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
           )}
         </AnimatePresence>
       </div>
+
+      <MemoizedProductAction
+        onViewSimilar={handleViewSimilar}
+        onReviews={handleReviews}
+        merchantId={product.m_id}
+      />
     </div>
   );
 }
