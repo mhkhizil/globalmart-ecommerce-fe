@@ -1406,7 +1406,10 @@
     "itemLabel": "前往{name}",
     "unavailable": "导航不可用",
     "unavailableDescription": "请检查您的网络连接并刷新页面。",
-    "order list": "订单列表"
+    "order list": "订单列表",
+    "wishlist": "收藏夹",
+    "search": "搜索",
+    "setting": "设置"
   },
 
   "otp": {

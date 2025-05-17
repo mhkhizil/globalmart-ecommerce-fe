@@ -1395,7 +1395,10 @@
     "orders": "အော်ဒါများ",
     "itemLabel": "{name} သို့သွားရန်",
     "unavailable": "လမ်းညွှန်မရရှိနိုင်ပါ",
-    "order list": "အော်ဒါစာရင်း"
+    "order list": "အော်ဒါစာရင်း",
+    "wishlist": "လိုချင်သောစာရင်း",
+    "search": "ရှာဖွေမှု",
+    "setting": "ဆက်တင်"
   },
   "forgotPassword": {
     "title": "စကားဝှက်မေ့နေပါသလား?",

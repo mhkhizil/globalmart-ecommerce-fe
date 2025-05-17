@@ -1392,7 +1392,10 @@
     "orders": "Orders",
     "itemLabel": "Go to {name}",
     "unavailable": "Navigation unavailable",
-    "order list": "Order List"
+    "order list": "Order List",
+    "wishlist": "Wishlist",
+    "search": "Search",
+    "setting": "Setting"
   },
   "forgotPassword": {
     "title": "Forgot password?",
