@@ -1,12 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import Link from 'next/link';
+import { useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ProductDetail } from '@/core/entity/Product';
 import { RootState } from '@/lib/redux/ReduxStore';
+import { addItem } from '@/lib/redux/slices/CartSlice';
 
 import ProductImageSlider from './ProductImageSlider';
 
@@ -43,7 +45,11 @@ interface ProductDetailProps {
 
 function ProductDetailInfo({ product }: ProductDetailProps) {
   const [selectedSize, setSelectedSize] = useState<string>('7UK');
+  const [quantity, setQuantity] = useState<number>(1);
+  const [showCartOptions, setShowCartOptions] = useState<boolean>(false);
   const { locale } = useSelector((state: RootState) => state.language);
+  const dispatch = useDispatch();
+  const cartOptionsRef = useRef<HTMLDivElement>(null);
   console.log(product);
   const sizes = ['6 UK', '7 UK', '8 UK', '9 UK', '10 UK'];
 
@@ -87,6 +93,41 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
       : Math.round(
           (Number.parseFloat(product.discount_amount) / product.p_price) * 100
         );
+
+  const handleIncreaseQuantity = () => {
+    if (quantity < product.p_stock) {
+      setQuantity(previous => previous + 1);
+    }
+  };
+
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(previous => previous - 1);
+    }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addItem({
+        id: product.id,
+        name: product.p_name,
+        price: product.p_price,
+        quantity: quantity,
+        merchant_id: product.m_id,
+        type: product.discount_type,
+        discount_percent: product.discount_percent,
+        discount_amount: product.discount_amount,
+        discount_price: discountedPrice,
+        image: product.p_image,
+        customization: { size: selectedSize },
+      })
+    );
+    setShowCartOptions(false);
+  };
+
+  const handleBuyNow = () => {
+    setShowCartOptions(true);
+  };
 
   return (
     <div className="flex flex-col px-4">
@@ -207,7 +248,148 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         </div>
       </div>
 
-      <div>{/*others*/}</div>
+      <div className="mt-8 mb-4 relative">
+        <AnimatePresence>
+          {showCartOptions ? (
+            <motion.div
+              ref={cartOptionsRef}
+              className="bg-white p-4 rounded-lg shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.2 }}
+            >
+              <div className="mb-4">
+                <h3 className="text-lg font-medium font-['Montserrat'] mb-2">
+                  Add to Cart
+                </h3>
+                <div className="flex items-center border border-gray-200 rounded-md p-1 w-fit">
+                  <button
+                    onClick={handleDecreaseQuantity}
+                    className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-800"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.33331 8H12.6666"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </button>
+                  <span className="w-10 text-center font-['Montserrat']">
+                    {quantity}
+                  </span>
+                  <button
+                    onClick={handleIncreaseQuantity}
+                    className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-800"
+                    disabled={quantity >= product.p_stock}
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M8 3.33337V12.6667M3.33337 8.00004H12.6667"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                {quantity >= product.p_stock && (
+                  <p className="text-red-500 text-xs mt-1">
+                    Maximum stock reached
+                  </p>
+                )}
+              </div>
+
+              <div className="flex gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={() => setShowCartOptions(false)}
+                  className="flex-1 py-2 px-4 border border-gray-300 rounded-md font-['Montserrat'] text-gray-700"
+                >
+                  Cancel
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleAddToCart}
+                  className="flex-1 py-2 px-4 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] text-white rounded-md font-['Montserrat']"
+                >
+                  Add to Cart
+                </motion.button>
+              </div>
+            </motion.div>
+          ) : (
+            <motion.div
+              className="flex gap-2 w-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <Link href="/application/cart" className="w-[136px]">
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="relative flex w-full h-9 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] rounded-l-[20px] rounded-r-[4px] items-center justify-center"
+                >
+                  <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
+                    <div className="h-full w-full rounded-full bg-gradient-to-b from-[#3F92FF] to-[#0B3689] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
+                      <Image
+                        src="/icons/cart-icon-fill.svg"
+                        alt="Cart"
+                        width={14}
+                        height={14}
+                        className="w-4 h-4"
+                      />
+                    </div>
+                  </div>
+
+                  <span className="text-white font-['Montserrat'] font-medium text-sm truncate pl-6">
+                    Go to cart
+                  </span>
+                </motion.div>
+              </Link>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="relative w-[136px] flex  h-9 bg-gradient-to-b from-[#71F9A9] to-[#31B769] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
+                onClick={handleBuyNow}
+              >
+                <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
+                  <div className="h-full w-full rounded-full bg-gradient-to-b from-[#71F9A9] to-[#31B769] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
+                    <Image
+                      src="/icons/buy-now-icon.svg"
+                      alt="Buy Now"
+                      width={14}
+                      height={14}
+                      className="w-4 h-4"
+                    />
+                  </div>
+                </div>
+
+                <span className="text-white font-['Montserrat'] font-medium text-sm truncate pl-6">
+                  Buy Now
+                </span>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
