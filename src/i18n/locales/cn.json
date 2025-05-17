@@ -1243,6 +1243,13 @@
       "total": "总计",
       "viewDetails": "查看详情"
     },
+    "get_started": {
+      "metadata": {
+        "title": "开始使用 | 无忧外卖",
+        "keywords": "开始使用, 开始使用无忧外卖, 入门指南, 用户指南",
+        "description": "开始使用无忧外卖。按照我们的逐步指南探索我们的功能并开始使用我们的应用程序。"
+      }
+    },
     "register_driver": {
       "metadata": {
         "title": "成为司机 | 无忧外卖",
