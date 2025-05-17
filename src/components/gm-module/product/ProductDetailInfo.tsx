@@ -44,7 +44,7 @@ interface ProductDetailProps {
 function ProductDetailInfo({ product }: ProductDetailProps) {
   const [selectedSize, setSelectedSize] = useState<string>('7UK');
   const { locale } = useSelector((state: RootState) => state.language);
-
+  console.log(product);
   const sizes = ['6 UK', '7 UK', '8 UK', '9 UK', '10 UK'];
 
   // Get the description based on current locale

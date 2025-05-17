@@ -30,14 +30,31 @@ function ProductImageSlider({
 }: ProductImageSliderProps) {
   const sliderRef = useRef<Slider | null>(null);
 
+  // Fallback for empty product images
+  const imageList =
+    images && images.length > 0
+      ? images
+      : fallbackImage
+        ? [
+            {
+              id: 0,
+              p_id: 0,
+              link: fallbackImage,
+              type: 1,
+              created_at: '',
+              updated_at: '',
+            },
+          ]
+        : [];
+
   const settings = {
-    dots: true,
-    infinite: true,
+    dots: imageList.length > 1,
+    infinite: imageList.length > 1,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    autoplay: imageList.length > 1,
     autoplaySpeed: 5000,
     pauseOnHover: true,
     customPaging: function () {
@@ -58,27 +75,29 @@ function ProductImageSlider({
     }
   };
 
-  // Fallback for empty product images
-  const imageList =
-    images && images.length > 0
-      ? images
-      : fallbackImage
-        ? [
-            {
-              id: 0,
-              p_id: 0,
-              link: fallbackImage,
-              type: 1,
-              created_at: '',
-              updated_at: '',
-            },
-          ]
-        : [];
-
   if (imageList.length === 0) {
     return (
       <div className="w-full aspect-square bg-gray-100 flex items-center justify-center text-gray-400">
         No images available
+      </div>
+    );
+  }
+
+  // Render a simple image container when there's only one image
+  if (imageList.length === 1) {
+    return (
+      <div className="product-slider-container">
+        <div className="relative h-[13.313rem] overflow-hidden rounded-[13px]">
+          <Image
+            src={imageList[0].link}
+            alt={`${productName}`}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+            quality={90}
+          />
+        </div>
       </div>
     );
   }
@@ -103,35 +122,39 @@ function ProductImageSlider({
         ))}
       </Slider>
 
-      {/* Navigation buttons with inline styles for testing */}
-      <button
-        onClick={goPrevious}
-        className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)]`}
-        aria-label="Previous slide"
-      >
-        <div className="rotate-180">
-          <Image
-            src="/images/carousel-arrow-fill.svg"
-            alt="Previous"
-            width={8}
-            height={8}
-          />
-        </div>
-      </button>
-      <button
-        onClick={goNext}
-        className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)]`}
-        aria-label="Next slide"
-      >
-        <div className="rotate-0">
-          <Image
-            src="/images/carousel-arrow-fill.svg"
-            alt="Previous"
-            width={8}
-            height={8}
-          />
-        </div>
-      </button>
+      {/* Only show navigation buttons if there are multiple images */}
+      {imageList.length > 1 && (
+        <>
+          <button
+            onClick={goPrevious}
+            className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)]`}
+            aria-label="Previous slide"
+          >
+            <div className="rotate-180">
+              <Image
+                src="/images/carousel-arrow-fill.svg"
+                alt="Previous"
+                width={8}
+                height={8}
+              />
+            </div>
+          </button>
+          <button
+            onClick={goNext}
+            className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)]`}
+            aria-label="Next slide"
+          >
+            <div className="rotate-0">
+              <Image
+                src="/images/carousel-arrow-fill.svg"
+                alt="Previous"
+                width={8}
+                height={8}
+              />
+            </div>
+          </button>
+        </>
+      )}
     </div>
   );
 }
