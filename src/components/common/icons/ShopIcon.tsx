@@ -1,13 +1,26 @@
 import { Store } from 'lucide-react';
+import React, { memo } from 'react';
 
-const ShopIcon = ({ isSelected = false }: { isSelected?: boolean }) => {
-  return (
-    <Store
-      className="size-6"
-      fill={isSelected ? '#FE8C00' : '#C2C2C2'}
-      stroke={isSelected ? 'gray' : 'gray'}
-    />
-  );
-};
+interface ShopIconProps {
+  isSelected?: boolean;
+  className?: string;
+}
 
+const ShopIcon = memo(
+  ({ isSelected = false, className = '' }: ShopIconProps) => {
+    return (
+      <div
+        className={`relative w-6 h-6 flex items-center justify-center ${className}`}
+      >
+        <Store
+          className="size-6"
+          fill={isSelected ? '#FE8C00' : 'none'}
+          stroke={isSelected ? '#FE8C00' : 'black'}
+        />
+      </div>
+    );
+  }
+);
+
+ShopIcon.displayName = 'ShopIcon';
 export default ShopIcon;
