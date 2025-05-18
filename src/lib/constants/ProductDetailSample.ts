@@ -15,9 +15,9 @@ export const ProductDetailSamples: ProductDetail[] = [
     discount_amount: '50',
     en_description:
       'Latest iPhone with A16 Bionic chip, 48MP camera and Dynamic Island display feature.',
-    mm_description: null,
-    th_description: null,
-    cn_description: null,
+    mm_description: '',
+    th_description: '',
+    cn_description: '',
     p_price: 1099.99,
     p_stock: 50,
     p_is_available: 1,
@@ -57,9 +57,9 @@ export const ProductDetailSamples: ProductDetail[] = [
     discount_amount: '100',
     en_description:
       'Premium Android smartphone with 200MP camera, S Pen included and powerful Snapdragon processor.',
-    mm_description: null,
-    th_description: null,
-    cn_description: null,
+    mm_description: '',
+    th_description: '',
+    cn_description: '',
     p_price: 1199.99,
     p_stock: 45,
     p_is_available: 1,
@@ -91,9 +91,9 @@ export const ProductDetailSamples: ProductDetail[] = [
     discount_amount: '0',
     en_description:
       'Ultra HD Smart TV with OLED display, perfect for movie nights and gaming with 120Hz refresh rate.',
-    mm_description: null,
-    th_description: null,
-    cn_description: null,
+    mm_description: '',
+    th_description: '',
+    cn_description: '',
     p_price: 1899.99,
     p_stock: 20,
     p_is_available: 1,
@@ -125,9 +125,9 @@ export const ProductDetailSamples: ProductDetail[] = [
     discount_amount: '30',
     en_description:
       'Genuine leather jacket with premium stitching and comfortable lining perfect for all seasons.',
-    mm_description: null,
-    th_description: null,
-    cn_description: null,
+    mm_description: '',
+    th_description: '',
+    cn_description: '',
     p_price: 299.99,
     p_stock: 35,
     p_is_available: 1,
@@ -159,9 +159,9 @@ export const ProductDetailSamples: ProductDetail[] = [
     discount_amount: '0',
     en_description:
       'Track your workouts, heart rate, sleep and more with this water-resistant fitness band.',
-    mm_description: null,
-    th_description: null,
-    cn_description: null,
+    mm_description: '',
+    th_description: '',
+    cn_description: '',
     p_price: 129.99,
     p_stock: 100,
     p_is_available: 1,
@@ -193,9 +193,9 @@ export const ProductDetailSamples: ProductDetail[] = [
     discount_amount: '0',
     en_description:
       'Collection of the top 5 best selling novels of 2023, perfect gift for book lovers.',
-    mm_description: null,
-    th_description: null,
-    cn_description: null,
+    mm_description: '',
+    th_description: '',
+    cn_description: '',
     p_price: 89.99,
     p_stock: 75,
     p_is_available: 1,
@@ -219,7 +219,7 @@ export const ProductDetailSamples: ProductDetail[] = [
 export const getProductDetailById = (
   id: string | number
 ): ProductDetail | undefined => {
-  const numericId = typeof id === 'string' ? parseInt(id, 10) : id;
+  const numericId = typeof id === 'string' ? Number.parseInt(id, 10) : id;
   return ProductDetailSamples.find(product => product.id === numericId);
 };
 
@@ -228,13 +228,16 @@ export const getProductsByCategory = (
   categoryId: string | number
 ): ProductDetail[] => {
   const numericId =
-    typeof categoryId === 'string' ? parseInt(categoryId, 10) : categoryId;
+    typeof categoryId === 'string'
+      ? Number.parseInt(categoryId, 10)
+      : categoryId;
   return ProductDetailSamples.filter(product => product.c_id === numericId);
 };
 
 // Function to get products by shop/merchant ID
 export const getProductsByShop = (shopId: string | number): ProductDetail[] => {
-  const numericId = typeof shopId === 'string' ? parseInt(shopId, 10) : shopId;
+  const numericId =
+    typeof shopId === 'string' ? Number.parseInt(shopId, 10) : shopId;
   return ProductDetailSamples.filter(product => product.m_id === numericId);
 };
 

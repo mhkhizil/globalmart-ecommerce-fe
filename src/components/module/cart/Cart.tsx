@@ -203,7 +203,7 @@ function Cart() {
         </div>
 
         <div className="flex w-full h-full flex-col items-center justify-start px-[1.75rem] pt-[3.5rem]">
-          <EmptyCartIcon/>
+          <EmptyCartIcon />
           <h2 className="mt-[3.5rem] text-[#101010] text-[1.5rem] leading-[2rem] font-[700]">
             {t('cart.ouchEmpty')}
           </h2>
@@ -246,7 +246,7 @@ function Cart() {
             {currentAddress ? (
               <span className="text-[#101010] text-[0.875rem] font-[600] leading-[1.25rem]">
                 {currentAddress.addressLine1.length > 25
-                  ? `${currentAddress.addressLine1.substring(0, 25)}...`
+                  ? `${currentAddress.addressLine1.slice(0, 25)}...`
                   : currentAddress.addressLine1}
               </span>
             ) : (

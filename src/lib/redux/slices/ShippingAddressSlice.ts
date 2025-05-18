@@ -19,7 +19,7 @@ export interface ShippingAddressState {
 // Initial state
 const initialState: ShippingAddressState = {
   addresses: {},
-  selectedAddressId: null,
+  selectedAddressId: '',
   currentUserId: undefined,
 };
 
@@ -46,12 +46,12 @@ const shippingAddressSlice = createSlice({
         addr => addr.id === address.id
       );
 
-      if (existingAddressIndex !== -1) {
-        // Update existing address
-        state.addresses[userId][existingAddressIndex] = address;
-      } else {
+      if (existingAddressIndex === -1) {
         // Add new address
         state.addresses[userId].push(address);
+      } else {
+        // Update existing address
+        state.addresses[userId][existingAddressIndex] = address;
       }
 
       // If this is the default address, make all others non-default
@@ -88,7 +88,7 @@ const shippingAddressSlice = createSlice({
           );
           state.selectedAddressId = defaultAddress
             ? defaultAddress.id
-            : state.addresses[userId][0]?.id || null;
+            : state.addresses[userId][0]?.id || '';
         }
       }
     },
@@ -103,9 +103,9 @@ const shippingAddressSlice = createSlice({
         const defaultAddress = userAddresses.find(addr => addr.isDefault);
         state.selectedAddressId = defaultAddress
           ? defaultAddress.id
-          : userAddresses[0]?.id || null;
+          : userAddresses[0]?.id || '';
       } else {
-        state.selectedAddressId = null;
+        state.selectedAddressId = '';
       }
     },
 
@@ -114,7 +114,7 @@ const shippingAddressSlice = createSlice({
       const userId = state.currentUserId || 'guest';
       if (state.addresses[userId]) {
         state.addresses[userId] = [];
-        state.selectedAddressId = null;
+        state.selectedAddressId = '';
       }
     },
   },

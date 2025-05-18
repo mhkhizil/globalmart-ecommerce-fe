@@ -26,8 +26,8 @@ import { useCreateOrder } from '@/lib/hooks/service/order/useCreateOrder';
 import { useGetCustomerWallet } from '@/lib/hooks/service/payment/useGetCustomerWallet';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
-import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
 import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
+import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
 
 // Animation variants
 const containerVariants = {

@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ShippingAddressData } from '@/components/module/shipping/ShippingAddress';
 import { AppDispatch, RootState } from '@/lib/redux/ReduxStore';
 import {
   clearAddress,
   saveShippingAddress,
   selectAddress,
 } from '@/lib/redux/slices/ShippingAddressSlice';
-import { ShippingAddressData } from '@/components/module/shipping/ShippingAddress';
 
 export const useShippingAddress = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,9 +15,7 @@ export const useShippingAddress = () => {
   );
 
   // Get user's saved addresses
-  const userAddresses = currentUserId
-    ? addresses[currentUserId] || []
-    : [];
+  const userAddresses = currentUserId ? addresses[currentUserId] || [] : [];
 
   // Get current selected address
   const currentAddress = selectedAddressId
@@ -27,10 +25,10 @@ export const useShippingAddress = () => {
   return {
     // Get all addresses for current user
     getAddresses: () => userAddresses,
-    
+
     // Get currently selected address
     currentAddress,
-    
+
     // Save a new address
     saveAddress: (address: ShippingAddressData) => {
       dispatch(
@@ -42,15 +40,15 @@ export const useShippingAddress = () => {
         })
       );
     },
-    
+
     // Select a specific address by ID
     selectAddress: (addressId: string) => {
       dispatch(selectAddress(addressId));
     },
-    
+
     // Clear all addresses
     clearAddresses: () => {
       dispatch(clearAddress());
     },
   };
-}; 
+};
