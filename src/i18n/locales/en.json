@@ -1185,6 +1185,13 @@
       "total": "Total",
       "viewDetails": "View Details"
     },
+    "get_started": {
+      "metadata": {
+        "title": "Get Started | Worry-free takeaway",
+        "keywords": "get started, start using Worry-free takeaway, onboarding, user guide",
+        "description": "Get started with Worry-free takeaway. Follow our step-by-step guide to explore our features and start using our app."
+      }
+    },
     "register_driver": {
       "metadata": {
         "title": "Become a Driver | Worry-free takeaway",
@@ -1420,7 +1427,10 @@
     "orders": "Orders",
     "itemLabel": "Go to {name}",
     "unavailable": "Navigation unavailable",
-    "order list": "Order List"
+    "order list": "Order List",
+    "wishlist": "Wishlist",
+    "search": "Search",
+    "setting": "Setting"
   },
   "forgotPassword": {
     "title": "Forgot password?",

@@ -2,8 +2,7 @@
 
 import { Toaster } from 'react-hot-toast';
 
-import ProductDetailInfo from '@/components/module/product/ProductDetailInfo';
-import ProductImageSlider from '@/components/module/product/ProductImageSlider';
+import ProductDetailInfo from '@/components/gm-module/product/ProductDetailInfo';
 import { ProductDetail } from '@/core/entity/Product';
 import { ProductSample2 } from '@/lib/constants/ProductsSample';
 
@@ -21,12 +20,7 @@ function ProductDetailPageClient(props: IProdcutDetailProps) {
   const { product } = props;
   return (
     <div className="flex w-full h-[100dvh] flex-col ]">
-      <Toaster position="top-center" containerStyle={{}} />
-      <ProductImageSlider
-        images={product.product_image.map(currentImage => currentImage.link)}
-        name={product.p_name}
-      />
-      <ProductDetailInfo product={product} productPreviews={ProductSample2} />
+      <ProductDetailInfo product={product} />
     </div>
   );
 }

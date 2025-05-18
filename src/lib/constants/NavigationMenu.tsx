@@ -2,6 +2,9 @@ import CartIcon from '@/components/common/icons/CartIcon';
 import HomeIcon from '@/components/common/icons/HomeIcon';
 import MessageIcon from '@/components/common/icons/MessageIcon';
 import ProfileIcon from '@/components/common/icons/ProfileIcon';
+import SearchIcon from '@/components/common/icons/SearchIcon';
+import SettingIcon from '@/components/common/icons/SettingIcon';
+import WishlistIcon from '@/components/common/icons/WishlistIcon';
 
 import { NavigationBarMenuProps } from '../redux/slices/NavigationBarSlice';
 
@@ -15,24 +18,31 @@ export const NavigationMenu: NavigationBarMenuProps[] = [
   },
   {
     id: '2',
+    label: 'Wishlist',
+    href: '#',
+    isSelected: false,
+    iconType: 'WishlistIcon',
+  },
+  {
+    id: '3',
     label: 'Cart',
     href: '/application/cart',
     isSelected: false,
     iconType: 'CartIcon',
   },
   {
-    id: '3',
-    label: 'Event',
-    href: '/application/event-list',
+    id: '4',
+    label: 'Search',
+    href: '/application/search',
     isSelected: false,
-    iconType: 'EventIcon',
+    iconType: 'SearchIcon',
   },
   {
-    id: '4',
-    label: 'Profile',
+    id: '5',
+    label: 'Setting',
     href: '/application/profile',
     isSelected: false,
-    iconType: 'ProfileIcon',
+    iconType: 'SettingIcon',
   },
 ];
 

@@ -1,25 +1,48 @@
-import { memo } from 'react';
+import { motion } from 'framer-motion';
+import React, { memo } from 'react';
 
-const CartIcon = memo(({ isSelected = false }: { isSelected?: boolean }) => {
-  return (
-    <>
-      <svg
-        width="18"
-        height="20"
-        viewBox="0 0 18 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+interface CartIconProps {
+  isSelected?: boolean;
+  className?: string;
+}
+
+const CartIcon = memo(
+  ({ isSelected = false, className = '' }: CartIconProps) => {
+    return (
+      <div
+        className={`relative w-14 h-14 flex items-center justify-center ${className}`}
       >
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M9.16666 0.399902C6.5157 0.399902 4.36666 2.54894 4.36666 5.1999V6.3999H3.16667C2.55521 6.3999 2.04153 6.85967 1.97401 7.46738L0.774008 18.2674C0.736314 18.6066 0.844873 18.9459 1.07251 19.2002C1.30016 19.4545 1.62534 19.5999 1.96667 19.5999H16.3667C16.708 19.5999 17.0332 19.4545 17.2608 19.2002C17.4885 18.9459 17.597 18.6066 17.5593 18.2674L16.3593 7.46738C16.2918 6.85967 15.7781 6.3999 15.1667 6.3999H13.9667V5.1999C13.9667 2.54894 11.8176 0.399902 9.16666 0.399902ZM11.5667 6.3999V5.1999C11.5667 3.87442 10.4921 2.7999 9.16666 2.7999C7.84118 2.7999 6.76666 3.87442 6.76666 5.1999V6.3999H11.5667ZM4.36666 9.9999C4.36666 9.33716 4.90392 8.7999 5.56666 8.7999C6.2294 8.7999 6.76666 9.33716 6.76666 9.9999C6.76666 10.6626 6.2294 11.1999 5.56666 11.1999C4.90392 11.1999 4.36666 10.6626 4.36666 9.9999ZM12.7667 8.7999C12.1039 8.7999 11.5667 9.33716 11.5667 9.9999C11.5667 10.6626 12.1039 11.1999 12.7667 11.1999C13.4294 11.1999 13.9667 10.6626 13.9667 9.9999C13.9667 9.33716 13.4294 8.7999 12.7667 8.7999Z"
-          fill={isSelected ? '#FE8C00' : '#C2C2C2'}
+        <motion.div
+          className="absolute inset-0 bg-[#EB3030] rounded-full shadow-lg"
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.3, type: 'spring' }}
         />
-      </svg>
-    </>
-  );
-});
+        <motion.div
+          className="relative"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="17"
+            viewBox="0 0 24 17"
+            fill="none"
+          >
+            <path
+              d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6"
+              stroke="#E9E9E9"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.div>
+      </div>
+    );
+  }
+);
 
 CartIcon.displayName = 'CartIcon';
 export default CartIcon;

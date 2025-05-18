@@ -1,28 +1,42 @@
-import { HtmlHTMLAttributes } from 'react';
+import React, { memo } from 'react';
 
-interface InputProps extends HtmlHTMLAttributes<HTMLOrSVGElement> {}
+interface SearchIconProps {
+  isSelected?: boolean;
+  className?: string;
+}
 
-function SearchIcon(props: InputProps) {
-  const { className } = props;
+const SearchIcon: React.FC<SearchIconProps> = ({
+  isSelected = false,
+  className = '',
+}) => {
   return (
-    <>
+    <div
+      className={`relative w-6 h-6 flex items-center justify-center ${className}`}
+    >
       <svg
-        width="40"
-        height="41"
-        viewBox="0 0 40 41"
         xmlns="http://www.w3.org/2000/svg"
-        className={className}
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
       >
-        <rect x="0.5" y="1" width="39" height="39" rx="19.5" stroke="white" />
         <path
-          d="M29 29.5L23 23.5M25 18.5C25 22.366 21.866 25.5 18 25.5C14.134 25.5 11 22.366 11 18.5C11 14.634 14.134 11.5 18 11.5C21.866 11.5 25 14.634 25 18.5Z"
-          stroke="white"
-          strokeWidth="1.5"
+          d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z"
+          stroke={isSelected ? '#FE8C00' : 'black'}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M21 20.9999L16.65 16.6499"
+          stroke={isSelected ? '#FE8C00' : 'black'}
+          strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </svg>
-    </>
+    </div>
   );
-}
-export default SearchIcon;
+};
+
+export default memo(SearchIcon);

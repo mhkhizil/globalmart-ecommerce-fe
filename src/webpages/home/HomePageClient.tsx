@@ -1,4 +1,4 @@
-import Home from '@/components/module/home/Home';
+import Home from '@/components/gm-module/home/Home';
 
 function HomePageClient() {
   return <Home />;

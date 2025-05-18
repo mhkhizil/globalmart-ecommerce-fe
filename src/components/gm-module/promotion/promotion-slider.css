@@ -1,0 +1,65 @@
+/* Promotion Slider Custom Styles */
+.promotion-slider-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 30px; /* Add padding at the bottom for the dots */
+}
+
+.promotion-slider-container .slick-slide {
+  padding: 0 0px;
+}
+
+.slick-dots.custom-dots {
+  bottom: -10px; /* Move dots below the slider container */
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.slick-dots.custom-dots li {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+}
+
+.slick-dots.custom-dots li .custom-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(
+    128,
+    132,
+    136,
+    0.3
+  ); /* Changed to gray for visibility outside slider */
+  transition: all 0.2s ease;
+}
+
+.slick-dots.custom-dots li.slick-active .custom-dot {
+  width: 12px; /* Make active dot slightly larger */
+  height: 12px; /* Make active dot slightly larger */
+  background-color: #ffa3b3; /* Changed to match promotion card background */
+  transform: scale(1);
+  transform: translateY(-3px); /* Scale up active dot */
+}
+
+/* Custom Navigation Buttons */
+.promotion-nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(128, 132, 136, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.promotion-nav-button:hover {
+  background-color: rgba(128, 132, 136, 0.5);
+}

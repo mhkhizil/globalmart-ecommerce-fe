@@ -1,5 +1,5 @@
 import FloatingButton from '@/components/common/FloatingButton';
-import NavigationBar from '@/components/module/navigation/NavigationBar';
+import NavigationBar from '@/components/gm-module/navigation/NavigationBar';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +12,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <div className="flex w-full h-16">
         <NavigationBar />
       </div>
-      <FloatingButton />
+      {/* <FloatingButton /> */}
     </div>
   );
 }

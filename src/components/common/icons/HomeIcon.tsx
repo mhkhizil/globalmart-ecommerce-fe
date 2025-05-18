@@ -1,22 +1,43 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
-const HomeIcon = memo(({ isSelected = false }: { isSelected?: boolean }) => {
-  return (
-    <>
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 20 20"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
+interface HomeIconProps {
+  isSelected?: boolean;
+  className?: string;
+}
+
+const HomeIcon = memo(
+  ({ isSelected = false, className = '' }: HomeIconProps) => {
+    return (
+      <div
+        className={`relative w-6 h-6 flex items-center justify-center ${className}`}
       >
-        <path
-          d="M10.8486 0.751374C10.3799 0.282745 9.62013 0.282745 9.1515 0.751374L0.751496 9.15137C0.282867 9.62 0.282867 10.3798 0.751496 10.8484C1.22013 11.3171 1.97992 11.3171 2.44855 10.8484L2.80002 10.497V18.3999C2.80002 19.0626 3.33728 19.5999 4.00002 19.5999H6.40002C7.06277 19.5999 7.60002 19.0626 7.60002 18.3999V15.9999C7.60002 15.3372 8.13728 14.7999 8.80002 14.7999H11.2C11.8628 14.7999 12.4 15.3372 12.4 15.9999V18.3999C12.4 19.0626 12.9373 19.5999 13.6 19.5999H16C16.6628 19.5999 17.2 19.0626 17.2 18.3999V10.497L17.5515 10.8484C18.0201 11.3171 18.7799 11.3171 19.2486 10.8484C19.7172 10.3798 19.7172 9.62 19.2486 9.15137L10.8486 0.751374Z"
-          fill={isSelected ? '#FE8C00' : '#C2C2C2'}
-        />
-      </svg>
-    </>
-  );
-});
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M3.76929 9L12.4231 2L21.077 9V20C21.077 20.5304 20.8744 21.0391 20.5137 21.4142C20.1531 21.7893 19.6639 22 19.1539 22H5.69236C5.18233 22 4.69319 21.7893 4.33254 21.4142C3.9719 21.0391 3.76929 20.5304 3.76929 20V9Z"
+            stroke={isSelected ? '#FE8C00' : 'black'}
+            fill={isSelected ? '#FE8C00' : 'none'}
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9.53845 22V12H15.3077V22"
+            stroke={isSelected ? 'white' : 'black'}
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    );
+  }
+);
+
 HomeIcon.displayName = 'HomeIcon';
 export default HomeIcon;
