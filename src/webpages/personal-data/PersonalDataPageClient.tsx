@@ -1,4 +1,4 @@
-import PersonalData from '@/components/module/personal-data/PersonalData';
+import PersonalData from '@/components/gm-module/personal-data/PersonalData';
 
 function PersonalDataPageClient() {
   return <PersonalData />;
