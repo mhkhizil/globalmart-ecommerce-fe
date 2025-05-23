@@ -78,3 +78,24 @@ export type Product = {
   p_image: string;
   first_product_detail: ProductDetail;
 };
+
+export interface MainProductDetail {
+  id: number;
+  merchant_id: number;
+  merchant_name: string;
+  shop_name: string;
+  category_id: number;
+  category_name: string;
+  subcategory_id: number;
+  subcategory_name: string;
+  product_name: string;
+  remark: string;
+  en_description: string;
+  mm_description: string | null;
+  th_description: string | null;
+  cn_description: string | null;
+  p_is_available: number;
+  p_sortBy: number;
+  p_image: string;
+  product_detail: ProductDetail[];
+}
