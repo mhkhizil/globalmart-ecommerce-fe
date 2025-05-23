@@ -4,7 +4,6 @@ import { Toaster } from 'react-hot-toast';
 
 import ProductDetailInfo from '@/components/gm-module/product/ProductDetailInfo';
 import { ProductDetail } from '@/core/entity/Product';
-import { ProductSample2 } from '@/lib/constants/ProductsSample';
 
 interface IProdcutDetailProps {
   product: ProductDetail;

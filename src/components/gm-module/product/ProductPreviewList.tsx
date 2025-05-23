@@ -13,7 +13,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { ProductDetail } from '@/core/entity/Product';
+import { Product } from '@/core/entity/Product';
 import { useGetProductList } from '@/lib/hooks/service/product/useGetProductList';
 import { Locale } from '@/lib/redux/slices/LanguageSlice';
 
@@ -135,13 +135,13 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
   }
 
   // If there are no products, don't render the component
-  if (productList.product.length === 0) {
+  if (productList.products.length === 0) {
     return null;
   }
 
   // Get description based on locale and prepare products
   const getLocalizedProducts = () => {
-    return productList.product.map((item: ProductDetail) => {
+    return productList.products.map((item: Product) => {
       // Create a copy of the item to avoid mutation
       let localizedItem = { ...item };
 
@@ -207,7 +207,7 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
       <div className="relative" ref={containerRef}>
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
-            {localizedProducts.map((product: ProductDetail) => (
+            {localizedProducts.map((product: Product) => (
               <div
                 key={product.id}
                 className="flex-[0_0_auto] min-h-[330px] min-w-0 px-1.5 first:pl-4 last:pr-4"

@@ -12,6 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
+import { Product } from '@/core/entity/Product';
 import { useGetProductByMerchantId } from '@/lib/hooks/service/product/useGetProductByMerchantId';
 
 import ProductCard from './ProductCard';
@@ -321,7 +322,7 @@ export default function ProductAction({
 
       {/* Similar Product List */}
       <div className="flex w-full flex-1 gap-x-4 overflow-x-auto">
-        {products?.product.map((product: any) => (
+        {products?.products.map((product: Product) => (
           <div key={product.id}>
             <ProductCard product={product} showRating />
           </div>

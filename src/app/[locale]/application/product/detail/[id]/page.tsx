@@ -4,7 +4,6 @@ import { getTranslations } from 'next-intl/server';
 import { ProductRepository } from '@/core/repository/ProductRepository';
 import { ProductService } from '@/core/services/ProductService';
 import { AxiosCustomClient } from '@/lib/axios/AxiosClient';
-import { ProductSample } from '@/lib/constants/ProductsSample';
 import ProductDetailPageServerWithSuspense from '@/webpages/product/product-detail/ProductDetailPageServer';
 
 interface IPageProps {

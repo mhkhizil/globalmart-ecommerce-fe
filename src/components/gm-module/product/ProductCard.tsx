@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 
-import { ProductDetail } from '@/core/entity/Product';
+import { Product } from '@/core/entity/Product';
 
 type ProductCardProps = {
-  product: ProductDetail;
+  product: Product;
   showRating?: boolean;
 };
 
@@ -13,27 +13,51 @@ const ProductCard: React.FC<ProductCardProps> = ({
   product,
   showRating = true,
 }) => {
-  // Check if there's a discount
+  const variant = product.first_product_detail;
+
+  // Check if there's a discount with proper existence and null/undefined handling
   const hasDiscount =
-    product.discount_type &&
-    (product.discount_type === 'percentage'
-      ? product.discount_percent > 0
-      : Number(product.discount_amount) > 0);
+    variant?.discount_type &&
+    variant?.discount_type !== null &&
+    (variant?.discount_type === 'percentage'
+      ? variant?.discount_percent !== null &&
+        variant?.discount_percent !== undefined &&
+        Number(variant?.discount_percent) > 0
+      : variant?.discount_amount !== null &&
+        variant?.discount_amount !== undefined &&
+        Number(variant?.discount_amount) > 0);
 
-  // Calculate the discounted price
-  const discountedPrice = hasDiscount
-    ? product.discount_type === 'percentage'
-      ? Math.round(
-          product.p_price - product.p_price * (product.discount_percent / 100)
-        )
-      : Math.round(product.p_price - Number(product.discount_amount))
-    : product.p_price;
+  // Calculate the discounted price with safe property access
+  const discountedPrice =
+    hasDiscount && variant?.discount_type
+      ? variant?.discount_type === 'percentage'
+        ? Math.max(
+            0,
+            Math.round(
+              Number(variant.price) -
+                Number(variant.price) *
+                  (Number(variant?.discount_percent || 0) / 100)
+            )
+          )
+        : Math.max(
+            0,
+            Math.round(
+              Number(variant.price) - Number(variant?.discount_amount || 0)
+            )
+          )
+      : Number(variant.price);
 
-  const discountPercentage = hasDiscount
-    ? product.discount_type === 'percentage'
-      ? product.discount_percent
-      : Math.round((Number(product.discount_amount) / product.p_price) * 100)
-    : 0;
+  // Calculate discount percentage with safe property access
+  const discountPercentage =
+    hasDiscount && variant?.discount_type
+      ? variant?.discount_type === 'percentage'
+        ? Number(variant?.discount_percent || 0)
+        : variant?.discount_amount && Number(variant.price) > 0
+          ? Math.round(
+              (Number(variant?.discount_amount) / Number(variant.price)) * 100
+            )
+          : 0
+      : 0;
 
   // Generate star rating elements - using a default rating of 4
   const renderRating = () => {
@@ -63,25 +87,26 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
   const router = useRouter();
 
-  // Get product image from either p_image or product_image array
+  // Get product image with priority: main product image, variant main image, variant detail images
   const productImage =
     product.p_image ||
-    (product.product_image && product.product_image.length > 0
-      ? product.product_image[0].link
+    variant.p_image ||
+    (variant.product_detail_image && variant.product_detail_image.length > 0
+      ? variant.product_detail_image[0].image_path
       : '');
 
   return (
     <div
       className="flex flex-col flex-1 h-full w-[180px] bg-white rounded-[6px] shadow-sm overflow-hidden transition-transform duration-300 hover:shadow-md hover:-translate-y-1"
       onClick={() => {
-        router.push(`/application/product/detail/${product.p_id}`);
+        router.push(`/application/product/detail/${product.id}`);
       }}
     >
       {/* Product Image */}
       <div className="relative h-[180px] w-full overflow-hidden rounded-t-[4px]">
         <Image
           src={productImage}
-          alt={product.p_name}
+          alt={product.product_name}
           fill
           className="object-cover"
           sizes="180px"
@@ -93,7 +118,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="p-3 flex flex-col gap-1">
         {/* Title */}
         <h3 className="text-sm font-medium font-['Montserrat'] line-clamp-1 text-black">
-          {product.p_name}
+          {product.product_name}
         </h3>
 
         {/* Description */}
@@ -116,7 +141,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <div className="flex gap-x-3">
                 <div className="flex items-center">
                   <span className="text-sm text-gray-500 line-through">
-                    ₹{product.p_price}
+                    ₹{Number(variant.price)}
                   </span>
                 </div>
 

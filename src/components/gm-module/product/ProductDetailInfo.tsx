@@ -103,26 +103,46 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
 
   // Calculate discount price
   const calculateDiscountedPrice = () => {
-    if (product.discount_type === 'percentage' && product.discount_percent) {
-      return (
-        product.p_price - (product.p_price * product.discount_percent) / 100
+    if (
+      product?.discount_type === 'percentage' &&
+      product?.discount_percent !== null &&
+      product?.discount_percent !== undefined
+    ) {
+      return Math.max(
+        0,
+        Number(product.price) -
+          (Number(product.price) * Number(product?.discount_percent)) / 100
       );
-    } else if (product.discount_type === 'fixed' && product.discount_amount) {
-      return product.p_price - Number.parseFloat(product.discount_amount);
+    } else if (
+      product?.discount_type === 'fixed' &&
+      product?.discount_amount !== null &&
+      product?.discount_amount !== undefined
+    ) {
+      return Math.max(
+        0,
+        Number(product.price) - Number(product?.discount_amount)
+      );
     }
-    return product.p_price;
+    return Number(product.price);
   };
 
   const discountedPrice = calculateDiscountedPrice();
   const discountPercentage =
-    product.discount_type === 'percentage'
-      ? product.discount_percent
-      : Math.round(
-          (Number.parseFloat(product.discount_amount) / product.p_price) * 100
-        );
+    product?.discount_type === 'percentage' &&
+    product?.discount_percent !== null &&
+    product?.discount_percent !== undefined
+      ? Number(product?.discount_percent)
+      : product?.discount_type === 'fixed' &&
+          product?.discount_amount !== null &&
+          product?.discount_amount !== undefined &&
+          Number(product.price) > 0
+        ? Math.round(
+            (Number(product?.discount_amount) / Number(product.price)) * 100
+          )
+        : 0;
 
   const handleIncreaseQuantity = () => {
-    if (quantity < product.p_stock) {
+    if (quantity < product.stock) {
       setQuantity(previous => previous + 1);
     }
   };
@@ -137,13 +157,15 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     dispatch(
       addItem({
         id: product.id,
-        name: product.p_name,
-        price: product.p_price,
+        name: product.product_name,
+        price: Number(product.price),
         quantity: quantity,
-        merchant_id: product.m_id,
-        type: product.discount_type,
-        discount_percent: product.discount_percent,
-        discount_amount: product.discount_amount,
+        merchant_id: product.product_id, // Using product_id as fallback since merchant info might be at Product level
+        type: product?.discount_type || undefined,
+        discount_percent: product?.discount_percent
+          ? Number(product.discount_percent)
+          : undefined,
+        discount_amount: product?.discount_amount || undefined,
         discount_price: discountedPrice,
         image: product.p_image,
         customization: { size: selectedSize },
@@ -176,8 +198,8 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
       </div>
       <div className="relative w-full">
         <ProductImageSlider
-          images={product.product_image}
-          productName={product.p_name}
+          images={product.product_detail_image}
+          productName={product.product_name}
           fallbackImage={product.p_image}
         />
       </div>
@@ -210,10 +232,10 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
 
       <div className="mt-4">
         <h1 className="text-xl font-[600] text-black font-['Montserrat']">
-          {product.p_name}
+          {product.product_name}
         </h1>
         <p className="text-sm text-gray-600 mt-1 font-['Montserrat']">
-          {product.c_name}
+          {product.color_name || 'Product Category'}
         </p>
 
         <div className="flex items-center mt-2">
@@ -235,15 +257,23 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         </div>
 
         <div className="mt-3 flex items-center">
-          <span className="text-[#808488] line-through text-sm font-['Montserrat']">
-            ₹{product.p_price.toLocaleString()}
-          </span>
-          <span className="ml-2 text-sm font-[500] font-['Montserrat']">
-            ₹{discountedPrice.toLocaleString()}
-          </span>
-          <span className="ml-2 text-[#FA7189] text-sm font-['Montserrat']">
-            {discountPercentage}% Off
-          </span>
+          {discountPercentage > 0 ? (
+            <>
+              <span className="text-[#808488] line-through text-sm font-['Montserrat']">
+                ₹{Number(product.price).toLocaleString()}
+              </span>
+              <span className="ml-2 text-sm font-[500] font-['Montserrat']">
+                ₹{discountedPrice.toLocaleString()}
+              </span>
+              <span className="ml-2 text-[#FA7189] text-sm font-['Montserrat']">
+                {discountPercentage}% Off
+              </span>
+            </>
+          ) : (
+            <span className="text-sm font-[500] font-['Montserrat']">
+              ₹{Number(product.price).toLocaleString()}
+            </span>
+          )}
         </div>
 
         <div className="mt-2">
@@ -332,7 +362,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                   <button
                     onClick={handleIncreaseQuantity}
                     className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-800"
-                    disabled={quantity >= product.p_stock}
+                    disabled={quantity >= product.stock}
                   >
                     <svg
                       width="16"
@@ -350,7 +380,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                     </svg>
                   </button>
                 </div>
-                {quantity >= product.p_stock && (
+                {quantity >= product.stock && (
                   <p className="text-red-500 text-xs mt-1">
                     Maximum stock reached
                   </p>
@@ -400,46 +430,34 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                       />
                     </div>
                   </div>
-
-                  <span className="text-white font-['Montserrat'] font-medium text-sm truncate pl-6">
-                    Go to cart
+                  <span className="text-xs font-['Montserrat'] text-white ml-6">
+                    Add to Cart
                   </span>
                 </motion.div>
               </Link>
 
-              <motion.div
+              <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative w-[136px] flex  h-9 bg-gradient-to-b from-[#71F9A9] to-[#31B769] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
                 onClick={handleBuyNow}
+                className="flex-1 h-9 bg-gradient-to-b from-[#FA8072] to-[#FA5F4A] text-white rounded-[4px] text-xs font-['Montserrat']"
               >
-                <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
-                  <div className="h-full w-full rounded-full bg-gradient-to-b from-[#71F9A9] to-[#31B769] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
-                    <Image
-                      src="/icons/buy-now-icon.svg"
-                      alt="Buy Now"
-                      width={14}
-                      height={14}
-                      className="w-4 h-4"
-                    />
-                  </div>
-                </div>
-
-                <span className="text-white font-['Montserrat'] font-medium text-sm truncate pl-6">
-                  Buy Now
-                </span>
-              </motion.div>
+                Buy Now
+              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      <MemoizedProductAction
-        onViewSimilar={handleViewSimilar}
-        onReviews={handleReviews}
-        merchantId={product.m_id}
-      />
+      <div className="mt-4">
+        <MemoizedProductAction
+          onViewSimilar={handleViewSimilar}
+          onReviews={handleReviews}
+          merchantId={product.product_id} // Using product_id as fallback since merchant info might be at Product level
+        />
+      </div>
     </div>
   );
 }
+
 export default ProductDetailInfo;
