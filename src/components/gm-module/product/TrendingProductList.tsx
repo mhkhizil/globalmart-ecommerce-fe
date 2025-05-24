@@ -15,6 +15,59 @@ import { useGetTrendingProductListInfinite } from '@/lib/hooks/service/product/u
 
 import TrendingProductCard from './TrendingProductCard';
 
+// Function to get height variant based on index for staggered layout
+const getHeightVariant = (index: number): 'short' | 'tall' => {
+  const position = index % 4;
+  // Pattern: short, tall, tall, short
+  return position === 0 || position === 3 ? 'short' : 'tall';
+};
+
+// Function to get grid positioning for staggered layout
+const getGridPosition = (index: number) => {
+  const groupIndex = Math.floor(index / 4);
+  const positionInGroup = index % 4;
+
+  // Base row calculation: each group takes 11 rows (5 + 6 with gap)
+  const baseRow = groupIndex * 11 + 1;
+
+  switch (positionInGroup) {
+    case 0: {
+      // Short, left, top-aligned
+      return {
+        gridColumn: '1',
+        gridRow: `${baseRow} / ${baseRow + 5}`,
+      };
+    }
+    case 1: {
+      // Tall, right, top-aligned
+      return {
+        gridColumn: '2',
+        gridRow: `${baseRow} / ${baseRow + 6}`,
+      };
+    }
+    case 2: {
+      // Tall, left, fills gap from position 0
+      return {
+        gridColumn: '1',
+        gridRow: `${baseRow + 5} / ${baseRow + 11}`,
+      };
+    }
+    case 3: {
+      // Short, right, fills gap from position 1
+      return {
+        gridColumn: '2',
+        gridRow: `${baseRow + 6} / ${baseRow + 11}`,
+      };
+    }
+    default: {
+      return {
+        gridColumn: '1',
+        gridRow: 'auto',
+      };
+    }
+  }
+};
+
 function TrendingProductList() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -219,38 +272,59 @@ function TrendingProductList() {
       <div className="w-full">
         {/* Loading state for initial load */}
         {isLoading && (
-          <div className="grid grid-cols-2 gap-4 px-4 justify-items-center">
-            {Array.from({ length: 6 }).map((_, index) => (
-              <div
-                key={index}
-                className="w-full max-w-[164px] bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
-                style={{
-                  boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
-                  aspectRatio: '164/245',
-                }}
-              >
+          <div
+            className="grid gap-4"
+            style={{
+              gridTemplateColumns: '1fr 1fr',
+              gridAutoRows: '50px',
+            }}
+          >
+            {Array.from({ length: 6 }).map((_, index) => {
+              const gridPos = getGridPosition(index);
+              const contentHeight = 120;
+              const imageHeight =
+                getHeightVariant(index) === 'short' ? 160 : 220;
+              const cardHeight = imageHeight + contentHeight;
+
+              return (
                 <div
-                  className="w-full bg-gray-200 flex-shrink-0"
-                  style={{ aspectRatio: '164/136' }}
-                />
-                <div className="px-2 pt-2 space-y-2 flex-1">
-                  <div className="h-4 bg-gray-200 rounded w-3/4" />
-                  <div className="h-6 bg-gray-200 rounded w-full" />
-                  <div className="h-3 bg-gray-200 rounded w-1/2" />
-                  <div className="flex justify-between items-center mt-2">
-                    <div className="flex gap-0">
-                      {Array.from({ length: 5 }).map((_, starIndex) => (
-                        <div
-                          key={starIndex}
-                          className="w-[14px] h-[14px] bg-gray-200 rounded-sm"
-                        />
-                      ))}
+                  key={index}
+                  className="w-full bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
+                  style={{
+                    boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
+                    height: `${cardHeight}px`,
+                    gridColumn: gridPos.gridColumn,
+                    gridRow: gridPos.gridRow,
+                  }}
+                >
+                  <div
+                    className="w-full bg-gray-200 flex-shrink-0"
+                    style={{
+                      height: `${imageHeight}px`,
+                    }}
+                  />
+                  <div
+                    className="px-2 pt-2 space-y-2 flex flex-col"
+                    style={{ height: `${contentHeight}px` }}
+                  >
+                    <div className="h-4 bg-gray-200 rounded w-3/4" />
+                    <div className="h-6 bg-gray-200 rounded w-full" />
+                    <div className="h-3 bg-gray-200 rounded w-1/2" />
+                    <div className="flex justify-between items-center mt-auto flex-shrink-0">
+                      <div className="flex gap-0">
+                        {Array.from({ length: 5 }).map((_, starIndex) => (
+                          <div
+                            key={starIndex}
+                            className="w-[14px] h-[14px] bg-gray-200 rounded-sm"
+                          />
+                        ))}
+                      </div>
+                      <div className="h-3 bg-gray-200 rounded w-8" />
                     </div>
-                    <div className="h-3 bg-gray-200 rounded w-8" />
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
@@ -267,50 +341,89 @@ function TrendingProductList() {
         {!isLoading && !error && allProducts.length > 0 && (
           <div className="w-full">
             {/* Products Grid */}
-            <div className="grid grid-cols-2 gap-4 justify-items-center">
-              {allProducts.map((product: Product, index: number) => (
-                <TrendingProductCard
-                  key={`${product.id}-${index}`}
-                  product={product}
-                  index={index}
-                />
-              ))}
+            <div
+              className="grid gap-2"
+              style={{
+                gridTemplateColumns: '1fr 1fr',
+                gridAutoRows: '50px',
+              }}
+            >
+              {allProducts.map((product: Product, index: number) => {
+                const gridPos = getGridPosition(index);
+                return (
+                  <div
+                    key={`${product.id}-${index}`}
+                    style={{
+                      gridColumn: gridPos.gridColumn,
+                      gridRow: gridPos.gridRow,
+                    }}
+                  >
+                    <TrendingProductCard
+                      product={product}
+                      index={index}
+                      heightVariant={getHeightVariant(index)}
+                    />
+                  </div>
+                );
+              })}
             </div>
 
             {/* Loading more indicator */}
             {isFetchingNextPage && (
-              <div className="grid grid-cols-2 gap-4 justify-items-center mt-3">
-                {Array.from({ length: 4 }).map((_, index) => (
-                  <div
-                    key={`loading-${index}`}
-                    className="w-full bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
-                    style={{
-                      boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
-                      aspectRatio: '164/245',
-                    }}
-                  >
+              <div
+                className="grid gap-4 mt-6"
+                style={{
+                  gridTemplateColumns: '1fr 1fr',
+                  gridAutoRows: '50px',
+                }}
+              >
+                {Array.from({ length: 4 }).map((_, index) => {
+                  const loadingIndex = allProducts.length + index;
+                  const gridPos = getGridPosition(loadingIndex);
+                  const contentHeight = 120;
+                  const imageHeight =
+                    getHeightVariant(loadingIndex) === 'short' ? 160 : 220;
+                  const cardHeight = imageHeight + contentHeight;
+
+                  return (
                     <div
-                      className="w-full bg-gray-200 flex-shrink-0"
-                      style={{ aspectRatio: '164/136' }}
-                    />
-                    <div className="px-2 pt-2 space-y-2 flex-1">
-                      <div className="h-4 bg-gray-200 rounded w-3/4" />
-                      <div className="h-6 bg-gray-200 rounded w-full" />
-                      <div className="h-3 bg-gray-200 rounded w-1/2" />
-                      <div className="flex justify-between items-center mt-2">
-                        <div className="flex gap-0">
-                          {Array.from({ length: 5 }).map((_, starIndex) => (
-                            <div
-                              key={starIndex}
-                              className="w-[14px] h-[14px] bg-gray-200 rounded-sm"
-                            />
-                          ))}
+                      key={`loading-${index}`}
+                      className="w-full bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
+                      style={{
+                        boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
+                        height: `${cardHeight}px`,
+                        gridColumn: gridPos.gridColumn,
+                        gridRow: gridPos.gridRow,
+                      }}
+                    >
+                      <div
+                        className="w-full bg-gray-200 flex-shrink-0"
+                        style={{
+                          height: `${imageHeight}px`,
+                        }}
+                      />
+                      <div
+                        className="px-2 pt-2 space-y-2 flex flex-col"
+                        style={{ height: `${contentHeight}px` }}
+                      >
+                        <div className="h-4 bg-gray-200 rounded w-3/4" />
+                        <div className="h-6 bg-gray-200 rounded w-full" />
+                        <div className="h-3 bg-gray-200 rounded w-1/2" />
+                        <div className="flex justify-between items-center mt-auto flex-shrink-0">
+                          <div className="flex gap-0">
+                            {Array.from({ length: 5 }).map((_, starIndex) => (
+                              <div
+                                key={starIndex}
+                                className="w-[14px] h-[14px] bg-gray-200 rounded-sm"
+                              />
+                            ))}
+                          </div>
+                          <div className="h-3 bg-gray-200 rounded w-8" />
                         </div>
-                        <div className="h-3 bg-gray-200 rounded w-8" />
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
 

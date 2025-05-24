@@ -8,11 +8,13 @@ import { Product } from '@/core/entity/Product';
 type TrendingProductCardProps = {
   product: Product;
   index?: number;
+  heightVariant?: 'short' | 'tall';
 };
 
 const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
   product,
   index = 0,
+  heightVariant = 'tall',
 }) => {
   const router = useRouter();
   const variant = product.first_product_detail;
@@ -149,6 +151,11 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
     },
   };
 
+  // Define heights - keep content area consistent, only vary image height
+  const contentHeight = 120; // Fixed content area height for both variants
+  const imageHeight = heightVariant === 'short' ? 160 : 220; // Only image height changes
+  const cardHeight = imageHeight + contentHeight; // Total card height
+
   return (
     <motion.div
       variants={cardVariants}
@@ -158,7 +165,7 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
       className="w-full bg-white rounded-[8px] overflow-hidden cursor-pointer flex flex-col"
       style={{
         boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
-        aspectRatio: '164/245', // Maintain aspect ratio
+        height: `${cardHeight}px`,
       }}
       onClick={() => {
         router.push(`/application/product/detail/${product.id}`);
@@ -167,7 +174,7 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
       {/* Product Image */}
       <div
         className="relative w-full overflow-hidden rounded-[8px] flex-shrink-0 border-[1px]"
-        style={{ aspectRatio: '164/136' }}
+        style={{ height: `${imageHeight}px` }}
       >
         <Image
           src={productImage}
@@ -179,10 +186,13 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
         />
       </div>
 
-      {/* Product Details */}
-      <div className="px-2 pt-2 pb-2 flex-1 flex flex-col">
+      {/* Product Details - Fixed height for consistent content area */}
+      <div
+        className="px-2 pt-2 pb-2 flex flex-col"
+        style={{ height: `${contentHeight}px` }}
+      >
         {/* Top content */}
-        <div className="flex-1">
+        <div className="flex-1 min-h-0">
           {/* Title */}
           <h3
             className="text-black font-['Montserrat'] font-medium text-base leading-[1.25em] mb-1 line-clamp-1"
@@ -210,8 +220,8 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
           </div>
         </div>
 
-        {/* Bottom content - Rating and Review Count */}
-        <div className="flex items-center justify-between mt-auto">
+        {/* Bottom content - Rating and Review Count - Always visible */}
+        <div className="flex items-center justify-between mt-auto flex-shrink-0">
           {/* Stars */}
           <div className="flex items-center gap-0">{renderRating}</div>
 
