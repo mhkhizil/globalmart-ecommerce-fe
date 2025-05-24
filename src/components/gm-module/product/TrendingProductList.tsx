@@ -267,7 +267,7 @@ function TrendingProductList() {
         {!isLoading && !error && allProducts.length > 0 && (
           <div className="w-full">
             {/* Products Grid */}
-            <div className="grid grid-cols-2 gap-4 px-4 justify-items-center">
+            <div className="grid grid-cols-2 gap-4 justify-items-center">
               {allProducts.map((product: Product, index: number) => (
                 <TrendingProductCard
                   key={`${product.id}-${index}`}
@@ -279,11 +279,11 @@ function TrendingProductList() {
 
             {/* Loading more indicator */}
             {isFetchingNextPage && (
-              <div className="grid grid-cols-2 gap-4 px-4 justify-items-center mt-3">
+              <div className="grid grid-cols-2 gap-4 justify-items-center mt-3">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <div
                     key={`loading-${index}`}
-                    className="w-full max-w-[164px] bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
+                    className="w-full bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
                     style={{
                       boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
                       aspectRatio: '164/245',

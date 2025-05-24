@@ -155,7 +155,7 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
       initial="hidden"
       animate="visible"
       whileHover="hover"
-      className="w-full max-w-[164px] bg-white rounded-[8px] overflow-hidden cursor-pointer flex flex-col"
+      className="w-full bg-white rounded-[8px] overflow-hidden cursor-pointer flex flex-col"
       style={{
         boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
         aspectRatio: '164/245', // Maintain aspect ratio
