@@ -2,8 +2,32 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 import { Product } from '@/core/entity/Product';
+import { RootState } from '@/lib/redux/ReduxStore';
+import { Locale } from '@/lib/redux/slices/LanguageSlice';
+
+// Function to get description based on current locale
+const getLocalizedDescription = (product: Product, locale: Locale): string => {
+  switch (locale) {
+    case 'en': {
+      return product.en_description || '';
+    }
+    case 'cn': {
+      return product.cn_description || product.en_description || '';
+    }
+    case 'mm': {
+      return product.mm_description || product.en_description || '';
+    }
+    case 'th': {
+      return product.th_description || product.en_description || '';
+    }
+    default: {
+      return product.en_description || '';
+    }
+  }
+};
 
 type TrendingProductCardProps = {
   product: Product;
@@ -18,6 +42,11 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
 }) => {
   const router = useRouter();
   const variant = product.first_product_detail;
+
+  // Get current locale from Redux store
+  const currentLocale = useSelector(
+    (state: RootState) => state.language.locale
+  );
 
   // Check if there's a discount with proper existence and null/undefined handling
   const hasDiscount =
@@ -201,12 +230,12 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
             {product.product_name}
           </h3>
 
-          {/* Description */}
+          {/* Description - Localized based on selected language */}
           <p
             className="text-black font-['Montserrat'] font-normal leading-[1.6em] mb-2 line-clamp-2"
             style={{ fontSize: '10px', fontWeight: 400 }}
           >
-            {product.en_description || ''}
+            {getLocalizedDescription(product, currentLocale)}
           </p>
 
           {/* Price */}
