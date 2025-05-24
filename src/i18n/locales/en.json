@@ -1325,6 +1325,13 @@
         "description": "Welcome to the enhanced Worry-free takeaway home page. Discover local shops, digital services, and global offerings with our improved interface."
       }
     },
+    "trending_product": {
+      "metadata": {
+        "title": "Trending Product | Worry-free takeaway",
+        "keywords": "trending product, trending product list, trending product recommendation, trending product display",
+        "description": "View trending products on Worry-free takeaway. Discover the most popular products and easily purchase them."
+      }
+    },
     "driver_order_detail": {
       "metadata": {
         "title": "Driver Order Detail | Worry-free takeaway",

@@ -1,4 +1,6 @@
+import TrendingProduct from '@/components/gm-module/product/TrendingProduct';
+
 function TrendingProductPageClient() {
-  return <></>;
+  return <TrendingProduct />;
 }
 export default TrendingProductPageClient;

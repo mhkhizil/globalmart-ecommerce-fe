@@ -20,7 +20,7 @@ export async function generateMetadata({
 
   const t = await getTranslations({
     locale: locale as string,
-    namespace: 'application.TrendingProduct.metadata',
+    namespace: 'application.trending_product.metadata',
   });
 
   return {

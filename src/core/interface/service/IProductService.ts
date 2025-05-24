@@ -15,4 +15,7 @@ export interface IProductService {
     filter: ProductFilterByMerchantDto
   ): Promise<ProductListResponseDto>;
   createProduct(requestDto: FormData): Promise<ProductResponseDto>;
+  getTrendingProductList(
+    filter: ProductFilterByCategoryDto
+  ): Promise<ProductListResponseDto>;
 }

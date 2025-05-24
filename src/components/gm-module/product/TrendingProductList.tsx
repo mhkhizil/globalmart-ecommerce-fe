@@ -1,225 +1,316 @@
-'use client';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
-import useEmblaCarousel from 'embla-carousel-react';
-import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
-
-import ProductCard from '@/components/gm-module/product/ProductCard';
 import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
+import { ProductListResponseDto } from '@/core/dtos/product/ProductListResponseDto';
 import { Product } from '@/core/entity/Product';
-import { useGetProductList } from '@/lib/hooks/service/product/useGetProductList';
-import { Locale } from '@/lib/redux/slices/LanguageSlice';
+import { useGetTrendingProductListInfinite } from '@/lib/hooks/service/product/useGetTrendingProductListInfinite';
 
-interface ProductPreviewListProps {
-  title?: string;
-  categoryId?: string;
-}
+import ProductCard from './ProductCard';
 
-function TrendingProductList({ title, categoryId }: ProductPreviewListProps) {
-  // Get the current locale from Redux
-  const locale = useSelector(
-    (state: { language: { locale: Locale } }) => state.language.locale
+function TrendingProductList() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Get URL params for sort and filter
+  const sortFromUrl = searchParams.get('sort') || 'newest';
+  const filterFromUrl = searchParams.get('filter') || '';
+
+  const [sortOption, setSortOption] = useState<string>(sortFromUrl);
+  const [filterOptions, setFilterOptions] = useState<number[]>(
+    filterFromUrl ? filterFromUrl.split(',').map(Number) : []
   );
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
 
-  // Track scroll position and limits
-  const [canScrollPrevious, setCanScrollPrevious] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(true);
-
-  // Set up embla carousel with wheel/touchpad scrolling - disable loop
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false, // Disable loop to prevent repeating from start
-    align: 'start',
-    dragFree: true,
-    containScroll: 'trimSnaps',
+  // Infinite scrolling setup
+  const { ref: loadMoreRef, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: false,
   });
 
-  // Update scroll state when the carousel changes
-  useEffect(() => {
-    if (!emblaApi) return;
-
-    const onSelect = () => {
-      setCanScrollPrevious(emblaApi.canScrollPrev());
-      setCanScrollNext(emblaApi.canScrollNext());
-    };
-
-    // Call once and then listen for changes
-    onSelect();
-    emblaApi.on('select', onSelect);
-    emblaApi.on('reInit', onSelect);
-
-    return () => {
-      emblaApi.off('select', onSelect);
-      emblaApi.off('reInit', onSelect);
-    };
-  }, [emblaApi]);
-
-  // Enable wheel scrolling with reduced sensitivity
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container || !emblaApi) return;
-
-    const handleWheel = (event: WheelEvent) => {
-      // Prevent the default scroll behavior
-      event.preventDefault();
-
-      // Apply throttling to reduce sensitivity
-      // Only scroll once per 250ms to avoid rapid scrolling
-      if (wheelThrottleTimeout.current) return;
-
-      wheelThrottleTimeout.current = setTimeout(() => {
-        wheelThrottleTimeout.current = null;
-      }, 250);
-
-      // Determine direction
-      const direction =
-        Math.abs(event.deltaX) > Math.abs(event.deltaY)
-          ? Math.sign(event.deltaX)
-          : Math.sign(event.deltaY);
-
-      // Use scrollNext or scrollPrev based on direction
-      if (direction > 0 && canScrollNext) {
-        emblaApi.scrollNext();
-      } else if (direction < 0 && canScrollPrevious) {
-        emblaApi.scrollPrev();
-      }
-    };
-
-    container.addEventListener('wheel', handleWheel, { passive: false });
-
-    return () => {
-      container.removeEventListener('wheel', handleWheel);
-    };
-  }, [emblaApi, canScrollNext, canScrollPrevious]);
-
-  // Used for throttling wheel scrolling
-  const wheelThrottleTimeout = useRef<NodeJS.Timeout | null>(null);
-
+  // Use infinite query hook
   const {
-    data: productList,
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
     isLoading,
     error,
-  } = useGetProductList({
-    page: 1,
-    per_page: 10,
-    category_id: categoryId,
+  } = useGetTrendingProductListInfinite({
+    per_page: 2,
   });
 
-  // Handle loading state
-  if (isLoading) {
-    return (
-      <div className="w-full py-4">
-        <div className="flex gap-3 overflow-x-auto pb-4">
-          {Array.from({ length: 4 }).map((_, index) => (
-            <div
-              key={index}
-              className="w-[180px] h-[320px] bg-gray-200 rounded-md animate-pulse flex-shrink-0"
-            />
-          ))}
+  // Flatten all pages into a single array of products
+  const allProducts = useMemo(() => {
+    if (!data?.pages) return [];
+    return data.pages.flatMap(
+      page => (page as ProductListResponseDto).products || []
+    );
+  }, [data]);
+
+  // Load more when scroll trigger is in view
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
+
+  // Update URL when sort/filter changes
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (sortOption !== 'newest') {
+      params.set('sort', sortOption);
+    }
+    if (filterOptions.length > 0) {
+      params.set('filter', filterOptions.join(','));
+    }
+
+    const parameterString = params.toString();
+    const newUrl = parameterString
+      ? `${globalThis.location.pathname}?${parameterString}`
+      : globalThis.location.pathname;
+
+    // Only update URL if it's different to avoid unnecessary history changes
+    if (globalThis.location.href !== globalThis.location.origin + newUrl) {
+      globalThis.history.replaceState({}, '', newUrl);
+    }
+  }, [sortOption, filterOptions]);
+
+  // Sync state with URL params on mount and when searchParams change
+  useEffect(() => {
+    const sortFromUrl = searchParams.get('sort') || 'newest';
+    const filterFromUrl = searchParams.get('filter') || '';
+
+    setSortOption(sortFromUrl);
+    setFilterOptions(filterFromUrl ? filterFromUrl.split(',').map(Number) : []);
+  }, [searchParams]);
+
+  // Sort handler
+  const handleSortSelect = useCallback((selectedSort: string) => {
+    setSortOption(selectedSort);
+    setSortOpen(false);
+  }, []);
+
+  // Filter handlers
+  const handleFilterReset = useCallback(() => {
+    setFilterOptions([]);
+    setFilterOpen(false);
+  }, []);
+
+  const handleFilterApply = useCallback(() => {
+    setFilterOpen(false);
+  }, []);
+
+  // Toggle category selection
+  const handleCategoryChange = useCallback(
+    (categoryId: number, checked: boolean) => {
+      if (checked) {
+        setFilterOptions(previous => [...previous, categoryId]);
+      } else {
+        setFilterOptions(previous => previous.filter(id => id !== categoryId));
+      }
+    },
+    []
+  );
+
+  // Handle category card click
+  const handleCategoryClick = useCallback(
+    (categoryId: number) => {
+      const params = new URLSearchParams({
+        categoryId: categoryId.toString(),
+      });
+      router.push(`/application/trending-product?${params.toString()}`);
+    },
+    [router]
+  );
+  return (
+    <div>
+      {' '}
+      {/* Sort and Filter */}
+      <div className="flex w-full flex-col items-start justify-center">
+        <div className="flex w-full justify-between items-center mb-4 pr-4">
+          <h1 className="text-lg font-semibold font-['Montserrat']">
+            {allProducts.length > 0 ? `${allProducts.length}+ Items` : 'Items'}
+          </h1>
+          <div className="flex gap-2">
+            {/* Sort Button */}
+            <Drawer open={sortOpen} onOpenChange={setSortOpen}>
+              <DrawerTrigger asChild>
+                <div className="flex items-center gap-1 bg-white font-['Montserrat'] font-[400] rounded-md px-2 py-1 shadow-[1px_1px_16px_0px_rgba(0,0,0,0.08)] cursor-pointer">
+                  <span className="text-sm">Sort</span>
+                  <div className="flex flex-col items-center">
+                    <img
+                      src="/icons/sort-icon-2.svg"
+                      alt="Sort"
+                      className="w-3 h-3"
+                    />
+                  </div>
+                </div>
+              </DrawerTrigger>
+              <DrawerContent className="px-4">
+                <DrawerHeader>
+                  <DrawerTitle className="text-lg font-semibold">
+                    Sort
+                  </DrawerTitle>
+                </DrawerHeader>
+                <div className="p-4">
+                  <div className="space-y-4">{'sort options'}</div>
+                </div>
+              </DrawerContent>
+            </Drawer>
+
+            {/* Filter Button */}
+            <Drawer open={filterOpen} onOpenChange={setFilterOpen}>
+              <DrawerTrigger asChild>
+                <div className="flex items-center gap-1 bg-white font-['Montserrat'] font-[400] text-[12px] rounded-md px-2 py-1 shadow-[1px_1px_16px_0px_rgba(0,0,0,0.08)] cursor-pointer">
+                  <span className="text-sm">Filter</span>
+                  <div className="flex items-center">
+                    <img
+                      src="/icons/filter-icon-1.svg"
+                      alt="Filter"
+                      className="w-3 h-3"
+                    />
+                  </div>
+                </div>
+              </DrawerTrigger>
+              <DrawerContent className="w-full h-[70dvh] flex flex-col">
+                <DrawerHeader className="px-4 py-2">
+                  <DrawerTitle className="text-lg font-semibold">
+                    Filter
+                  </DrawerTitle>
+                </DrawerHeader>
+
+                {/* Scrollable Categories Section */}
+                <div className="flex-1 overflow-y-auto px-4">
+                  <div className="flex w-full pt-0 flex-col">
+                    {'filter options'}
+                  </div>
+                </div>
+
+                {/* Sticky Bottom Buttons */}
+                <div className="sticky bottom-0 bg-background border-t p-4 flex justify-between gap-4">
+                  <button
+                    className="flex-1 py-2 px-4 rounded-lg border hover:bg-gray-100"
+                    onClick={handleFilterReset}
+                  >
+                    Reset
+                  </button>
+                  <button
+                    className="flex-1 py-2 bg-[#FE8C00] text-white px-4 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90"
+                    onClick={handleFilterApply}
+                  >
+                    Apply
+                  </button>
+                </div>
+              </DrawerContent>
+            </Drawer>
+          </div>
         </div>
       </div>
-    );
-  }
-
-  // Handle error state
-  if (error || !productList) {
-    return <div>Failed to load products</div>;
-  }
-
-  // If there are no products, don't render the component
-  if (productList.products.length === 0) {
-    return null;
-  }
-
-  // Get description based on locale and prepare products
-  const getLocalizedProducts = () => {
-    return productList.products.map((item: Product) => {
-      // Create a copy of the item to avoid mutation
-      let localizedItem = { ...item };
-
-      // Update the description based on locale
-      if (locale === 'cn' && item.cn_description) {
-        localizedItem.en_description = item.cn_description;
-      } else if (locale === 'mm' && item.mm_description) {
-        localizedItem.en_description = item.mm_description;
-      } else if (locale === 'th' && item.th_description) {
-        localizedItem.en_description = item.th_description;
-      }
-
-      return localizedItem;
-    });
-  };
-
-  // Get products with localized descriptions
-  const localizedProducts = getLocalizedProducts();
-
-  // Custom navigation buttons matching Figma design
-  const CustomPreviousButton = () => (
-    <button
-      onClick={() => emblaApi?.scrollPrev()}
-      disabled={!canScrollPrevious}
-      className={`absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)] ${canScrollPrevious ? '' : 'opacity-50 cursor-not-allowed'}`}
-      aria-label="Previous slide"
-    >
-      <div className="rotate-180">
-        <Image
-          src="/images/carousel-arrow-fill.svg"
-          alt="Previous"
-          width={8}
-          height={8}
-        />
-      </div>
-    </button>
-  );
-
-  const CustomNextButton = () => (
-    <button
-      onClick={() => emblaApi?.scrollNext()}
-      disabled={!canScrollNext}
-      className={`absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-white shadow-[inset_-6px_-6px_4px_0px_rgba(196,196,196,1),inset_6px_6px_4px_0px_rgba(222,219,219,1)] ${canScrollNext ? '' : 'opacity-50 cursor-not-allowed'}`}
-      aria-label="Next slide"
-    >
-      <Image
-        src="/images/carousel-arrow-fill.svg"
-        alt="Next"
-        width={8}
-        height={8}
-      />
-    </button>
-  );
-
-  return (
-    <div className="w-full py-4">
-      {title && (
-        <h2 className="text-xl font-semibold font-['Montserrat'] mb-4">
-          {title}
-        </h2>
-      )}
-
-      <div className="relative" ref={containerRef}>
-        <div className="overflow-hidden" ref={emblaRef}>
-          <div className="flex">
-            {localizedProducts.map((product: Product) => (
+      {/* Trending Product List */}
+      <div className="w-full">
+        {/* Loading state for initial load */}
+        {isLoading && (
+          <div className="grid grid-cols-2 gap-3 px-4">
+            {Array.from({ length: 6 }).map((_, index) => (
               <div
-                key={product.id}
-                className="flex-[0_0_auto] min-h-[300px] min-w-0 px-1.5 first:pl-4 last:pr-4"
+                key={index}
+                className="flex flex-col bg-white rounded-[6px] shadow-sm overflow-hidden animate-pulse"
               >
-                <ProductCard product={product} showRating={false} />
+                <div className="h-[180px] w-full bg-gray-200" />
+                <div className="p-3 space-y-2">
+                  <div className="h-4 bg-gray-200 rounded w-3/4" />
+                  <div className="h-3 bg-gray-200 rounded w-full" />
+                  <div className="h-3 bg-gray-200 rounded w-2/3" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2" />
+                </div>
               </div>
             ))}
           </div>
-        </div>
+        )}
 
-        <CustomPreviousButton />
-        <CustomNextButton />
+        {/* Error state */}
+        {error && (
+          <div className="px-4 py-8 text-center">
+            <p className="text-red-500 text-sm">
+              Failed to load products. Please try again.
+            </p>
+          </div>
+        )}
+
+        {/* Product Grid */}
+        {!isLoading && !error && allProducts.length > 0 && (
+          <div className="w-full">
+            {/* Products Grid */}
+            <div className="grid grid-cols-2 gap-3 px-4">
+              {allProducts.map((product: Product, index: number) => (
+                <div
+                  key={`${product.id}-${index}`}
+                  className="w-full flex justify-center"
+                >
+                  <div className="w-full max-w-[180px]">
+                    <ProductCard product={product} showRating={true} />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Loading more indicator */}
+            {isFetchingNextPage && (
+              <div className="grid grid-cols-2 gap-3 px-4 mt-3">
+                {Array.from({ length: 4 }).map((_, index) => (
+                  <div
+                    key={`loading-${index}`}
+                    className="flex flex-col bg-white rounded-[6px] shadow-sm overflow-hidden animate-pulse"
+                  >
+                    <div className="h-[180px] w-full bg-gray-200" />
+                    <div className="p-3 space-y-2">
+                      <div className="h-4 bg-gray-200 rounded w-3/4" />
+                      <div className="h-3 bg-gray-200 rounded w-full" />
+                      <div className="h-3 bg-gray-200 rounded w-2/3" />
+                      <div className="h-4 bg-gray-200 rounded w-1/2" />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Infinite scroll trigger */}
+            <div
+              ref={loadMoreRef}
+              className="h-10 flex items-center justify-center mt-4"
+            >
+              {hasNextPage && !isFetchingNextPage && (
+                <div className="text-sm text-gray-500">Loading more...</div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* No products state */}
+        {!isLoading && !error && allProducts.length === 0 && (
+          <div className="px-4 py-12 text-center">
+            <div className="flex flex-col items-center">
+              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+                <span className="text-2xl text-gray-400">📦</span>
+              </div>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">
+                No products found
+              </h3>
+              <p className="text-sm text-gray-500">
+                Try adjusting your filters or check back later.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
