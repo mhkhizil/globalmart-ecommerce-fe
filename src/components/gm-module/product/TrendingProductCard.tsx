@@ -166,7 +166,7 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
     >
       {/* Product Image */}
       <div
-        className="relative w-full overflow-hidden rounded-t-[8px] flex-shrink-0"
+        className="relative w-full overflow-hidden rounded-[8px] flex-shrink-0 border-[1px]"
         style={{ aspectRatio: '164/136' }}
       >
         <Image
