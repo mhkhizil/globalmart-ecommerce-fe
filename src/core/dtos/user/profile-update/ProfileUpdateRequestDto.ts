@@ -1,7 +1,9 @@
 export type ProfileUpdateRequestDto = {
-  name: string;
   email: string;
-  latlong: string;
   phone: string;
+  postal_code: string;
   address: string;
+  country: string;
+  state: string;
+  city: string;
 };

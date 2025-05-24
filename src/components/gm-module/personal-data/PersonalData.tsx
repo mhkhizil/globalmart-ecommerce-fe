@@ -8,21 +8,11 @@ import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
 
 import BackIcon from '@/components/common/icons/BackIcon';
-import CameraIcon from '@/components/common/icons/CameraIcon';
 import Input from '@/components/common/Input';
 import Loader from '@/components/common/loader/Loader';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
 import { ProfileUpdateRequestDto } from '@/core/dtos/user/profile-update/ProfileUpdateRequestDto';
 import { useGetUser } from '@/lib/hooks/service/user/useGetUserById';
 import { useProfileUpdate } from '@/lib/hooks/service/user/useProfileUpdate';
-import { useSession } from '@/lib/hooks/session/useSession';
 
 import ProfileHeader from '../profile/ProfileHeader';
 
@@ -50,11 +40,13 @@ function PersonalData() {
   useEffect(() => {
     if (currentUser) {
       reset({
-        name: currentUser.name,
-        latlong: currentUser.latlong,
         phone: currentUser.phone,
         email: currentUser.email,
+        postal_code: currentUser.postal_code || '',
         address: currentUser.address,
+        country: currentUser.country_id?.toString() || '',
+        state: currentUser.state_id?.toString() || '',
+        city: currentUser.city_id?.toString() || '',
       });
     }
   }, [currentUser, reset]);
@@ -132,19 +124,18 @@ function PersonalData() {
           />
         </div>
         <div className="mb-[14px]">
-          <span>{'Password'}</span>
+          <span>{t('profile.phone')}</span>
           <Input
-            type="password"
-            label="password"
-            {...register('phone', { required: 'password required' })}
+            label="phone"
+            {...register('phone', { required: 'phone required' })}
             className="py-[16px]  focus:outline-gray-500 border-[#D6D6D6] border-[1px] h-[3.25rem]"
           />
         </div>
-        <div className="flex w-full justify-end">
+        {/* <div className="flex w-full justify-end">
           <span className="text-[#F83758] text-[12px] leading-[24px] font-[500] underline cursor-pointer">
             {'Change Password'}
           </span>
-        </div>
+        </div> */}
 
         <div className="flex w-full my-4">
           <span className="text-[#101010] text-[16px] leading-[24px] font-semibold">
@@ -155,8 +146,8 @@ function PersonalData() {
         <div className="mb-[24px]">
           <span>{'Pincode'}</span>
           <Input
-            label="Address"
-            {...register('address', { required: 'pin code required' })}
+            label="pincode"
+            {...register('postal_code', { required: 'pin code required' })}
             type="text"
             className="py-[16px] focus:outline-gray-500 border-[#D6D6D6] border-[1px] h-[3.25rem]"
           />
@@ -173,8 +164,8 @@ function PersonalData() {
         <div className="mb-[24px]">
           <span>{'City'}</span>
           <Input
-            label="Address"
-            {...register('address', { required: 'city required' })}
+            label="city"
+            {...register('city', { required: 'city required' })}
             type="text"
             className="py-[16px] focus:outline-gray-500 border-[#D6D6D6] border-[1px] h-[3.25rem]"
           />
@@ -182,8 +173,8 @@ function PersonalData() {
         <div className="mb-[24px]">
           <span>{'State'}</span>
           <Input
-            label="Address"
-            {...register('address', { required: 'state required' })}
+            label="state"
+            {...register('state', { required: 'state required' })}
             type="text"
             className="py-[16px] focus:outline-gray-500 border-[#D6D6D6] border-[1px] h-[3.25rem]"
           />
@@ -191,8 +182,8 @@ function PersonalData() {
         <div className="mb-[24px]">
           <span>{'Country'}</span>
           <Input
-            label="Address"
-            {...register('address', { required: 'country required' })}
+            label="country"
+            {...register('country', { required: 'country required' })}
             type="text"
             className="py-[16px] focus:outline-gray-500 border-[#D6D6D6] border-[1px] h-[3.25rem]"
           />
