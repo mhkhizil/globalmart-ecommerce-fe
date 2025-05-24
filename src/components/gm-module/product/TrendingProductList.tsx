@@ -13,7 +13,7 @@ import { ProductListResponseDto } from '@/core/dtos/product/ProductListResponseD
 import { Product } from '@/core/entity/Product';
 import { useGetTrendingProductListInfinite } from '@/lib/hooks/service/product/useGetTrendingProductListInfinite';
 
-import ProductCard from './ProductCard';
+import TrendingProductCard from './TrendingProductCard';
 
 function TrendingProductList() {
   const router = useRouter();
@@ -219,18 +219,35 @@ function TrendingProductList() {
       <div className="w-full">
         {/* Loading state for initial load */}
         {isLoading && (
-          <div className="grid grid-cols-2 gap-3 px-4">
+          <div className="grid grid-cols-2 gap-4 px-4 justify-items-center">
             {Array.from({ length: 6 }).map((_, index) => (
               <div
                 key={index}
-                className="flex flex-col bg-white rounded-[6px] shadow-sm overflow-hidden animate-pulse"
+                className="w-full max-w-[164px] bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
+                style={{
+                  boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
+                  aspectRatio: '164/245',
+                }}
               >
-                <div className="h-[180px] w-full bg-gray-200" />
-                <div className="p-3 space-y-2">
+                <div
+                  className="w-full bg-gray-200 flex-shrink-0"
+                  style={{ aspectRatio: '164/136' }}
+                />
+                <div className="px-2 pt-2 space-y-2 flex-1">
                   <div className="h-4 bg-gray-200 rounded w-3/4" />
-                  <div className="h-3 bg-gray-200 rounded w-full" />
-                  <div className="h-3 bg-gray-200 rounded w-2/3" />
-                  <div className="h-4 bg-gray-200 rounded w-1/2" />
+                  <div className="h-6 bg-gray-200 rounded w-full" />
+                  <div className="h-3 bg-gray-200 rounded w-1/2" />
+                  <div className="flex justify-between items-center mt-2">
+                    <div className="flex gap-0">
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <div
+                          key={starIndex}
+                          className="w-[14px] h-[14px] bg-gray-200 rounded-sm"
+                        />
+                      ))}
+                    </div>
+                    <div className="h-3 bg-gray-200 rounded w-8" />
+                  </div>
                 </div>
               </div>
             ))}
@@ -250,33 +267,47 @@ function TrendingProductList() {
         {!isLoading && !error && allProducts.length > 0 && (
           <div className="w-full">
             {/* Products Grid */}
-            <div className="grid grid-cols-2 gap-3 px-4">
+            <div className="grid grid-cols-2 gap-4 px-4 justify-items-center">
               {allProducts.map((product: Product, index: number) => (
-                <div
+                <TrendingProductCard
                   key={`${product.id}-${index}`}
-                  className="w-full flex justify-center"
-                >
-                  <div className="w-full max-w-[180px]">
-                    <ProductCard product={product} showRating={true} />
-                  </div>
-                </div>
+                  product={product}
+                  index={index}
+                />
               ))}
             </div>
 
             {/* Loading more indicator */}
             {isFetchingNextPage && (
-              <div className="grid grid-cols-2 gap-3 px-4 mt-3">
+              <div className="grid grid-cols-2 gap-4 px-4 justify-items-center mt-3">
                 {Array.from({ length: 4 }).map((_, index) => (
                   <div
                     key={`loading-${index}`}
-                    className="flex flex-col bg-white rounded-[6px] shadow-sm overflow-hidden animate-pulse"
+                    className="w-full max-w-[164px] bg-white rounded-[8px] shadow-sm overflow-hidden animate-pulse flex flex-col"
+                    style={{
+                      boxShadow: '0px 2px 2px 0px rgba(0, 0, 0, 0.15)',
+                      aspectRatio: '164/245',
+                    }}
                   >
-                    <div className="h-[180px] w-full bg-gray-200" />
-                    <div className="p-3 space-y-2">
+                    <div
+                      className="w-full bg-gray-200 flex-shrink-0"
+                      style={{ aspectRatio: '164/136' }}
+                    />
+                    <div className="px-2 pt-2 space-y-2 flex-1">
                       <div className="h-4 bg-gray-200 rounded w-3/4" />
-                      <div className="h-3 bg-gray-200 rounded w-full" />
-                      <div className="h-3 bg-gray-200 rounded w-2/3" />
-                      <div className="h-4 bg-gray-200 rounded w-1/2" />
+                      <div className="h-6 bg-gray-200 rounded w-full" />
+                      <div className="h-3 bg-gray-200 rounded w-1/2" />
+                      <div className="flex justify-between items-center mt-2">
+                        <div className="flex gap-0">
+                          {Array.from({ length: 5 }).map((_, starIndex) => (
+                            <div
+                              key={starIndex}
+                              className="w-[14px] h-[14px] bg-gray-200 rounded-sm"
+                            />
+                          ))}
+                        </div>
+                        <div className="h-3 bg-gray-200 rounded w-8" />
+                      </div>
                     </div>
                   </div>
                 ))}
