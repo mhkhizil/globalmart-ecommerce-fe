@@ -190,9 +190,9 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     setShowCartOptions(false);
   };
 
-  // const handleBuyNow = () => {
-  //   setShowCartOptions(true);
-  // };
+  const handleBuyNow = () => {
+    setShowCartOptions(true);
+  };
 
   // const handleViewSimilar = () => {
   //   console.log('View similar products');
@@ -519,7 +519,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="relative w-[136px] flex h-9 bg-gradient-to-b from-[#71F9A9] to-[#31B769] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
-                // onClick={handleBuyNow}
+                onClick={handleBuyNow}
                 style={{
                   opacity: selectedVariant.stock === 0 ? 0.5 : 1,
                   pointerEvents: selectedVariant.stock === 0 ? 'none' : 'auto',
