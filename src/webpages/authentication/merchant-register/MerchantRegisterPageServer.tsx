@@ -30,65 +30,96 @@ interface City {
 }
 
 async function MerchantRegisterPageServer() {
-  const commonService = new CommonService(
-    new CommonRepository(new AxiosCustomClient())
-  );
-
-  // Define URLs (ensure these environment variables are set)
-  const countryURL = process.env.NEXT_PUBLIC_COUNTIRES_RESOURCES;
-  const stateURL = process.env.NEXT_PUBLIC_STATES_RESOURCES;
-  const cityURL = process.env.NEXT_PUBLIC_CITIES_RESOURCES;
-
-  // Specify the expected return type for getShopList if possible
-  // Let's assume it returns { shoptypes: ShopType[] }
-  type ShopListResponse = { shoptypes?: ShopType[] };
-
-  // Fetch all data in parallel using Promise.allSettled
-  const results = await Promise.allSettled([
-    commonService.getShopList() as Promise<ShopListResponse>, // Type assertion for getShopList result
-    countryURL
-      ? axios.get<Country[]>(countryURL)
-      : Promise.resolve({ data: [] }), // Promise 1: Countries
-    stateURL ? axios.get<State[]>(stateURL) : Promise.resolve({ data: [] }), // Promise 2: States
-    cityURL ? axios.get<City[]>(cityURL) : Promise.resolve({ data: [] }), // Promise 3: Cities
-  ]);
-
-  // Process results, providing defaults for failures
-  const shopListResult = results[0];
-  const countryListResult = results[1];
-  const stateListResult = results[2];
-  const cityListResult = results[3];
-
+  // Initialize with default empty arrays
   let shopList: ShopType[] = [];
-  if (shopListResult.status === 'fulfilled') {
-    shopList = shopListResult.value?.shoptypes ?? [];
-  } else {
-    console.error('Failed to fetch shop list:', shopListResult.reason);
-    // shopList remains []
-  }
-
   let countryList: Country[] = [];
-  if (countryListResult.status === 'fulfilled') {
-    countryList = countryListResult.value?.data ?? [];
-  } else {
-    console.error('Failed to fetch country list:', countryListResult.reason);
-    // countryList remains []
-  }
-
   let stateList: State[] = [];
-  if (stateListResult.status === 'fulfilled') {
-    stateList = stateListResult.value?.data ?? [];
-  } else {
-    console.error('Failed to fetch state list:', stateListResult.reason);
-    // stateList remains []
-  }
-
   let cityList: City[] = [];
-  if (cityListResult.status === 'fulfilled') {
-    cityList = cityListResult.value?.data ?? [];
-  } else {
-    console.error('Failed to fetch city list:', cityListResult.reason);
-    // cityList remains []
+
+  try {
+    const commonService = new CommonService(
+      new CommonRepository(new AxiosCustomClient())
+    );
+
+    // Define URLs (ensure these environment variables are set)
+    const countryURL = process.env.NEXT_PUBLIC_COUNTIRES_RESOURCES;
+    const stateURL = process.env.NEXT_PUBLIC_STATES_RESOURCES;
+    const cityURL = process.env.NEXT_PUBLIC_CITIES_RESOURCES;
+
+    // Specify the expected return type for getShopList if possible
+    // Let's assume it returns { shoptypes: ShopType[] }
+    type ShopListResponse = { shoptypes?: ShopType[] };
+
+    // Create safe fetch functions that won't throw
+    const safeGetShopList = async (): Promise<ShopListResponse> => {
+      try {
+        return (await commonService.getShopList()) as ShopListResponse;
+      } catch (error) {
+        console.error('Failed to fetch shop list:', error);
+        return { shoptypes: [] };
+      }
+    };
+
+    const safeAxiosGet = async <T,>(
+      url: string | undefined
+    ): Promise<{ data: T[] }> => {
+      if (!url) {
+        return { data: [] };
+      }
+      try {
+        const response = await axios.get<T[]>(url);
+        return response;
+      } catch (error) {
+        console.error(`Failed to fetch data from ${url}:`, error);
+        return { data: [] };
+      }
+    };
+
+    // Fetch all data in parallel using Promise.allSettled with safe functions
+    const results = await Promise.allSettled([
+      safeGetShopList(),
+      safeAxiosGet<Country>(countryURL),
+      safeAxiosGet<State>(stateURL),
+      safeAxiosGet<City>(cityURL),
+    ]);
+
+    // Process results, providing defaults for failures
+    const shopListResult = results[0];
+    const countryListResult = results[1];
+    const stateListResult = results[2];
+    const cityListResult = results[3];
+
+    if (shopListResult.status === 'fulfilled') {
+      shopList = shopListResult.value?.shoptypes ?? [];
+    } else {
+      console.error('Failed to fetch shop list:', shopListResult.reason);
+      // shopList remains []
+    }
+
+    if (countryListResult.status === 'fulfilled') {
+      countryList = countryListResult.value?.data ?? [];
+    } else {
+      console.error('Failed to fetch country list:', countryListResult.reason);
+      // countryList remains []
+    }
+
+    if (stateListResult.status === 'fulfilled') {
+      stateList = stateListResult.value?.data ?? [];
+    } else {
+      console.error('Failed to fetch state list:', stateListResult.reason);
+      // stateList remains []
+    }
+
+    if (cityListResult.status === 'fulfilled') {
+      cityList = cityListResult.value?.data ?? [];
+    } else {
+      console.error('Failed to fetch city list:', cityListResult.reason);
+      // cityList remains []
+    }
+  } catch (error) {
+    // Catch any unexpected errors during the entire process
+    console.error('Unexpected error in MerchantRegisterPageServer:', error);
+    // All lists remain as empty arrays (already initialized above)
   }
 
   return (
