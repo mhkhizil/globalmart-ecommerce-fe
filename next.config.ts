@@ -106,6 +106,13 @@ const nextConfig: NextConfig = {
         pathname: '/**',
         search: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'admin.gogograb.shop',
+        port: '',
+        pathname: '/**',
+        search: '',
+      },
     ],
   },
 };

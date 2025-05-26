@@ -3,11 +3,10 @@
 import { Toaster } from 'react-hot-toast';
 
 import ProductDetailInfo from '@/components/gm-module/product/ProductDetailInfo';
-import { ProductDetail } from '@/core/entity/Product';
-import { ProductSample2 } from '@/lib/constants/ProductsSample';
+import { MainProductDetail } from '@/core/entity/Product';
 
 interface IProdcutDetailProps {
-  product: ProductDetail;
+  product: MainProductDetail;
 }
 
 const images = [

@@ -1,10 +1,6 @@
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
 
-import { OrderRepository } from '@/core/repository/OrderRepository';
-import { OrderService } from '@/core/services/OrderService';
-import { AxiosCustomClient } from '@/lib/axios/AxiosClient';
-import { ProductSample } from '@/lib/constants/ProductsSample';
 import UserOrderDetailPageServerWithSuspense from '@/webpages/user-order-detail/UserOrderDetailPageServer';
 
 interface IPageProps {

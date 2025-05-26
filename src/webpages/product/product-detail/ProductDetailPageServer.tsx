@@ -1,12 +1,12 @@
 import { Suspense } from 'react';
 
 import FallBackLoading from '@/components/common/loader/FallBackLoading';
-import { Product, ProductDetail } from '@/core/entity/Product';
+import { MainProductDetail } from '@/core/entity/Product';
 
 import ProductDetailPageClient from './ProductDetailPageClient';
 
 interface IProdcutDetailProps {
-  product: ProductDetail;
+  product: MainProductDetail;
 }
 
 function ProductDetailPageServer(props: IProdcutDetailProps) {

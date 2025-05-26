@@ -69,4 +69,18 @@ export class ProductRepository implements IProductRepository {
       throw new Error('Unable to create product');
     }
   }
+  async getTrendingProductList<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto> {
+    try {
+      const client = this.axiosClient.createInstance();
+      const url = `${API_BASE_URL}/${apiEndPoints.product.getTrendingProductList}`;
+      const response = await client.get(url, {
+        params: requestDto,
+      });
+      return response.data.data as TResponseDto;
+    } catch {
+      throw new Error('Unable to get trending product list');
+    }
+  }
 }

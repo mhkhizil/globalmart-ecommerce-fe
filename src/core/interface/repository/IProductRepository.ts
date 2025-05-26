@@ -12,4 +12,7 @@ export interface IProductRepository {
   createProduct<TRequestDto, TResponseDto>(
     requestDto: TRequestDto
   ): Promise<TResponseDto>;
+  getTrendingProductList<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto>;
 }

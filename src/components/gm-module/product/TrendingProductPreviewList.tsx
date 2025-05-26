@@ -22,7 +22,10 @@ interface ProductPreviewListProps {
   categoryId?: string;
 }
 
-function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
+function TrendingProductPreviewList({
+  title,
+  categoryId,
+}: ProductPreviewListProps) {
   // Get the current locale from Redux
   const locale = useSelector(
     (state: { language: { locale: Locale } }) => state.language.locale
@@ -210,9 +213,9 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
             {localizedProducts.map((product: Product) => (
               <div
                 key={product.id}
-                className="flex-[0_0_auto] min-h-[330px] min-w-0 px-1.5 first:pl-4 last:pr-4"
+                className="flex-[0_0_auto] min-h-[300px] min-w-0 px-1.5 first:pl-4 last:pr-4"
               >
-                <ProductCard product={product} />
+                <ProductCard product={product} showRating={false} />
               </div>
             ))}
           </div>
@@ -225,4 +228,4 @@ function ProductPreviewList({ title, categoryId }: ProductPreviewListProps) {
   );
 }
 
-export default ProductPreviewList;
+export default TrendingProductPreviewList;

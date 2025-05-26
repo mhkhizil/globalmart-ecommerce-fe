@@ -33,11 +33,12 @@ export const apiEndPoints = {
   },
   product: {
     getCategoryList: 'api/v1/product/categories',
-    getProductListByCategory: 'api/v1/productbycategory',
+    getProductListByCategory: 'api/v1/product',
     getProductListByMerchantId: 'api/v1/productbymerchant',
     getProductbyId: 'api/v1/product',
     getAllProduct: 'api/v1/product',
     createProduct: 'api/v1/product/store',
+    getTrendingProductList: 'api/v1/trending-product',
   },
   merchant: {
     register: 'api/v1/merchant/register',

@@ -8,17 +8,16 @@ import Image from 'next/image';
 import { useRef } from 'react';
 import Slider from 'react-slick';
 
-type ProductImage = {
+type ProductDetailImage = {
   id: number;
-  p_id: number;
-  link: string;
-  type: number;
+  product_detail_id: number;
+  image_path: string;
   created_at: string;
   updated_at: string;
 };
 
 interface ProductImageSliderProps {
-  images: ProductImage[];
+  images: ProductDetailImage[];
   productName: string;
   fallbackImage?: string;
 }
@@ -38,9 +37,8 @@ function ProductImageSlider({
         ? [
             {
               id: 0,
-              p_id: 0,
-              link: fallbackImage,
-              type: 1,
+              product_detail_id: 0,
+              image_path: fallbackImage,
               created_at: '',
               updated_at: '',
             },
@@ -89,7 +87,7 @@ function ProductImageSlider({
       <div className="product-slider-container">
         <div className="relative h-[13.313rem] overflow-hidden rounded-[13px]">
           <Image
-            src={imageList[0].link}
+            src={imageList[0].image_path}
             alt={`${productName}`}
             fill
             className="object-cover"
@@ -109,7 +107,7 @@ function ProductImageSlider({
           <div key={image.id || index}>
             <div className="relative h-[13.313rem] overflow-hidden rounded-[13px]">
               <Image
-                src={image.link}
+                src={image.image_path}
                 alt={`${productName} - image ${index + 1}`}
                 fill
                 className="object-cover"

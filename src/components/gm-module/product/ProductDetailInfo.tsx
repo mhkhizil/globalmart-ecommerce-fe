@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { memo, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ProductDetail } from '@/core/entity/Product';
+import { MainProductDetail, ProductDetail } from '@/core/entity/Product';
 import { RootState } from '@/lib/redux/ReduxStore';
 import { addItem } from '@/lib/redux/slices/CartSlice';
 
@@ -67,18 +67,22 @@ const CartIcon = () => (
 const MemoizedProductAction = memo(ProductAction);
 
 interface ProductDetailProps {
-  product: ProductDetail;
+  product: MainProductDetail;
 }
 
 function ProductDetailInfo({ product }: ProductDetailProps) {
-  const [selectedSize, setSelectedSize] = useState<string>('7UK');
+  // Initialize with the first variant
+  const [selectedVariant, setSelectedVariant] = useState<ProductDetail>(
+    product.product_detail[0] || null
+  );
   const [quantity, setQuantity] = useState<number>(1);
   const [showCartOptions, setShowCartOptions] = useState<boolean>(false);
   const { locale } = useSelector((state: RootState) => state.language);
   const dispatch = useDispatch();
   const cartOptionsRef = useRef<HTMLDivElement>(null);
-  console.log(product);
-  const sizes = ['6 UK', '7 UK', '8 UK', '9 UK', '10 UK'];
+
+  // Get unique variants (colors) for selection
+  const availableVariants = product.product_detail || [];
 
   // Get the description based on current locale
   const getLocaleDescription = () => {
@@ -101,28 +105,55 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     }
   };
 
-  // Calculate discount price
+  // Calculate discount price using selected variant
   const calculateDiscountedPrice = () => {
-    if (product.discount_type === 'percentage' && product.discount_percent) {
-      return (
-        product.p_price - (product.p_price * product.discount_percent) / 100
+    if (!selectedVariant) return 0;
+
+    if (
+      selectedVariant?.discount_type === 'percentage' &&
+      selectedVariant?.discount_percent !== null &&
+      selectedVariant?.discount_percent !== undefined
+    ) {
+      return Math.max(
+        0,
+        Number(selectedVariant.price) -
+          (Number(selectedVariant.price) *
+            Number(selectedVariant?.discount_percent)) /
+            100
       );
-    } else if (product.discount_type === 'fixed' && product.discount_amount) {
-      return product.p_price - Number.parseFloat(product.discount_amount);
+    } else if (
+      selectedVariant?.discount_type === 'fixed' &&
+      selectedVariant?.discount_amount !== null &&
+      selectedVariant?.discount_amount !== undefined
+    ) {
+      return Math.max(
+        0,
+        Number(selectedVariant.price) - Number(selectedVariant?.discount_amount)
+      );
     }
-    return product.p_price;
+    return Number(selectedVariant.price);
   };
 
   const discountedPrice = calculateDiscountedPrice();
-  const discountPercentage =
-    product.discount_type === 'percentage'
-      ? product.discount_percent
-      : Math.round(
-          (Number.parseFloat(product.discount_amount) / product.p_price) * 100
-        );
+  const discountPercentage = selectedVariant
+    ? selectedVariant?.discount_type === 'percentage' &&
+      selectedVariant?.discount_percent !== null &&
+      selectedVariant?.discount_percent !== undefined
+      ? Number(selectedVariant?.discount_percent)
+      : selectedVariant?.discount_type === 'fixed' &&
+          selectedVariant?.discount_amount !== null &&
+          selectedVariant?.discount_amount !== undefined &&
+          Number(selectedVariant.price) > 0
+        ? Math.round(
+            (Number(selectedVariant?.discount_amount) /
+              Number(selectedVariant.price)) *
+              100
+          )
+        : 0
+    : 0;
 
   const handleIncreaseQuantity = () => {
-    if (quantity < product.p_stock) {
+    if (selectedVariant && quantity < selectedVariant.stock) {
       setQuantity(previous => previous + 1);
     }
   };
@@ -134,19 +165,26 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
   };
 
   const handleAddToCart = () => {
+    if (!selectedVariant) return;
+
     dispatch(
       addItem({
-        id: product.id,
-        name: product.p_name,
-        price: product.p_price,
+        id: selectedVariant.id,
+        name: selectedVariant.product_name,
+        price: Number(selectedVariant.price),
         quantity: quantity,
-        merchant_id: product.m_id,
-        type: product.discount_type,
-        discount_percent: product.discount_percent,
-        discount_amount: product.discount_amount,
+        merchant_id: product.merchant_id,
+        type: selectedVariant?.discount_type || undefined,
+        discount_percent: selectedVariant?.discount_percent
+          ? Number(selectedVariant.discount_percent)
+          : undefined,
+        discount_amount: selectedVariant?.discount_amount || undefined,
         discount_price: discountedPrice,
-        image: product.p_image,
-        customization: { size: selectedSize },
+        image: selectedVariant.p_image || product.p_image,
+        customization: {
+          color: selectedVariant.color_name,
+          size: selectedVariant.size,
+        },
       })
     );
     setShowCartOptions(false);
@@ -156,15 +194,27 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     setShowCartOptions(true);
   };
 
-  const handleViewSimilar = () => {
-    // Handle view similar logic
-    console.log('View similar products');
+  // const handleViewSimilar = () => {
+  //   console.log('View similar products');
+  // };
+
+  // const handleReviews = () => {
+  //   console.log('View reviews');
+  // };
+
+  // Handle variant selection
+  const handleVariantSelect = (variant: ProductDetail) => {
+    setSelectedVariant(variant);
+    setQuantity(1); // Reset quantity when variant changes
   };
 
-  const handleReviews = () => {
-    // Handle reviews logic
-    console.log('View reviews');
-  };
+  if (!selectedVariant) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <p className="text-gray-500">No variants available</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col px-4">
@@ -176,44 +226,67 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
       </div>
       <div className="relative w-full">
         <ProductImageSlider
-          images={product.product_image}
-          productName={product.p_name}
-          fallbackImage={product.p_image}
+          images={selectedVariant.product_detail_image}
+          productName={product.product_name}
+          fallbackImage={selectedVariant.p_image || product.p_image}
         />
       </div>
-      <div className="mt-1 ">
-        <div className="mb-2">
-          <h3 className="text-[14px] font-['Montserrat'] font-bold">
-            Size: {selectedSize}
+
+      {/* Color/Variant Selection */}
+      <div className="mt-4 ">
+        <div className="mb-3">
+          <h3 className="text-[14px] font-['Montserrat'] font-bold mb-2">
+            Color: {selectedVariant.color_name}
           </h3>
+          <div className="flex flex-wrap gap-3">
+            {availableVariants.map(variant => (
+              <motion.button
+                key={variant.id}
+                onClick={() => handleVariantSelect(variant)}
+                whileTap={{ scale: 0.95 }}
+                className={`
+                  relative min-w-[3rem] h-12 rounded-md border-2 transition-all duration-200
+                  ${
+                    selectedVariant.id === variant.id
+                      ? 'border-[#FA7189] shadow-md'
+                      : 'border-gray-300 hover:border-gray-400'
+                  }
+                `}
+                style={{
+                  backgroundColor: '#' + variant.color_code || '#f3f4f6',
+                }}
+                aria-label={`Select ${variant.color_name}`}
+              >
+                {selectedVariant.id === variant.id && (
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div className="w-4 h-4 rounded-full bg-white shadow-sm flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-[#FA7189]"></div>
+                    </div>
+                  </motion.div>
+                )}
+              </motion.button>
+            ))}
+          </div>
         </div>
-        <div className="flex flex-wrap gap-3">
-          {sizes.map(size => (
-            <button
-              key={size}
-              onClick={() => setSelectedSize(size.replace(' ', ''))}
-              className={`
-                min-w-[4.3rem] py-2 px-4 rounded-md font-semibold text-sm
-                ${
-                  selectedSize === size.replace(' ', '')
-                    ? 'bg-[#FA7189] text-white'
-                    : 'bg-white text-[#FA7189] border border-[#FA7189]'
-                }
-                transition-colors duration-200
-              `}
-            >
-              {size}
-            </button>
-          ))}
+
+        {/* Size Display */}
+        <div className="mb-2">
+          <h3 className="text-[14px] font-['Montserrat'] font-medium text-gray-600">
+            Size: {selectedVariant.size}
+          </h3>
         </div>
       </div>
 
       <div className="mt-4">
         <h1 className="text-xl font-[600] text-black font-['Montserrat']">
-          {product.p_name}
+          {product.product_name}
         </h1>
         <p className="text-sm text-gray-600 mt-1 font-['Montserrat']">
-          {product.c_name}
+          {product.category_name} • {selectedVariant.color_name}
         </p>
 
         <div className="flex items-center mt-2">
@@ -235,18 +308,45 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         </div>
 
         <div className="mt-3 flex items-center">
-          <span className="text-[#808488] line-through text-sm font-['Montserrat']">
-            ₹{product.p_price.toLocaleString()}
-          </span>
-          <span className="ml-2 text-sm font-[500] font-['Montserrat']">
-            ₹{discountedPrice.toLocaleString()}
-          </span>
-          <span className="ml-2 text-[#FA7189] text-sm font-['Montserrat']">
-            {discountPercentage}% Off
+          {discountPercentage > 0 ? (
+            <>
+              <span className="text-[#808488] line-through text-sm font-['Montserrat']">
+                ₹{Number(selectedVariant.price).toLocaleString()}
+              </span>
+              <span className="ml-2 text-sm font-[500] font-['Montserrat']">
+                ₹{discountedPrice.toLocaleString()}
+              </span>
+              <span className="ml-2 text-[#FA7189] text-sm font-['Montserrat']">
+                {discountPercentage}% Off
+              </span>
+            </>
+          ) : (
+            <span className="text-sm font-[500] font-['Montserrat']">
+              ₹{Number(selectedVariant.price).toLocaleString()}
+            </span>
+          )}
+        </div>
+
+        {/* Stock Information */}
+        <div className="mt-2">
+          <span
+            className={`text-xs font-['Montserrat'] ${
+              selectedVariant.stock > 10
+                ? 'text-green-600'
+                : selectedVariant.stock > 0
+                  ? 'text-orange-600'
+                  : 'text-red-600'
+            }`}
+          >
+            {selectedVariant.stock > 10
+              ? 'In Stock'
+              : selectedVariant.stock > 0
+                ? `Only ${selectedVariant.stock} left`
+                : 'Out of Stock'}
           </span>
         </div>
 
-        <div className="mt-2">
+        <div className="mt-3">
           <h2 className="text-sm font-[500] font-['Montserrat']">
             Product Details
           </h2>
@@ -332,7 +432,10 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                   <button
                     onClick={handleIncreaseQuantity}
                     className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-800"
-                    disabled={quantity >= product.p_stock}
+                    disabled={
+                      quantity >= selectedVariant.stock ||
+                      selectedVariant.stock === 0
+                    }
                   >
                     <svg
                       width="16"
@@ -350,9 +453,14 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                     </svg>
                   </button>
                 </div>
-                {quantity >= product.p_stock && (
+                {quantity >= selectedVariant.stock && (
                   <p className="text-red-500 text-xs mt-1">
                     Maximum stock reached
+                  </p>
+                )}
+                {selectedVariant.stock === 0 && (
+                  <p className="text-red-500 text-xs mt-1">
+                    This variant is out of stock
                   </p>
                 )}
               </div>
@@ -370,7 +478,8 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={handleAddToCart}
-                  className="flex-1 py-2 px-4 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] text-white rounded-md font-['Montserrat']"
+                  disabled={selectedVariant.stock === 0}
+                  className="flex-1 py-2 px-4 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] text-white rounded-md font-['Montserrat'] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Add to Cart
                 </motion.button>
@@ -400,9 +509,8 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                       />
                     </div>
                   </div>
-
-                  <span className="text-white font-['Montserrat'] font-medium text-sm truncate pl-6">
-                    Go to cart
+                  <span className="text-xs font-['Montserrat'] text-white ml-6">
+                    Add to Cart
                   </span>
                 </motion.div>
               </Link>
@@ -410,8 +518,12 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="relative w-[136px] flex  h-9 bg-gradient-to-b from-[#71F9A9] to-[#31B769] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
+                className="relative w-[136px] flex h-9 bg-gradient-to-b from-[#71F9A9] to-[#31B769] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
                 onClick={handleBuyNow}
+                style={{
+                  opacity: selectedVariant.stock === 0 ? 0.5 : 1,
+                  pointerEvents: selectedVariant.stock === 0 ? 'none' : 'auto',
+                }}
               >
                 <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
                   <div className="h-full w-full rounded-full bg-gradient-to-b from-[#71F9A9] to-[#31B769] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
@@ -434,12 +546,15 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         </AnimatePresence>
       </div>
 
-      <MemoizedProductAction
-        onViewSimilar={handleViewSimilar}
-        onReviews={handleReviews}
-        merchantId={product.m_id}
-      />
+      <div className="mt-4">
+        <MemoizedProductAction
+          // onViewSimilar={handleViewSimilar}
+          // onReviews={handleReviews}
+          merchantId={product.merchant_id}
+        />
+      </div>
     </div>
   );
 }
+
 export default ProductDetailInfo;

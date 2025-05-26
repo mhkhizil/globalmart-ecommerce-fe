@@ -4,7 +4,7 @@ import SearchBar from '@/components/gm-module/common/SearchBar';
 
 import CategoryPreview from '../category/CategoryPreview';
 import ProductPreviewList from '../product/ProductPreviewList';
-import TrendingProductList from '../product/TrendingProductList';
+import TrendingProductPreviewList from '../product/TrendingProductPreviewList';
 import PromotionList from '../promotion/PromotionList';
 import AdsBanner from './AdsBanner';
 import DealOfTheDay from './DealOfTheDay';
@@ -37,7 +37,7 @@ function Home() {
         <TrendingProducts />
       </div>
       <div className="flex w-full">
-        <TrendingProductList />
+        <TrendingProductPreviewList />
       </div>
       <div className="flex w-full">
         <NewArrivalbanner />

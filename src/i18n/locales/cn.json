@@ -1190,6 +1190,13 @@
         "description": "向您的 无忧外卖 钱包充值。选择多种支付方式安全地充值您的账户余额。"
       }
     },
+    "trending_product": {
+      "metadata": {
+        "title": "热门产品 | 无忧外卖",
+        "keywords": "热门产品, 热门产品列表, 热门产品推荐, 热门产品展示",
+        "description": "在 无忧外卖 上查看热门产品。发现最受欢迎的产品，轻松购买。"
+      }
+    },
     "driver_home": {
       "metadata": {
         "title": "司机仪表板 | 无忧外卖",

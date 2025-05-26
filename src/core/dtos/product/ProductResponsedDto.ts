@@ -1,5 +1,5 @@
-import { Product, ProductDetail } from '@/core/entity/Product';
+import { MainProductDetail } from '@/core/entity/Product';
 
 export type ProductResponseDto = {
-  product: ProductDetail;
+  product: MainProductDetail;
 };

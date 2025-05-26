@@ -47,4 +47,13 @@ export class ProductService implements IProductService {
     >(requestDto);
     return response;
   }
+  async getTrendingProductList(
+    filter: ProductFilterByCategoryDto
+  ): Promise<ProductListResponseDto> {
+    const response = await this.ProductRepository.getTrendingProductList<
+      ProductFilterByCategoryDto,
+      ProductListResponseDto
+    >(filter);
+    return response;
+  }
 }
