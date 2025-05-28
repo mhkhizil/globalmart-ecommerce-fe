@@ -234,6 +234,7 @@ async function fetchNominatimGeocodingData(
   nominatimUrl.searchParams.set('lon', longitude.toString());
   nominatimUrl.searchParams.set('addressdetails', '1');
   nominatimUrl.searchParams.set('zoom', '18'); // High detail level
+  nominatimUrl.searchParams.set('accept-language', 'en'); // Force English language
 
   // Make request to Nominatim API with timeout
   const controller = new AbortController();
@@ -246,6 +247,7 @@ async function fetchNominatimGeocodingData(
       headers: {
         Accept: 'application/json',
         'User-Agent': 'GlobalMart/1.0 (contact@globalmart.com)', // Required by Nominatim usage policy
+        'Accept-Language': 'en-US,en;q=0.9', // Prefer English in headers as well
       },
       signal: controller.signal,
     });
