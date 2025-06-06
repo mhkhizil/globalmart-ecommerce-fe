@@ -1,0 +1,239 @@
+stages:
+  - build
+  - deploy
+
+# Global variables - Configure these for your project
+variables:
+  NODE_VERSION: '18'
+  APP_DIR: '/www/wwwroot/gm'
+  PM2_APP_NAME: 'global_mart'
+  GIT_BRANCH: 'dev'
+
+# Cache for faster builds
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ~/.bun/install/cache/
+
+# Build stage - Build the application
+build_production:
+  stage: build
+  image: node:${NODE_VERSION}
+  before_script:
+    - curl -fsSL https://bun.sh/install | bash
+    - export PATH="$HOME/.bun/bin:$PATH"
+    - bun --version
+    - bun install
+  script:
+    - rm -rf .next
+    - echo "Setting up environment variables for build..."
+    - |
+      # Create .env.local for build process
+      cat > .env.local << EOF
+      # Build-time environment variables
+      SESSION_COOKIE_PASSWORD=${SESSION_COOKIE_PASSWORD}
+      NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
+      NODE_ENV=production
+      NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
+      NEXT_PUBLIC_BASE_URL=${NEXT_PUBLIC_BASE_URL}
+      NEXT_PUBLIC_COUNTIRES_RESOURCES=${NEXT_PUBLIC_COUNTIRES_RESOURCES}
+      NEXT_PUBLIC_STATES_RESOURCES=${NEXT_PUBLIC_STATES_RESOURCES}
+      NEXT_PUBLIC_CITIES_RESOURCES=${NEXT_PUBLIC_CITIES_RESOURCES}
+      EOF
+    - echo "Environment file created for build:"
+    - cat .env.local
+    - bun run lint:fix
+    - bun run format
+    - bun run build
+  artifacts:
+    paths:
+      - .next/
+    expire_in: 1 hour
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $GIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - when: manual
+      allow_failure: false
+
+# Deploy to production
+deploy_production:
+  stage: deploy
+  before_script:
+    - echo "========== DEPLOYMENT VALIDATION =========="
+    - echo "Validating CI/CD variables..."
+    - |
+      if [ -z "$SSH_PRIVATE_KEY" ] || [ -z "$SERVER_IP" ] || [ -z "$DEPLOY_USER" ]; then
+        echo "ERROR: Required CI/CD variables are missing!"
+        echo ""
+        echo "Required variables:"
+        echo "  - SSH_PRIVATE_KEY (Type: Variable, Protected: NO, Masked: NO)"
+        echo "  - SERVER_IP (Type: Variable, Protected: NO, Masked: NO)"
+        echo "  - DEPLOY_USER (Type: Variable, Protected: NO, Masked: NO)"
+        echo ""
+        echo "IMPORTANT: Set Protected=NO for all variables to work on all branches"
+        echo ""
+        echo "SSH_PRIVATE_KEY should include complete key with BEGIN/END lines:"
+        echo "-----BEGIN OPENSSH PRIVATE KEY-----"
+        echo "[your private key content]"
+        echo "-----END OPENSSH PRIVATE KEY-----"
+        exit 1
+      else
+        echo "All required CI/CD variables are present ✓"
+      fi
+    - echo "========== SSH SETUP =========="
+    - eval $(ssh-agent -s)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "Setting up SSH authentication..."
+    - |
+      if echo "$SSH_PRIVATE_KEY" | head -1 | grep -q "BEGIN.*PRIVATE KEY"; then
+        echo "Using SSH key directly..."
+        echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/deploy_key
+      else
+        echo "Decoding base64 SSH key..."
+        echo "$SSH_PRIVATE_KEY" | base64 -d > ~/.ssh/deploy_key
+      fi
+    - chmod 600 ~/.ssh/deploy_key
+    - |
+      if head -1 ~/.ssh/deploy_key | grep -q "BEGIN.*PRIVATE KEY"; then
+        echo "SSH key format validated ✓"
+      else
+        echo "ERROR: Invalid SSH key format"
+        exit 1
+      fi
+    - echo "Adding server to known hosts..."
+    - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - echo "Testing SSH connection..."
+    - ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -o ConnectTimeout=10 $DEPLOY_USER@$SERVER_IP "echo 'SSH connection successful ✓'"
+  script:
+    - |
+      ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -T $DEPLOY_USER@$SERVER_IP << EOF
+        set -e
+        
+        # Define deployment variables
+        export APP_DIR="$APP_DIR"
+        export PM2_APP_NAME="$PM2_APP_NAME"
+        export GIT_BRANCH="$GIT_BRANCH"
+        
+        echo "Starting deployment to \$APP_DIR"
+        
+        # Create deployment directory if it doesn't exist
+        if [ ! -d "\$APP_DIR" ]; then
+          echo "Creating deployment directory: \$APP_DIR"
+          mkdir -p "\$APP_DIR"
+        fi
+        
+        cd "\$APP_DIR" || { echo "Failed to navigate to app directory"; exit 1; }
+        
+        # Check if it's a git repository
+        if [ ! -d ".git" ]; then
+          echo "ERROR: No Git repository found in \$APP_DIR"
+          echo "Please initialize the repository manually with proper credentials"
+          exit 1
+        fi
+        
+        echo "Preparing deployment..."
+        
+        # Reset any local changes to avoid conflicts
+        git reset --hard HEAD || echo "Git reset warning"
+        git clean -fd || echo "Git clean warning"
+        
+        # Backup current build if exists
+        if [ -d ".next" ]; then
+          echo "Backing up current build..."
+          cp -r .next .next.backup.\$(date +%Y%m%d_%H%M%S) || echo "Backup warning"
+        fi
+        
+        echo "Pulling latest changes from \$GIT_BRANCH branch"
+        git fetch origin || { echo "Git fetch failed - check credentials"; exit 1; }
+        git reset --hard origin/\$GIT_BRANCH || { echo "Git reset failed"; exit 1; }
+        
+        # Install bun if not available
+        if ! command -v bun &> /dev/null; then
+          echo "Installing bun..."
+          curl -fsSL https://bun.sh/install | bash
+          export PATH="\$HOME/.bun/bin:\$PATH"
+        fi
+        
+        echo "Installing production dependencies"
+        export PATH="\$HOME/.bun/bin:\$PATH"
+        
+        # Update lockfile if needed and install dependencies
+        bun install --no-save || echo "Lockfile migration completed"
+        bun install --production || { echo "Dependency installation failed"; exit 1; }
+        
+        echo "Server prepared for artifact upload ✓"
+      EOF
+    - echo "Uploading build artifacts to server..."
+    - rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" .next/ $DEPLOY_USER@$SERVER_IP:$APP_DIR/.next/
+    - |
+      ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -T $DEPLOY_USER@$SERVER_IP << EOF
+        set -e
+        
+        # Define deployment variables
+        export APP_DIR="$APP_DIR"
+        export PM2_APP_NAME="$PM2_APP_NAME"
+        
+        echo "Managing application process..."
+        cd "\$APP_DIR" || { echo "Failed to navigate to app directory"; exit 1; }
+        export PATH="\$HOME/.bun/bin:\$PATH"
+        
+        # Install PM2 if not available
+        if ! command -v pm2 &> /dev/null; then
+          echo "Installing PM2..."
+          npm install -g pm2
+        fi
+        
+        # Restart or create PM2 application
+        if pm2 list | grep -q "\$PM2_APP_NAME"; then
+          echo "Restarting application: \$PM2_APP_NAME"
+          pm2 restart "\$PM2_APP_NAME"
+        else
+          echo "Creating new application: \$PM2_APP_NAME"
+          pm2 start bun --name "\$PM2_APP_NAME" -- start
+        fi
+        
+        pm2 save || echo "PM2 save warning"
+        
+        # Clean up all backup files after successful deployment
+        echo "Cleaning up all backup files..."
+        find . -name ".next.backup.*" -type d -exec rm -rf {} \; 2>/dev/null || echo "No backup files to clean"
+        echo "All backup files removed ✓"
+        
+        echo "Deployment completed successfully ✓"
+        echo "Application is running at: http://\$(curl -s ifconfig.me || echo 'your-server-ip')"
+      EOF
+  environment:
+    name: production
+    url: http://$SERVER_IP
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $GIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "web"
+    - when: manual
+      allow_failure: false
+# Alternative: Build on server instead of CI
+# Uncomment this and comment out the current build_production if you prefer server-side building
+
+# build_on_server:
+#   stage: deploy
+#   before_script:
+#     # ... same SSH setup as deploy_production ...
+#   script:
+#     - |
+#       ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -T $DEPLOY_USER@$SERVER_IP << EOF
+#         set -e
+#         cd "$APP_DIR"
+#
+#         # Pull latest code
+#         git fetch origin && git reset --hard origin/$GIT_BRANCH
+#
+#         # Install dependencies and build with server environment
+#         export PATH="\$HOME/.bun/bin:\$PATH"
+#         bun install
+#         rm -rf .next
+#         bun run build  # This will use server's .env.local file
+#
+#         # Restart PM2
+#         pm2 restart "$PM2_APP_NAME" || pm2 start bun --name "$PM2_APP_NAME" -- start
+#       EOF
