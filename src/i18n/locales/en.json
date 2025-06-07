@@ -158,7 +158,18 @@
     "loginWithApple": "Login with Apple",
     "registerSuccess": "Registration successful! Redirecting...",
     "registrationFailed": "Registration failed. Please try again later.",
-    "termsNotAgreed": "Please agree to the terms of service and privacy policy."
+    "termsNotAgreed": "Please agree to the terms of service and privacy policy.",
+    "verification": {
+      "title": "Email Verification Required",
+      "description": "Please verify your email address to continue",
+      "verifyEmail": "Verify your email",
+      "emailSent": "We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.",
+      "checkSpam": "If you don't see the email, check your spam folder or request another verification link.",
+      "resendEmail": "Resend verification email",
+      "sending": "Sending...",
+      "goToLogin": "Go to login",
+      "needHelp": "Need help? Contact our support team"
+    }
   },
 
   "profile": {

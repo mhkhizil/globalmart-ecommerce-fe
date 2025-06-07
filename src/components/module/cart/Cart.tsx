@@ -107,7 +107,8 @@ function Cart() {
       return;
     }
 
-    router.push('/application/payment');
+    // Navigate to shopping bag instead of direct payment
+    router.push('/application/shopping-bag');
   }, [items, router, sessionUser, t]);
 
   const handlePromoCodeChange = useCallback(

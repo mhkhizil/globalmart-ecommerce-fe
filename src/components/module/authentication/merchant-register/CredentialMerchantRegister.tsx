@@ -195,7 +195,7 @@ function CredentialMerchantRegister(props: InputProps) {
   const { mutateAsync: merchantRegisterHandler, isPending } =
     useMerchantRegister({
       onSuccess: () => {
-        router.push('/login');
+        router.push('/verification-pending');
       },
       onError: (error: Error | ValidationError) => {
         if (error instanceof ValidationError && error.errors) {

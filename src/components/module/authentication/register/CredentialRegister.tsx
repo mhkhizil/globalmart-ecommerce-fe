@@ -42,7 +42,7 @@ const useCredentialRegister = () => {
   const { mutateAsync: registerHandler, isPending: isLoading } = useRegister({
     onSuccess: data => {
       toast.success(t('auth.registerSuccess'));
-      router.push('/login');
+      router.push('/verification-pending');
     },
     onError: (error: Error | ValidationError) => {
       if (error instanceof ValidationError && error.errors) {
