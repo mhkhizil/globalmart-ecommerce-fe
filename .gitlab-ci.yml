@@ -4,7 +4,7 @@ stages:
 
 # Global variables - Configure these for your project
 variables:
-  NODE_VERSION: '18'
+  NODE_VERSION: '22.15.0'
   APP_DIR: '/www/wwwroot/gm'
   PM2_APP_NAME: 'global_mart'
   GIT_BRANCH: 'dev'
@@ -20,10 +20,10 @@ build_production:
   stage: build
   image: node:${NODE_VERSION}
   before_script:
-    - curl -fsSL https://bun.sh/install | bash
+    - curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.38"
     - export PATH="$HOME/.bun/bin:$PATH"
     - bun --version
-    - bun install
+    - bun install --frozen-lockfile
   script:
     - rm -rf .next
     - echo "Setting up environment variables for build..."
@@ -160,8 +160,7 @@ deploy_production:
         export PATH="\$HOME/.bun/bin:\$PATH"
         
         # Update lockfile if needed and install dependencies
-        bun install --no-save || echo "Lockfile migration completed"
-        bun install --production || { echo "Dependency installation failed"; exit 1; }
+        bun install --frozen-lockfile --production || { echo "Dependency installation failed"; exit 1; }
         
         echo "Server prepared for artifact upload ✓"
       EOF
