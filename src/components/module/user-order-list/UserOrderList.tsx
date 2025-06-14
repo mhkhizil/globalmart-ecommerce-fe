@@ -202,7 +202,7 @@ function UserOrderList() {
       opacity: 1,
       y: 0,
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 300,
         damping: 24,
       },
@@ -217,7 +217,7 @@ function UserOrderList() {
       color: 'var(--primary-foreground)',
       boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 500,
         damping: 20,
       },
@@ -228,7 +228,7 @@ function UserOrderList() {
       color: 'var(--foreground)',
       boxShadow: '0 0 0 rgba(0, 0, 0, 0)',
       transition: {
-        type: 'spring',
+        type: 'spring' as const,
         stiffness: 500,
         damping: 25,
       },
@@ -271,7 +271,11 @@ function UserOrderList() {
                   className="absolute bottom-0 left-1/2 h-0.5 bg-primary rounded-full"
                   initial={{ width: 0, x: '-50%' }}
                   animate={{ width: '80%', x: '-50%' }}
-                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  transition={{
+                    type: 'spring' as const,
+                    stiffness: 300,
+                    damping: 30,
+                  }}
                 />
               )}
             </motion.div>
