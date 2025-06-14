@@ -1045,6 +1045,13 @@
         "description": "Review your shopping cart and complete your order on Worry-free takeaway. Easy checkout for food, goods, and digital services."
       }
     },
+    "shopping-bag": {
+      "metadata": {
+        "title": "Shopping Bag | Worry-free takeaway",
+        "keywords": "shopping bag, cart, checkout, order items, Worry-free takeaway bag",
+        "description": "Review items in your shopping bag and proceed to checkout on Worry-free takeaway. Easy shopping experience for all your needs."
+      }
+    },
     "profile": {
       "metadata": {
         "title": "User Profile | Worry-free takeaway",

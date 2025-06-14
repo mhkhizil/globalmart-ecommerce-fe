@@ -1,102 +1,99 @@
 'use client';
 
 import clsx from 'clsx';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Plus, Sparkles, TrendingDown } from 'lucide-react';
+import {
+  ArrowLeft,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Heart,
+} from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-import BackIcon from '@/components/common/icons/BackIcon';
-import DetailIcon from '@/components/common/icons/DetailIcon';
+import FallbackImage from '@/components/common/FallbackImage';
 import EmptyCartIcon from '@/components/common/icons/EmptyCartIcon';
-import PromoCodeIcon from '@/components/common/icons/PromoCodeIcon';
-import Loader from '@/components/common/loader/Loader';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
-import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
-
-import CartItem from './Cartitem';
 
 function Cart() {
   const router = useRouter();
   const { data: session } = useSession();
   const sessionUser = useMemo(() => session?.user, [session?.user]);
-  const { items, addToCart, decreaseQuantity, removeFromCart, clearCart } =
-    useCart();
-  const { currentAddress } = useShippingAddress();
-
-  const [confirmItems, setConfirmItem] = useState<number[]>([]);
-  const [promoCode, setPromoCode] = useState<string>('');
+  const { items, totalPrice, totalItems } = useCart();
   const t = useTranslations();
+  const [favorites, setFavorites] = useState<number[]>([]);
+  const [showOtherItems, setShowOtherItems] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Calculate total cost using useMemo to avoid unnecessary recalculations
-  const { totalCost, totalDiscount, originalTotalCost, totalSavingsPercent } =
-    useMemo(() => {
-      let discount = 0;
-      let original = 0;
-      const total = items.reduce((total, item) => {
-        // Calculate individual item's discount contribution to total
-        const itemQuantity = item.quantity || 1;
-        const itemDiscountedPrice = item.price;
+  const formattedTotalPrice = useMemo(() => {
+    return convertThousandSeparator(totalPrice, 2);
+  }, [totalPrice]);
 
-        // If we have discount info, calculate the original price and the discount amount
-        if (item.type && (item.discount_percent || item.discount_amount)) {
-          let itemOriginalPrice = itemDiscountedPrice;
+  // Mock data for other available items from the same merchant
+  const mockOtherItems = useMemo(
+    () => [
+      {
+        id: 999,
+        name: 'Grilled Chicken Salad',
+        price: 299,
+        image: '/food-fallback.png',
+        rating: 4.6,
+        originalPrice: 399,
+        discount_percent: 25,
+        type: 'percentage',
+      },
+      {
+        id: 998,
+        name: 'Margherita Pizza',
+        price: 450,
+        image: '/food-fallback.png',
+        rating: 4.8,
+        originalPrice: null,
+        discount_percent: null,
+        type: null,
+      },
+      {
+        id: 997,
+        name: 'Chocolate Brownie',
+        price: 149,
+        image: '/food-fallback.png',
+        rating: 4.7,
+        originalPrice: 199,
+        discount_amount: 50,
+        type: 'fixed',
+      },
+      {
+        id: 996,
+        name: 'Fresh Orange Juice',
+        price: 89,
+        image: '/food-fallback.png',
+        rating: 4.5,
+        originalPrice: null,
+        discount_percent: null,
+        type: null,
+      },
+    ],
+    []
+  );
 
-          if (item.type === 'percentage' && item.discount_percent) {
-            // Original price = discounted price / (1 - discount_percent/100)
-            itemOriginalPrice =
-              itemDiscountedPrice / (1 - item.discount_percent / 100);
-          } else if (item.type === 'fixed' && item.discount_amount) {
-            // Original price = discounted price + discount_amount
-            itemOriginalPrice =
-              itemDiscountedPrice + Number(item.discount_amount);
-          }
+  const toggleFavorite = useCallback((productId: number) => {
+    setFavorites(previous =>
+      previous.includes(productId)
+        ? previous.filter(id => id !== productId)
+        : [...previous, productId]
+    );
+  }, []);
 
-          const itemDiscount =
-            (itemOriginalPrice - itemDiscountedPrice) * itemQuantity;
-          discount += itemDiscount;
-          original += itemOriginalPrice * itemQuantity;
-        } else {
-          // If no discount, original price = discounted price
-          original += itemDiscountedPrice * itemQuantity;
-        }
-
-        return total + itemDiscountedPrice * itemQuantity;
-      }, 0);
-
-      // Calculate savings as a percentage
-      const savingsPercent =
-        original > 0 ? Math.round((discount / original) * 100) : 0;
-
-      return {
-        totalCost: total,
-        totalDiscount: discount,
-        originalTotalCost: original,
-        totalSavingsPercent: savingsPercent,
-      };
-    }, [items]);
-
-  const formattedTotalCost = useMemo(() => {
-    return convertThousandSeparator(totalCost, 2);
-  }, [totalCost]);
-
-  const formattedTotalDiscount = useMemo(() => {
-    return convertThousandSeparator(totalDiscount, 2);
-  }, [totalDiscount]);
-
-  const errorMessage = useMemo(() => {
-    if (items.length === 0) {
-      return t('cart.yourCartIsEmpty');
-    }
-    return t('cart.pleaseLoginToSubmitOrder');
-  }, [items, t]);
-
-  const handleNavigateToPayment = useCallback(() => {
+  const handleAddToCart = useCallback(() => {
     if (!sessionUser) {
       toast.error(t('cart.pleaseLoginToSubmitOrder'));
       return;
@@ -107,86 +104,162 @@ function Cart() {
       return;
     }
 
-    // Navigate to shopping bag instead of direct payment
+    // Navigate to shopping bag (detailed checkout page)
     router.push('/application/shopping-bag');
-  }, [items, router, sessionUser, t]);
-
-  const handlePromoCodeChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setPromoCode(event.target.value);
-    },
-    []
-  );
-
-  const handleApplyPromoCode = useCallback(() => {
-    if (!promoCode.trim()) {
-      toast.error('Please enter a promo code');
-      return;
-    }
-
-    // Implement promo code logic here
-    toast.success('Promo code functionality not implemented yet');
-  }, [promoCode]);
+  }, [sessionUser, router, t, items.length]);
 
   const navigateToProductList = useCallback(() => {
     router.push('/application/product/list');
   }, [router]);
 
-  // Animation variants
-  const fadeIn = {
-    hidden: { opacity: 0, y: 10 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 24,
-        duration: 0.4,
-      },
-    },
-  };
+  // Calculate discount information for display
+  const calculateDiscountInfo = useCallback((item: any) => {
+    if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+      return {
+        hasDiscount: false,
+        originalPrice: item.price,
+        discountLabel: '',
+      };
+    }
 
-  // Shimmer effect for discounts
-  const shimmer = {
-    initial: { backgroundPosition: '-200px 0' },
-    animate: {
-      backgroundPosition: ['200px 0', '-200px 0'],
-      transition: {
-        repeat: Infinity,
-        duration: 2,
-        ease: 'linear',
-      },
-    },
-  };
+    let originalPrice = item.price;
+    let discountLabel = '';
 
-  // New sparkle animation variant
-  const sparkle = {
-    initial: { opacity: 0, scale: 0 },
-    animate: {
-      opacity: [0, 1, 0],
-      scale: [0, 1, 0],
-      transition: {
-        duration: 1.5,
-        delay: 0.5,
-        repeat: Infinity,
-        repeatDelay: 2,
-      },
-    },
-  };
+    if (item.type === 'percentage' && item.discount_percent) {
+      originalPrice = item.price / (1 - item.discount_percent / 100);
+      discountLabel = `${item.discount_percent}% off`;
+    } else if (item.type === 'fixed' && item.discount_amount) {
+      originalPrice = item.price + Number(item.discount_amount);
+      discountLabel = `₹${convertThousandSeparator(Number(item.discount_amount), 0)} off`;
+    }
 
-  // Sliding gradient animation for discount section
-  const slidingGradient = {
-    initial: { backgroundPosition: '0% 0%' },
-    animate: {
-      backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
-      transition: {
-        repeat: Infinity,
-        duration: 8,
-        ease: 'linear',
-      },
-    },
-  };
+    return {
+      hasDiscount: true,
+      originalPrice,
+      discountLabel,
+    };
+  }, []);
+
+  // Calculate discount information for mock items
+  const calculateMockItemDiscount = useCallback((item: any) => {
+    if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+      return {
+        hasDiscount: false,
+        originalPrice: item.price,
+        discountLabel: '',
+      };
+    }
+
+    let originalPrice = item.originalPrice || item.price;
+    let discountLabel = '';
+
+    if (item.type === 'percentage' && item.discount_percent) {
+      discountLabel = `${item.discount_percent}% off`;
+    } else if (item.type === 'fixed' && item.discount_amount) {
+      discountLabel = `₹${convertThousandSeparator(Number(item.discount_amount), 0)} off`;
+    }
+
+    return {
+      hasDiscount: true,
+      originalPrice,
+      discountLabel,
+    };
+  }, []);
+
+  // Scroll functions for horizontal navigation
+  const scrollLeft = useCallback(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: -160, // Width of one card plus gap
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
+  const scrollRight = useCallback(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({
+        left: 160, // Width of one card plus gap
+        behavior: 'smooth',
+      });
+    }
+  }, []);
+
+  // Auto-scroll functionality
+  const startAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (scrollContainerRef.current && isAutoScrolling) {
+        const container = scrollContainerRef.current;
+        const maxScrollLeft = container.scrollWidth - container.clientWidth;
+
+        // If we've reached the end, scroll back to the beginning
+        if (container.scrollLeft >= maxScrollLeft - 10) {
+          container.scrollTo({
+            left: 0,
+            behavior: 'smooth',
+          });
+        } else {
+          // Otherwise, scroll to the next item
+          container.scrollBy({
+            left: 160, // Width of one card plus gap
+            behavior: 'smooth',
+          });
+        }
+      }
+    }, 3000); // Auto-scroll every 3 seconds
+  }, [isAutoScrolling]);
+
+  const stopAutoScroll = useCallback(() => {
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+      autoScrollIntervalRef.current = null;
+    }
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    setIsAutoScrolling(false);
+    stopAutoScroll();
+  }, [stopAutoScroll]);
+
+  const handleMouseLeave = useCallback(() => {
+    setIsAutoScrolling(true);
+  }, []);
+
+  // Start auto-scroll when component mounts and showOtherItems is true
+  useEffect(() => {
+    if (showOtherItems && isAutoScrolling) {
+      startAutoScroll();
+    } else {
+      stopAutoScroll();
+    }
+
+    return () => {
+      stopAutoScroll();
+    };
+  }, [showOtherItems, isAutoScrolling, startAutoScroll, stopAutoScroll]);
+
+  // Manual navigation should pause auto-scroll temporarily
+  const handleManualScrollLeft = useCallback(() => {
+    setIsAutoScrolling(false);
+    scrollLeft();
+    // Resume auto-scroll after 5 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  }, [scrollLeft]);
+
+  const handleManualScrollRight = useCallback(() => {
+    setIsAutoScrolling(false);
+    scrollRight();
+    // Resume auto-scroll after 5 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  }, [scrollRight]);
 
   // Render empty cart state
   if (items.length === 0) {
@@ -195,11 +268,11 @@ function Cart() {
         <Toaster />
         <div className="flex w-full items-center justify-between px-[1.5rem] pt-[0.75rem] flex-shrink-0 sticky top-0 bg-white z-10">
           <button onClick={() => router.back()} aria-label="Go back">
-            <BackIcon />
+            <ArrowLeft size={24} />
           </button>
-          <span className="text-[1rem] font-semibold">{t('cart.myCart')}</span>
-          <button aria-label="Details">
-            <DetailIcon />
+          <span className="text-[1rem] font-semibold">Shopping Bag</span>
+          <button aria-label="Favorites">
+            <Heart size={24} />
           </button>
         </div>
 
@@ -226,276 +299,268 @@ function Cart() {
   }
 
   return (
-    <div className="flex w-full h-full flex-col max-h-[92dvh] relative">
+    <div className="flex w-full h-full flex-col max-h-[100dvh] relative bg-white">
       <Toaster position="top-center" />
-      <div className="flex w-full items-center justify-between px-[1.5rem] pt-[0.75rem] flex-shrink-0 sticky top-0 bg-white z-10">
+
+      {/* Header */}
+      <div className="flex w-full items-center justify-between px-[1.5rem] pt-[0.75rem] pb-[0.75rem] flex-shrink-0 sticky top-0 bg-white z-10 border-b border-gray-100">
         <button onClick={() => router.back()} aria-label="Go back">
-          <BackIcon />
+          <ArrowLeft size={24} className="text-gray-700" />
         </button>
-        <span className="text-[1rem] font-semibold">{t('cart.myCart')}</span>
-        <button aria-label="Details">
-          <DetailIcon />
+        <span className="text-[1.125rem] font-semibold text-gray-900">
+          Shopping Bag
+        </span>
+        <button aria-label="Favorites" onClick={() => setFavorites([])}>
+          <Heart size={24} className="text-gray-700" />
         </button>
       </div>
 
-      <div className="flex w-full flex-col flex-shrink-0">
-        <div className="flex w-full justify-between px-[1.5rem] items-center mt-[1rem] mb-[1rem]">
-          <div className="flex flex-col">
-            <span className="text-[#878787] text-[0.875rem] font-[400] leading-[1.25rem]">
-              {t('cart.deliveryLocation')}
-            </span>
-            {currentAddress ? (
-              <span className="text-[#101010] text-[0.875rem] font-[600] leading-[1.25rem]">
-                {currentAddress.addressLine1.length > 25
-                  ? `${currentAddress.addressLine1.slice(0, 25)}...`
-                  : currentAddress.addressLine1}
-              </span>
-            ) : (
-              <span className="text-[#101010] text-[0.875rem] font-[600] leading-[1.25rem]">
-                {t('cart.home')}
-              </span>
-            )}
-          </div>
-          <button
-            onClick={() =>
-              sessionUser
-                ? router.push('/application/shipping/address')
-                : router.push('/login')
-            }
-            className="py-[0.5rem] px-[0.875rem] border-red-900 border-[0.5px] rounded-[100px] text-red-500 text-[0.625rem] font-[600] leading-[1rem] hover:bg-[#FE8C00]/10 transition-colors"
-            aria-label="Change delivery location"
-          >
-            {sessionUser
-              ? currentAddress
-                ? t('shipping.editAddress')
-                : t('shipping.addNewAddress')
-              : t('cart.login')}
-          </button>
-        </div>
+      {/* Main Content */}
+      <div className="flex-1 overflow-y-auto px-4 py-4">
+        {/* Cart Items */}
+        <div className="space-y-4">
+          {items.map(item => {
+            const discountInfo = calculateDiscountInfo(item);
 
-        {/* promo code */}
-        {/* <div className="flex w-full px-[1.5rem] sticky top-[3rem] bg-white z-10">
-          <div className="flex w-full items-center rounded-[100px] gap-x-[0.625rem] border-[1px] border-[#EDEDED] py-[0.5rem] px-[0.75rem]">
-            <PromoCodeIcon />
-            <input
-              placeholder={t('cart.promoCode')}
-              className="flex w-full focus:outline-none"
-              value={promoCode}
-              onChange={handlePromoCodeChange}
-              aria-label="Enter promo code"
-            />
-            <button
-              className="text-white text-[0.75rem] text-nowrap font-[600] leading-[1rem] py-[0.625rem] bg-[#FE8C00] rounded-[100px] px-[1.406rem] hover:bg-[#e07e00] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              onClick={handleApplyPromoCode}
-              disabled={!promoCode.trim()}
-              aria-label="Apply promo code"
-            >
-              {t('cart.apply')}
-            </button>
-          </div>
-        </div> */}
-
-        {/* Display total discount if available */}
-        <AnimatePresence>
-          {totalDiscount > 0 && (
-            <motion.div
-              className="mx-6 mt-4 relative overflow-hidden"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-400 to-green-400 bg-[length:200%_200%] opacity-10 rounded-lg"
-                variants={slidingGradient}
-                initial="initial"
-                animate="animate"
-              />
-              <div className="flex items-center justify-between p-3 rounded-lg border border-emerald-100">
-                <div className="flex items-center gap-2">
-                  <TrendingDown className="h-4 w-4 text-emerald-600" />
-                  <span className="text-emerald-700 text-sm font-medium">
-                    {t('cart.totalSavings')}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <motion.span
-                    className="text-emerald-700 font-bold"
-                    initial={{ scale: 1 }}
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatType: 'reverse',
-                    }}
-                  >
-                    ${formattedTotalDiscount}
-                  </motion.span>
-                  {/* {totalSavingsPercent > 0 && (
-                    <span className="text-xs font-semibold bg-emerald-100 text-emerald-700 px-1.5 py-0.5 rounded-full">
-                      {totalSavingsPercent}% {t('cart.off')}
-                    </span>
-                  )} */}
-                  <motion.div
-                    variants={sparkle}
-                    initial="initial"
-                    animate="animate"
-                    className="relative"
-                  >
-                    <Sparkles className="h-4 w-4 text-yellow-500 absolute -top-2 -right-2" />
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        <div className="flex w-full flex-col pt-[2rem] pb-[1rem] px-[1.5rem] gap-y-[1rem]">
-          {items.map(item => (
-            <div className="flex w-full" key={item.id}>
-              <CartItem
-                addToCart={addToCart}
-                decreaseQuantity={decreaseQuantity}
-                removeFromCart={removeFromCart}
-                item={item}
-                confirmItems={confirmItems}
-                setConfirmItem={setConfirmItem}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex w-full items-center justify-center">
-          <button
-            onClick={navigateToProductList}
-            className="flex items-center px-[1rem] py-[0.3rem] border-[1px] rounded-[4px] gap-x-1 shadow-sm hover:bg-gray-50 transition-colors"
-            aria-label="Add more items"
-          >
-            <Plus size={16} /> {t('cart.addMoreItems')}
-          </button>
-        </div>
-      </div>
-      {/* Payment Summary */}
-      <div className="flex w-full px-[1.5rem] items-end justify-end flex-shrink-0 flex-col gap-y-[1.5rem] pt-[1rem]">
-        <div className="flex w-full flex-col border-[#EDEDED] border-[1px] rounded-[1rem] p-[0.75rem]">
-          <h3 className="text-[#101010] text-[1rem] font-[600] leading-[1.5rem]">
-            {t('cart.paymentSummary')}
-          </h3>
-
-          <div className="flex w-full items-center justify-between mt-[0.5rem]">
-            <span className="text-[#878787] text-[0.875rem] font-[500] leading-[1.25rem]">
-              {t('cart.totalItems', { count: items.length })}
-            </span>
-            {totalDiscount > 0 ? (
-              <div className="flex items-center gap-2">
-                <span className="text-gray-400 text-[0.75rem] line-through">
-                  ${convertThousandSeparator(originalTotalCost, 2)}
-                </span>
-                <span className="text-[#101010] text-[0.875rem] font-[700] leading-[1.25rem]">
-                  ${formattedTotalCost}
-                </span>
-              </div>
-            ) : (
-              <span className="text-[#101010] text-[0.875rem] font-[700] leading-[1.25rem]">
-                ${formattedTotalCost}
-              </span>
-            )}
-          </div>
-
-          <div className="flex w-full items-center justify-between mt-[1rem]">
-            <span className="text-[#878787] text-[0.875rem] font-[500] leading-[1.25rem]">
-              {t('cart.deliveryFee')}
-            </span>
-            <span className="text-[#101010] text-[0.875rem] font-[700] leading-[1.25rem]">
-              {t('cart.free')}
-            </span>
-          </div>
-
-          {totalDiscount > 0 && (
-            <motion.div
-              className="flex w-full items-center justify-between mt-[1rem]"
-              initial="hidden"
-              animate="visible"
-              variants={fadeIn}
-            >
-              <span className="text-[#878787] text-[0.875rem] font-[500] leading-[1.25rem]">
-                {t('cart.discount')}
-              </span>
-              <motion.span
-                className="text-emerald-600 text-[0.875rem] font-[700] leading-[1.25rem]"
-                variants={shimmer}
-                initial="initial"
-                animate="animate"
+            return (
+              <div
+                key={item.id}
+                className="bg-white rounded-lg border border-gray-200 overflow-hidden"
               >
-                -${formattedTotalDiscount}
-              </motion.span>
-            </motion.div>
-          )}
+                <div className="flex p-4">
+                  <div className="relative w-20 h-24 flex-shrink-0 mr-4">
+                    <FallbackImage
+                      src={item.image}
+                      fallbackSrc="/food-fallback.png"
+                      alt={item.name}
+                      fill
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-1">
+                        {item.name}
+                      </h3>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-sm font-bold text-gray-900">
+                          ₹
+                          {convertThousandSeparator(
+                            item.price * item.quantity,
+                            0
+                          )}
+                        </span>
+                        {discountInfo.hasDiscount && (
+                          <>
+                            <span className="text-xs text-gray-500 line-through">
+                              ₹
+                              {convertThousandSeparator(
+                                discountInfo.originalPrice * item.quantity,
+                                0
+                              )}
+                            </span>
+                            <span className="text-xs text-red-500 bg-red-50 px-1 py-0.5 rounded">
+                              {discountInfo.discountLabel}
+                            </span>
+                          </>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-gray-600">
+                        <span>Quantity: {item.quantity}</span>
+                        {item.merchant_id && (
+                          <span>• Merchant ID: {item.merchant_id}</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => toggleFavorite(item.id)}
+                    className="self-start ml-2"
+                    aria-label="Toggle favorite"
+                  >
+                    <Heart
+                      size={20}
+                      className={clsx(
+                        'transition-colors',
+                        favorites.includes(item.id)
+                          ? 'text-red-500 fill-current'
+                          : 'text-gray-400'
+                      )}
+                    />
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
 
-          <div className="flex w-full items-center justify-between mt-[1rem]">
-            <span className="text-[#878787] text-[0.875rem] font-[500] leading-[1.25rem]">
-              {t('cart.total')}
+        {/* Other Items from Same Merchant Section */}
+        <div className="mt-6 bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <button
+            onClick={() => setShowOtherItems(!showOtherItems)}
+            className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+          >
+            <h3 className="text-base font-semibold text-gray-900">
+              More from this restaurant
+            </h3>
+            {showOtherItems ? (
+              <ChevronUp size={20} className="text-gray-600" />
+            ) : (
+              <ChevronDown size={20} className="text-gray-600" />
+            )}
+          </button>
+
+          {showOtherItems && (
+            <div className="border-t border-gray-200">
+              <div
+                className="p-4 relative"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                {/* Navigation Buttons */}
+                <button
+                  onClick={handleManualScrollLeft}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors opacity-80 hover:opacity-100"
+                  aria-label="Scroll left"
+                >
+                  <ChevronLeft size={16} className="text-gray-600" />
+                </button>
+
+                <button
+                  onClick={handleManualScrollRight}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors opacity-80 hover:opacity-100"
+                  aria-label="Scroll right"
+                >
+                  <ChevronRight size={16} className="text-gray-600" />
+                </button>
+
+                <div
+                  ref={scrollContainerRef}
+                  className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-8"
+                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                >
+                  {mockOtherItems.map(item => {
+                    const discountInfo = calculateMockItemDiscount(item);
+
+                    return (
+                      <div
+                        key={item.id}
+                        className="flex-shrink-0 w-40 bg-gray-50 rounded-lg overflow-hidden flex flex-col h-80"
+                      >
+                        <div className="relative w-full h-32 flex-shrink-0">
+                          <FallbackImage
+                            src={item.image}
+                            fallbackSrc="/food-fallback.png"
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+
+                        <div className="p-3 flex flex-col flex-1">
+                          <h4 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2 min-h-[2.5rem]">
+                            {item.name}
+                          </h4>
+
+                          {/* Rating */}
+                          <div className="flex items-center space-x-1 mb-2">
+                            <div className="flex">
+                              {Array.from({ length: 5 }).map((_, index) => (
+                                <svg
+                                  key={index}
+                                  className={`w-3 h-3 ${
+                                    index < Math.floor(item.rating)
+                                      ? 'text-yellow-400 fill-current'
+                                      : 'text-gray-300'
+                                  }`}
+                                  viewBox="0 0 20 20"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              ))}
+                            </div>
+                            <span className="text-xs text-gray-600">
+                              {item.rating}
+                            </span>
+                          </div>
+
+                          {/* Price */}
+                          <div className="mb-3 flex-1">
+                            <div className="flex items-center space-x-1 mb-1">
+                              <span className="text-sm font-bold text-gray-900">
+                                ₹{convertThousandSeparator(item.price, 0)}
+                              </span>
+                              {discountInfo.hasDiscount && (
+                                <span className="text-xs text-gray-500 line-through">
+                                  ₹
+                                  {convertThousandSeparator(
+                                    discountInfo.originalPrice,
+                                    0
+                                  )}
+                                </span>
+                              )}
+                            </div>
+                            {discountInfo.hasDiscount && (
+                              <span className="text-xs text-red-500 bg-red-50 px-1 py-0.5 rounded">
+                                {discountInfo.discountLabel}
+                              </span>
+                            )}
+                          </div>
+
+                          <button
+                            className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded-md text-xs font-medium transition-colors mt-auto"
+                            onClick={() => {
+                              // TODO: Add to cart functionality when API is ready
+                              console.log('Add item to cart:', item.id);
+                              toast.success(`${item.name} added to cart!`);
+                            }}
+                          >
+                            Add to Cart
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Auto-scroll indicator */}
+                {isAutoScrolling && (
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
+                    <div className="flex items-center space-x-1 bg-black/20 rounded-full px-2 py-1">
+                      <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                      <span className="text-xs text-white">Auto-scrolling</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="flex-shrink-0 border-t border-gray-200 bg-white px-4 py-4">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-col">
+            <span className="text-lg font-bold text-gray-900">
+              ₹{formattedTotalPrice}
             </span>
-            <span className="text-[#101010] text-[0.875rem] font-[700] leading-[1.25rem]">
-              ${formattedTotalCost}
+            <span className="text-xs text-gray-500">
+              {totalItems} {totalItems === 1 ? 'item' : 'items'}
             </span>
           </div>
-
-          {totalDiscount > 0 && (
-            <motion.div
-              className="flex w-full mt-[1rem] py-2 px-3 rounded-lg bg-gradient-to-r from-emerald-50 to-green-50 border border-emerald-100"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="flex w-full justify-between items-center">
-                <span className="text-emerald-700 text-[0.75rem] font-medium">
-                  {t('cart.youSaved')}
-                </span>
-                <motion.span
-                  className="text-emerald-700 text-[0.875rem] font-bold"
-                  initial={{ scale: 1 }}
-                  animate={{ scale: [1, 1.05, 1] }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    repeatType: 'reverse',
-                  }}
-                >
-                  ${formattedTotalDiscount}
-                </motion.span>
-              </div>
-            </motion.div>
-          )}
+          <button className="text-sm text-red-500 font-medium">
+            View Details
+          </button>
         </div>
 
-        <div className="flex w-full mb-[2rem]">
-          {sessionUser ? (
-            <button
-              onClick={handleNavigateToPayment}
-              disabled={items.length === 0}
-              className={clsx(
-                'rounded-[100px] py-[16px] min-h-[52px] w-full text-[14px] font-semibold leading-[20px] text-white transition-colors',
-                {
-                  'bg-[#FE8C00] hover:bg-[#e07e00]': items.length > 0,
-                  'bg-[#FE8C00]/70 cursor-not-allowed': items.length === 0,
-                }
-              )}
-              aria-label="Proceed to payment"
-            >
-              <span className="text-white text-[0.875rem] leading-[1.25rem] font-[600]">
-                {t('cart.proceedToPayment')}
-              </span>
-            </button>
-          ) : (
-            <Link
-              href="/login"
-              className="rounded-[100px] text-center py-[16px] min-h-[52px] w-full text-[14px] font-semibold leading-[20px] text-white transition-colors bg-[#FE8C00] hover:bg-[#e07e00]"
-            >
-              {t('cart.login')}
-            </Link>
-          )}
-        </div>
+        <button
+          onClick={handleAddToCart}
+          className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-4 px-6 rounded-full transition-colors"
+          aria-label="Proceed to checkout"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

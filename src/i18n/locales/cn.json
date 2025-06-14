@@ -158,7 +158,18 @@
     "loginWithApple": "使用 Apple 登录",
     "registerSuccess": "注册成功！正在重定向...",
     "registrationFailed": "注册失败。请稍后重试。",
-    "termsNotAgreed": "请同意服务条款和隐私政策。"
+    "termsNotAgreed": "请同意服务条款和隐私政策。",
+    "verification": {
+      "title": "需要邮箱验证",
+      "description": "请验证您的邮箱地址以继续",
+      "verifyEmail": "验证您的邮箱",
+      "emailSent": "我们已向您的邮箱地址发送了验证链接。请检查您的收件箱，点击链接来验证您的账户。",
+      "checkSpam": "如果您没有看到邮件，请检查您的垃圾邮件文件夹或请求另一个验证链接。",
+      "resendEmail": "重新发送验证邮件",
+      "sending": "发送中...",
+      "goToLogin": "去登录",
+      "needHelp": "需要帮助？联系我们的支持团队"
+    }
   },
 
   "profile": {
@@ -603,6 +614,14 @@
     }
   },
 
+  "shopping-bag": {
+    "metadata": {
+      "title": "购物袋 | 无忧外卖",
+      "keywords": "购物袋, 购物车, 结账, 订购商品, 无忧外卖 购物袋",
+      "description": "查看购物袋中的商品并前往结账页面。无忧外卖 为您提供轻松便捷的购物体验，满足您的所有需求。"
+    }
+  },
+
   "payment": {
     "payment": "支付",
     "paymentMethod": "支付方式",
@@ -654,7 +673,7 @@
     "metadata": {
       "title": "支付 | 无忧外卖",
       "keywords": "支付, 结账, 完成订单, 安全支付",
-      "description": "在 无忧外卖 完成您的支付。为您的订单提供安全简便的支付处理。"
+      "description": "在 无忧外卖 上选择您首选的支付方式。多种安全支付选项，提供无缝结账体验。"
     }
   },
 
@@ -1069,6 +1088,13 @@
         "title": "购物车 | 无忧外卖",
         "keywords": "购物车, 结账, 订购食品, 无忧外卖 购物车",
         "description": "在 无忧外卖 上查看您的购物车并完成订单。为食品、商品和数字服务提供简便的结账流程。"
+      }
+    },
+    "shopping-bag": {
+      "metadata": {
+        "title": "购物袋 | 无忧外卖",
+        "keywords": "购物袋, 购物车, 结账, 订购商品, 无忧外卖 购物袋",
+        "description": "查看购物袋中的商品并前往结账页面。无忧外卖 为您提供轻松便捷的购物体验，满足您的所有需求。"
       }
     },
     "payment": {
@@ -1545,6 +1571,34 @@
       "ongoing": "进行中",
       "completed": "已结束",
       "unknown": "未知"
+    }
+  },
+
+  "shipping": {
+    "shippingAddress": "配送地址",
+    "fullName": "全名",
+    "addressLine1": "地址第一行",
+    "addressLine2": "地址第二行",
+    "optional": "可选",
+    "city": "城市",
+    "state": "省/州",
+    "zipCode": "邮政编码",
+    "phone": "电话号码",
+    "setAsDefault": "设为默认配送地址",
+    "saveAddress": "保存地址",
+    "addressSaved": "地址保存成功",
+    "errorSavingAddress": "保存地址时出错。请重试。",
+    "selectShippingAddress": "选择配送地址",
+    "addNewAddress": "添加新地址",
+    "editAddress": "编辑地址",
+    "deleteAddress": "删除地址",
+    "confirmDeleteAddress": "您确定要删除此地址吗？",
+    "noAddressFound": "未找到配送地址。请添加一个。",
+    "useDifferentAddress": "使用其他地址",
+    "metadata": {
+      "title": "配送地址 | 无忧外卖",
+      "keywords": "配送, 地址, 送货, 电子商务",
+      "description": "在无忧外卖上管理您的产品配送地址。"
     }
   }
 }
