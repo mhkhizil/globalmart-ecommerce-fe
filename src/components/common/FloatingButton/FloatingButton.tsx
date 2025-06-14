@@ -185,7 +185,7 @@ const FloatingButton: React.FC<FloatingButtonProps> = ({ onClick }) => {
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: 'easeInOut',
+                    ease: 'easeInOut' as const,
                   }}
                   className="w-10 h-10 relative"
                 >

@@ -149,7 +149,7 @@ function OrderDetailCard({ order }: OrderDetailCardProps) {
       opacity: 0,
       transition: {
         duration: 0.2,
-        ease: 'easeInOut',
+        ease: 'easeInOut' as const,
       },
     },
     visible: {
@@ -157,7 +157,7 @@ function OrderDetailCard({ order }: OrderDetailCardProps) {
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: 'easeInOut',
+        ease: 'easeInOut' as const,
       },
     },
   };

@@ -15,20 +15,20 @@ const logoVariants = {
     transition: {
       scale: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
       opacity: {
         duration: 0.5,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
       rotateY: {
         duration: 1.2,
-        ease: [0.6, -0.05, 0.01, 0.99],
+        ease: [0.6, -0.05, 0.01, 0.99] as const,
       },
       y: {
         duration: 4,
         repeat: Infinity,
-        ease: 'easeInOut',
+        ease: 'easeInOut' as const,
       },
     },
   },
@@ -37,7 +37,7 @@ const logoVariants = {
     opacity: 0,
     transition: {
       duration: 0.5,
-      ease: 'easeIn',
+      ease: 'easeIn' as const,
     },
   },
 };
@@ -47,7 +47,7 @@ const whirlwindVariants = {
     rotate: [0, 360],
     transition: {
       duration: 8,
-      ease: 'linear',
+      ease: 'linear' as const,
       repeat: Infinity,
     },
   },
@@ -76,7 +76,7 @@ const petalVariants = {
       duration: 6,
       repeat: Infinity,
       delay: index * 0.1,
-      ease: 'easeInOut',
+      ease: 'easeInOut' as const,
     },
   }),
 };
