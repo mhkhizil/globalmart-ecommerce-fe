@@ -75,7 +75,10 @@
     "errorFetchingContact": "ไม่สามารถโหลดข้อมูลการติดต่อได้",
     "noTelegramInfo": "ไม่มีข้อมูล Telegram ที่มีอยู่",
     "and": "และ",
-    "share": "แชร์"
+    "share": "แชร์",
+    "processing": "กำลังดำเนินการ...",
+    "sending": "กำลังส่ง...",
+    "tryAgainWithNewEmail": "ลองอีกครั้งด้วยอีเมลใหม่"
   },
 
   "components": {
@@ -158,7 +161,26 @@
     "loginWithApple": "เข้าสู่ระบบด้วย Apple",
     "registerSuccess": "ลงทะเบียนสำเร็จ! กำลังเปลี่ยนเส้นทาง...",
     "registrationFailed": "การลงทะเบียนล้มเหลว โปรดลองอีกครั้งในภายหลัง",
-    "termsNotAgreed": "โปรดยอมรับข้อกำหนดในการให้บริการและนโยบายความเป็นส่วนตัว"
+    "termsNotAgreed": "โปรดยอมรับข้อกำหนดในการให้บริการและนโยบายความเป็นส่วนตัว",
+    "checkEmail": "ตรวจสอบอีเมลของคุณ",
+    "emailVerificationSent": "เราได้ส่งลิงก์ยืนยันไปยังที่อยู่อีเมลของคุณแล้ว",
+    "checkSpamFolder": "หากคุณไม่เห็นอีเมลในกล่องขาเข้า โปรดตรวจสอบในโฟลเดอร์สแปมหรือจังก์เมล",
+    "continueToLogin": "ไปยังหน้าเข้าสู่ระบบ",
+    "resendVerificationEmail": "ส่งอีเมลยืนยันอีกครั้ง",
+    "sendingEmail": "กำลังส่ง...",
+    "emailRequired": "จำเป็นต้องระบุอีเมล",
+    "backToLogin": "กลับไปยังหน้าเข้าสู่ระบบ",
+    "verification": {
+      "title": "Email Verification Required",
+      "description": "Please verify your email address to continue",
+      "verifyEmail": "Verify your email",
+      "emailSent": "We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.",
+      "checkSpam": "If you don't see the email, check your spam folder or request another verification link.",
+      "resendEmail": "Resend verification email",
+      "sending": "Sending...",
+      "goToLogin": "Go to login",
+      "needHelp": "Need help? Contact our support team"
+    }
   },
 
   "category-list": {
@@ -1448,13 +1470,26 @@
     "enterVerificationCode": "กรุณาป้อนรหัสยืนยันที่เราส่งไปยังอีเมลต่อไปนี้:",
     "didntReceiveCode": "ไม่ได้รับรหัส?",
     "resend": "ส่งใหม่",
-    "continue": "ดำเนินการต่อ"
+    "continue": "ดำเนินการต่อ",
+    "verificationSuccess": "ยืนยัน OTP สำเร็จแล้ว!",
+    "verificationFailed": "การยืนยัน OTP ล้มเหลว!",
+    "invalidLength": "กรุณาป้อน OTP 6 หลักที่ถูกต้อง",
+    "resendRequested": "ขอส่ง OTP ใหม่แล้ว",
+    "verifying": "กำลังยืนยัน...",
+    "resendSuccess": "ส่ง OTP สำเร็จแล้ว!",
+    "resendFailed": "ส่ง OTP ไม่สำเร็จ",
+    "resending": "กำลังส่ง...",
+    "resendIn": "ส่งใหม่ได้ใน"
   },
 
   "forgotPassword": {
     "title": "ลืมรหัสผ่าน?",
     "description": "ป้อนที่อยู่อีเมลของคุณ เราจะส่งรหัสยืนยันให้คุณเพื่อรีเซ็ตรหัสผ่าน",
-    "emailAddress": "ที่อยู่อีเมล"
+    "emailAddress": "ที่อยู่อีเมล",
+    "emailSentSuccess": "ส่งลิงก์รีเซ็ตสำเร็จแล้ว! กรุณาตรวจสอบอีเมลของคุณ",
+    "requestFailed": "ส่งอีเมลรีเซ็ตไม่สำเร็จ กรุณาลองอีกครั้ง",
+    "requestFailedTitle": "คำขอไม่สำเร็จ",
+    "emailHint": "ป้อนที่อยู่อีเมลที่เชื่อมโยงกับบัญชีของคุณ"
   },
 
   "delivery": {

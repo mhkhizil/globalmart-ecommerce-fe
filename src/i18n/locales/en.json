@@ -75,7 +75,10 @@
     "errorFetchingContact": "Failed to load contact information",
     "noTelegramInfo": "No Telegram information available",
     "and": "and",
-    "share": "Share"
+    "share": "Share",
+    "processing": "Processing...",
+    "sending": "Sending...",
+    "tryAgainWithNewEmail": "Try Again with New Email"
   },
 
   "components": {
@@ -159,6 +162,14 @@
     "registerSuccess": "Registration successful! Redirecting...",
     "registrationFailed": "Registration failed. Please try again later.",
     "termsNotAgreed": "Please agree to the terms of service and privacy policy.",
+    "checkEmail": "Check Your Email",
+    "emailVerificationSent": "We've sent a verification link to your email address.",
+    "checkSpamFolder": "If you don't see the email in your inbox, please check your spam or junk folder.",
+    "continueToLogin": "Continue to Login",
+    "resendVerificationEmail": "Resend Verification Email",
+    "sendingEmail": "Sending...",
+    "emailRequired": "Email is required",
+    "backToLogin": "Back to Login",
     "verification": {
       "title": "Email Verification Required",
       "description": "Please verify your email address to continue",
@@ -488,7 +499,16 @@
     "enterVerificationCode": "Enter the verification code we send you on:",
     "didntReceiveCode": "Didn't receive code?",
     "resend": "Resend",
-    "continue": "Continue"
+    "continue": "Continue",
+    "verificationSuccess": "OTP verified successfully!",
+    "verificationFailed": "OTP verification failed!",
+    "invalidLength": "Please enter a valid 6-digit OTP",
+    "resendRequested": "Resend OTP requested",
+    "verifying": "Verifying...",
+    "resendSuccess": "OTP sent successfully!",
+    "resendFailed": "Failed to resend OTP",
+    "resending": "Sending...",
+    "resendIn": "Resend in"
   },
 
   "location": {
@@ -1453,7 +1473,11 @@
   "forgotPassword": {
     "title": "Forgot password?",
     "description": "Enter your email address and we'll send you confirmation code to reset your password",
-    "emailAddress": "Email Address"
+    "emailAddress": "Email Address",
+    "emailSentSuccess": "Reset link sent successfully! Please check your email.",
+    "requestFailed": "Failed to send reset email. Please try again.",
+    "requestFailedTitle": "Request Failed",
+    "emailHint": "Enter the email address associated with your account"
   },
   "delivery": {
     "deliveryStatus": "Delivery Status",

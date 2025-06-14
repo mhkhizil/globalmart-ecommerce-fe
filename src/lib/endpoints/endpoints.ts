@@ -13,6 +13,10 @@ export const apiEndPoints = {
   auth: {
     login: 'api/v1/user/login',
     logout: 'api/v1/user/logout',
+    forgotPassword: 'api/v1/forgot-password',
+    resetPassword: 'api/v1/reset-password',
+    verifyOtp: 'api/v1/verify-otp',
+    resendOtp: 'api/v1/resend-otp',
   },
   common: {
     shopList: 'api/v1/shoptype',
