@@ -5,6 +5,7 @@ import { ChevronLeftIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { memo, useRef, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MainProductDetail, ProductDetail } from '@/core/entity/Product';
@@ -188,6 +189,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
       })
     );
     setShowCartOptions(false);
+    toast.success('Item added to cart');
   };
 
   const handleBuyNow = () => {
@@ -218,6 +220,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
 
   return (
     <div className="flex flex-col px-4">
+      <Toaster position="top-center" />
       <div className="flex w-full justify-between items-center py-4">
         <ChevronLeftIcon className="cursor-pointer" />
         <div className="cursor-pointer">
@@ -492,28 +495,31 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <Link href="/application/cart" className="w-[136px]">
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="relative flex w-full h-9 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] rounded-l-[20px] rounded-r-[4px] items-center justify-center"
-                >
-                  <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
-                    <div className="h-full w-full rounded-full bg-gradient-to-b from-[#3F92FF] to-[#0B3689] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
-                      <Image
-                        src="/icons/cart-icon-fill.svg"
-                        alt="Cart"
-                        width={14}
-                        height={14}
-                        className="w-4 h-4"
-                      />
-                    </div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleAddToCart}
+                className="relative flex w-[136px] h-9 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
+                style={{
+                  opacity: selectedVariant.stock === 0 ? 0.5 : 1,
+                  pointerEvents: selectedVariant.stock === 0 ? 'none' : 'auto',
+                }}
+              >
+                <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
+                  <div className="h-full w-full rounded-full bg-gradient-to-b from-[#3F92FF] to-[#0B3689] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
+                    <Image
+                      src="/icons/cart-icon-fill.svg"
+                      alt="Cart"
+                      width={14}
+                      height={14}
+                      className="w-4 h-4"
+                    />
                   </div>
-                  <span className="text-xs font-['Montserrat'] text-white ml-6">
-                    Add to Cart
-                  </span>
-                </motion.div>
-              </Link>
+                </div>
+                <span className="text-xs font-['Montserrat'] text-white ml-6">
+                  Add to Cart
+                </span>
+              </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.02 }}

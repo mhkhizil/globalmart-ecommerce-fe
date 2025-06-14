@@ -21,9 +21,9 @@ export async function generateMetadata({
   });
 
   return {
-    title: t('title', 'Shopping Bag'), // Fallback if translation key doesn't exist
-    description: t('description', 'View and manage items in your shopping bag'),
-    keywords: t('keywords', 'shopping, cart, bag, checkout, ecommerce'),
+    title: t('title'),
+    description: t('description'),
+    keywords: t('keywords'),
   };
 }
 

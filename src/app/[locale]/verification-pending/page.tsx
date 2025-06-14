@@ -4,16 +4,17 @@ import { getTranslations } from 'next-intl/server';
 import VerificationPending from '@/components/module/auth/VerificationPending';
 
 interface VerificationPendingPageProps {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
+  const { locale } = await params;
   const t = await getTranslations({
-    locale: params.locale,
+    locale,
     namespace: 'auth.verification',
   });
 
