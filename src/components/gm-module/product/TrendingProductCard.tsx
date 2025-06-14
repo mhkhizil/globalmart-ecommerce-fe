@@ -168,14 +168,14 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
       transition: {
         duration: 0.4,
         delay: index * 0.1,
-        ease: 'easeOut',
+        ease: 'easeOut' as const,
       },
     },
     hover: {
       y: -4,
       transition: {
         duration: 0.2,
-        ease: 'easeInOut',
+        ease: 'easeInOut' as const,
       },
     },
   };
