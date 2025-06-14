@@ -14,7 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({
-    locale,
+    locale: locale as string,
     namespace: 'auth.verification',
   });
 

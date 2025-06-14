@@ -40,7 +40,7 @@ function Otp(props: IOptPageProps) {
         {email}
       </span>
       <div className="flex w-full  items-center justify-center mb-[30px] mt-[32px]">
-        <ConfirmOtp />
+        <ConfirmOtp email={email} />
       </div>
     </div>
   );

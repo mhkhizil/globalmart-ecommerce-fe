@@ -75,7 +75,10 @@
     "errorFetchingContact": "无法加载联系信息",
     "noTelegramInfo": "无可用的Telegram信息",
     "and": "和",
-    "share": "分享"
+    "share": "分享",
+    "processing": "处理中...",
+    "sending": "发送中...",
+    "tryAgainWithNewEmail": "使用新邮箱重试"
   },
 
   "components": {
@@ -159,16 +162,24 @@
     "registerSuccess": "注册成功！正在重定向...",
     "registrationFailed": "注册失败。请稍后重试。",
     "termsNotAgreed": "请同意服务条款和隐私政策。",
+    "checkEmail": "查看您的邮箱",
+    "emailVerificationSent": "我们已经发送验证链接到您的邮箱地址。",
+    "checkSpamFolder": "如果您在收件箱中没有看到邮件，请检查您的垃圾邮件或spam文件夹。",
+    "continueToLogin": "继续登录",
+    "resendVerificationEmail": "重新发送验证邮件",
+    "sendingEmail": "发送中...",
+    "emailRequired": "邮箱地址必填",
+    "backToLogin": "返回登录",
     "verification": {
-      "title": "需要邮箱验证",
-      "description": "请验证您的邮箱地址以继续",
-      "verifyEmail": "验证您的邮箱",
-      "emailSent": "我们已向您的邮箱地址发送了验证链接。请检查您的收件箱，点击链接来验证您的账户。",
-      "checkSpam": "如果您没有看到邮件，请检查您的垃圾邮件文件夹或请求另一个验证链接。",
-      "resendEmail": "重新发送验证邮件",
-      "sending": "发送中...",
-      "goToLogin": "去登录",
-      "needHelp": "需要帮助？联系我们的支持团队"
+      "title": "Email Verification Required",
+      "description": "Please verify your email address to continue",
+      "verifyEmail": "Verify your email",
+      "emailSent": "We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.",
+      "checkSpam": "If you don't see the email, check your spam folder or request another verification link.",
+      "resendEmail": "Resend verification email",
+      "sending": "Sending...",
+      "goToLogin": "Go to login",
+      "needHelp": "Need help? Contact our support team"
     }
   },
 
@@ -1458,13 +1469,33 @@
     "enterVerificationCode": "请输入我们发送到以下邮箱的验证码：",
     "didntReceiveCode": "没有收到验证码？",
     "resend": "重新发送",
-    "continue": "继续"
+    "continue": "继续",
+    "verificationSuccess": "验证码验证成功！",
+    "verificationFailed": "验证码验证失败！",
+    "invalidLength": "请输入有效的6位验证码",
+    "resendRequested": "已请求重新发送验证码",
+    "verifying": "验证中...",
+    "resendSuccess": "验证码发送成功！",
+    "resendFailed": "重新发送验证码失败",
+    "resending": "发送中...",
+    "resendIn": "重新发送"
   },
 
   "forgotPassword": {
     "title": "忘记密码？",
     "description": "输入您的电子邮件地址，我们将向您发送确认码以重置密码",
-    "emailAddress": "电子邮件地址"
+    "emailAddress": "电子邮件地址",
+    "emailSentSuccess": "重置链接已成功发送！请查看您的邮箱。",
+    "requestFailed": "发送重置邮件失败。请重试。",
+    "requestFailedTitle": "请求失败",
+    "emailHint": "输入与您账户关联的邮箱地址"
+  },
+  "EmailVerifiedSuccess": {
+    "metadata": {
+      "title": "重置密码成功 | Global Takeout",
+      "keywords": "重置密码成功, 密码重置, 账户恢复, global takeout 重置",
+      "description": "成功重置您的 Global Takeout 密码。使用您的新密码访问您的账户。"
+    }
   },
 
   "delivery": {
