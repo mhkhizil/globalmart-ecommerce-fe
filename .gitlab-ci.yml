@@ -159,7 +159,7 @@ deploy_production:
         echo "Installing production dependencies"
         export PATH="\$HOME/.bun/bin:\$PATH"
         
-        # Update lockfile if needed and install dependencies
+        # Install dependencies from lockfile
         bun install --frozen-lockfile --production || { echo "Dependency installation failed"; exit 1; }
         
         echo "Server prepared for artifact upload ✓"

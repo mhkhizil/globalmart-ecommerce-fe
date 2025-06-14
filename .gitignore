@@ -40,8 +40,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# bun lock file
-bun.lockb
+# bun lock file - COMMENTED OUT to track lockfile for CI/CD consistency
+# bun.lockb
 
 # bun cache
 .bun
