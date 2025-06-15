@@ -305,10 +305,12 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
               </svg>
             ))}
           </div>
-          <span className="ml-2 text-[#828282] text-sm font-['Montserrat']">
+          {/* <span className="ml-2 text-[#828282] text-sm font-['Montserrat']">
             56,890
-          </span>
+          </span> */}
         </div>
+
+        <div className="mt-3 flex items-center">{product.shop_name}</div>
 
         <div className="mt-3 flex items-center">
           {discountPercentage > 0 ? (
@@ -358,7 +360,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
           </p>
         </div>
 
-        <div className="mt-4 flex space-x-2">
+        {/* <div className="mt-4 flex space-x-2">
           <motion.button
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-1 py-2 px-4 rounded border border-gray-300"
@@ -391,7 +393,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
               Return policy
             </span>
           </motion.button>
-        </div>
+        </div> */}
       </div>
 
       <div className="mt-8 mb-4 relative">

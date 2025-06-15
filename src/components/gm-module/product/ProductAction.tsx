@@ -208,12 +208,12 @@ export default function ProductAction({
 
       {/* Sort and Filter */}
       <div className="flex w-full flex-col items-start justify-center">
-        <span className="text-[20px] font-semibold text-[#232327] font-['Montserrat']">
-          Similar To
-        </span>
+        {/* <span className="text-[20px] font-semibold text-[#232327] font-['Montserrat']">
+          Related Products
+        </span> */}
         <div className="flex w-full justify-between items-center mb-4 pr-4">
           <h1 className="text-lg font-semibold font-['Montserrat']">
-            282+ Iteams
+            Related Products
           </h1>
           <div className="flex gap-2">
             {/* Sort Button */}
