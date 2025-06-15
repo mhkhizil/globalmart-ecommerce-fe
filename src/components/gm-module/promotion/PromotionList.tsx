@@ -17,41 +17,28 @@ import PromotionCard, { PromotionCardProps } from './PromotionCard';
 function PromotionList() {
   const sliderRef = useRef<Slider | null>(null);
   const { locale } = useSelector((state: RootState) => state.language);
-  const { data: promotionListData } = useGetPromoList({
+  const {
+    data: promotionListData,
+    isLoading,
+    error,
+  } = useGetPromoList({
     type: 'promo',
   });
 
-  // Create placeholder promo data if API doesn't return any
-  const placeholderPromos: PromotionCardProps[] = [
-    {
-      id: 1,
-      title: '50-40% OFF',
-      subtitle: 'Now in (product)',
-      text: 'All colours',
-      image: '/images/promotion/placeholder.jpg',
-      link: '#',
-    },
-    {
-      id: 2,
-      title: '30% OFF',
-      subtitle: 'Summer collection',
-      text: 'Limited time',
-      image: '/images/promotion/placeholder.jpg',
-      link: '#',
-    },
-    {
-      id: 3,
-      title: 'New Arrivals',
-      subtitle: 'Exclusive items',
-      text: 'Shop today',
-      image: '/images/promotion/placeholder.jpg',
-      link: '#',
-    },
-  ];
+  // Early return if no data available
+  if (
+    isLoading ||
+    error ||
+    !promotionListData?.promotion ||
+    !Array.isArray(promotionListData.promotion) ||
+    promotionListData.promotion.length <= 0
+  ) {
+    return null;
+  }
 
-  // Use API data if available, otherwise use placeholders
-  const promotions: PromotionCardProps[] =
-    promotionListData?.promotion?.map(promo => {
+  // Transform API data to promotion cards
+  const promotions: PromotionCardProps[] = promotionListData.promotion.map(
+    promo => {
       // Get description based on current locale
       let description = promo.en_description; // Default to English
 
@@ -72,7 +59,13 @@ function PromotionList() {
         image: promo.image,
         link: '#',
       };
-    }) || placeholderPromos;
+    }
+  );
+
+  // Additional safety check after transformation
+  if (promotions.length === 0) {
+    return null;
+  }
 
   const settings = {
     dots: true,
