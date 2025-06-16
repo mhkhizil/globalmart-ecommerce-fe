@@ -1406,6 +1406,20 @@
         "description": "View trending products on Worry-free takeaway. Discover the most popular products and easily purchase them."
       }
     },
+    "deal_of_the_day": {
+      "metadata": {
+        "title": "Deal of the Day | Worry-free takeaway",
+        "keywords": "deal of the day, deal of the day list, deal of the day recommendation, deal of the day display",
+        "description": "View deal of the day on Worry-free takeaway. Discover the most popular products and easily purchase them."
+      }
+    },
+    "new_arrival_product": {
+      "metadata": {
+        "title": "New Arrival Product | Worry-free takeaway",
+        "keywords": "new arrival product, new arrival product list, new arrival product recommendation, new arrival product display",
+        "description": "View new arrival products on Worry-free takeaway. Discover the most popular products and easily purchase them."
+      }
+    },
     "driver_order_detail": {
       "metadata": {
         "title": "Driver Order Detail | Worry-free takeaway",

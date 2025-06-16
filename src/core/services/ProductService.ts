@@ -56,4 +56,22 @@ export class ProductService implements IProductService {
     >(filter);
     return response;
   }
+  async getDealOfTheDay(
+    filter: ProductFilterByCategoryDto
+  ): Promise<ProductListResponseDto> {
+    const response = await this.ProductRepository.getDealOfTheDay<
+      ProductFilterByCategoryDto,
+      ProductListResponseDto
+    >(filter);
+    return response;
+  }
+  async getNewArrival(
+    filter: ProductFilterByCategoryDto
+  ): Promise<ProductListResponseDto> {
+    const response = await this.ProductRepository.getNewArrival<
+      ProductFilterByCategoryDto,
+      ProductListResponseDto
+    >(filter);
+    return response;
+  }
 }

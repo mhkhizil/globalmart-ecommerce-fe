@@ -33,7 +33,7 @@ function NewArrivalbanner() {
 
         <div className="mt-4 flex justify-center">
           <Link
-            href="#"
+            href="/application/new-arrival"
             className="inline-flex items-center gap-1 rounded bg-[#F83758] px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#e6324e]"
           >
             <span>View all</span>

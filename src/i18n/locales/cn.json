@@ -1234,6 +1234,20 @@
         "description": "在 无忧外卖 上查看热门产品。发现最受欢迎的产品，轻松购买。"
       }
     },
+    "deal_of_the_day": {
+      "metadata": {
+        "title": "每日特价 | 无忧外卖",
+        "keywords": "每日特价, 每日特价列表, 每日特价推荐, 每日特价展示",
+        "description": "在 无忧外卖 上查看每日特价。发现最受欢迎的产品，轻松购买。"
+      }
+    },
+    "new_arrival_product": {
+      "metadata": {
+        "title": "新品上市 | 无忧外卖",
+        "keywords": "新品上市, 新品上市列表, 新品上市推荐, 新品上市展示",
+        "description": "在 无忧外卖 上查看新品上市。发现最受欢迎的产品，轻松购买。"
+      }
+    },
     "driver_home": {
       "metadata": {
         "title": "司机仪表板 | 无忧外卖",

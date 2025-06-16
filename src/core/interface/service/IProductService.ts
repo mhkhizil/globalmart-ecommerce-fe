@@ -18,4 +18,10 @@ export interface IProductService {
   getTrendingProductList(
     filter: ProductFilterByCategoryDto
   ): Promise<ProductListResponseDto>;
+  getDealOfTheDay(
+    filter: ProductFilterByCategoryDto
+  ): Promise<ProductListResponseDto>;
+  getNewArrival(
+    filter: ProductFilterByCategoryDto
+  ): Promise<ProductListResponseDto>;
 }

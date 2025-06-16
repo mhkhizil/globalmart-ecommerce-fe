@@ -70,7 +70,7 @@ const DealOfTheDay = () => {
         </div>
       </div>
       <Link
-        href="#"
+        href="/application/deal-of-the-day"
         className="flex items-center gap-1 border border-white rounded px-[10px] py-[6px]"
       >
         <span className="font-['Montserrat'] font-semibold text-white text-xs leading-4">

@@ -15,4 +15,10 @@ export interface IProductRepository {
   getTrendingProductList<TRequestDto, TResponseDto>(
     requestDto: TRequestDto
   ): Promise<TResponseDto>;
+  getDealOfTheDay<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto>;
+  getNewArrival<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto>;
 }

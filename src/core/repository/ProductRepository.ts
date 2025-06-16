@@ -83,4 +83,32 @@ export class ProductRepository implements IProductRepository {
       throw new Error('Unable to get trending product list');
     }
   }
+  async getDealOfTheDay<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto> {
+    try {
+      const client = this.axiosClient.createInstance();
+      const url = `${API_BASE_URL}/${apiEndPoints.product.getDealOfTheDay}`;
+      const response = await client.get(url, {
+        params: requestDto,
+      });
+      return response.data.data as TResponseDto;
+    } catch {
+      throw new Error('Unable to get deal of the day');
+    }
+  }
+  async getNewArrival<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto> {
+    try {
+      const client = this.axiosClient.createInstance();
+      const url = `${API_BASE_URL}/${apiEndPoints.product.getNewArrival}`;
+      const response = await client.get(url, {
+        params: requestDto,
+      });
+      return response.data.data as TResponseDto;
+    } catch {
+      throw new Error('Unable to get new arrival');
+    }
+  }
 }

@@ -43,6 +43,8 @@ export const apiEndPoints = {
     getAllProduct: 'api/v1/product',
     createProduct: 'api/v1/product/store',
     getTrendingProductList: 'api/v1/trending-product',
+    getDealOfTheDay: 'api/v1/dealofday-product',
+    getNewArrival: 'api/v1/new-arrival-product',
   },
   merchant: {
     register: 'api/v1/merchant/register',
