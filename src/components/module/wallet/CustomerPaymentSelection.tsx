@@ -51,7 +51,33 @@ const paymentMethods = [
     details: '••••••••2109',
     type: 'digital',
   },
+  {
+    id: 'wallet',
+    name: 'Wallet',
+    icon: '/api/placeholder/32/20',
+    details: 'Digital Wallet',
+    type: 'digital',
+  },
+  {
+    id: 'cash_on_delivery',
+    name: 'Cash on Delivery',
+    icon: '/api/placeholder/32/20',
+    details: 'Pay when delivered',
+    type: 'cash',
+  },
 ];
+
+// Map payment method to API enum
+const mapPaymentMethod = (method: string): PaymentMethod => {
+  if (method === 'wallet') {
+    return PaymentMethod.WALLET;
+  }
+  if (method === 'cash_on_delivery') {
+    return PaymentMethod.COD;
+  }
+  // For visa, paypal, maestro, apple_pay and any other method, default to COD
+  return PaymentMethod.COD;
+};
 
 // Define the PaymentFormData type
 type PaymentFormData = {
@@ -168,39 +194,34 @@ function CustomerPaymentMethod() {
       }
 
       try {
-        // Create order with actual cart data
+        // Format date as DD/MM/YYYY
         const currentDate = new Date().toLocaleDateString('en-GB', {
           day: '2-digit',
           month: '2-digit',
           year: 'numeric',
         });
 
-        await createOrder({
+        // Since we now enforce same merchant in cart, we can create a single order
+        const orderData = {
           date: currentDate,
-          payment_method:
-            data.payment_method === 'wallet'
-              ? PaymentMethod.WALLET
-              : PaymentMethod.COD, // Map other payment methods as needed
+          payment_method: mapPaymentMethod(data.payment_method),
+          merchant_id: items[0].merchant_id, // All items have the same merchant_id
           order_items: items.map(item => ({
+            product_id: item.id, // Using cart item id as product_id
+            product_detail_id: item.id, // Using cart item id as product_detail_id (you may need to store this separately)
+            merchant_id: item.merchant_id,
             name: item.name,
-            price: item.price.toString(),
-            product_id: item.id,
             quantity: item.quantity,
             discount_amt: item.discount_amount
               ? Number(item.discount_amount)
-              : 0,
-            merchant_id: item.merchant_id,
+              : item.discount_price && item.price > item.discount_price
+                ? Number((item.price - item.discount_price).toFixed(2))
+                : 0,
+            price: item.price.toFixed(2),
           })),
-          shipping_address: currentAddress && {
-            full_name: currentAddress.fullName,
-            address_line1: currentAddress.addressLine1,
-            address_line2: currentAddress.addressLine2 || '',
-            city: currentAddress.city,
-            state: currentAddress.state,
-            zip_code: currentAddress.zipCode,
-            phone: currentAddress.phone,
-          },
-        });
+        };
+
+        await createOrder(orderData);
 
         toast.success(`Order placed successfully with ${data.payment_method}!`);
       } catch (error) {
@@ -208,7 +229,7 @@ function CustomerPaymentMethod() {
         toast.error('Failed to place order. Please try again.');
       }
     },
-    [sessionUser, t, items, router, createOrder, currentAddress]
+    [sessionUser, t, items, router, createOrder]
   );
 
   // Redirect to cart if empty
@@ -289,6 +310,16 @@ function CustomerPaymentMethod() {
                       {method.name === 'Apple Pay' && (
                         <span className="text-xs font-bold text-gray-800">
                           🍎
+                        </span>
+                      )}
+                      {method.name === 'Wallet' && (
+                        <span className="text-xs font-bold text-green-600">
+                          💳
+                        </span>
+                      )}
+                      {method.name === 'Cash on Delivery' && (
+                        <span className="text-xs font-bold text-orange-600">
+                          💵
                         </span>
                       )}
                     </div>

@@ -22,15 +22,73 @@ const cartSlice = createSlice({
           version: 1,
         };
       }
-      const existingItem = state.carts[userId].items.find(
+
+      const currentCart = state.carts[userId];
+
+      // Check if cart has items from a different merchant
+      if (currentCart.items.length > 0) {
+        const existingMerchantId = currentCart.items[0].merchant_id;
+        if (existingMerchantId !== action.payload.merchant_id) {
+          // Clear cart if trying to add item from different merchant
+          currentCart.items = [];
+        }
+      }
+
+      const existingItem = currentCart.items.find(
         item => item.id === action.payload.id
       );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
       } else {
-        state.carts[userId].items.push(action.payload);
+        currentCart.items.push(action.payload);
       }
-      state.carts[userId].lastUpdated = Date.now();
+      currentCart.lastUpdated = Date.now();
+    },
+    addItemWithMerchantCheck: (
+      state,
+      action: PayloadAction<{ item: CartItem; replaceCart?: boolean }>
+    ) => {
+      const { item, replaceCart = true } = action.payload;
+      const userId = state.currentUserId || 'guest';
+
+      if (!state.carts[userId]) {
+        state.carts[userId] = {
+          items: [],
+          lastUpdated: Date.now(),
+          version: 1,
+        };
+      }
+
+      const currentCart = state.carts[userId];
+
+      // Check if cart has items from a different merchant
+      if (currentCart.items.length > 0) {
+        const existingMerchantId = currentCart.items[0].merchant_id;
+        if (existingMerchantId === item.merchant_id) {
+          // Same merchant, check if item already exists
+          const existingItem = currentCart.items.find(
+            existingItem => existingItem.id === item.id
+          );
+          if (existingItem) {
+            existingItem.quantity += item.quantity;
+          } else {
+            currentCart.items.push(item);
+          }
+        } else {
+          if (replaceCart) {
+            // Clear cart and add new item
+            currentCart.items = [item];
+          } else {
+            // Don't add item if merchant doesn't match and replaceCart is false
+            return;
+          }
+        }
+      } else {
+        // Empty cart, just add the item
+        currentCart.items.push(item);
+      }
+
+      currentCart.lastUpdated = Date.now();
     },
     decreaseItemQuantity: (state, action: PayloadAction<number>) => {
       const userId = state.currentUserId || 'guest';
@@ -90,17 +148,36 @@ const cartSlice = createSlice({
       }
       const targetCart = state.carts[targetUserId];
 
-      // Merge items and handle duplicates
-      sourceCart.items.forEach(sourceItem => {
-        const existingItem = targetCart.items.find(
-          item => item.id === sourceItem.id
-        );
-        if (existingItem) {
-          existingItem.quantity += sourceItem.quantity;
+      // Merge items and handle duplicates - but only if from same merchant
+      if (sourceCart.items.length > 0) {
+        const sourceMerchantId = sourceCart.items[0].merchant_id;
+
+        if (targetCart.items.length === 0) {
+          // Target cart is empty, add all source items
+          sourceCart.items.forEach(sourceItem => {
+            targetCart.items.push({ ...sourceItem });
+          });
         } else {
-          targetCart.items.push({ ...sourceItem });
+          const targetMerchantId = targetCart.items[0].merchant_id;
+
+          if (sourceMerchantId === targetMerchantId) {
+            // Same merchant, merge items
+            sourceCart.items.forEach(sourceItem => {
+              const existingItem = targetCart.items.find(
+                item => item.id === sourceItem.id
+              );
+              if (existingItem) {
+                existingItem.quantity += sourceItem.quantity;
+              } else {
+                targetCart.items.push({ ...sourceItem });
+              }
+            });
+          } else {
+            // Different merchants, replace target cart with source cart
+            targetCart.items = sourceCart.items.map(item => ({ ...item }));
+          }
         }
-      });
+      }
 
       // Update timestamps and cleanup
       targetCart.lastUpdated = Date.now();
@@ -125,6 +202,7 @@ export const loginUser =
 
 export const {
   addItem,
+  addItemWithMerchantCheck,
   removeItem,
   setUser,
   decreaseItemQuantity,

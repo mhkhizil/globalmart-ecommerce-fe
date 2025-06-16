@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/lib/redux/ReduxStore';
 import {
   addItem,
+  addItemWithMerchantCheck,
   clearCart,
   decreaseItemQuantity,
   removeItem,
@@ -30,6 +31,9 @@ export const useCart = () => {
     ),
 
     addToCart: (item: CartItem) => dispatch(addItem({ ...item })),
+
+    addToCartWithMerchantCheck: (item: CartItem, replaceCart = true) =>
+      dispatch(addItemWithMerchantCheck({ item: { ...item }, replaceCart })),
 
     decreaseQuantity: (itemId: number) =>
       dispatch(decreaseItemQuantity(itemId)),
