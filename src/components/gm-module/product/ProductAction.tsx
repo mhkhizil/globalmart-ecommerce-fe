@@ -13,7 +13,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer';
 import { Product } from '@/core/entity/Product';
-import { useGetProductByMerchantId } from '@/lib/hooks/service/product/useGetProductByMerchantId';
+import { useGetProductByCategory } from '@/lib/hooks/service/product/useGetProductByCategory';
 
 import ProductCard from './ProductCard';
 
@@ -86,7 +86,7 @@ interface ProductActionProps {
   defaultCategories?: number[];
   defaultSortOption?: string;
   onApplyFilters?: (filterState: FilterState) => void;
-  merchantId: number;
+  categoryId: number;
 }
 
 export default function ProductAction({
@@ -95,7 +95,7 @@ export default function ProductAction({
   defaultCategories = [],
   defaultSortOption = 'newest',
   onApplyFilters,
-  merchantId,
+  categoryId,
 }: ProductActionProps) {
   const router = useRouter();
   const [sortOption, setSortOption] = useState<string>(defaultSortOption);
@@ -103,8 +103,8 @@ export default function ProductAction({
     useState<number[]>(defaultCategories);
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
-  const { data: products } = useGetProductByMerchantId({
-    merchant_id: merchantId.toString(),
+  const { data: products } = useGetProductByCategory({
+    category_id: categoryId.toString(),
     page: 1,
     per_page: 10,
   });

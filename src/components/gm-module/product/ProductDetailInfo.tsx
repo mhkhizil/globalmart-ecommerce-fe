@@ -558,7 +558,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         <MemoizedProductAction
           // onViewSimilar={handleViewSimilar}
           // onReviews={handleReviews}
-          merchantId={product.merchant_id}
+          categoryId={product.category_id}
         />
       </div>
     </div>
