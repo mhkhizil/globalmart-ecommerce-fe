@@ -3,9 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
+import { useSidebar } from '@/hooks/useSidebar';
 import { useSession } from '@/lib/hooks/session/useSession';
 
 import Logo from './Logo';
+import SidebarLazy from './SidebarLazy';
 
 // Generate a consistent color based on username
 const getProfileColor = (name: string) => {
@@ -24,6 +26,7 @@ const getProfileColor = (name: string) => {
 function HomeNav() {
   const { data: sessionData, isLoading } = useSession();
   const [imgError, setImgError] = useState(false);
+  const { isOpen: isSidebarOpen, openSidebar, closeSidebar } = useSidebar();
 
   // Get the user's display name for the tooltip
   const userDisplayName = useMemo(() => {
@@ -105,6 +108,16 @@ function HomeNav() {
       <motion.div
         className="w-8 h-8 bg-[#F2F2F2] rounded-full flex items-center justify-center cursor-pointer"
         whileTap={{ scale: 0.95 }}
+        onClick={openSidebar}
+        role="button"
+        aria-label="Open navigation menu"
+        tabIndex={0}
+        onKeyDown={event => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            openSidebar();
+          }
+        }}
       >
         <Image
           src="/assets/menu-icon-inner.svg"
@@ -145,6 +158,9 @@ function HomeNav() {
           {userDisplayName}
         </div>
       </div>
+
+      {/* Sidebar Component */}
+      <SidebarLazy isOpen={isSidebarOpen} onClose={closeSidebar} />
     </motion.nav>
   );
 }
