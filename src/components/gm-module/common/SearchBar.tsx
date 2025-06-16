@@ -62,10 +62,10 @@ const SearchBar = React.forwardRef<HTMLInputElement, SearchBarProps>(
           className="p-0 bg-transparent border-none cursor-pointer"
           aria-label="Search by voice"
         >
-          <Mic
+          {/* <Mic
             className="h-5 w-5 text-[#BBBBBB] flex-shrink-0"
             aria-hidden="true"
-          />
+          /> */}
         </button>
       </div>
     );
