@@ -204,7 +204,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     dispatch(
       addItem({
         id: selectedVariant.id,
-        name: selectedVariant.product_name,
+        name: product.product_name,
         price: Number(selectedVariant.price),
         quantity: quantity,
         merchant_id: product.merchant_id,
@@ -221,6 +221,9 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         },
       })
     );
+    console.log('Product name:', product.product_name);
+    console.log('Variant product name:', selectedVariant.product_name);
+
     setShowCartOptions(false);
     toast.success('Item added to cart');
     router.push('/application/cart');
@@ -233,7 +236,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
       addItemWithMerchantCheck({
         item: {
           id: selectedVariant.id,
-          name: selectedVariant.product_name,
+          name: product.product_name,
           price: Number(selectedVariant.price),
           quantity: quantity,
           merchant_id: product.merchant_id,
@@ -279,6 +282,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     setSelectedVariant(variant);
     setQuantity(1); // Reset quantity when variant changes
   };
+  console.log(selectedVariant);
 
   if (!selectedVariant) {
     return (

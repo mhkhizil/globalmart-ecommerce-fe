@@ -8,6 +8,9 @@ import {
   ChevronRight,
   ChevronUp,
   Heart,
+  Minus,
+  Plus,
+  Trash2,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,7 +29,14 @@ function Cart() {
   const router = useRouter();
   const { data: session } = useSession();
   const sessionUser = useMemo(() => session?.user, [session?.user]);
-  const { items, totalPrice, totalItems } = useCart();
+  const {
+    items,
+    totalPrice,
+    totalItems,
+    addItem,
+    decreaseItemQuantity,
+    removeItem,
+  } = useCart();
   const t = useTranslations();
   const [favorites, setFavorites] = useState<number[]>([]);
   const [showOtherItems, setShowOtherItems] = useState(false);
@@ -261,6 +271,41 @@ function Cart() {
     }, 5000);
   }, [scrollRight]);
 
+  // Quantity management functions
+  const handleIncreaseQuantity = useCallback(
+    (item: any) => {
+      addItem({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+        merchant_id: item.merchant_id,
+        discount_amount: item.discount_amount,
+        discount_price: item.discount_price,
+        customization: item.customization,
+      });
+      toast.success(`Added one more ${item.name}`);
+    },
+    [addItem]
+  );
+
+  const handleDecreaseQuantity = useCallback(
+    (itemId: number, itemName: string) => {
+      decreaseItemQuantity(itemId);
+      toast.success(`Removed one ${itemName}`);
+    },
+    [decreaseItemQuantity]
+  );
+
+  const handleRemoveItem = useCallback(
+    (itemId: number, itemName: string) => {
+      removeItem(itemId);
+      toast.success(`${itemName} removed from cart`);
+    },
+    [removeItem]
+  );
+
   // Render empty cart state
   if (items.length === 0) {
     return (
@@ -365,12 +410,56 @@ function Cart() {
                           </>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-gray-600">
-                        <span>Quantity: {item.quantity}</span>
-                        {item.merchant_id && (
-                          <span>• Merchant ID: {item.merchant_id}</span>
-                        )}
+                      {item.merchant_id && (
+                        <div className="text-xs text-gray-600 mb-2">
+                          Merchant ID: {item.merchant_id}
+                        </div>
+                      )}
+                      {item.customization && (
+                        <div className="text-xs text-gray-600 mb-2">
+                          {Object.entries(item.customization).map(
+                            ([key, value]) => (
+                              <span key={key} className="mr-2">
+                                {key}: {value}
+                              </span>
+                            )
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Quantity Controls */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center border border-gray-300 rounded-md">
+                        <button
+                          onClick={() =>
+                            handleDecreaseQuantity(item.id, item.name)
+                          }
+                          className="p-2 hover:bg-gray-100 transition-colors"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus size={16} className="text-gray-600" />
+                        </button>
+                        <span className="px-4 py-2 text-sm font-medium text-gray-900 min-w-[3rem] text-center">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => handleIncreaseQuantity(item)}
+                          className="p-2 hover:bg-gray-100 transition-colors"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus size={16} className="text-gray-600" />
+                        </button>
                       </div>
+
+                      {/* Remove Item Button */}
+                      <button
+                        onClick={() => handleRemoveItem(item.id, item.name)}
+                        className="p-2 text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                        aria-label="Remove item"
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                   <button

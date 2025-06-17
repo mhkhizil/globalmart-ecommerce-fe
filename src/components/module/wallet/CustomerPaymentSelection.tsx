@@ -92,6 +92,8 @@ type PaymentFormData = {
 
 function CustomerPaymentMethod() {
   const router = useRouter();
+  const { data: sessionUser } = useSession();
+  const { items, totalPrice, appliedCoupon, clearCart, totalItems } = useCart();
   const t = useTranslations();
 
   // Create the schema inside the component to access the translation hook
@@ -113,9 +115,6 @@ function CustomerPaymentMethod() {
     });
   }, [t]);
 
-  const { data: session } = useSession();
-  const sessionUser = useMemo(() => session?.user, [session?.user]);
-  const { items, clearCart, totalPrice, totalItems } = useCart();
   const { currentAddress } = useShippingAddress();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | undefined
@@ -124,7 +123,8 @@ function CustomerPaymentMethod() {
   // Calculate totals from real cart data
   const orderAmount: number = Number(totalPrice) || 0;
   const shippingAmount: number = orderAmount > 0 ? 30 : 0; // Free shipping on empty cart
-  const totalAmount: number = orderAmount + shippingAmount;
+  const couponDiscount: number = appliedCoupon?.discount_amount || 0;
+  const totalAmount: number = orderAmount + shippingAmount - couponDiscount;
 
   // Form setup with validation
   const {
@@ -155,7 +155,7 @@ function CustomerPaymentMethod() {
   // Order creation mutation
   const { mutateAsync: createOrder, isPending } = useCreateOrder({
     onSuccess: () => {
-      clearCart();
+      clearCart(); // This clears both cart items and applied coupon
       toast.success(t('payment.orderSubmittedSuccess'));
       router.push('/application/user-order-list');
     },
@@ -206,6 +206,7 @@ function CustomerPaymentMethod() {
           date: currentDate,
           payment_method: mapPaymentMethod(data.payment_method),
           merchant_id: items[0].merchant_id, // All items have the same merchant_id
+          ...(appliedCoupon && { coupon_id: appliedCoupon.id }), // Include coupon_id if coupon is applied
           order_items: items.map(item => ({
             product_id: item.id, // Using cart item id as product_id
             product_detail_id: item.id, // Using cart item id as product_detail_id (you may need to store this separately)
@@ -229,7 +230,7 @@ function CustomerPaymentMethod() {
         toast.error('Failed to place order. Please try again.');
       }
     },
-    [sessionUser, t, items, router, createOrder]
+    [sessionUser, t, items, router, createOrder, appliedCoupon]
   );
 
   // Redirect to cart if empty
@@ -272,6 +273,12 @@ function CustomerPaymentMethod() {
               <span>Shipping</span>
               <span>₹ {shippingAmount}</span>
             </div>
+            {appliedCoupon && (
+              <div className="flex justify-between text-green-600">
+                <span>Coupon Discount ({appliedCoupon.coupon_code})</span>
+                <span>- ₹ {convertThousandSeparator(couponDiscount, 2)}</span>
+              </div>
+            )}
             <div className="border-t pt-3">
               <div className="flex justify-between font-semibold text-gray-900">
                 <span>Total</span>

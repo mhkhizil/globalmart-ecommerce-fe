@@ -80,4 +80,8 @@ export const apiEndPoints = {
     cancelOrderByMerchant: 'api/v1/order/cancelbyuser',
     cancelOrderByDriver: 'api/v1/cancelbydriver',
   },
+  coupon: {
+    getCouponList: 'api/v1/coupon',
+    applyCoupon: 'api/v1/applycoupon',
+  },
 };

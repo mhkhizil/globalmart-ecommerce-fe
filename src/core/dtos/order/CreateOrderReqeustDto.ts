@@ -16,6 +16,8 @@ export enum PaymentMethod {
 export type CreateOrderRequestDto = {
   date: string;
   payment_method: PaymentMethod;
+  merchant_id: number;
+  coupon_id?: number; // Optional coupon ID
   order_items: Omit<
     OrderItem,
     | 'id'

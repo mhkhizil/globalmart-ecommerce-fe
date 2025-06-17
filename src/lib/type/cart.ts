@@ -12,10 +12,20 @@ export interface CartItem {
   customization?: Record<string, any>;
 }
 
+export interface AppliedCoupon {
+  id: number;
+  coupon_code: string;
+  discount_amount: number;
+  discount_type: 'fixed' | 'percentage';
+  discount_percent?: number;
+  min_order_amount: string;
+}
+
 export interface CartState {
   carts: {
     [userId: string]: {
       items: CartItem[];
+      appliedCoupon?: AppliedCoupon;
       lastUpdated: number;
       version: number;
     };

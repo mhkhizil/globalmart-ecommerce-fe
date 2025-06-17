@@ -1,12 +1,16 @@
 'use client';
 
-import { ArrowLeft, MapPin, Plus } from 'lucide-react';
+import { ArrowLeft, ChevronRight, MapPin, Plus, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 
 import FallbackImage from '@/components/common/FallbackImage';
 import { Button } from '@/components/ui/button';
+import { Coupon } from '@/core/dtos/coupon/CouponListResponseDto';
+import { useApplyCoupon } from '@/lib/hooks/service/coupon/useApplyCoupon';
+import { useGetCouponList } from '@/lib/hooks/service/coupon/useGetCouponList';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
 import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
@@ -21,12 +25,73 @@ export function ShoppingBag({}: ShoppingBagProps) {
   const t = useTranslations();
   const { data: session } = useSession();
   const { currentAddress } = useShippingAddress();
-  const { items, totalPrice, totalItems } = useCart();
+  const {
+    items,
+    totalPrice,
+    totalItems,
+    appliedCoupon,
+    applyCoupon: applyCouponToCart,
+    removeCoupon,
+  } = useCart();
+
+  // Coupon state
+  const [showCoupons, setShowCoupons] = useState(false);
+  const previousCouponRef = useRef(appliedCoupon);
+
+  // Fetch available coupons
+  const { data: couponData, isLoading: couponsLoading } = useGetCouponList();
+
+  // Apply coupon mutation
+  const { mutateAsync: applyCoupon, isPending: applyingCoupon } =
+    useApplyCoupon({
+      onSuccess: response => {
+        const discount = Number(response.data.discount);
+        toast.success(response.message);
+        setShowCoupons(false);
+      },
+      onError: error => {
+        toast.error('Failed to apply coupon. Please try again.');
+        console.error('Apply coupon error:', error);
+      },
+    });
 
   // Calculate totals
   const subtotal: number = Number(totalPrice) || 0;
   const deliveryFee: number = 0; // Free delivery
-  const total: number = subtotal + deliveryFee;
+  const couponDiscount = appliedCoupon?.discount_amount || 0;
+  const total: number = subtotal + deliveryFee - couponDiscount;
+
+  // Monitor coupon changes and notify user if coupon is removed due to cart changes
+  useEffect(() => {
+    const previousCoupon = previousCouponRef.current;
+
+    if (previousCoupon && !appliedCoupon) {
+      // Coupon was removed, check if it was due to minimum order requirement
+      const currentTotal = subtotal + deliveryFee;
+      const minOrderAmount = Number(previousCoupon.min_order_amount);
+
+      if (currentTotal < minOrderAmount) {
+        toast.error(
+          `Coupon ${previousCoupon.coupon_code} removed. Minimum order amount of $${minOrderAmount} required.`,
+          { duration: 4000 }
+        );
+      }
+    } else if (
+      previousCoupon &&
+      appliedCoupon &&
+      previousCoupon.discount_type === 'percentage' &&
+      Math.abs(previousCoupon.discount_amount - appliedCoupon.discount_amount) >
+        0.01
+    ) {
+      // Percentage-based coupon discount has changed
+      toast.success(
+        `Coupon discount updated to $${appliedCoupon.discount_amount.toFixed(2)} based on cart total.`,
+        { duration: 3000 }
+      );
+    }
+
+    previousCouponRef.current = appliedCoupon;
+  }, [appliedCoupon, subtotal, deliveryFee]);
 
   // Calculate discount information for an item
   const calculateItemDiscount = useCallback((item: any) => {
@@ -75,6 +140,54 @@ export function ShoppingBag({}: ShoppingBagProps) {
   const getMockRating = useCallback((itemId: number) => {
     const ratings = [4.8, 4.7, 4.5, 4.9, 4.6];
     return ratings[itemId % ratings.length];
+  }, []);
+
+  // Coupon handling functions
+  const handleSelectCoupon = useCallback(
+    async (coupon: Coupon) => {
+      try {
+        const orderTotal = subtotal + deliveryFee;
+
+        // Check minimum order amount
+        if (orderTotal < Number(coupon.min_order_amount)) {
+          toast.error(
+            `Minimum order amount of $${coupon.min_order_amount} required for this coupon.`
+          );
+          return;
+        }
+
+        // Apply the coupon via API
+        const response = await applyCoupon({
+          coupon_code: coupon.coupon_code,
+          order_total: orderTotal,
+        });
+
+        // Create AppliedCoupon object for cart state
+        const appliedCouponData = {
+          id: coupon.id,
+          coupon_code: coupon.coupon_code,
+          discount_amount: Number(response.data.discount),
+          discount_type: coupon.discount_type,
+          discount_percent: coupon.discount_percent || undefined,
+          min_order_amount: coupon.min_order_amount,
+        };
+
+        // Apply to cart state
+        applyCouponToCart(appliedCouponData);
+      } catch (error) {
+        console.error('Error applying coupon:', error);
+      }
+    },
+    [subtotal, deliveryFee, applyCoupon, applyCouponToCart]
+  );
+
+  const handleRemoveCoupon = useCallback(() => {
+    removeCoupon();
+    toast.success('Coupon removed');
+  }, [removeCoupon]);
+
+  const handleShowCoupons = useCallback(() => {
+    setShowCoupons(true);
   }, []);
 
   const handleProceedToPayment = () => {
@@ -265,15 +378,45 @@ export function ShoppingBag({}: ShoppingBagProps) {
 
         {/* Apply Coupons Section */}
         <div className="bg-white p-4 mb-2">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 bg-red-100 rounded flex items-center justify-center">
-                <span className="text-red-500 text-xs font-bold">%</span>
+          {appliedCoupon ? (
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-3">
+                <div className="w-6 h-6 bg-green-100 rounded flex items-center justify-center">
+                  <span className="text-green-500 text-xs font-bold">✓</span>
+                </div>
+                <div>
+                  <span className="font-medium text-gray-900">
+                    {appliedCoupon.coupon_code}
+                  </span>
+                  <p className="text-xs text-gray-500">
+                    Saved ${couponDiscount.toFixed(2)}
+                  </p>
+                </div>
               </div>
-              <span className="font-medium text-gray-900">Apply Coupons</span>
+              <button
+                onClick={handleRemoveCoupon}
+                className="text-red-500 hover:text-red-700"
+              >
+                <X size={16} />
+              </button>
             </div>
-            <span className="text-red-500 font-medium text-sm">Select</span>
-          </div>
+          ) : (
+            <button
+              onClick={handleShowCoupons}
+              className="flex items-center justify-between w-full"
+            >
+              <div className="flex items-center space-x-3">
+                <div className="w-6 h-6 bg-red-100 rounded flex items-center justify-center">
+                  <span className="text-red-500 text-xs font-bold">%</span>
+                </div>
+                <span className="font-medium text-gray-900">Apply Coupons</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span className="text-red-500 font-medium text-sm">Select</span>
+                <ChevronRight size={16} className="text-gray-400" />
+              </div>
+            </button>
+          )}
         </div>
 
         {/* Order Payment Details */}
@@ -295,9 +438,7 @@ export function ShoppingBag({}: ShoppingBagProps) {
                   Know More
                 </button>
               </div>
-              <span className="text-red-500 font-medium text-sm">
-                Apply Coupon
-              </span>
+              <span className="text-gray-600 font-medium text-sm">$ 0.00</span>
             </div>
 
             <div className="flex justify-between">
@@ -306,6 +447,15 @@ export function ShoppingBag({}: ShoppingBagProps) {
                 {deliveryFee === 0 ? 'Free' : `$ ${deliveryFee.toFixed(2)}`}
               </span>
             </div>
+
+            {couponDiscount > 0 && (
+              <div className="flex justify-between">
+                <span className="text-gray-600">Coupon Discount</span>
+                <span className="text-green-600 font-medium">
+                  - $ {couponDiscount.toFixed(2)}
+                </span>
+              </div>
+            )}
 
             <div className="border-t pt-3 mt-3">
               <div className="flex justify-between">
@@ -346,6 +496,115 @@ export function ShoppingBag({}: ShoppingBagProps) {
           </Button>
         </div>
       </div>
+
+      {/* Coupon Selection Modal */}
+      {showCoupons && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-end justify-center z-50">
+          <div className="bg-white w-full max-w-sm rounded-t-lg max-h-[80vh] overflow-hidden">
+            <div className="flex items-center justify-between p-4 border-b">
+              <h3 className="text-lg font-semibold text-gray-900">
+                Available Coupons
+              </h3>
+              <button
+                onClick={() => setShowCoupons(false)}
+                className="text-gray-400 hover:text-gray-600"
+              >
+                <X size={24} />
+              </button>
+            </div>
+
+            <div className="overflow-y-auto max-h-[60vh] p-4">
+              {couponsLoading ? (
+                <div className="space-y-4">
+                  {[1, 2, 3].map(index => (
+                    <div key={index} className="animate-pulse">
+                      <div className="h-20 bg-gray-200 rounded-lg"></div>
+                    </div>
+                  ))}
+                </div>
+              ) : couponData?.data?.coupon?.length ? (
+                <div className="space-y-3">
+                  {couponData.data.coupon.map(coupon => {
+                    const isEligible =
+                      subtotal + deliveryFee >= Number(coupon.min_order_amount);
+
+                    return (
+                      <div
+                        key={coupon.id}
+                        className={`border rounded-lg p-4 ${
+                          isEligible
+                            ? 'border-green-200 bg-green-50'
+                            : 'border-gray-200 bg-gray-50'
+                        }`}
+                      >
+                        <div className="flex items-start justify-between">
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-2">
+                              <span className="font-bold text-lg text-gray-900">
+                                {coupon.coupon_code}
+                              </span>
+                              {coupon.discount_type === 'percentage' ? (
+                                <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-medium">
+                                  {coupon.discount_percent}% OFF
+                                </span>
+                              ) : (
+                                <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-medium">
+                                  ${coupon.discount_amount} OFF
+                                </span>
+                              )}
+                            </div>
+
+                            {coupon.description && (
+                              <p className="text-sm text-gray-600 mb-2">
+                                {coupon.description}
+                              </p>
+                            )}
+
+                            <div className="text-xs text-gray-500 space-y-1">
+                              <p>Min. order: ${coupon.min_order_amount}</p>
+                              <p>
+                                Valid till:{' '}
+                                {new Date(coupon.end_date).toLocaleDateString()}
+                              </p>
+                              <p>
+                                Uses left:{' '}
+                                {coupon.valid_count - coupon.use_count}
+                              </p>
+                            </div>
+                          </div>
+
+                          <button
+                            onClick={() => handleSelectCoupon(coupon)}
+                            disabled={!isEligible || applyingCoupon}
+                            className={`px-4 py-2 rounded-md text-sm font-medium ${
+                              isEligible
+                                ? 'bg-red-500 text-white hover:bg-red-600 disabled:opacity-50'
+                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                            }`}
+                          >
+                            {applyingCoupon
+                              ? 'Applying...'
+                              : isEligible
+                                ? 'Apply'
+                                : 'Not Eligible'}
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-gray-400 text-2xl">%</span>
+                  </div>
+                  <p className="text-gray-500">No coupons available</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

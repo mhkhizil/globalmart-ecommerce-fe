@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { CartItem, CartState } from '@/lib/type/cart';
+import { AppliedCoupon, CartItem, CartState } from '@/lib/type/cart';
 
 import { AppDispatch, RootState } from '../ReduxStore';
 
@@ -31,6 +31,7 @@ const cartSlice = createSlice({
         if (existingMerchantId !== action.payload.merchant_id) {
           // Clear cart if trying to add item from different merchant
           currentCart.items = [];
+          delete currentCart.appliedCoupon; // Also clear applied coupon for different merchant
         }
       }
 
@@ -43,6 +44,9 @@ const cartSlice = createSlice({
         currentCart.items.push(action.payload);
       }
       currentCart.lastUpdated = Date.now();
+
+      // Validate and recalculate coupon discount
+      validateAndRecalculateCoupon(currentCart);
     },
     addItemWithMerchantCheck: (
       state,
@@ -78,6 +82,7 @@ const cartSlice = createSlice({
           if (replaceCart) {
             // Clear cart and add new item
             currentCart.items = [item];
+            delete currentCart.appliedCoupon; // Also clear applied coupon for different merchant
           } else {
             // Don't add item if merchant doesn't match and replaceCart is false
             return;
@@ -89,6 +94,9 @@ const cartSlice = createSlice({
       }
 
       currentCart.lastUpdated = Date.now();
+
+      // Validate and recalculate coupon discount
+      validateAndRecalculateCoupon(currentCart);
     },
     decreaseItemQuantity: (state, action: PayloadAction<number>) => {
       const userId = state.currentUserId || 'guest';
@@ -108,6 +116,9 @@ const cartSlice = createSlice({
           }
 
           state.carts[userId].lastUpdated = Date.now();
+
+          // Validate and recalculate coupon discount
+          validateAndRecalculateCoupon(state.carts[userId]);
         }
       }
     },
@@ -118,6 +129,9 @@ const cartSlice = createSlice({
           item => item.id !== action.payload
         );
         state.carts[userId].lastUpdated = Date.now();
+
+        // Validate and recalculate coupon discount
+        validateAndRecalculateCoupon(state.carts[userId]);
       }
     },
     setUser: (state, action: PayloadAction<string | undefined>) => {
@@ -127,6 +141,7 @@ const cartSlice = createSlice({
       const userId = state.currentUserId || 'guest';
       if (state.carts[userId]) {
         state.carts[userId].items = [];
+        delete state.carts[userId].appliedCoupon;
         state.carts[userId].lastUpdated = Date.now();
       }
     },
@@ -157,6 +172,10 @@ const cartSlice = createSlice({
           sourceCart.items.forEach(sourceItem => {
             targetCart.items.push({ ...sourceItem });
           });
+          // Copy over any applied coupon from source cart
+          if (sourceCart.appliedCoupon) {
+            targetCart.appliedCoupon = { ...sourceCart.appliedCoupon };
+          }
         } else {
           const targetMerchantId = targetCart.items[0].merchant_id;
 
@@ -172,9 +191,19 @@ const cartSlice = createSlice({
                 targetCart.items.push({ ...sourceItem });
               }
             });
+            // If target cart doesn't have a coupon but source does, copy it over
+            if (!targetCart.appliedCoupon && sourceCart.appliedCoupon) {
+              targetCart.appliedCoupon = { ...sourceCart.appliedCoupon };
+            }
           } else {
             // Different merchants, replace target cart with source cart
             targetCart.items = sourceCart.items.map(item => ({ ...item }));
+            // Clear any existing coupon since we're switching merchants
+            delete targetCart.appliedCoupon;
+            // If source cart has a coupon, copy it over
+            if (sourceCart.appliedCoupon) {
+              targetCart.appliedCoupon = { ...sourceCart.appliedCoupon };
+            }
           }
         }
       }
@@ -183,8 +212,59 @@ const cartSlice = createSlice({
       targetCart.lastUpdated = Date.now();
       delete state.carts[sourceUserId]; // Remove the guest cart after merging
     },
+    applyCouponToCart: (state, action: PayloadAction<AppliedCoupon>) => {
+      const userId = state.currentUserId || 'guest';
+      if (!state.carts[userId]) {
+        state.carts[userId] = {
+          items: [],
+          lastUpdated: Date.now(),
+          version: 1,
+        };
+      }
+      state.carts[userId].appliedCoupon = action.payload;
+      state.carts[userId].lastUpdated = Date.now();
+    },
+    removeCouponFromCart: state => {
+      const userId = state.currentUserId || 'guest';
+      if (state.carts[userId]) {
+        delete state.carts[userId].appliedCoupon;
+        state.carts[userId].lastUpdated = Date.now();
+      }
+    },
   },
 });
+
+// Helper function to validate coupon and recalculate discount
+const validateAndRecalculateCoupon = (
+  cart: { items: CartItem[]; appliedCoupon?: AppliedCoupon },
+  minOrderThreshold = 0
+) => {
+  if (!cart.appliedCoupon) return;
+
+  // Calculate current cart total
+  const cartTotal = cart.items.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  // Check if cart still meets minimum order amount
+  const minOrderAmount = Number(cart.appliedCoupon.min_order_amount);
+  if (cartTotal < minOrderAmount) {
+    // Remove coupon if cart no longer meets minimum requirements
+    delete cart.appliedCoupon;
+    return;
+  }
+
+  // If coupon is still valid, recalculate discount amount
+  if (
+    cart.appliedCoupon.discount_type === 'percentage' &&
+    cart.appliedCoupon.discount_percent
+  ) {
+    cart.appliedCoupon.discount_amount =
+      (cartTotal * cart.appliedCoupon.discount_percent) / 100;
+  }
+  // For fixed amount discounts, the amount stays the same
+};
 
 export const loginUser =
   (userId: string) => (dispatch: AppDispatch, getState: () => RootState) => {
@@ -208,5 +288,7 @@ export const {
   decreaseItemQuantity,
   clearCart,
   mergeCarts,
+  applyCouponToCart,
+  removeCouponFromCart,
 } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;
