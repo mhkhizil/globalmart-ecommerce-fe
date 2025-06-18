@@ -150,11 +150,7 @@ function HomeNav() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
       >
-        <CurrencySelectorLazy
-          variant="compact"
-          size="sm"
-          className="hidden sm:block"
-        />
+        <CurrencySelectorLazy variant="compact" size="sm" />
       </motion.div>
 
       {/* Profile Image with Tooltip */}
