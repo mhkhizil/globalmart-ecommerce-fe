@@ -21,9 +21,9 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import FallbackImage from '@/components/common/FallbackImage';
 import EmptyCartIcon from '@/components/common/icons/EmptyCartIcon';
+import { useGetProductDetailByMerchant } from '@/lib/hooks/service/product/useGetProductDetailByMerchant';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
-import { useGetProductDetailByMerchant } from '@/lib/hooks/service/product/useGetProductDetailByMerchant';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
 
 function Cart() {
@@ -72,16 +72,16 @@ function Cart() {
     return productDetailData.data.product_details.map(item => ({
       id: item.id,
       name: item.product_name,
-      price: parseFloat(item.price),
+      price: Number.parseFloat(item.price),
       image: item.product_detail_image[0]?.image_path || '/food-fallback.png',
       rating: 4.5, // Default rating since not provided in API
-      originalPrice: item.discount_price ? parseFloat(item.price) : null,
+      originalPrice: item.discount_price ? Number.parseFloat(item.price) : null,
       discount_percent: item.discount_percent,
       discount_amount: item.discount_amount
-        ? parseFloat(item.discount_amount)
+        ? Number.parseFloat(item.discount_amount)
         : null,
       discount_price: item.discount_price
-        ? parseFloat(item.discount_price)
+        ? Number.parseFloat(item.discount_price)
         : null,
       type: item.discount_type,
       merchant_id: item.merchant_id,

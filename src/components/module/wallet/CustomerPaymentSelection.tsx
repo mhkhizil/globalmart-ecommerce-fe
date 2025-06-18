@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowLeft, CreditCard } from 'lucide-react';
+import { AlertCircle, ArrowLeft, CheckCircle, CreditCard } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -75,12 +75,27 @@ function CustomerPaymentMethod() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | undefined
   >();
+  const [orderError, setOrderError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Fetch wallet balance if available
+  const { data: walletData, isLoading: isWalletLoading } = useGetCustomerWallet(
+    sessionUser?.user?.id?.toString() || '',
+    {
+      enabled: !!sessionUser?.user?.id,
+    }
+  );
 
   // Calculate totals from real cart data
   const orderAmount: number = Number(totalPrice) || 0;
   const shippingAmount: number = orderAmount > 0 ? 30 : 0; // Free shipping on empty cart
   const couponDiscount: number = appliedCoupon?.discount_amount || 0;
   const totalAmount: number = orderAmount + shippingAmount - couponDiscount;
+
+  // Check wallet balance if wallet payment is selected
+  const walletBalance = Number(walletData?.wallet_amount) || 0;
+  const hasInsufficientWallet =
+    selectedPaymentMethod === 'wallet' && walletBalance < totalAmount;
 
   // Form setup with validation
   const {
@@ -105,6 +120,7 @@ function CustomerPaymentMethod() {
       watchedPaymentMethod !== selectedPaymentMethod
     ) {
       setSelectedPaymentMethod(watchedPaymentMethod);
+      setOrderError(null); // Clear error when payment method changes
     }
   }, [watchedPaymentMethod, selectedPaymentMethod]);
 
@@ -112,11 +128,19 @@ function CustomerPaymentMethod() {
   const { mutateAsync: createOrder, isPending } = useCreateOrder({
     onSuccess: () => {
       clearCart(); // This clears both cart items and applied coupon
-      toast.success(t('payment.orderSubmittedSuccess'));
+      toast.success(
+        t('payment.orderSubmittedSuccess') || 'Order placed successfully!'
+      );
       router.push('/application/user-order-list');
     },
     onError: error => {
-      toast.error(t('payment.orderSubmissionFailed'));
+      setIsSubmitting(false);
+      const errorMessage =
+        error.message ||
+        t('payment.orderSubmissionFailed') ||
+        'Failed to place order';
+      setOrderError(errorMessage);
+      toast.error(errorMessage);
       console.error('Order submission error:', error);
     },
   });
@@ -126,26 +150,75 @@ function CustomerPaymentMethod() {
     (method: string) => {
       setValue('payment_method', method as PaymentFormData['payment_method']);
       setSelectedPaymentMethod(method);
+      setOrderError(null); // Clear any previous errors
     },
     [setValue]
   );
 
+  // Enhanced validation before order submission
+  const validateOrder = useCallback((): string | null => {
+    if (!sessionUser) {
+      return t('payment.loginRequired') || 'Please login to continue';
+    }
+
+    if (items.length === 0) {
+      return t('payment.emptyCart') || 'Your cart is empty';
+    }
+
+    if (!selectedPaymentMethod) {
+      return (
+        t('payment.selectPaymentMethod') || 'Please select a payment method'
+      );
+    }
+
+    if (selectedPaymentMethod === 'wallet') {
+      if (isWalletLoading) {
+        return 'Loading wallet information...';
+      }
+
+      if (walletBalance < totalAmount) {
+        return `Insufficient wallet balance. You have ₹${convertThousandSeparator(walletBalance, 2)} but need ₹${convertThousandSeparator(totalAmount, 2)}`;
+      }
+    }
+
+    // Validate cart items
+    for (const item of items) {
+      if (!item.merchant_id) {
+        return 'Invalid item in cart. Please remove and re-add items.';
+      }
+
+      if (item.quantity <= 0) {
+        return `Invalid quantity for ${item.name}`;
+      }
+
+      if (item.price <= 0) {
+        return `Invalid price for ${item.name}`;
+      }
+    }
+
+    return null;
+  }, [
+    sessionUser,
+    items,
+    selectedPaymentMethod,
+    isWalletLoading,
+    walletBalance,
+    totalAmount,
+    t,
+  ]);
+
   // Handle order submission
   const onSubmit = useCallback(
     async (data: PaymentFormData) => {
-      if (!sessionUser) {
-        toast.error(t('payment.loginRequired'));
-        return;
-      }
+      setIsSubmitting(true);
+      setOrderError(null);
 
-      if (items.length === 0) {
-        toast.error(t('payment.emptyCart') || 'Your cart is empty');
-        router.push('/application/cart');
-        return;
-      }
-
-      if (!data.payment_method) {
-        toast.error(t('payment.selectPaymentMethod'));
+      // Validate order before submission
+      const validationError = validateOrder();
+      if (validationError) {
+        setOrderError(validationError);
+        toast.error(validationError);
+        setIsSubmitting(false);
         return;
       }
 
@@ -181,12 +254,19 @@ function CustomerPaymentMethod() {
         await createOrder(orderData);
 
         toast.success(`Order placed successfully with ${data.payment_method}!`);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Order submission error:', error);
-        toast.error('Failed to place order. Please try again.');
+
+        // Set specific error message
+        const errorMessage =
+          error.message || 'Failed to place order. Please try again.';
+        setOrderError(errorMessage);
+        toast.error(errorMessage);
+      } finally {
+        setIsSubmitting(false);
       }
     },
-    [sessionUser, t, items, router, createOrder, appliedCoupon]
+    [items, createOrder, appliedCoupon, validateOrder]
   );
 
   // Redirect to cart if empty
@@ -195,7 +275,7 @@ function CustomerPaymentMethod() {
     return null;
   }
 
-  if (isPending) {
+  if (isPending || isSubmitting) {
     return <Loader />;
   }
 
@@ -250,66 +330,150 @@ function CustomerPaymentMethod() {
         <div className="mb-6">
           <h2 className="text-lg font-semibold text-gray-900 mb-4">Payment</h2>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
-            {paymentMethods.map(method => (
-              <div key={method.id}>
-                <label className="flex items-center justify-between p-4 border border-gray-200 rounded-lg cursor-pointer hover:border-red-300 transition-colors">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center justify-center w-8 h-5 bg-gray-100 rounded">
-                      {method.name === 'Visa' && (
-                        <span className="text-xs font-bold text-blue-600">
-                          VISA
-                        </span>
-                      )}
-                      {method.name === 'PayPal' && (
-                        <span className="text-xs font-bold text-blue-600">
-                          PP
-                        </span>
-                      )}
-                      {method.name === 'Maestro' && (
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        </div>
-                      )}
-                      {method.name === 'Apple Pay' && (
-                        <span className="text-xs font-bold text-gray-800">
-                          🍎
-                        </span>
-                      )}
-                      {method.name === 'Wallet' && (
-                        <span className="text-xs font-bold text-green-600">
-                          💳
-                        </span>
-                      )}
-                      {method.name === 'Cash on Delivery' && (
-                        <span className="text-xs font-bold text-orange-600">
-                          💵
-                        </span>
-                      )}
-                    </div>
-                    <span className="font-medium text-gray-900">
-                      {method.details}
-                    </span>
-                  </div>
-
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    value={method.id}
-                    checked={selectedPaymentMethod === method.id}
-                    onChange={() => handlePaymentMethodSelect(method.id)}
-                    className="w-5 h-5 text-red-500 border-gray-300 focus:ring-red-500"
-                  />
-                </label>
+          {/* Show error message if there is one */}
+          {orderError && (
+            <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-3">
+              <AlertCircle className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+              <div>
+                <h4 className="text-sm font-medium text-red-800">
+                  Order Error
+                </h4>
+                <p className="text-sm text-red-700 mt-1">{orderError}</p>
               </div>
-            ))}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+            {paymentMethods.map(method => {
+              // Check if this is wallet payment and show balance info
+              const isWalletMethod = method.id === 'wallet';
+              const showWalletInfo = isWalletMethod && !isWalletLoading;
+              const isWalletInsufficient =
+                isWalletMethod && hasInsufficientWallet;
+
+              return (
+                <div key={method.id}>
+                  <label
+                    className={`flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-colors ${
+                      isWalletInsufficient
+                        ? 'border-red-300 bg-red-50'
+                        : selectedPaymentMethod === method.id
+                          ? 'border-red-300 bg-red-50'
+                          : 'border-gray-200 hover:border-red-300'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="flex items-center justify-center w-8 h-5 bg-gray-100 rounded">
+                        {method.name === 'Visa' && (
+                          <span className="text-xs font-bold text-blue-600">
+                            VISA
+                          </span>
+                        )}
+                        {method.name === 'PayPal' && (
+                          <span className="text-xs font-bold text-blue-600">
+                            PP
+                          </span>
+                        )}
+                        {method.name === 'Maestro' && (
+                          <div className="flex space-x-1">
+                            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          </div>
+                        )}
+                        {method.name === 'Apple Pay' && (
+                          <span className="text-xs font-bold text-gray-800">
+                            🍎
+                          </span>
+                        )}
+                        {method.name === 'Wallet' && (
+                          <span className="text-xs font-bold text-green-600">
+                            💳
+                          </span>
+                        )}
+                        {method.name === 'Cash on Delivery' && (
+                          <span className="text-xs font-bold text-orange-600">
+                            💵
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="font-medium text-gray-900">
+                          {method.details}
+                        </span>
+                        {showWalletInfo && (
+                          <span
+                            className={`text-xs mt-1 ${
+                              isWalletInsufficient
+                                ? 'text-red-600'
+                                : 'text-green-600'
+                            }`}
+                          >
+                            Balance: ₹
+                            {convertThousandSeparator(walletBalance, 2)}
+                            {isWalletInsufficient && ' (Insufficient)'}
+                          </span>
+                        )}
+                        {isWalletMethod && isWalletLoading && (
+                          <span className="text-xs text-gray-500 mt-1">
+                            Loading balance...
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    <input
+                      type="radio"
+                      name="payment_method"
+                      value={method.id}
+                      checked={selectedPaymentMethod === method.id}
+                      onChange={() => handlePaymentMethodSelect(method.id)}
+                      disabled={isWalletInsufficient}
+                      className="w-5 h-5 text-red-500 border-gray-300 focus:ring-red-500 disabled:opacity-50"
+                    />
+                  </label>
+
+                  {/* Show insufficient wallet warning */}
+                  {isWalletInsufficient &&
+                    selectedPaymentMethod === method.id && (
+                      <div className="mt-2 p-3 bg-red-50 border border-red-200 rounded-lg">
+                        <div className="flex items-start space-x-2">
+                          <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                          <div className="text-sm">
+                            <p className="text-red-800 font-medium">
+                              Insufficient Wallet Balance
+                            </p>
+                            <p className="text-red-700 mt-1">
+                              You need ₹
+                              {convertThousandSeparator(
+                                totalAmount - walletBalance,
+                                2
+                              )}{' '}
+                              more to complete this order.
+                            </p>
+                            <Link
+                              href="/application/customer-refill-wallet"
+                              className="text-red-600 underline hover:text-red-800 text-sm font-medium"
+                            >
+                              Refill Wallet
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                </div>
+              );
+            })}
 
             {/* Show validation errors */}
             {errors.payment_method && (
-              <p className="text-red-500 text-sm mt-2">
-                {errors.payment_method.message}
-              </p>
+              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+                <div className="flex items-center space-x-2">
+                  <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                  <p className="text-red-800 text-sm font-medium">
+                    {errors.payment_method.message}
+                  </p>
+                </div>
+              </div>
             )}
           </form>
         </div>
@@ -317,12 +481,47 @@ function CustomerPaymentMethod() {
 
       {/* Bottom Action Bar */}
       <div className="border-t bg-white px-4 py-4">
+        {/* Show order validation summary */}
+        {(hasInsufficientWallet || orderError) && (
+          <div className="mb-3 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <div className="flex items-start space-x-2">
+              <AlertCircle className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+              <div className="text-sm">
+                <p className="text-yellow-800 font-medium">
+                  {hasInsufficientWallet
+                    ? 'Cannot proceed with wallet payment'
+                    : 'Please resolve the issue to continue'}
+                </p>
+                {hasInsufficientWallet && (
+                  <p className="text-yellow-700 mt-1">
+                    Select Cash on Delivery or refill your wallet to continue.
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
         <Button
           onClick={handleSubmit(onSubmit)}
-          disabled={!selectedPaymentMethod || isPending}
-          className="w-full bg-red-500 hover:bg-red-600 text-white py-4 rounded-full font-semibold text-lg"
+          disabled={
+            !selectedPaymentMethod ||
+            isPending ||
+            isSubmitting ||
+            hasInsufficientWallet
+          }
+          className="w-full bg-red-500 hover:bg-red-600 text-white py-4 rounded-full font-semibold text-lg disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
-          {isPending ? 'Processing...' : 'Continue'}
+          {isPending || isSubmitting ? (
+            <div className="flex items-center space-x-2">
+              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              <span>Processing...</span>
+            </div>
+          ) : hasInsufficientWallet ? (
+            'Insufficient Funds'
+          ) : (
+            'Continue'
+          )}
         </Button>
       </div>
 
