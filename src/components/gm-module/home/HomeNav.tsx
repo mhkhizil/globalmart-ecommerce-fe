@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 
+import CurrencySelectorLazy from '@/components/common/CurrencySelector/CurrencySelectorLazy';
 import { useSidebar } from '@/hooks/useSidebar';
 import { useSession } from '@/lib/hooks/session/useSession';
 
@@ -141,6 +142,19 @@ function HomeNav() {
             Global Marts
           </h1>
         </Link>
+      </motion.div>
+
+      {/* Currency Select */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
+      >
+        <CurrencySelectorLazy
+          variant="compact"
+          size="sm"
+          className="hidden sm:block"
+        />
       </motion.div>
 
       {/* Profile Image with Tooltip */}

@@ -4,6 +4,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 
 import { navigationBarReducer } from '../redux/slices/NavigationBarSlice';
 import { cartReducer } from './slices/CartSlice';
+import { currencyReducer } from './slices/CurrencySlice';
 import { languageReducer } from './slices/LanguageSlice';
 import shippingAddressReducer from './slices/ShippingAddressSlice';
 
@@ -32,6 +33,12 @@ const languagePersistConfig = {
   whitelist: ['locale'], // Only persist the 'locale' field
 };
 
+const currencyPersistConfig = {
+  key: 'currency',
+  storage: localforage,
+  whitelist: ['selectedCurrency'], // Only persist the 'selectedCurrency' field
+};
+
 // Persist configuration for the shipping address slice
 const shippingAddressPersistConfig = {
   key: 'shippingAddress',
@@ -43,6 +50,7 @@ const rootReducer = {
   navigationBar: navigationBarReducer,
   cart: persistReducer(cartPersistConfig, cartReducer), // Apply persistence to the cart slice
   language: persistReducer(languagePersistConfig, languageReducer),
+  currency: persistReducer(currencyPersistConfig, currencyReducer),
   shippingAddress: persistReducer(
     shippingAddressPersistConfig,
     shippingAddressReducer
