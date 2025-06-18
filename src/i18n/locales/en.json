@@ -690,11 +690,38 @@
     "youSaved": "You saved",
     "totalSavings": "Total savings",
     "off": "off",
+    "shoppingBag": "Shopping Bag",
+    "merchantId": "Merchant ID",
+    "customization": {
+      "color": "Color",
+      "size": "Size"
+    },
+    "moreFromRestaurant": "More from this merchant",
+    "item": "item",
+    "items": "items",
+    "viewDetails": "View Details",
+    "addToCart": "Add to Cart",
+    "proceedToCheckout": "Proceed to checkout",
     "metadata": {
       "title": "Cart | Takeout",
       "keywords": "cart, checkout, order products, Global mart cart",
       "description": "View your cart and complete your order on Global mart. Easy checkout process for products, goods, and digital services."
     }
+  },
+
+  "shoppingBag": {
+    "checkout": "Checkout",
+    "deliveryAddress": "Delivery Address",
+    "address": "Address",
+    "contact": "Contact",
+    "editAddress": "Edit address",
+    "shoppingList": "Shopping List",
+    "variations": "Variations",
+    "quantity": "Quantity",
+    "totalOrder": "Total Order",
+    "applyCoupons": "Apply Coupons",
+    "select": "Select",
+    "orderPaymentDetails": "Order Payment Details"
   },
 
   "shipping": {
@@ -777,7 +804,12 @@
     "orderSubmissionFailed": "Order submission failed",
     "insufficientBalance": "Insufficient balance",
     "loginRequired": "Please login to submit order",
-    "emptyCart": "Your cart is empty"
+    "emptyCart": "Your cart is empty",
+    "checkout": "Checkout",
+    "order": "Order",
+    "shipping": "Shipping",
+    "couponDiscount": "Coupon Discount",
+    "selectPaymentMethod": "Please select a payment method"
   },
 
   "settings": {

@@ -24,34 +24,6 @@ import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator'
 // Payment method options for the UI
 const paymentMethods = [
   {
-    id: 'visa',
-    name: 'Visa',
-    icon: '/api/placeholder/32/20',
-    details: '••••••••2109',
-    type: 'card',
-  },
-  {
-    id: 'paypal',
-    name: 'PayPal',
-    icon: '/api/placeholder/32/20',
-    details: '••••••••2109',
-    type: 'digital',
-  },
-  {
-    id: 'maestro',
-    name: 'Maestro',
-    icon: '/api/placeholder/32/20',
-    details: '••••••••2109',
-    type: 'card',
-  },
-  {
-    id: 'apple_pay',
-    name: 'Apple Pay',
-    icon: '/api/placeholder/32/20',
-    details: '••••••••2109',
-    type: 'digital',
-  },
-  {
     id: 'wallet',
     name: 'Wallet',
     icon: '/api/placeholder/32/20',
@@ -81,13 +53,7 @@ const mapPaymentMethod = (method: string): PaymentMethod => {
 
 // Define the PaymentFormData type
 type PaymentFormData = {
-  payment_method:
-    | 'visa'
-    | 'paypal'
-    | 'maestro'
-    | 'apple_pay'
-    | 'wallet'
-    | 'cash_on_delivery';
+  payment_method: 'wallet' | 'cash_on_delivery';
 };
 
 function CustomerPaymentMethod() {
@@ -99,19 +65,9 @@ function CustomerPaymentMethod() {
   // Create the schema inside the component to access the translation hook
   const paymentFormSchema = useMemo(() => {
     return z.object({
-      payment_method: z.enum(
-        [
-          'visa',
-          'paypal',
-          'maestro',
-          'apple_pay',
-          'wallet',
-          'cash_on_delivery',
-        ],
-        {
-          required_error: t('payment.pleaseSelectPaymentMethod'),
-        }
-      ),
+      payment_method: z.enum(['wallet', 'cash_on_delivery'], {
+        required_error: t('payment.pleaseSelectPaymentMethod'),
+      }),
     });
   }, [t]);
 
@@ -135,7 +91,7 @@ function CustomerPaymentMethod() {
   } = useForm<PaymentFormData>({
     resolver: zodResolver(paymentFormSchema),
     defaultValues: {
-      payment_method: undefined as unknown as 'visa',
+      payment_method: undefined,
     },
   });
 
@@ -256,7 +212,9 @@ function CustomerPaymentMethod() {
         >
           <ArrowLeft size={24} className="text-gray-700" />
         </button>
-        <h1 className="text-lg font-semibold text-gray-900">Checkout</h1>
+        <h1 className="text-lg font-semibold text-gray-900">
+          {t('payment.checkout')}
+        </h1>
         <div className="w-6"></div> {/* Spacer for centering */}
       </div>
 

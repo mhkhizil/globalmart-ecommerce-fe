@@ -15,4 +15,7 @@ export interface IProductRepository {
   getTrendingProductList<TRequestDto, TResponseDto>(
     requestDto: TRequestDto
   ): Promise<TResponseDto>;
+  getProductDetailByMerchant<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto>;
 }

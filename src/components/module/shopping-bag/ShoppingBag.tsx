@@ -216,7 +216,9 @@ export function ShoppingBag({}: ShoppingBagProps) {
         >
           <ArrowLeft size={24} className="text-gray-700" />
         </button>
-        <h1 className="text-lg font-semibold text-gray-900">Checkout</h1>
+        <h1 className="text-lg font-semibold text-gray-900">
+          {t('shoppingBag.checkout')}
+        </h1>
         <div className="w-6"></div> {/* Spacer for centering */}
       </div>
 
@@ -229,10 +231,10 @@ export function ShoppingBag({}: ShoppingBagProps) {
               <MapPin size={20} className="text-gray-600 mt-1" />
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-900 mb-1">
-                  Delivery Address
+                  {t('shoppingBag.deliveryAddress')}
                 </h3>
                 <div className="text-sm text-gray-600">
-                  <p className="font-medium">Address :</p>
+                  <p className="font-medium">{t('shoppingBag.address')} :</p>
                   <p className="mt-1">
                     {currentAddress?.addressLine1 ||
                       "216 St Paul's Rd, London N1 2LL, UK"}
@@ -247,7 +249,9 @@ export function ShoppingBag({}: ShoppingBagProps) {
                     </p>
                   )}
                   <p className="mt-2">
-                    <span className="font-medium">Contact :</span>{' '}
+                    <span className="font-medium">
+                      {t('shoppingBag.contact')} :
+                    </span>{' '}
                     {currentAddress?.phone || '+44-784232'}
                   </p>
                 </div>
@@ -256,7 +260,7 @@ export function ShoppingBag({}: ShoppingBagProps) {
             <button
               onClick={handleEditAddress}
               className="p-2 border border-gray-300 rounded-full"
-              aria-label="Edit address"
+              aria-label={t('shoppingBag.editAddress')}
             >
               <Plus size={16} className="text-gray-600" />
             </button>
@@ -265,7 +269,9 @@ export function ShoppingBag({}: ShoppingBagProps) {
 
         {/* Shopping List Section */}
         <div className="bg-white p-4 mb-2">
-          <h3 className="font-semibold text-gray-900 mb-4">Shopping List</h3>
+          <h3 className="font-semibold text-gray-900 mb-4">
+            {t('shoppingBag.shoppingList')}
+          </h3>
 
           <div className="space-y-4">
             {items.map(item => {
@@ -293,7 +299,7 @@ export function ShoppingBag({}: ShoppingBagProps) {
                     {/* Variations */}
                     <div className="flex items-center space-x-2 mb-2">
                       <span className="text-xs text-gray-500">
-                        Variations :
+                        {t('shoppingBag.variations')} :
                       </span>
                       <div className="flex space-x-1">
                         {Object.entries(variations).map(
@@ -355,7 +361,7 @@ export function ShoppingBag({}: ShoppingBagProps) {
 
                     {/* Quantity */}
                     <div className="text-xs text-gray-500">
-                      Quantity: {item.quantity}
+                      {t('shoppingBag.quantity')}: {item.quantity}
                     </div>
                   </div>
                 </div>
@@ -367,7 +373,7 @@ export function ShoppingBag({}: ShoppingBagProps) {
           <div className="mt-6 pt-4 border-t border-gray-200">
             <div className="flex justify-between items-center">
               <span className="font-medium text-gray-900">
-                Total Order ({totalItems}) :
+                {t('shoppingBag.totalOrder')} ({totalItems}) :
               </span>
               <span className="font-bold text-gray-900">
                 $ {subtotal.toFixed(2)}
@@ -409,10 +415,14 @@ export function ShoppingBag({}: ShoppingBagProps) {
                 <div className="w-6 h-6 bg-red-100 rounded flex items-center justify-center">
                   <span className="text-red-500 text-xs font-bold">%</span>
                 </div>
-                <span className="font-medium text-gray-900">Apply Coupons</span>
+                <span className="font-medium text-gray-900">
+                  {t('shoppingBag.applyCoupons')}
+                </span>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-red-500 font-medium text-sm">Select</span>
+                <span className="text-red-500 font-medium text-sm">
+                  {t('shoppingBag.select')}
+                </span>
                 <ChevronRight size={16} className="text-gray-400" />
               </div>
             </button>
