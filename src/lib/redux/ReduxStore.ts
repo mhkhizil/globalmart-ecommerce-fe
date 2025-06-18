@@ -8,41 +8,58 @@ import { currencyReducer } from './slices/CurrencySlice';
 import { languageReducer } from './slices/LanguageSlice';
 import shippingAddressReducer from './slices/ShippingAddressSlice';
 
-// Configure localforage for persistence
-localforage.config({
-  driver: [
-    localforage.INDEXEDDB, // Try IndexedDB first
-    localforage.LOCALSTORAGE, // Fallback to localStorage
-    localforage.WEBSQL, // Fallback to WebSQL (if available)
-  ],
-  name: 'AppStoreDB',
-  storeName: 'appState',
-  version: 1,
-});
+// Configure localforage for persistence with SSR safety
+const isClient = typeof globalThis !== 'undefined';
+
+if (isClient) {
+  localforage.config({
+    driver: [
+      localforage.INDEXEDDB, // Try IndexedDB first
+      localforage.LOCALSTORAGE, // Fallback to localStorage
+      localforage.WEBSQL, // Fallback to WebSQL (if available)
+    ],
+    name: 'AppStoreDB',
+    storeName: 'appState',
+    version: 1,
+  });
+}
+
+// Create storage that falls back gracefully in SSR
+const createStorage = () => {
+  if (isClient) {
+    return localforage;
+  }
+  // Fallback storage for SSR that does nothing
+  return {
+    getItem: () => Promise.resolve(null),
+    setItem: () => Promise.resolve(),
+    removeItem: () => Promise.resolve(),
+  };
+};
 
 // Persist configuration for the cart slice
 const cartPersistConfig = {
   key: 'cart',
-  storage: localforage,
+  storage: createStorage(),
   // whitelist: ['carts','currentUserId'], // Only persist the 'currentUserId' and 'carts' part of the cart slice
 };
 
 const languagePersistConfig = {
   key: 'language',
-  storage: localforage,
+  storage: createStorage(),
   whitelist: ['locale'], // Only persist the 'locale' field
 };
 
 const currencyPersistConfig = {
   key: 'currency',
-  storage: localforage,
+  storage: createStorage(),
   whitelist: ['selectedCurrency'], // Only persist the 'selectedCurrency' field
 };
 
 // Persist configuration for the shipping address slice
 const shippingAddressPersistConfig = {
   key: 'shippingAddress',
-  storage: localforage,
+  storage: createStorage(),
 };
 
 // Combine reducers with persistence for the cart slice
@@ -62,7 +79,15 @@ const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: ['persist/PERSIST'], // Ignore redux-persist actions
+        ignoredActions: [
+          'persist/PERSIST',
+          'persist/REHYDRATE',
+          'persist/PAUSE',
+          'persist/PURGE',
+          'persist/REGISTER',
+        ],
+        ignoredActionsPaths: ['meta.arg', 'payload.timestamp'],
+        ignoredPaths: ['items.dates'],
       },
     }),
 });

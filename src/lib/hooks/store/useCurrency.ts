@@ -12,7 +12,8 @@ import {
 export const useCurrency = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { selectedCurrency, isChanging } = useSelector(
-    (state: RootState) => state.currency
+    (state: RootState) =>
+      state.currency || { selectedCurrency: 'USD', isChanging: false }
   );
 
   // Sync currency from cookie on component mount

@@ -50,21 +50,24 @@ const isBrowser =
 
 // Get initial currency from cookie if available
 const getInitialCurrency = (): Currency => {
+  // Always default to USD first
   if (!isBrowser) {
-    return 'USD'; // Default for server-side
+    return 'USD';
   }
 
   try {
     const cookieCurrency = getCookie('preferredCurrency') as
       | Currency
       | undefined;
-    return cookieCurrency && supportedCurrencies.includes(cookieCurrency)
-      ? cookieCurrency
-      : 'USD';
+    if (cookieCurrency && supportedCurrencies.includes(cookieCurrency)) {
+      return cookieCurrency;
+    }
   } catch (error) {
-    console.error('Error getting initial currency:', error);
-    return 'USD';
+    // Silently fail and use default
+    console.warn('Error getting initial currency, using default USD:', error);
   }
+
+  return 'USD'; // Always fallback to USD
 };
 
 const initialState: CurrencyState = {

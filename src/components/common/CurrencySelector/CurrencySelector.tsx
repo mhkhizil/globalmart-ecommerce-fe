@@ -21,6 +21,9 @@ interface CurrencySelectorProps {
 const CurrencySelector = memo<CurrencySelectorProps>(
   ({ className = '', showLabel = false, size = 'md', variant = 'default' }) => {
     const { selectedCurrency, isChanging, changeCurrency } = useCurrency();
+
+    // If no currency is selected yet (during hydration), show USD as default
+    const currentCurrencyCode = selectedCurrency || 'USD';
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,25 +32,30 @@ const CurrencySelector = memo<CurrencySelectorProps>(
 
     // Memoized current currency info
     const currentCurrency = useMemo(() => {
-      return currencyInfo[selectedCurrency];
-    }, [selectedCurrency]);
+      return currencyInfo[currentCurrencyCode];
+    }, [currentCurrencyCode]);
 
     // Memoized available currencies (excluding the selected one)
     const availableCurrencies = useMemo(() => {
       return supportedCurrencies
-        .filter(currency => currency !== selectedCurrency)
+        .filter(currency => currency !== currentCurrencyCode)
         .map(currency => currencyInfo[currency]);
-    }, [selectedCurrency]);
+    }, [currentCurrencyCode]);
 
     // Handle currency selection
     const handleCurrencySelect = useCallback(
       (currency: Currency) => {
-        if (currency !== selectedCurrency && !isChanging) {
-          changeCurrency(currency);
+        try {
+          if (currency !== currentCurrencyCode && !isChanging) {
+            changeCurrency(currency);
+            setIsOpen(false);
+          }
+        } catch (error) {
+          console.warn('Error changing currency:', error);
           setIsOpen(false);
         }
       },
-      [selectedCurrency, isChanging, changeCurrency]
+      [currentCurrencyCode, isChanging, changeCurrency]
     );
 
     // Toggle dropdown
