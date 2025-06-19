@@ -618,6 +618,18 @@
     "youSaved": "您节省了",
     "totalSavings": "总节省",
     "off": "折扣",
+    "shoppingBag": "购物袋",
+    "merchantId": "商家ID",
+    "customization": {
+      "color": "颜色",
+      "size": "尺寸"
+    },
+    "moreFromRestaurant": "更多来自此餐厅",
+    "item": "项",
+    "items": "项",
+    "viewDetails": "查看详情",
+    "addToCart": "添加到购物车",
+    "proceedToCheckout": "前往结账",
     "metadata": {
       "title": "购物车 | 无忧外卖",
       "keywords": "购物车, 结账, 订购食品, 无忧外卖 购物车",
@@ -625,12 +637,19 @@
     }
   },
 
-  "shopping-bag": {
-    "metadata": {
-      "title": "购物袋 | 无忧外卖",
-      "keywords": "购物袋, 购物车, 结账, 订购商品, 无忧外卖 购物袋",
-      "description": "查看购物袋中的商品并前往结账页面。无忧外卖 为您提供轻松便捷的购物体验，满足您的所有需求。"
-    }
+  "shoppingBag": {
+    "checkout": "结账",
+    "deliveryAddress": "配送地址",
+    "address": "地址",
+    "contact": "联系方式",
+    "editAddress": "编辑地址",
+    "shoppingList": "购物清单",
+    "variations": "变体",
+    "quantity": "数量",
+    "totalOrder": "订单总计",
+    "applyCoupons": "应用优惠券",
+    "select": "选择",
+    "orderPaymentDetails": "订单付款详情"
   },
 
   "payment": {
@@ -681,6 +700,10 @@
     "loginRequired": "请登录以提交订单",
     "emptyCart": "您的购物车是空的",
     "selectPaymentMethod": "请选择支付方式",
+    "checkout": "结账",
+    "order": "订单",
+    "shipping": "运费",
+    "couponDiscount": "优惠券折扣",
     "metadata": {
       "title": "支付 | 无忧外卖",
       "keywords": "支付, 结账, 完成订单, 安全支付",

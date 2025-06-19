@@ -8,6 +8,9 @@ import {
   ChevronRight,
   ChevronUp,
   Heart,
+  Minus,
+  Plus,
+  Trash2,
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -18,6 +21,7 @@ import toast, { Toaster } from 'react-hot-toast';
 
 import FallbackImage from '@/components/common/FallbackImage';
 import EmptyCartIcon from '@/components/common/icons/EmptyCartIcon';
+import { useGetProductDetailByMerchant } from '@/lib/hooks/service/product/useGetProductDetailByMerchant';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
@@ -26,7 +30,14 @@ function Cart() {
   const router = useRouter();
   const { data: session } = useSession();
   const sessionUser = useMemo(() => session?.user, [session?.user]);
-  const { items, totalPrice, totalItems } = useCart();
+  const {
+    items,
+    totalPrice,
+    totalItems,
+    addItem,
+    decreaseItemQuantity,
+    removeItem,
+  } = useCart();
   const t = useTranslations();
   const [favorites, setFavorites] = useState<number[]>([]);
   const [showOtherItems, setShowOtherItems] = useState(false);
@@ -34,56 +45,54 @@ function Cart() {
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Get merchant_id from the first item in cart for the API call
+  const merchantId = items.length > 0 ? items[0].merchant_id : 1;
+
+  // Fetch product details by merchant
+  const { data: productDetailData, isLoading: isLoadingProducts } =
+    useGetProductDetailByMerchant(
+      {
+        merchant_id: merchantId || 1,
+        per_page: 30,
+        page: 1,
+      },
+      {
+        enabled: showOtherItems && !!merchantId, // Only fetch when section is expanded and we have merchant_id
+      }
+    );
+
   const formattedTotalPrice = useMemo(() => {
     return convertThousandSeparator(totalPrice, 2);
   }, [totalPrice]);
 
-  // Mock data for other available items from the same merchant
-  const mockOtherItems = useMemo(
-    () => [
-      {
-        id: 999,
-        name: 'Grilled Chicken Salad',
-        price: 299,
-        image: '/food-fallback.png',
-        rating: 4.6,
-        originalPrice: 399,
-        discount_percent: 25,
-        type: 'percentage',
-      },
-      {
-        id: 998,
-        name: 'Margherita Pizza',
-        price: 450,
-        image: '/food-fallback.png',
-        rating: 4.8,
-        originalPrice: null,
-        discount_percent: null,
-        type: null,
-      },
-      {
-        id: 997,
-        name: 'Chocolate Brownie',
-        price: 149,
-        image: '/food-fallback.png',
-        rating: 4.7,
-        originalPrice: 199,
-        discount_amount: 50,
-        type: 'fixed',
-      },
-      {
-        id: 996,
-        name: 'Fresh Orange Juice',
-        price: 89,
-        image: '/food-fallback.png',
-        rating: 4.5,
-        originalPrice: null,
-        discount_percent: null,
-        type: null,
-      },
-    ],
-    []
-  );
+  // Process API data for display
+  const otherItems = useMemo(() => {
+    if (!productDetailData?.data?.product_details) return [];
+
+    return productDetailData.data.product_details.map(item => ({
+      id: item.id,
+      name: item.product_name,
+      price: Number.parseFloat(item.price),
+      image: item.product_detail_image[0]?.image_path || '/food-fallback.png',
+      rating: 4.5, // Default rating since not provided in API
+      originalPrice: item.discount_price ? Number.parseFloat(item.price) : null,
+      discount_percent: item.discount_percent,
+      discount_amount: item.discount_amount
+        ? Number.parseFloat(item.discount_amount)
+        : null,
+      discount_price: item.discount_price
+        ? Number.parseFloat(item.discount_price)
+        : null,
+      type: item.discount_type,
+      merchant_id: item.merchant_id,
+      sku: item.sku,
+      stock: item.stock,
+      size: item.size,
+      color_code: item.color_code,
+      color_name: item.color_name,
+      en_description: item.en_description,
+    }));
+  }, [productDetailData]);
 
   const toggleFavorite = useCallback((productId: number) => {
     setFavorites(previous =>
@@ -140,8 +149,8 @@ function Cart() {
     };
   }, []);
 
-  // Calculate discount information for mock items
-  const calculateMockItemDiscount = useCallback((item: any) => {
+  // Calculate discount information for other items
+  const calculateOtherItemDiscount = useCallback((item: any) => {
     if (!item.type || (!item.discount_percent && !item.discount_amount)) {
       return {
         hasDiscount: false,
@@ -261,6 +270,41 @@ function Cart() {
     }, 5000);
   }, [scrollRight]);
 
+  // Quantity management functions
+  const handleIncreaseQuantity = useCallback(
+    (item: any) => {
+      addItem({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        image: item.image,
+        quantity: 1,
+        merchant_id: item.merchant_id,
+        discount_amount: item.discount_amount,
+        discount_price: item.discount_price,
+        customization: item.customization,
+      });
+      toast.success(`Added one more ${item.name}`);
+    },
+    [addItem]
+  );
+
+  const handleDecreaseQuantity = useCallback(
+    (itemId: number, itemName: string) => {
+      decreaseItemQuantity(itemId);
+      toast.success(`Removed one ${itemName}`);
+    },
+    [decreaseItemQuantity]
+  );
+
+  const handleRemoveItem = useCallback(
+    (itemId: number, itemName: string) => {
+      removeItem(itemId);
+      toast.success(`${itemName} removed from cart`);
+    },
+    [removeItem]
+  );
+
   // Render empty cart state
   if (items.length === 0) {
     return (
@@ -308,7 +352,7 @@ function Cart() {
           <ArrowLeft size={24} className="text-gray-700" />
         </button>
         <span className="text-[1.125rem] font-semibold text-gray-900">
-          Shopping Bag
+          {t('cart.shoppingBag')}
         </span>
         <button aria-label="Favorites" onClick={() => setFavorites([])}>
           <Heart size={24} className="text-gray-700" />
@@ -365,12 +409,56 @@ function Cart() {
                           </>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-gray-600">
-                        <span>Quantity: {item.quantity}</span>
-                        {item.merchant_id && (
-                          <span>• Merchant ID: {item.merchant_id}</span>
-                        )}
+                      {item.merchant_id && (
+                        <div className="text-xs text-gray-600 mb-2">
+                          {t('cart.merchantId')}: {item.merchant_id}
+                        </div>
+                      )}
+                      {item.customization && (
+                        <div className="text-xs text-gray-600 mb-2">
+                          {Object.entries(item.customization).map(
+                            ([key, value]) => (
+                              <span key={key} className="mr-2">
+                                {t(`cart.customization.${key}`)}: {value}
+                              </span>
+                            )
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Quantity Controls */}
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center border border-gray-300 rounded-md">
+                        <button
+                          onClick={() =>
+                            handleDecreaseQuantity(item.id, item.name)
+                          }
+                          className="p-2 hover:bg-gray-100 transition-colors"
+                          aria-label={t('cart.decreaseQuantity')}
+                        >
+                          <Minus size={16} className="text-gray-600" />
+                        </button>
+                        <span className="px-4 py-2 text-sm font-medium text-gray-900 min-w-[3rem] text-center">
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() => handleIncreaseQuantity(item)}
+                          className="p-2 hover:bg-gray-100 transition-colors"
+                          aria-label={t('cart.increaseQuantity')}
+                        >
+                          <Plus size={16} className="text-gray-600" />
+                        </button>
                       </div>
+
+                      {/* Remove Item Button */}
+                      <button
+                        onClick={() => handleRemoveItem(item.id, item.name)}
+                        className="p-2 text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                        aria-label={t('cart.removeItem')}
+                      >
+                        <Trash2 size={16} />
+                      </button>
                     </div>
                   </div>
                   <button
@@ -401,7 +489,7 @@ function Cart() {
             className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
           >
             <h3 className="text-base font-semibold text-gray-900">
-              More from this restaurant
+              {t('cart.moreFromRestaurant')}
             </h3>
             {showOtherItems ? (
               <ChevronUp size={20} className="text-gray-600" />
@@ -417,120 +505,170 @@ function Cart() {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
               >
-                {/* Navigation Buttons */}
-                <button
-                  onClick={handleManualScrollLeft}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors opacity-80 hover:opacity-100"
-                  aria-label="Scroll left"
-                >
-                  <ChevronLeft size={16} className="text-gray-600" />
-                </button>
+                {isLoadingProducts ? (
+                  <div className="flex items-center justify-center py-8">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div>
+                    <span className="ml-2 text-gray-600">
+                      Loading products...
+                    </span>
+                  </div>
+                ) : otherItems.length === 0 ? (
+                  <div className="flex items-center justify-center py-8">
+                    <span className="text-gray-500">
+                      No other products available from this merchant
+                    </span>
+                  </div>
+                ) : (
+                  <>
+                    {/* Navigation Buttons */}
+                    <button
+                      onClick={handleManualScrollLeft}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors opacity-80 hover:opacity-100"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} className="text-gray-600" />
+                    </button>
 
-                <button
-                  onClick={handleManualScrollRight}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors opacity-80 hover:opacity-100"
-                  aria-label="Scroll right"
-                >
-                  <ChevronRight size={16} className="text-gray-600" />
-                </button>
+                    <button
+                      onClick={handleManualScrollRight}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-50 transition-colors opacity-80 hover:opacity-100"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} className="text-gray-600" />
+                    </button>
 
-                <div
-                  ref={scrollContainerRef}
-                  className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-8"
-                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                >
-                  {mockOtherItems.map(item => {
-                    const discountInfo = calculateMockItemDiscount(item);
+                    <div
+                      ref={scrollContainerRef}
+                      className="flex gap-4 overflow-x-auto scrollbar-hide pb-2 px-8"
+                      style={{
+                        scrollbarWidth: 'none',
+                        msOverflowStyle: 'none',
+                      }}
+                    >
+                      {otherItems.map(item => {
+                        const discountInfo = calculateOtherItemDiscount(item);
 
-                    return (
-                      <div
-                        key={item.id}
-                        className="flex-shrink-0 w-40 bg-gray-50 rounded-lg overflow-hidden flex flex-col h-80"
-                      >
-                        <div className="relative w-full h-32 flex-shrink-0">
-                          <FallbackImage
-                            src={item.image}
-                            fallbackSrc="/food-fallback.png"
-                            alt={item.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-
-                        <div className="p-3 flex flex-col flex-1">
-                          <h4 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2 min-h-[2.5rem]">
-                            {item.name}
-                          </h4>
-
-                          {/* Rating */}
-                          <div className="flex items-center space-x-1 mb-2">
-                            <div className="flex">
-                              {Array.from({ length: 5 }).map((_, index) => (
-                                <svg
-                                  key={index}
-                                  className={`w-3 h-3 ${
-                                    index < Math.floor(item.rating)
-                                      ? 'text-yellow-400 fill-current'
-                                      : 'text-gray-300'
-                                  }`}
-                                  viewBox="0 0 20 20"
-                                >
-                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                                </svg>
-                              ))}
-                            </div>
-                            <span className="text-xs text-gray-600">
-                              {item.rating}
-                            </span>
-                          </div>
-
-                          {/* Price */}
-                          <div className="mb-3 flex-1">
-                            <div className="flex items-center space-x-1 mb-1">
-                              <span className="text-sm font-bold text-gray-900">
-                                ₹{convertThousandSeparator(item.price, 0)}
-                              </span>
-                              {discountInfo.hasDiscount && (
-                                <span className="text-xs text-gray-500 line-through">
-                                  ₹
-                                  {convertThousandSeparator(
-                                    discountInfo.originalPrice,
-                                    0
-                                  )}
-                                </span>
-                              )}
-                            </div>
-                            {discountInfo.hasDiscount && (
-                              <span className="text-xs text-red-500 bg-red-50 px-1 py-0.5 rounded">
-                                {discountInfo.discountLabel}
-                              </span>
-                            )}
-                          </div>
-
-                          <button
-                            className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded-md text-xs font-medium transition-colors mt-auto"
-                            onClick={() => {
-                              // TODO: Add to cart functionality when API is ready
-                              console.log('Add item to cart:', item.id);
-                              toast.success(`${item.name} added to cart!`);
-                            }}
+                        return (
+                          <div
+                            key={item.id}
+                            className="flex-shrink-0 w-40 bg-gray-50 rounded-lg overflow-hidden flex flex-col h-80"
                           >
-                            Add to Cart
-                          </button>
+                            <div className="relative w-full h-32 flex-shrink-0">
+                              <FallbackImage
+                                src={item.image}
+                                fallbackSrc="/food-fallback.png"
+                                alt={item.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+
+                            <div className="p-3 flex flex-col flex-1">
+                              <h4 className="text-sm font-medium text-gray-900 mb-2 line-clamp-2 min-h-[2.5rem]">
+                                {item.name}
+                              </h4>
+
+                              {/* Rating */}
+                              <div className="flex items-center space-x-1 mb-2">
+                                <div className="flex">
+                                  {Array.from({ length: 5 }).map((_, index) => (
+                                    <svg
+                                      key={index}
+                                      className={`w-3 h-3 ${
+                                        index < Math.floor(item.rating)
+                                          ? 'text-yellow-400 fill-current'
+                                          : 'text-gray-300'
+                                      }`}
+                                      viewBox="0 0 20 20"
+                                    >
+                                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                    </svg>
+                                  ))}
+                                </div>
+                                <span className="text-xs text-gray-600">
+                                  {item.rating}
+                                </span>
+                              </div>
+
+                              {/* Price */}
+                              <div className="mb-3 flex-1">
+                                <div className="flex items-center space-x-1 mb-1">
+                                  <span className="text-sm font-bold text-gray-900">
+                                    ₹
+                                    {convertThousandSeparator(
+                                      item.discount_price || item.price,
+                                      0
+                                    )}
+                                  </span>
+                                  {discountInfo.hasDiscount && (
+                                    <span className="text-xs text-gray-500 line-through">
+                                      ₹
+                                      {convertThousandSeparator(
+                                        discountInfo.originalPrice,
+                                        0
+                                      )}
+                                    </span>
+                                  )}
+                                </div>
+                                {discountInfo.hasDiscount && (
+                                  <span className="text-xs text-red-500 bg-red-50 px-1 py-0.5 rounded">
+                                    {discountInfo.discountLabel}
+                                  </span>
+                                )}
+                              </div>
+
+                              <button
+                                className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-3 rounded-md text-xs font-medium transition-colors mt-auto"
+                                onClick={() => {
+                                  // Add to cart functionality
+                                  const cartItem = {
+                                    id: item.id,
+                                    name: item.name,
+                                    price: item.discount_price || item.price,
+                                    image: item.image,
+                                    quantity: 1,
+                                    merchant_id: item.merchant_id,
+                                    type: item.type as
+                                      | 'percentage'
+                                      | 'fixed'
+                                      | undefined,
+                                    discount_percent:
+                                      item.discount_percent || undefined,
+                                    discount_amount: item.discount_amount
+                                      ? item.discount_amount.toString()
+                                      : undefined,
+                                    discount_price:
+                                      item.discount_price || undefined,
+                                    customization: {
+                                      size: item.size,
+                                      color: item.color_name,
+                                      sku: item.sku,
+                                    },
+                                  };
+                                  addItem(cartItem);
+                                  toast.success(`${item.name} added to cart!`);
+                                }}
+                              >
+                                Add to Cart
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    {/* Auto-scroll indicator */}
+                    {isAutoScrolling && (
+                      <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
+                        <div className="flex items-center space-x-1 bg-black/20 rounded-full px-2 py-1">
+                          <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
+                          <span className="text-xs text-white">
+                            Auto-scrolling
+                          </span>
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
-
-                {/* Auto-scroll indicator */}
-                {isAutoScrolling && (
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
-                    <div className="flex items-center space-x-1 bg-black/20 rounded-full px-2 py-1">
-                      <div className="w-1 h-1 bg-white rounded-full animate-pulse"></div>
-                      <span className="text-xs text-white">Auto-scrolling</span>
-                    </div>
-                  </div>
+                    )}
+                  </>
                 )}
               </div>
             </div>
@@ -546,20 +684,20 @@ function Cart() {
               ₹{formattedTotalPrice}
             </span>
             <span className="text-xs text-gray-500">
-              {totalItems} {totalItems === 1 ? 'item' : 'items'}
+              {totalItems} {t(totalItems === 1 ? 'cart.item' : 'cart.items')}
             </span>
           </div>
           <button className="text-sm text-red-500 font-medium">
-            View Details
+            {t('cart.viewDetails')}
           </button>
         </div>
 
         <button
           onClick={handleAddToCart}
           className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-4 px-6 rounded-full transition-colors"
-          aria-label="Proceed to checkout"
+          aria-label={t('cart.proceedToCheckout')}
         >
-          Add to Cart
+          {t('cart.addToCart')}
         </button>
       </div>
     </div>

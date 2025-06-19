@@ -4,13 +4,17 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronLeftIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { memo, useRef, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MainProductDetail, ProductDetail } from '@/core/entity/Product';
 import { RootState } from '@/lib/redux/ReduxStore';
-import { addItem } from '@/lib/redux/slices/CartSlice';
+import {
+  addItem,
+  addItemWithMerchantCheck,
+} from '@/lib/redux/slices/CartSlice';
 
 import ProductAction from './ProductAction';
 import ProductImageSlider from './ProductImageSlider';
@@ -72,15 +76,23 @@ interface ProductDetailProps {
 }
 
 function ProductDetailInfo({ product }: ProductDetailProps) {
+  const router = useRouter();
   // Initialize with the first variant
   const [selectedVariant, setSelectedVariant] = useState<ProductDetail>(
     product.product_detail[0] || null
   );
   const [quantity, setQuantity] = useState<number>(1);
   const [showCartOptions, setShowCartOptions] = useState<boolean>(false);
+  const [showMerchantConflictDialog, setShowMerchantConflictDialog] =
+    useState<boolean>(false);
   const { locale } = useSelector((state: RootState) => state.language);
+  const cartState = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
   const cartOptionsRef = useRef<HTMLDivElement>(null);
+
+  // Get current user's cart items
+  const currentUserId = cartState.currentUserId || 'guest';
+  const currentCartItems = cartState.carts[currentUserId]?.items || [];
 
   // Get unique variants (colors) for selection
   const availableVariants = product.product_detail || [];
@@ -165,13 +177,34 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     }
   };
 
+  const handleGoToCart = () => {
+    router.push('/application/shopping-bag');
+  };
+
   const handleAddToCart = () => {
+    if (!selectedVariant) return;
+
+    // Check if there are items from a different merchant in the cart
+    const hasDifferentMerchant =
+      currentCartItems.length > 0 &&
+      currentCartItems[0].merchant_id !== product.merchant_id;
+
+    if (hasDifferentMerchant) {
+      setShowMerchantConflictDialog(true);
+      return;
+    }
+
+    // Add item normally if no conflict
+    addItemToCart();
+  };
+
+  const addItemToCart = () => {
     if (!selectedVariant) return;
 
     dispatch(
       addItem({
         id: selectedVariant.id,
-        name: selectedVariant.product_name,
+        name: product.product_name,
         price: Number(selectedVariant.price),
         quantity: quantity,
         merchant_id: product.merchant_id,
@@ -188,8 +221,48 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         },
       })
     );
+    console.log('Product name:', product.product_name);
+    console.log('Variant product name:', selectedVariant.product_name);
+
     setShowCartOptions(false);
     toast.success('Item added to cart');
+    router.push('/application/cart');
+  };
+
+  const handleConfirmReplaceCart = () => {
+    if (!selectedVariant) return;
+
+    dispatch(
+      addItemWithMerchantCheck({
+        item: {
+          id: selectedVariant.id,
+          name: product.product_name,
+          price: Number(selectedVariant.price),
+          quantity: quantity,
+          merchant_id: product.merchant_id,
+          type: selectedVariant?.discount_type || undefined,
+          discount_percent: selectedVariant?.discount_percent
+            ? Number(selectedVariant.discount_percent)
+            : undefined,
+          discount_amount: selectedVariant?.discount_amount || undefined,
+          discount_price: discountedPrice,
+          image: selectedVariant.p_image || product.p_image,
+          customization: {
+            color: selectedVariant.color_name,
+            size: selectedVariant.size,
+          },
+        },
+        replaceCart: true,
+      })
+    );
+    setShowCartOptions(false);
+    setShowMerchantConflictDialog(false);
+    toast.success('Cart replaced with new item');
+    router.push('/application/cart');
+  };
+
+  const handleCancelReplaceCart = () => {
+    setShowMerchantConflictDialog(false);
   };
 
   const handleBuyNow = () => {
@@ -209,6 +282,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
     setSelectedVariant(variant);
     setQuantity(1); // Reset quantity when variant changes
   };
+  console.log(selectedVariant);
 
   if (!selectedVariant) {
     return (
@@ -500,12 +574,8 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={handleAddToCart}
+                onClick={handleGoToCart}
                 className="relative flex w-[136px] h-9 bg-gradient-to-b from-[#3F92FF] to-[#0B3689] rounded-l-[20px] rounded-r-[4px] items-center justify-center cursor-pointer"
-                style={{
-                  opacity: selectedVariant.stock === 0 ? 0.5 : 1,
-                  pointerEvents: selectedVariant.stock === 0 ? 'none' : 'auto',
-                }}
               >
                 <div className="absolute left-0 w-10 h-10 flex items-center justify-center">
                   <div className="h-full w-full rounded-full bg-gradient-to-b from-[#3F92FF] to-[#0B3689] flex items-center justify-center shadow-[inset_0px_4px_4px_rgba(0,0,0,0.15),inset_0px_-4px_4px_rgba(0,0,0,0.15)]">
@@ -519,7 +589,7 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
                   </div>
                 </div>
                 <span className="text-xs font-['Montserrat'] text-white ml-6">
-                  Add to Cart
+                  Go to Cart
                 </span>
               </motion.div>
 
@@ -561,6 +631,51 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
           categoryId={product.category_id}
         />
       </div>
+
+      {/* Merchant Conflict Confirmation Dialog */}
+      <AnimatePresence>
+        {showMerchantConflictDialog && (
+          <motion.div
+            className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="bg-white rounded-lg p-6 max-w-sm w-full"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+            >
+              <h3 className="text-lg font-semibold font-['Montserrat'] mb-3">
+                Different Merchant
+              </h3>
+              <p className="text-gray-600 font-['Montserrat'] mb-4">
+                Your cart contains items from a different merchant. Adding this
+                item will replace your current cart. Do you want to continue?
+              </p>
+              <div className="flex gap-3">
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleCancelReplaceCart}
+                  className="flex-1 py-2 px-4 border border-gray-300 rounded-md font-['Montserrat'] text-gray-700"
+                >
+                  Cancel
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleConfirmReplaceCart}
+                  className="flex-1 py-2 px-4 bg-gradient-to-b from-[#FA7189] to-[#E91E63] text-white rounded-md font-['Montserrat']"
+                >
+                  Replace Cart
+                </motion.button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

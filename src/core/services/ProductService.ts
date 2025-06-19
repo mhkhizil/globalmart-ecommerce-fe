@@ -1,3 +1,5 @@
+import { ProductDetailByMerchantRequestDto } from '../dtos/product/ProductDetailByMerchantRequestDto';
+import { ProductDetailByMerchantResponseDto } from '../dtos/product/ProductDetailByMerchantResponseDto';
 import { ProductFilterByCategoryDto } from '../dtos/product/ProductFilterByCategoryDto';
 import { ProductFilterByMerchantDto } from '../dtos/product/ProductFilterByMerchantDto';
 import { ProductListResponseDto } from '../dtos/product/ProductListResponseDto';
@@ -71,6 +73,16 @@ export class ProductService implements IProductService {
     const response = await this.ProductRepository.getNewArrival<
       ProductFilterByCategoryDto,
       ProductListResponseDto
+    >(filter);
+    return response;
+  }
+
+  async getProductDetailByMerchant(
+    filter: ProductDetailByMerchantRequestDto
+  ): Promise<ProductDetailByMerchantResponseDto> {
+    const response = await this.ProductRepository.getProductDetailByMerchant<
+      ProductDetailByMerchantRequestDto,
+      ProductDetailByMerchantResponseDto
     >(filter);
     return response;
   }

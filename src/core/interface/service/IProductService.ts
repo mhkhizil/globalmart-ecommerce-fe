@@ -1,3 +1,5 @@
+import { ProductDetailByMerchantRequestDto } from '@/core/dtos/product/ProductDetailByMerchantRequestDto';
+import { ProductDetailByMerchantResponseDto } from '@/core/dtos/product/ProductDetailByMerchantResponseDto';
 import { ProductFilterByCategoryDto } from '@/core/dtos/product/ProductFilterByCategoryDto';
 import { ProductFilterByMerchantDto } from '@/core/dtos/product/ProductFilterByMerchantDto';
 import { ProductListResponseDto } from '@/core/dtos/product/ProductListResponseDto';
@@ -24,4 +26,7 @@ export interface IProductService {
   getNewArrival(
     filter: ProductFilterByCategoryDto
   ): Promise<ProductListResponseDto>;
+  getProductDetailByMerchant(
+    filter: ProductDetailByMerchantRequestDto
+  ): Promise<ProductDetailByMerchantResponseDto>;
 }

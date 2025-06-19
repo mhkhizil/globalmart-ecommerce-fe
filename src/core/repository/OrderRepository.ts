@@ -19,8 +19,61 @@ export class OrderRepository implements IOrderRepository {
       const url = `${API_BASE_URL}/${apiEndPoints.order.createOrder}`;
       const response = await client.post(url, requestDto);
       return response.data.data as TResponseDto;
-    } catch {
-      throw new Error('Fail to create Order');
+    } catch (error) {
+      const axiosError = error as AxiosError<any>;
+
+      // Handle different types of errors with specific messages
+      if (axiosError.response?.status === 401) {
+        throw new Error('Authentication failed. Please login again.');
+      }
+
+      if (axiosError.response?.status === 400) {
+        const errorMessage =
+          axiosError.response?.data?.message || 'Invalid order data provided.';
+        throw new Error(errorMessage);
+      }
+
+      if (axiosError.response?.status === 422) {
+        const errorMessage =
+          axiosError.response?.data?.message ||
+          'Order validation failed. Please check your order details.';
+        throw new Error(errorMessage);
+      }
+
+      if (axiosError.response?.status === 403) {
+        throw new Error('You do not have permission to create this order.');
+      }
+
+      if (axiosError.response?.status === 409) {
+        throw new Error(
+          'Order conflict detected. Some items may no longer be available.'
+        );
+      }
+
+      if (axiosError.response?.status === 500) {
+        throw new Error('Server error occurred. Please try again later.');
+      }
+
+      // Check for specific error messages from the API
+      const apiErrorMessage =
+        axiosError.response?.data?.message || axiosError.response?.data?.error;
+      if (apiErrorMessage) {
+        throw new Error(apiErrorMessage);
+      }
+
+      // Network or other errors
+      if (axiosError.code === 'NETWORK_ERROR') {
+        throw new Error(
+          'Network error. Please check your internet connection.'
+        );
+      }
+
+      if (axiosError.code === 'ECONNABORTED') {
+        throw new Error('Request timeout. Please try again.');
+      }
+
+      // Fallback to generic error
+      throw new Error('Failed to create order. Please try again.');
     }
   }
   async getOrderItemById<TRequestDto, TResponseDto>(

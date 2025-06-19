@@ -45,6 +45,7 @@ export const apiEndPoints = {
     getTrendingProductList: 'api/v1/trending-product',
     getDealOfTheDay: 'api/v1/dealofday-product',
     getNewArrival: 'api/v1/new-arrival-product',
+    getProductDetailByMerchant: 'api/v1/productdetailbymerchant',
   },
   merchant: {
     register: 'api/v1/merchant/register',
@@ -85,5 +86,9 @@ export const apiEndPoints = {
     getDailyCompletedOrderCountByDriverId: 'api/v1/driver/dailyordercount',
     cancelOrderByMerchant: 'api/v1/order/cancelbyuser',
     cancelOrderByDriver: 'api/v1/cancelbydriver',
+  },
+  coupon: {
+    getCouponList: 'api/v1/coupon',
+    applyCoupon: 'api/v1/applycoupon',
   },
 };

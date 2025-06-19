@@ -21,4 +21,7 @@ export interface IProductRepository {
   getNewArrival<TRequestDto, TResponseDto>(
     requestDto: TRequestDto
   ): Promise<TResponseDto>;
+  getProductDetailByMerchant<TRequestDto, TResponseDto>(
+    requestDto: TRequestDto
+  ): Promise<TResponseDto>;
 }
