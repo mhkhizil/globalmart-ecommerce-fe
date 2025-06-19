@@ -91,4 +91,8 @@ export const apiEndPoints = {
     getCouponList: 'api/v1/coupon',
     applyCoupon: 'api/v1/applycoupon',
   },
+  exchangeRate: {
+    getAllExchangeRate: 'api/v1/exchange-rate',
+    getExchangeRateByCurrencyCode: 'api/v1/exchangeratebycurrencycode',
+  },
 };

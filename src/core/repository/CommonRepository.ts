@@ -49,4 +49,32 @@ export class CommonRepository implements ICommonRepository {
       throw new Error('Unable to get event detail');
     }
   }
+
+  async getAllCurrency<TResponseDto>(): Promise<TResponseDto> {
+    try {
+      const client = this.axiosClient.createInstance();
+      const url = `${API_BASE_URL}/${apiEndPoints.exchangeRate.getAllExchangeRate}`;
+      const response = await client.get(url);
+      return response.data.data as TResponseDto;
+    } catch {
+      throw new Error('Unable to get all currency');
+    }
+  }
+
+  async getCurrencyByCurrencyCode<TResponseDto>(
+    currencyCode: string
+  ): Promise<TResponseDto> {
+    try {
+      const client = this.axiosClient.createInstance();
+      const url = `${API_BASE_URL}/${apiEndPoints.exchangeRate.getExchangeRateByCurrencyCode}`;
+      const response = await client.get(url, {
+        params: {
+          currency_code: currencyCode,
+        },
+      });
+      return response.data.data as TResponseDto;
+    } catch {
+      throw new Error('Unable to get currency by currency code');
+    }
+  }
 }

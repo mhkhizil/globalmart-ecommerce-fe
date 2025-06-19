@@ -1,4 +1,8 @@
 import { ContactInfoDto } from '../dtos/common/ContactInfoDto';
+import {
+  GetAllCurrencyResponseDto,
+  GetCurrencyByCurrencyCodeResponseDto,
+} from '../dtos/currency/CurrencyDto';
 import { ShopListResponseDto } from '../dtos/shop/ShopResponseDto';
 import { Event, EventList } from '../entity/Event';
 import { ICommonRepository } from '../interface/repository/ICommonRepository';
@@ -28,6 +32,24 @@ export class CommonService implements ICommonService {
 
   async getEventDetail(id: number): Promise<Event> {
     const response = await this.CommonRepository.getEventDetail<Event>(id);
+
+    return response;
+  }
+
+  async getAllCurrency(): Promise<GetAllCurrencyResponseDto> {
+    const response =
+      await this.CommonRepository.getAllCurrency<GetAllCurrencyResponseDto>();
+
+    return response;
+  }
+
+  async getCurrencyByCurrencyCode(
+    currencyCode: string
+  ): Promise<GetCurrencyByCurrencyCodeResponseDto> {
+    const response =
+      await this.CommonRepository.getCurrencyByCurrencyCode<GetCurrencyByCurrencyCodeResponseDto>(
+        currencyCode
+      );
 
     return response;
   }

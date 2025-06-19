@@ -3,4 +3,8 @@ export interface ICommonRepository {
   getContactInfo<TResponseDto>(): Promise<TResponseDto>;
   getEventList<TResponseDto>(): Promise<TResponseDto>;
   getEventDetail<TResponseDto>(id: number): Promise<TResponseDto>;
+  getAllCurrency<TResponseDto>(): Promise<TResponseDto>;
+  getCurrencyByCurrencyCode<TResponseDto>(
+    currencyCode: string
+  ): Promise<TResponseDto>;
 }
