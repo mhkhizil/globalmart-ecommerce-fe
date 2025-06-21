@@ -10,6 +10,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { MainProductDetail, ProductDetail } from '@/core/entity/Product';
+import { useConvertedPrice } from '@/lib/hooks/store/useConvertedPrice';
 import { RootState } from '@/lib/redux/ReduxStore';
 import {
   addItem,
@@ -164,6 +165,13 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
           )
         : 0
     : 0;
+
+  // Use the currency conversion hooks for both discounted and original prices
+  const { formattedPrice, isConverted, currencyInfo } =
+    useConvertedPrice(discountedPrice);
+  const originalPriceConverted = useConvertedPrice(
+    Number(selectedVariant?.price || 0)
+  );
 
   const handleIncreaseQuantity = () => {
     if (selectedVariant && quantity < selectedVariant.stock) {
@@ -389,20 +397,61 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
         <div className="mt-3 flex items-center">
           {discountPercentage > 0 ? (
             <>
-              <span className="text-[#808488] line-through text-sm font-['Montserrat']">
-                ₹{Number(selectedVariant.price).toLocaleString()}
+              <span
+                className="text-[#808488] line-through text-sm font-['Montserrat']"
+                title={
+                  isConverted
+                    ? `Converted from ${Number(selectedVariant.price)} MMK`
+                    : undefined
+                }
+              >
+                {originalPriceConverted.formattedPrice}
               </span>
-              <span className="ml-2 text-sm font-[500] font-['Montserrat']">
-                ₹{discountedPrice.toLocaleString()}
+              {/* Show conversion indicator for original price if converted */}
+              {isConverted && (
+                <span className="ml-1 text-gray-500 text-xs">
+                  {currencyInfo.flag}
+                </span>
+              )}
+              <span
+                className="ml-2 text-sm font-[500] font-['Montserrat']"
+                title={
+                  isConverted
+                    ? `Converted from ${discountedPrice} MMK`
+                    : undefined
+                }
+              >
+                {formattedPrice}
               </span>
+              {/* Show conversion indicator for discounted price if converted */}
+              {isConverted && (
+                <span className="ml-1 text-gray-500 text-xs">
+                  {currencyInfo.flag}
+                </span>
+              )}
               <span className="ml-2 text-[#FA7189] text-sm font-['Montserrat']">
                 {discountPercentage}% Off
               </span>
             </>
           ) : (
-            <span className="text-sm font-[500] font-['Montserrat']">
-              ₹{Number(selectedVariant.price).toLocaleString()}
-            </span>
+            <>
+              <span
+                className="text-sm font-[500] font-['Montserrat']"
+                title={
+                  isConverted
+                    ? `Converted from ${Number(selectedVariant.price)} MMK`
+                    : undefined
+                }
+              >
+                {formattedPrice}
+              </span>
+              {/* Show conversion indicator if price was converted */}
+              {isConverted && (
+                <span className="ml-1 text-gray-500 text-xs">
+                  {currencyInfo.flag}
+                </span>
+              )}
+            </>
           )}
         </div>
 
