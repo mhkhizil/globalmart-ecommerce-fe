@@ -3,6 +3,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { Product } from '@/core/entity/Product';
+import { useConvertedPrice } from '@/lib/hooks/store/useConvertedPrice';
 
 type ProductCardProps = {
   product: Product;
@@ -46,6 +47,11 @@ const ProductCard: React.FC<ProductCardProps> = ({
             )
           )
       : Number(variant.price);
+
+  // Use the currency conversion hooks for both discounted and original prices
+  const { formattedPrice, isConverted, currencyInfo } =
+    useConvertedPrice(discountedPrice);
+  const originalPriceConverted = useConvertedPrice(Number(variant.price));
 
   // Calculate discount percentage with safe property access
   const discountPercentage =
@@ -130,9 +136,22 @@ const ProductCard: React.FC<ProductCardProps> = ({
         <div className="mt-1 flex flex-col">
           {/* Current Price */}
           <div className="flex items-baseline">
-            <span className="text-sm font-semibold text-black">
-              ₹{discountedPrice}
+            <span
+              className="text-sm font-semibold text-black"
+              title={
+                isConverted
+                  ? `Converted from ${discountedPrice} MMK`
+                  : undefined
+              }
+            >
+              {formattedPrice}
             </span>
+            {/* Show conversion indicator if price was converted */}
+            {isConverted && (
+              <span className="ml-1 text-gray-500 text-xs">
+                {currencyInfo.flag}
+              </span>
+            )}
           </div>
 
           {/* Use a fixed height container for promo info to ensure consistent height */}
@@ -140,8 +159,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
             {hasDiscount && (
               <div className="flex gap-x-3">
                 <div className="flex items-center">
-                  <span className="text-sm text-gray-500 line-through">
-                    ₹{Number(variant.price)}
+                  <span
+                    className="text-sm text-gray-500 line-through"
+                    title={
+                      isConverted
+                        ? `Converted from ${Number(variant.price)} MMK`
+                        : undefined
+                    }
+                  >
+                    {originalPriceConverted.formattedPrice}
                   </span>
                 </div>
 

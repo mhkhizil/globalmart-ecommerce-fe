@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 
+import { ExchangeRateProvider } from '@/components/common/ExchangeRateProvider';
 import TanStackQueryClientProvider from '@/components/common/query-client/TanStackQueryClientProvider';
 import ReduxPersistProvider from '@/components/common/redux-provider/ReduxPersistProvider';
 import { ReduxProvider } from '@/lib/redux/Provider'; // Ensure this matches your actual path
@@ -73,7 +74,7 @@ export default async function RootLayout({
           <ReduxProvider>
             <ReduxPersistProvider>
               <TanStackQueryClientProvider>
-                {children}
+                <ExchangeRateProvider>{children}</ExchangeRateProvider>
               </TanStackQueryClientProvider>
             </ReduxPersistProvider>
           </ReduxProvider>

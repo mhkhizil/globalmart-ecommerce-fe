@@ -5,6 +5,7 @@ import { persistReducer, persistStore } from 'redux-persist';
 import { navigationBarReducer } from '../redux/slices/NavigationBarSlice';
 import { cartReducer } from './slices/CartSlice';
 import { currencyReducer } from './slices/CurrencySlice';
+import { exchangeRateReducer } from './slices/ExchangeRateSlice';
 import { languageReducer } from './slices/LanguageSlice';
 import shippingAddressReducer from './slices/ShippingAddressSlice';
 
@@ -68,6 +69,7 @@ const rootReducer = {
   cart: persistReducer(cartPersistConfig, cartReducer), // Apply persistence to the cart slice
   language: persistReducer(languagePersistConfig, languageReducer),
   currency: persistReducer(currencyPersistConfig, currencyReducer),
+  exchangeRate: exchangeRateReducer, // Exchange rates don't need persistence (they're fetched periodically)
   shippingAddress: persistReducer(
     shippingAddressPersistConfig,
     shippingAddressReducer

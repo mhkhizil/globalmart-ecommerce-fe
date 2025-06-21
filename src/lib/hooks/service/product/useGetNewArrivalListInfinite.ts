@@ -15,7 +15,6 @@ type GetNewArrivalListInfiniteOptions = Omit<
     ProductListResponseDto,
     Error,
     InfiniteData<ProductListResponseDto>,
-    ProductListResponseDto,
     readonly unknown[],
     number
   >,

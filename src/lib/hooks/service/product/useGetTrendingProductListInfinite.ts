@@ -15,7 +15,6 @@ type GetTrendingProductListInfiniteOptions = Omit<
     ProductListResponseDto,
     Error,
     InfiniteData<ProductListResponseDto>,
-    ProductListResponseDto,
     readonly unknown[],
     number
   >,

@@ -5,6 +5,7 @@ import React, { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 
 import { Product } from '@/core/entity/Product';
+import { useConvertedPrice } from '@/lib/hooks/store/useConvertedPrice';
 import { RootState } from '@/lib/redux/ReduxStore';
 import { Locale } from '@/lib/redux/slices/LanguageSlice';
 
@@ -79,6 +80,10 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
             )
           )
       : Number(variant.price);
+
+  // Use the currency conversion hook to get converted price
+  const { formattedPrice, isConverted, currencyInfo } =
+    useConvertedPrice(discountedPrice);
 
   // Generate star rating elements with inline SVG for better visibility
   const renderRating = useMemo(() => {
@@ -243,9 +248,23 @@ const TrendingProductCard: React.FC<TrendingProductCardProps> = ({
             <span
               className="text-black font-['Montserrat'] font-medium leading-[1.3333333333333333em]"
               style={{ fontSize: '12px', fontWeight: 500 }}
+              title={
+                isConverted
+                  ? `Converted from ${discountedPrice} MMK`
+                  : undefined
+              }
             >
-              ₹{discountedPrice}
+              {formattedPrice}
             </span>
+            {/* Show conversion indicator if price was converted */}
+            {isConverted && (
+              <span
+                className="ml-1 text-gray-500 font-['Montserrat'] font-normal"
+                style={{ fontSize: '10px' }}
+              >
+                {currencyInfo.flag}
+              </span>
+            )}
           </div>
         </div>
 
