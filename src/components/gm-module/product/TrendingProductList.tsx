@@ -1,3 +1,4 @@
+import { InfiniteData } from '@tanstack/react-query';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -103,8 +104,11 @@ function TrendingProductList() {
 
   // Flatten all pages into a single array of products
   const allProducts = useMemo(() => {
-    if (!data?.pages) return [];
-    return data.pages.flatMap(
+    const infiniteData = data as
+      | InfiniteData<ProductListResponseDto>
+      | undefined;
+    if (!infiniteData?.pages) return [];
+    return infiniteData.pages.flatMap(
       page => (page as ProductListResponseDto).products || []
     );
   }, [data]);

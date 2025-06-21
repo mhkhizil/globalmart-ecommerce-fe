@@ -10,20 +10,12 @@ import { ProductRepository } from '@/core/repository/ProductRepository';
 import { ProductService } from '@/core/services/ProductService';
 import { AxiosCustomClient } from '@/lib/axios/AxiosClient';
 
-type GetDealOfTheDayListInfiniteOptions = Omit<
-  UseInfiniteQueryOptions<
-    ProductListResponseDto,
-    Error,
-    InfiniteData<ProductListResponseDto>,
-    readonly unknown[],
-    number
-  >,
-  'queryFn' | 'getNextPageParam' | 'initialPageParam'
->;
-
 export const useGetDealOfTheDayListInfinite = (
   filter: Omit<ProductFilterByCategoryDto, 'page'>,
-  options?: Partial<GetDealOfTheDayListInfiniteOptions>
+  options?: Omit<
+    UseInfiniteQueryOptions<ProductListResponseDto>,
+    'queryKey' | 'queryFn' | 'getNextPageParam' | 'initialPageParam'
+  >
 ) => {
   return useInfiniteQuery({
     queryKey: ['get-product-deal-of-the-day-list-infinite', filter],

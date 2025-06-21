@@ -10,20 +10,12 @@ import { ProductRepository } from '@/core/repository/ProductRepository';
 import { ProductService } from '@/core/services/ProductService';
 import { AxiosCustomClient } from '@/lib/axios/AxiosClient';
 
-type GetNewArrivalListInfiniteOptions = Omit<
-  UseInfiniteQueryOptions<
-    ProductListResponseDto,
-    Error,
-    InfiniteData<ProductListResponseDto>,
-    readonly unknown[],
-    number
-  >,
-  'queryFn' | 'getNextPageParam' | 'initialPageParam'
->;
-
 export const useGetNewArrivalListInfinite = (
   filter: Omit<ProductFilterByCategoryDto, 'page'>,
-  options?: Partial<GetNewArrivalListInfiniteOptions>
+  options?: Omit<
+    UseInfiniteQueryOptions<ProductListResponseDto>,
+    'queryKey' | 'queryFn' | 'getNextPageParam' | 'initialPageParam'
+  >
 ) => {
   return useInfiniteQuery({
     queryKey: ['get-product-new-arrival-list-infinite', filter],

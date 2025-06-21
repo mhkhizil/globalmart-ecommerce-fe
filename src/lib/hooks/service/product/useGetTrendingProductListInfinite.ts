@@ -10,20 +10,12 @@ import { ProductRepository } from '@/core/repository/ProductRepository';
 import { ProductService } from '@/core/services/ProductService';
 import { AxiosCustomClient } from '@/lib/axios/AxiosClient';
 
-type GetTrendingProductListInfiniteOptions = Omit<
-  UseInfiniteQueryOptions<
-    ProductListResponseDto,
-    Error,
-    InfiniteData<ProductListResponseDto>,
-    readonly unknown[],
-    number
-  >,
-  'queryFn' | 'getNextPageParam' | 'initialPageParam'
->;
-
 export const useGetTrendingProductListInfinite = (
   filter: Omit<ProductFilterByCategoryDto, 'page'>,
-  options?: Partial<GetTrendingProductListInfiniteOptions>
+  options?: Omit<
+    UseInfiniteQueryOptions<ProductListResponseDto>,
+    'queryKey' | 'queryFn' | 'getNextPageParam' | 'initialPageParam'
+  >
 ) => {
   return useInfiniteQuery({
     queryKey: ['get-product-trending-list-infinite', filter],
