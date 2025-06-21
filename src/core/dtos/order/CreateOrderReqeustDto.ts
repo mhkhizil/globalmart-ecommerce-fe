@@ -13,10 +13,18 @@ export enum PaymentMethod {
   COD = 2,
 }
 
+export enum CurrencyCode {
+  MMK = 'MMK',
+  USD = 'USD',
+  THB = 'THB',
+  CNY = 'CNY',
+}
+
 export type CreateOrderRequestDto = {
   date: string;
   payment_method: PaymentMethod;
   merchant_id: number;
+  currency_code: CurrencyCode;
   coupon_id?: number; // Optional coupon ID
   order_items: Omit<
     OrderItem,

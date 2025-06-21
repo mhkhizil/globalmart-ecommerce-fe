@@ -1,4 +1,30 @@
+import { CurrencyCode } from '@/core/dtos/order/CreateOrderReqeustDto';
 import { Currency, currencyInfo } from '@/lib/redux/slices/CurrencySlice';
+
+/**
+ * Map Currency type to CurrencyCode enum for API requests
+ * @param currency - The currency from Redux store
+ * @returns CurrencyCode enum value
+ */
+export const mapToCurrencyCode = (currency: Currency): CurrencyCode => {
+  switch (currency) {
+    case 'MMK': {
+      return CurrencyCode.MMK;
+    }
+    case 'USD': {
+      return CurrencyCode.USD;
+    }
+    case 'THB': {
+      return CurrencyCode.THB;
+    }
+    case 'CNY': {
+      return CurrencyCode.CNY;
+    }
+    default: {
+      return CurrencyCode.USD;
+    } // Default fallback
+  }
+};
 
 /**
  * Format a number as currency with the appropriate symbol and formatting

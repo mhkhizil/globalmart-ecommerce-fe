@@ -12,19 +12,22 @@ import {
   Plus,
   Trash2,
 } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 import FallbackImage from '@/components/common/FallbackImage';
 import EmptyCartIcon from '@/components/common/icons/EmptyCartIcon';
 import { useGetProductDetailByMerchant } from '@/lib/hooks/service/product/useGetProductDetailByMerchant';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
+import { useConvertedPrice } from '@/lib/hooks/store/useConvertedPrice';
+import { RootState } from '@/lib/redux/ReduxStore';
+import { selectExchangeRatesMap } from '@/lib/redux/slices/ExchangeRateSlice';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
+import { convertPrice } from '@/lib/util/currency-conversion';
 
 function Cart() {
   const router = useRouter();
@@ -45,6 +48,13 @@ function Cart() {
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Currency conversion
+  const selectedCurrency = useSelector(
+    (state: RootState) => state.currency.selectedCurrency
+  );
+  const exchangeRatesMap = useSelector(selectExchangeRatesMap);
+  const totalPriceConverted = useConvertedPrice(totalPrice);
+
   // Get merchant_id from the first item in cart for the API call
   const merchantId = items.length > 0 ? items[0].merchant_id : 1;
 
@@ -62,8 +72,11 @@ function Cart() {
     );
 
   const formattedTotalPrice = useMemo(() => {
-    return convertThousandSeparator(totalPrice, 2);
-  }, [totalPrice]);
+    return convertThousandSeparator(
+      totalPriceConverted.convertedPrice,
+      totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+    );
+  }, [totalPriceConverted]);
 
   // Process API data for display
   const otherItems = useMemo(() => {
@@ -122,58 +135,74 @@ function Cart() {
   }, [router]);
 
   // Calculate discount information for display
-  const calculateDiscountInfo = useCallback((item: any) => {
-    if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+  const calculateDiscountInfo = useCallback(
+    (item: any) => {
+      if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+        return {
+          hasDiscount: false,
+          originalPrice: item.price,
+          discountLabel: '',
+        };
+      }
+
+      let originalPrice = item.price;
+      let discountLabel = '';
+
+      if (item.type === 'percentage' && item.discount_percent) {
+        originalPrice = item.price / (1 - item.discount_percent / 100);
+        discountLabel = `${item.discount_percent}% off`;
+      } else if (item.type === 'fixed' && item.discount_amount) {
+        originalPrice = item.price + Number(item.discount_amount);
+        const convertedDiscountAmount = convertPrice(
+          Number(item.discount_amount),
+          selectedCurrency,
+          exchangeRatesMap
+        );
+        discountLabel = `${totalPriceConverted.currencyInfo.symbol}${convertThousandSeparator(convertedDiscountAmount, totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2)} off`;
+      }
+
       return {
-        hasDiscount: false,
-        originalPrice: item.price,
-        discountLabel: '',
+        hasDiscount: true,
+        originalPrice,
+        discountLabel,
       };
-    }
-
-    let originalPrice = item.price;
-    let discountLabel = '';
-
-    if (item.type === 'percentage' && item.discount_percent) {
-      originalPrice = item.price / (1 - item.discount_percent / 100);
-      discountLabel = `${item.discount_percent}% off`;
-    } else if (item.type === 'fixed' && item.discount_amount) {
-      originalPrice = item.price + Number(item.discount_amount);
-      discountLabel = `₹${convertThousandSeparator(Number(item.discount_amount), 0)} off`;
-    }
-
-    return {
-      hasDiscount: true,
-      originalPrice,
-      discountLabel,
-    };
-  }, []);
+    },
+    [selectedCurrency, exchangeRatesMap, totalPriceConverted.currencyInfo]
+  );
 
   // Calculate discount information for other items
-  const calculateOtherItemDiscount = useCallback((item: any) => {
-    if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+  const calculateOtherItemDiscount = useCallback(
+    (item: any) => {
+      if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+        return {
+          hasDiscount: false,
+          originalPrice: item.price,
+          discountLabel: '',
+        };
+      }
+
+      let originalPrice = item.originalPrice || item.price;
+      let discountLabel = '';
+
+      if (item.type === 'percentage' && item.discount_percent) {
+        discountLabel = `${item.discount_percent}% off`;
+      } else if (item.type === 'fixed' && item.discount_amount) {
+        const convertedDiscountAmount = convertPrice(
+          Number(item.discount_amount),
+          selectedCurrency,
+          exchangeRatesMap
+        );
+        discountLabel = `${totalPriceConverted.currencyInfo.symbol}${convertThousandSeparator(convertedDiscountAmount, totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2)} off`;
+      }
+
       return {
-        hasDiscount: false,
-        originalPrice: item.price,
-        discountLabel: '',
+        hasDiscount: true,
+        originalPrice,
+        discountLabel,
       };
-    }
-
-    let originalPrice = item.originalPrice || item.price;
-    let discountLabel = '';
-
-    if (item.type === 'percentage' && item.discount_percent) {
-      discountLabel = `${item.discount_percent}% off`;
-    } else if (item.type === 'fixed' && item.discount_amount) {
-      discountLabel = `₹${convertThousandSeparator(Number(item.discount_amount), 0)} off`;
-    }
-
-    return {
-      hasDiscount: true,
-      originalPrice,
-      discountLabel,
-    };
-  }, []);
+    },
+    [selectedCurrency, exchangeRatesMap, totalPriceConverted.currencyInfo]
+  );
 
   // Scroll functions for horizontal navigation
   const scrollLeft = useCallback(() => {
@@ -388,19 +417,31 @@ function Cart() {
                       </h3>
                       <div className="flex items-center gap-2 mb-2">
                         <span className="text-sm font-bold text-gray-900">
-                          ₹
+                          {totalPriceConverted.currencyInfo.symbol}
                           {convertThousandSeparator(
-                            item.price * item.quantity,
-                            0
+                            convertPrice(
+                              item.price * item.quantity,
+                              selectedCurrency,
+                              exchangeRatesMap
+                            ),
+                            totalPriceConverted.currencyInfo.code === 'MMK'
+                              ? 0
+                              : 2
                           )}
                         </span>
                         {discountInfo.hasDiscount && (
                           <>
                             <span className="text-xs text-gray-500 line-through">
-                              ₹
+                              {totalPriceConverted.currencyInfo.symbol}
                               {convertThousandSeparator(
-                                discountInfo.originalPrice * item.quantity,
-                                0
+                                convertPrice(
+                                  discountInfo.originalPrice * item.quantity,
+                                  selectedCurrency,
+                                  exchangeRatesMap
+                                ),
+                                totalPriceConverted.currencyInfo.code === 'MMK'
+                                  ? 0
+                                  : 2
                               )}
                             </span>
                             <span className="text-xs text-red-500 bg-red-50 px-1 py-0.5 rounded">
@@ -594,18 +635,32 @@ function Cart() {
                               <div className="mb-3 flex-1">
                                 <div className="flex items-center space-x-1 mb-1">
                                   <span className="text-sm font-bold text-gray-900">
-                                    ₹
+                                    {totalPriceConverted.currencyInfo.symbol}
                                     {convertThousandSeparator(
-                                      item.discount_price || item.price,
-                                      0
+                                      convertPrice(
+                                        item.discount_price || item.price,
+                                        selectedCurrency,
+                                        exchangeRatesMap
+                                      ),
+                                      totalPriceConverted.currencyInfo.code ===
+                                        'MMK'
+                                        ? 0
+                                        : 2
                                     )}
                                   </span>
                                   {discountInfo.hasDiscount && (
                                     <span className="text-xs text-gray-500 line-through">
-                                      ₹
+                                      {totalPriceConverted.currencyInfo.symbol}
                                       {convertThousandSeparator(
-                                        discountInfo.originalPrice,
-                                        0
+                                        convertPrice(
+                                          discountInfo.originalPrice,
+                                          selectedCurrency,
+                                          exchangeRatesMap
+                                        ),
+                                        totalPriceConverted.currencyInfo
+                                          .code === 'MMK'
+                                          ? 0
+                                          : 2
                                       )}
                                     </span>
                                   )}
@@ -681,7 +736,8 @@ function Cart() {
         <div className="flex items-center justify-between mb-4">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-gray-900">
-              ₹{formattedTotalPrice}
+              {totalPriceConverted.currencyInfo.symbol}
+              {formattedTotalPrice}
             </span>
             <span className="text-xs text-gray-500">
               {totalItems} {t(totalItems === 1 ? 'cart.item' : 'cart.items')}

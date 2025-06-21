@@ -75,10 +75,7 @@
     "errorFetchingContact": "Failed to load contact information",
     "noTelegramInfo": "No Telegram information available",
     "and": "and",
-    "share": "Share",
-    "processing": "Processing...",
-    "sending": "Sending...",
-    "tryAgainWithNewEmail": "Try Again with New Email"
+    "share": "Share"
   },
 
   "components": {
@@ -162,14 +159,6 @@
     "registerSuccess": "Registration successful! Redirecting...",
     "registrationFailed": "Registration failed. Please try again later.",
     "termsNotAgreed": "Please agree to the terms of service and privacy policy.",
-    "checkEmail": "Check Your Email",
-    "emailVerificationSent": "We've sent a verification link to your email address.",
-    "checkSpamFolder": "If you don't see the email in your inbox, please check your spam or junk folder.",
-    "continueToLogin": "Continue to Login",
-    "resendVerificationEmail": "Resend Verification Email",
-    "sendingEmail": "Sending...",
-    "emailRequired": "Email is required",
-    "backToLogin": "Back to Login",
     "verification": {
       "title": "Email Verification Required",
       "description": "Please verify your email address to continue",
@@ -499,16 +488,7 @@
     "enterVerificationCode": "Enter the verification code we send you on:",
     "didntReceiveCode": "Didn't receive code?",
     "resend": "Resend",
-    "continue": "Continue",
-    "verificationSuccess": "OTP verified successfully!",
-    "verificationFailed": "OTP verification failed!",
-    "invalidLength": "Please enter a valid 6-digit OTP",
-    "resendRequested": "Resend OTP requested",
-    "verifying": "Verifying...",
-    "resendSuccess": "OTP sent successfully!",
-    "resendFailed": "Failed to resend OTP",
-    "resending": "Sending...",
-    "resendIn": "Resend in"
+    "continue": "Continue"
   },
 
   "location": {
@@ -1132,13 +1112,6 @@
         "description": "Explore the latest promotions and deals on Worry-free takeaway. Find the best offers and discounts for your favorite products and services."
       }
     },
-    "EmailVerifiedSuccess": {
-      "metadata": {
-        "title": "Reset Password Success | Global Takeout",
-        "keywords": "reset password success, password reset, account recovery, global takeout reset",
-        "description": "Reset your Global Takeout password successfully. Access your account with your new password."
-      }
-    },
     "product_list": {
       "metadata": {
         "title": "Product List | Worry-free takeaway",
@@ -1174,7 +1147,6 @@
         "description": "Manage your account settings and preferences on Worry-free takeaway. Customize your experience to suit your needs."
       }
     },
-
     "category_list": {
       "metadata": {
         "title": "Categories | Worry-free takeaway",
@@ -1438,20 +1410,6 @@
         "description": "View trending products on Worry-free takeaway. Discover the most popular products and easily purchase them."
       }
     },
-    "deal_of_the_day": {
-      "metadata": {
-        "title": "Deal of the Day | Worry-free takeaway",
-        "keywords": "deal of the day, deal of the day list, deal of the day recommendation, deal of the day display",
-        "description": "View deal of the day on Worry-free takeaway. Discover the most popular products and easily purchase them."
-      }
-    },
-    "new_arrival_product": {
-      "metadata": {
-        "title": "New Arrival Product | Worry-free takeaway",
-        "keywords": "new arrival product, new arrival product list, new arrival product recommendation, new arrival product display",
-        "description": "View new arrival products on Worry-free takeaway. Discover the most popular products and easily purchase them."
-      }
-    },
     "driver_order_detail": {
       "metadata": {
         "title": "Driver Order Detail | Worry-free takeaway",
@@ -1469,6 +1427,27 @@
         "description": "Find answers to frequently asked questions about using Worry-free takeaway",
         "keywords": "FAQ, help, questions, answers, Worry-free takeaway, support"
       }
+    },
+    "deal_of_the_day": {
+      "metadata": {
+        "title": "Deal of the Day | Worry-free takeaway",
+        "keywords": "deal of the day, daily deals, special offers, discounted products, Worry-free takeaway deals",
+        "description": "Discover today's best deals on Worry-free takeaway. Find amazing discounts on popular products and services."
+      }
+    },
+    "new_arrival_product": {
+      "metadata": {
+        "title": "New Arrivals | Worry-free takeaway",
+        "keywords": "new arrivals, latest products, new items, fresh products, newest additions",
+        "description": "Explore the latest products and new arrivals on Worry-free takeaway. Discover fresh items and newest additions to our catalog."
+      }
+    }
+  },
+  "EmailVerifiedSuccess": {
+    "metadata": {
+      "title": "Email Verified Successfully | Worry-free takeaway",
+      "keywords": "email verification, account verification, email confirmed, successful verification",
+      "description": "Your email has been successfully verified. You can now access all features of your Worry-free takeaway account."
     }
   },
   "merchantProfile": {
@@ -1534,11 +1513,7 @@
   "forgotPassword": {
     "title": "Forgot password?",
     "description": "Enter your email address and we'll send you confirmation code to reset your password",
-    "emailAddress": "Email Address",
-    "emailSentSuccess": "Reset link sent successfully! Please check your email.",
-    "requestFailed": "Failed to send reset email. Please try again.",
-    "requestFailedTitle": "Request Failed",
-    "emailHint": "Enter the email address associated with your account"
+    "emailAddress": "Email Address"
   },
   "delivery": {
     "deliveryStatus": "Delivery Status",

@@ -234,7 +234,6 @@ function ProductDetailInfo({ product }: ProductDetailProps) {
 
     setShowCartOptions(false);
     toast.success('Item added to cart');
-    router.push('/application/cart');
   };
 
   const handleConfirmReplaceCart = () => {

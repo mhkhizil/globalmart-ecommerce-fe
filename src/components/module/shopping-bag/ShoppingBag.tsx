@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 import FallbackImage from '@/components/common/FallbackImage';
 import { Button } from '@/components/ui/button';
@@ -13,8 +14,12 @@ import { useApplyCoupon } from '@/lib/hooks/service/coupon/useApplyCoupon';
 import { useGetCouponList } from '@/lib/hooks/service/coupon/useGetCouponList';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
+import { useConvertedPrice } from '@/lib/hooks/store/useConvertedPrice';
 import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
+import { RootState } from '@/lib/redux/ReduxStore';
+import { selectExchangeRatesMap } from '@/lib/redux/slices/ExchangeRateSlice';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
+import { convertPrice } from '@/lib/util/currency-conversion';
 
 interface ShoppingBagProps {
   // Optional props can be added here if needed
@@ -37,6 +42,14 @@ export function ShoppingBag({}: ShoppingBagProps) {
   // Coupon state
   const [showCoupons, setShowCoupons] = useState(false);
   const previousCouponRef = useRef(appliedCoupon);
+  const [applyingCouponId, setApplyingCouponId] = useState<number | null>(null);
+
+  // Currency conversion
+  const selectedCurrency = useSelector(
+    (state: RootState) => state.currency.selectedCurrency
+  );
+  const exchangeRatesMap = useSelector(selectExchangeRatesMap);
+  const totalPriceConverted = useConvertedPrice(totalPrice);
 
   // Fetch available coupons
   const { data: couponData, isLoading: couponsLoading } = useGetCouponList();
@@ -48,17 +61,25 @@ export function ShoppingBag({}: ShoppingBagProps) {
         const discount = Number(response.data.discount);
         toast.success(response.message);
         setShowCoupons(false);
+        setApplyingCouponId(null);
       },
       onError: error => {
         toast.error('Failed to apply coupon. Please try again.');
         console.error('Apply coupon error:', error);
+        setApplyingCouponId(null);
       },
     });
 
-  // Calculate totals
-  const subtotal: number = Number(totalPrice) || 0;
+  // Calculate totals with currency conversion
+  const subtotal: number = totalPriceConverted.convertedPrice || 0;
   const deliveryFee: number = 0; // Free delivery
-  const couponDiscount = appliedCoupon?.discount_amount || 0;
+  const couponDiscount = appliedCoupon
+    ? convertPrice(
+        appliedCoupon.discount_amount,
+        selectedCurrency,
+        exchangeRatesMap
+      )
+    : 0;
   const total: number = subtotal + deliveryFee - couponDiscount;
 
   // Monitor coupon changes and notify user if coupon is removed due to cart changes
@@ -94,36 +115,49 @@ export function ShoppingBag({}: ShoppingBagProps) {
   }, [appliedCoupon, subtotal, deliveryFee]);
 
   // Calculate discount information for an item
-  const calculateItemDiscount = useCallback((item: any) => {
-    if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+  const calculateItemDiscount = useCallback(
+    (item: any) => {
+      if (!item.type || (!item.discount_percent && !item.discount_amount)) {
+        return {
+          hasDiscount: false,
+          originalPrice: item.price,
+          discountLabel: '',
+          savings: 0,
+        };
+      }
+
+      let originalPrice = item.price;
+      let discountLabel = '';
+
+      if (item.type === 'percentage' && item.discount_percent) {
+        originalPrice = item.price / (1 - item.discount_percent / 100);
+        discountLabel = `${item.discount_percent}% off`;
+      } else if (item.type === 'fixed' && item.discount_amount) {
+        originalPrice = item.price + Number(item.discount_amount);
+        const convertedDiscountAmount = convertPrice(
+          Number(item.discount_amount),
+          selectedCurrency,
+          exchangeRatesMap
+        );
+        discountLabel = `${totalPriceConverted.currencyInfo.symbol}${convertThousandSeparator(convertedDiscountAmount, totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2)} off`;
+      }
+
+      const savings = (originalPrice - item.price) * item.quantity;
+      const convertedSavings = convertPrice(
+        savings,
+        selectedCurrency,
+        exchangeRatesMap
+      );
+
       return {
-        hasDiscount: false,
-        originalPrice: item.price,
-        discountLabel: '',
-        savings: 0,
+        hasDiscount: true,
+        originalPrice,
+        discountLabel,
+        savings: convertedSavings,
       };
-    }
-
-    let originalPrice = item.price;
-    let discountLabel = '';
-
-    if (item.type === 'percentage' && item.discount_percent) {
-      originalPrice = item.price / (1 - item.discount_percent / 100);
-      discountLabel = `${item.discount_percent}% off`;
-    } else if (item.type === 'fixed' && item.discount_amount) {
-      originalPrice = item.price + Number(item.discount_amount);
-      discountLabel = `$${convertThousandSeparator(Number(item.discount_amount), 2)} off`;
-    }
-
-    const savings = (originalPrice - item.price) * item.quantity;
-
-    return {
-      hasDiscount: true,
-      originalPrice,
-      discountLabel,
-      savings,
-    };
-  }, []);
+    },
+    [selectedCurrency, exchangeRatesMap, totalPriceConverted.currencyInfo]
+  );
 
   // Generate mock variations for display (in real app, this would come from product data)
   const getMockVariations = useCallback((itemId: number) => {
@@ -146,13 +180,20 @@ export function ShoppingBag({}: ShoppingBagProps) {
   const handleSelectCoupon = useCallback(
     async (coupon: Coupon) => {
       try {
+        setApplyingCouponId(coupon.id);
         const orderTotal = subtotal + deliveryFee;
+        const convertedMinOrderAmount = convertPrice(
+          Number(coupon.min_order_amount),
+          selectedCurrency,
+          exchangeRatesMap
+        );
 
         // Check minimum order amount
-        if (orderTotal < Number(coupon.min_order_amount)) {
+        if (orderTotal < convertedMinOrderAmount) {
           toast.error(
-            `Minimum order amount of $${coupon.min_order_amount} required for this coupon.`
+            `Minimum order amount of ${totalPriceConverted.currencyInfo.symbol}${convertedMinOrderAmount.toFixed(totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2)} required for this coupon.`
           );
+          setApplyingCouponId(null);
           return;
         }
 
@@ -176,9 +217,18 @@ export function ShoppingBag({}: ShoppingBagProps) {
         applyCouponToCart(appliedCouponData);
       } catch (error) {
         console.error('Error applying coupon:', error);
+        setApplyingCouponId(null);
       }
     },
-    [subtotal, deliveryFee, applyCoupon, applyCouponToCart]
+    [
+      subtotal,
+      deliveryFee,
+      applyCoupon,
+      applyCouponToCart,
+      selectedCurrency,
+      exchangeRatesMap,
+      totalPriceConverted.currencyInfo,
+    ]
   );
 
   const handleRemoveCoupon = useCallback(() => {
@@ -342,7 +392,17 @@ export function ShoppingBag({}: ShoppingBagProps) {
                     {/* Price */}
                     <div className="flex items-center space-x-2 mb-1">
                       <span className="font-bold text-gray-900">
-                        $ {(item.price * item.quantity).toFixed(2)}
+                        {totalPriceConverted.currencyInfo.symbol}{' '}
+                        {convertThousandSeparator(
+                          convertPrice(
+                            item.price * item.quantity,
+                            selectedCurrency,
+                            exchangeRatesMap
+                          ),
+                          totalPriceConverted.currencyInfo.code === 'MMK'
+                            ? 0
+                            : 2
+                        )}
                       </span>
                       {discountInfo.hasDiscount && (
                         <>
@@ -350,10 +410,17 @@ export function ShoppingBag({}: ShoppingBagProps) {
                             upto {discountInfo.discountLabel}
                           </span>
                           <span className="text-xs text-gray-500 line-through">
-                            ${' '}
-                            {(
-                              discountInfo.originalPrice * item.quantity
-                            ).toFixed(2)}
+                            {totalPriceConverted.currencyInfo.symbol}{' '}
+                            {convertThousandSeparator(
+                              convertPrice(
+                                discountInfo.originalPrice * item.quantity,
+                                selectedCurrency,
+                                exchangeRatesMap
+                              ),
+                              totalPriceConverted.currencyInfo.code === 'MMK'
+                                ? 0
+                                : 2
+                            )}
                           </span>
                         </>
                       )}
@@ -376,7 +443,11 @@ export function ShoppingBag({}: ShoppingBagProps) {
                 {t('shoppingBag.totalOrder')} ({totalItems}) :
               </span>
               <span className="font-bold text-gray-900">
-                $ {subtotal.toFixed(2)}
+                {totalPriceConverted.currencyInfo.symbol}{' '}
+                {convertThousandSeparator(
+                  subtotal,
+                  totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+                )}
               </span>
             </div>
           </div>
@@ -395,7 +466,11 @@ export function ShoppingBag({}: ShoppingBagProps) {
                     {appliedCoupon.coupon_code}
                   </span>
                   <p className="text-xs text-gray-500">
-                    Saved ${couponDiscount.toFixed(2)}
+                    Saved {totalPriceConverted.currencyInfo.symbol}
+                    {convertThousandSeparator(
+                      couponDiscount,
+                      totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+                    )}
                   </p>
                 </div>
               </div>
@@ -438,7 +513,13 @@ export function ShoppingBag({}: ShoppingBagProps) {
           <div className="space-y-3">
             <div className="flex justify-between">
               <span className="text-gray-600">Order Amounts</span>
-              <span className="font-medium">$ {subtotal.toFixed(2)}</span>
+              <span className="font-medium">
+                {totalPriceConverted.currencyInfo.symbol}{' '}
+                {convertThousandSeparator(
+                  subtotal,
+                  totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+                )}
+              </span>
             </div>
 
             <div className="flex justify-between">
@@ -448,13 +529,24 @@ export function ShoppingBag({}: ShoppingBagProps) {
                   Know More
                 </button>
               </div>
-              <span className="text-gray-600 font-medium text-sm">$ 0.00</span>
+              <span className="text-gray-600 font-medium text-sm">
+                {totalPriceConverted.currencyInfo.symbol} 0.00
+              </span>
             </div>
 
             <div className="flex justify-between">
               <span className="text-gray-600">Delivery Fee</span>
               <span className="text-green-600 font-medium">
-                {deliveryFee === 0 ? 'Free' : `$ ${deliveryFee.toFixed(2)}`}
+                {deliveryFee === 0
+                  ? 'Free'
+                  : `${totalPriceConverted.currencyInfo.symbol} ${convertThousandSeparator(
+                      convertPrice(
+                        deliveryFee,
+                        selectedCurrency,
+                        exchangeRatesMap
+                      ),
+                      totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+                    )}`}
               </span>
             </div>
 
@@ -462,7 +554,11 @@ export function ShoppingBag({}: ShoppingBagProps) {
               <div className="flex justify-between">
                 <span className="text-gray-600">Coupon Discount</span>
                 <span className="text-green-600 font-medium">
-                  - $ {couponDiscount.toFixed(2)}
+                  - {totalPriceConverted.currencyInfo.symbol}{' '}
+                  {convertThousandSeparator(
+                    couponDiscount,
+                    totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+                  )}
                 </span>
               </div>
             )}
@@ -471,7 +567,11 @@ export function ShoppingBag({}: ShoppingBagProps) {
               <div className="flex justify-between">
                 <span className="font-semibold text-gray-900">Order Total</span>
                 <span className="font-bold text-gray-900">
-                  $ {total.toFixed(2)}
+                  {totalPriceConverted.currencyInfo.symbol}{' '}
+                  {convertThousandSeparator(
+                    total,
+                    totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+                  )}
                 </span>
               </div>
             </div>
@@ -491,7 +591,11 @@ export function ShoppingBag({}: ShoppingBagProps) {
         <div className="flex items-center justify-between">
           <div className="flex flex-col">
             <span className="font-bold text-lg text-gray-900">
-              $ {total.toFixed(2)}
+              {totalPriceConverted.currencyInfo.symbol}{' '}
+              {convertThousandSeparator(
+                total,
+                totalPriceConverted.currencyInfo.code === 'MMK' ? 0 : 2
+              )}
             </span>
             <button className="text-xs text-blue-500 underline text-left">
               View Details
@@ -559,7 +663,19 @@ export function ShoppingBag({}: ShoppingBagProps) {
                                 </span>
                               ) : (
                                 <span className="bg-red-100 text-red-600 px-2 py-1 rounded text-xs font-medium">
-                                  ${coupon.discount_amount} OFF
+                                  {totalPriceConverted.currencyInfo.symbol}
+                                  {convertThousandSeparator(
+                                    convertPrice(
+                                      Number(coupon.discount_amount),
+                                      selectedCurrency,
+                                      exchangeRatesMap
+                                    ),
+                                    totalPriceConverted.currencyInfo.code ===
+                                      'MMK'
+                                      ? 0
+                                      : 2
+                                  )}{' '}
+                                  OFF
                                 </span>
                               )}
                             </div>
@@ -571,7 +687,21 @@ export function ShoppingBag({}: ShoppingBagProps) {
                             )}
 
                             <div className="text-xs text-gray-500 space-y-1">
-                              <p>Min. order: ${coupon.min_order_amount}</p>
+                              <p>
+                                Min. order:{' '}
+                                {totalPriceConverted.currencyInfo.symbol}
+                                {convertThousandSeparator(
+                                  convertPrice(
+                                    Number(coupon.min_order_amount),
+                                    selectedCurrency,
+                                    exchangeRatesMap
+                                  ),
+                                  totalPriceConverted.currencyInfo.code ===
+                                    'MMK'
+                                    ? 0
+                                    : 2
+                                )}
+                              </p>
                               <p>
                                 Valid till:{' '}
                                 {new Date(coupon.end_date).toLocaleDateString()}
@@ -585,14 +715,16 @@ export function ShoppingBag({}: ShoppingBagProps) {
 
                           <button
                             onClick={() => handleSelectCoupon(coupon)}
-                            disabled={!isEligible || applyingCoupon}
+                            disabled={
+                              !isEligible || applyingCouponId === coupon.id
+                            }
                             className={`px-4 py-2 rounded-md text-sm font-medium ${
                               isEligible
                                 ? 'bg-red-500 text-white hover:bg-red-600 disabled:opacity-50'
                                 : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                             }`}
                           >
-                            {applyingCoupon
+                            {applyingCouponId === coupon.id
                               ? 'Applying...'
                               : isEligible
                                 ? 'Apply'

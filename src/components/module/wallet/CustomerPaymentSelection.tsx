@@ -8,18 +8,25 @@ import { useTranslations } from 'next-intl';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast, { Toaster } from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 import { z } from 'zod';
 
 import Loader from '@/components/common/loader/Loader';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { PaymentMethod } from '@/core/dtos/order/CreateOrderReqeustDto';
+import {
+  CurrencyCode,
+  PaymentMethod,
+} from '@/core/dtos/order/CreateOrderReqeustDto';
 import { useCreateOrder } from '@/lib/hooks/service/order/useCreateOrder';
 import { useGetCustomerWallet } from '@/lib/hooks/service/payment/useGetCustomerWallet';
 import { useSession } from '@/lib/hooks/session/useSession';
 import { useCart } from '@/lib/hooks/store/useCart';
+import { useConvertedPrice } from '@/lib/hooks/store/useConvertedPrice';
 import { useShippingAddress } from '@/lib/hooks/store/useShippingAddress';
+import { RootState } from '@/lib/redux/ReduxStore';
 import { convertThousandSeparator } from '@/lib/util/ConvertToThousandSeparator';
+import { mapToCurrencyCode } from '@/lib/util/currency';
 
 // Payment method options for the UI
 const paymentMethods = [
@@ -62,6 +69,11 @@ function CustomerPaymentMethod() {
   const { items, totalPrice, appliedCoupon, clearCart, totalItems } = useCart();
   const t = useTranslations();
 
+  // Get selected currency from Redux store
+  const selectedCurrency = useSelector(
+    (state: RootState) => state.currency.selectedCurrency
+  );
+
   // Create the schema inside the component to access the translation hook
   const paymentFormSchema = useMemo(() => {
     return z.object({
@@ -92,10 +104,18 @@ function CustomerPaymentMethod() {
   const couponDiscount: number = appliedCoupon?.discount_amount || 0;
   const totalAmount: number = orderAmount + shippingAmount - couponDiscount;
 
+  // Convert prices to selected currency
+  const orderAmountConverted = useConvertedPrice(orderAmount);
+  const shippingAmountConverted = useConvertedPrice(shippingAmount);
+  const couponDiscountConverted = useConvertedPrice(couponDiscount);
+  const totalAmountConverted = useConvertedPrice(totalAmount);
+
   // Check wallet balance if wallet payment is selected
   const walletBalance = Number(walletData?.wallet_amount) || 0;
+  const walletBalanceConverted = useConvertedPrice(walletBalance);
   const hasInsufficientWallet =
-    selectedPaymentMethod === 'wallet' && walletBalance < totalAmount;
+    selectedPaymentMethod === 'wallet' &&
+    walletBalanceConverted.convertedPrice < totalAmountConverted.convertedPrice;
 
   // Form setup with validation
   const {
@@ -176,8 +196,11 @@ function CustomerPaymentMethod() {
         return 'Loading wallet information...';
       }
 
-      if (walletBalance < totalAmount) {
-        return `Insufficient wallet balance. You have ₹${convertThousandSeparator(walletBalance, 2)} but need ₹${convertThousandSeparator(totalAmount, 2)}`;
+      if (
+        walletBalanceConverted.convertedPrice <
+        totalAmountConverted.convertedPrice
+      ) {
+        return `Insufficient wallet balance. You have ${walletBalanceConverted.formattedPrice} but need ${totalAmountConverted.formattedPrice}`;
       }
     }
 
@@ -202,8 +225,8 @@ function CustomerPaymentMethod() {
     items,
     selectedPaymentMethod,
     isWalletLoading,
-    walletBalance,
-    totalAmount,
+    walletBalanceConverted,
+    totalAmountConverted,
     t,
   ]);
 
@@ -235,6 +258,7 @@ function CustomerPaymentMethod() {
           date: currentDate,
           payment_method: mapPaymentMethod(data.payment_method),
           merchant_id: items[0].merchant_id, // All items have the same merchant_id
+          currency_code: mapToCurrencyCode(selectedCurrency),
           ...(appliedCoupon && { coupon_id: appliedCoupon.id }), // Include coupon_id if coupon is applied
           order_items: items.map(item => ({
             product_id: item.id, // Using cart item id as product_id
@@ -266,7 +290,7 @@ function CustomerPaymentMethod() {
         setIsSubmitting(false);
       }
     },
-    [items, createOrder, appliedCoupon, validateOrder]
+    [items, createOrder, appliedCoupon, validateOrder, selectedCurrency]
   );
 
   // Redirect to cart if empty
@@ -305,22 +329,22 @@ function CustomerPaymentMethod() {
           <div className="space-y-3 text-gray-600">
             <div className="flex justify-between">
               <span>Order</span>
-              <span>₹ {convertThousandSeparator(orderAmount, 0)}</span>
+              <span>{orderAmountConverted.formattedPrice}</span>
             </div>
             <div className="flex justify-between">
               <span>Shipping</span>
-              <span>₹ {shippingAmount}</span>
+              <span>{shippingAmountConverted.formattedPrice}</span>
             </div>
             {appliedCoupon && (
               <div className="flex justify-between text-green-600">
                 <span>Coupon Discount ({appliedCoupon.coupon_code})</span>
-                <span>- ₹ {convertThousandSeparator(couponDiscount, 2)}</span>
+                <span>- {couponDiscountConverted.formattedPrice}</span>
               </div>
             )}
             <div className="border-t pt-3">
               <div className="flex justify-between font-semibold text-gray-900">
                 <span>Total</span>
-                <span>₹ {convertThousandSeparator(totalAmount, 0)}</span>
+                <span>{totalAmountConverted.formattedPrice}</span>
               </div>
             </div>
           </div>
@@ -408,9 +432,7 @@ function CustomerPaymentMethod() {
                                 : 'text-green-600'
                             }`}
                           >
-                            Balance: ₹
-                            {convertThousandSeparator(walletBalance, 2)}
-                            {isWalletInsufficient && ' (Insufficient)'}
+                            Balance: {walletBalanceConverted.formattedPrice}
                           </span>
                         )}
                         {isWalletMethod && isWalletLoading && (
@@ -443,10 +465,14 @@ function CustomerPaymentMethod() {
                               Insufficient Wallet Balance
                             </p>
                             <p className="text-red-700 mt-1">
-                              You need ₹
+                              You need{' '}
+                              {totalAmountConverted.currencyInfo.symbol}
                               {convertThousandSeparator(
-                                totalAmount - walletBalance,
-                                2
+                                totalAmountConverted.convertedPrice -
+                                  walletBalanceConverted.convertedPrice,
+                                totalAmountConverted.currencyInfo.code === 'MMK'
+                                  ? 0
+                                  : 2
                               )}{' '}
                               more to complete this order.
                             </p>
@@ -526,7 +552,7 @@ function CustomerPaymentMethod() {
       </div>
 
       {/* Bottom Navigation */}
-      <div className="flex justify-center space-x-8 bg-white py-4 border-t">
+      {/* <div className="flex justify-center space-x-8 bg-white py-4 border-t">
         <Link
           href="/application/home"
           className="flex flex-col items-center space-y-1"
@@ -562,7 +588,7 @@ function CustomerPaymentMethod() {
           <div className="w-6 h-6 bg-gray-300 rounded"></div>
           <span className="text-xs text-gray-600">Setting</span>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }
