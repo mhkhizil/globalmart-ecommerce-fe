@@ -7,6 +7,14 @@ export interface ShippingAddress extends ShippingAddressData {
   id: string;
 }
 
+// Delivery location type
+export interface DeliveryLocation {
+  latitude: number;
+  longitude: number;
+  address: string;
+  placeName?: string; // Optional place name for better display
+}
+
 // State definition
 export interface ShippingAddressState {
   addresses: {
@@ -14,6 +22,7 @@ export interface ShippingAddressState {
   };
   selectedAddressId: string | null;
   currentUserId: string | undefined;
+  deliveryLocation: DeliveryLocation | null; // Current location for delivery
 }
 
 // Initial state
@@ -21,6 +30,7 @@ const initialState: ShippingAddressState = {
   addresses: {},
   selectedAddressId: '',
   currentUserId: undefined,
+  deliveryLocation: null,
 };
 
 // Create slice
@@ -117,6 +127,19 @@ const shippingAddressSlice = createSlice({
         state.selectedAddressId = '';
       }
     },
+
+    // Set delivery location (current location)
+    setDeliveryLocation: (
+      state,
+      action: PayloadAction<DeliveryLocation | null>
+    ) => {
+      state.deliveryLocation = action.payload;
+    },
+
+    // Clear delivery location
+    clearDeliveryLocation: state => {
+      state.deliveryLocation = null;
+    },
   },
 });
 
@@ -127,6 +150,8 @@ export const {
   removeAddress,
   setUser,
   clearAddress,
+  setDeliveryLocation,
+  clearDeliveryLocation,
 } = shippingAddressSlice.actions;
 
 // Export reducer

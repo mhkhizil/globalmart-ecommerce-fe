@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:https": "next dev --experimental-https --experimental-https-key ./certificates/cert.key --experimental-https-cert ./certificates/cert.crt",
     "build": "next build",
     "start": "dotenv -c -- next start",
     "type-check": "tsc -b",
@@ -111,6 +112,7 @@
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-unicorn": "^56.0.1",
+    "mkcert": "^3.2.0",
     "postcss": "^8",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.6.9",

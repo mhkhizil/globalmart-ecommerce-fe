@@ -26,6 +26,7 @@ export type CreateOrderRequestDto = {
   merchant_id: number;
   currency_code: CurrencyCode;
   coupon_id?: number; // Optional coupon ID
+  delivery_address?: string; // Optional delivery address as string (e.g., "Yangon")
   order_items: Omit<
     OrderItem,
     | 'id'

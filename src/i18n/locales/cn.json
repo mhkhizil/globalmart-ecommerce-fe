@@ -649,7 +649,27 @@
     "totalOrder": "订单总计",
     "applyCoupons": "应用优惠券",
     "select": "选择",
-    "orderPaymentDetails": "订单付款详情"
+    "orderPaymentDetails": "订单付款详情",
+    "getCurrentLocation": "获取当前位置",
+    "currentLocationSelected": "已选择当前位置",
+    "defaultDeliveryAddress": "默认配送地址",
+    "clearLocation": "清除当前位置",
+    "gettingLocation": "正在获取位置...",
+    "locationCapturedSuccess": "当前位置获取成功！",
+    "geolocationNotSupported": "此浏览器不支持地理定位。",
+    "locationAccessDenied": "用户拒绝了位置访问。",
+    "locationUnavailable": "位置信息不可用。",
+    "locationTimeout": "位置请求超时。",
+    "unableToRetrieveLocation": "无法获取您的位置。",
+    "searchLocation": "搜索位置",
+    "searchLocationPlaceholder": "输入以搜索位置...",
+    "useCurrentLocation": "使用当前位置",
+    "searchResults": "搜索结果",
+    "noLocationsFound": "未找到位置",
+    "tryDifferentSearch": "尝试不同的搜索词",
+    "typeToSearch": "输入以搜索位置",
+    "searchInstructions": "输入地名、地址或地标",
+    "locationSelectedSuccess": "位置选择成功！"
   },
 
   "payment": {

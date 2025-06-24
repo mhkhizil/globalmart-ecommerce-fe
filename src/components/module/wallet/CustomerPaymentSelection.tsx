@@ -83,7 +83,8 @@ function CustomerPaymentMethod() {
     });
   }, [t]);
 
-  const { currentAddress } = useShippingAddress();
+  const { currentAddress, deliveryLocation, clearDeliveryLocation } =
+    useShippingAddress();
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | undefined
   >();
@@ -148,6 +149,7 @@ function CustomerPaymentMethod() {
   const { mutateAsync: createOrder, isPending } = useCreateOrder({
     onSuccess: () => {
       clearCart(); // This clears both cart items and applied coupon
+      clearDeliveryLocation(); // Clear delivery location after successful order
       toast.success(
         t('payment.orderSubmittedSuccess') || 'Order placed successfully!'
       );
@@ -260,6 +262,9 @@ function CustomerPaymentMethod() {
           merchant_id: items[0].merchant_id, // All items have the same merchant_id
           currency_code: mapToCurrencyCode(selectedCurrency),
           ...(appliedCoupon && { coupon_id: appliedCoupon.id }), // Include coupon_id if coupon is applied
+          ...(deliveryLocation && {
+            delivery_address: deliveryLocation.address, // Send just the address string
+          }), // Include delivery_address if current location is set
           order_items: items.map(item => ({
             product_id: item.id, // Using cart item id as product_id
             product_detail_id: item.id, // Using cart item id as product_detail_id (you may need to store this separately)
@@ -276,8 +281,6 @@ function CustomerPaymentMethod() {
         };
 
         await createOrder(orderData);
-
-        toast.success(`Order placed successfully with ${data.payment_method}!`);
       } catch (error: any) {
         console.error('Order submission error:', error);
 
@@ -290,7 +293,14 @@ function CustomerPaymentMethod() {
         setIsSubmitting(false);
       }
     },
-    [items, createOrder, appliedCoupon, validateOrder, selectedCurrency]
+    [
+      items,
+      createOrder,
+      appliedCoupon,
+      validateOrder,
+      selectedCurrency,
+      deliveryLocation,
+    ]
   );
 
   // Redirect to cart if empty
@@ -339,6 +349,12 @@ function CustomerPaymentMethod() {
               <div className="flex justify-between text-green-600">
                 <span>Coupon Discount ({appliedCoupon.coupon_code})</span>
                 <span>- {couponDiscountConverted.formattedPrice}</span>
+              </div>
+            )}
+            {deliveryLocation && (
+              <div className="flex justify-between text-blue-600">
+                <span>📍 Current Location Delivery</span>
+                <span className="text-xs">Enabled</span>
               </div>
             )}
             <div className="border-t pt-3">
@@ -477,7 +493,7 @@ function CustomerPaymentMethod() {
                               more to complete this order.
                             </p>
                             <Link
-                              href="/application/customer-refill-wallet"
+                              href="/application/customer-wallet-refill"
                               className="text-red-600 underline hover:text-red-800 text-sm font-medium"
                             >
                               Refill Wallet

@@ -4,15 +4,17 @@ import { ShippingAddressData } from '@/components/module/shipping/ShippingAddres
 import { AppDispatch, RootState } from '@/lib/redux/ReduxStore';
 import {
   clearAddress,
+  clearDeliveryLocation,
+  DeliveryLocation,
   saveShippingAddress,
   selectAddress,
+  setDeliveryLocation,
 } from '@/lib/redux/slices/ShippingAddressSlice';
 
 export const useShippingAddress = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { addresses, selectedAddressId, currentUserId } = useSelector(
-    (state: RootState) => state.shippingAddress
-  );
+  const { addresses, selectedAddressId, currentUserId, deliveryLocation } =
+    useSelector((state: RootState) => state.shippingAddress);
 
   // Get user's saved addresses
   const userAddresses = currentUserId ? addresses[currentUserId] || [] : [];
@@ -28,6 +30,9 @@ export const useShippingAddress = () => {
 
     // Get currently selected address
     currentAddress,
+
+    // Get current delivery location
+    deliveryLocation,
 
     // Save a new address
     saveAddress: (address: ShippingAddressData) => {
@@ -49,6 +54,16 @@ export const useShippingAddress = () => {
     // Clear all addresses
     clearAddresses: () => {
       dispatch(clearAddress());
+    },
+
+    // Set delivery location (current location)
+    setDeliveryLocation: (location: DeliveryLocation | null) => {
+      dispatch(setDeliveryLocation(location));
+    },
+
+    // Clear delivery location
+    clearDeliveryLocation: () => {
+      dispatch(clearDeliveryLocation());
     },
   };
 };

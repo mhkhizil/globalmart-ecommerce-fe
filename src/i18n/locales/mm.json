@@ -75,10 +75,7 @@
     "errorFetchingContact": "ဆက်သွယ်ရန် အချက်အလက်ကို ဖွင့်၍ မရပါ",
     "noTelegramInfo": "Telegram အချက်အလက် မရရှိနိုင်ပါ",
     "and": "နှင့်",
-    "share": "မျှဝေရန်",
-    "processing": "လုပ်ဆောင်နေသည်...",
-    "sending": "ပို့နေသည်...",
-    "tryAgainWithNewEmail": "အီးမေးလ်အသစ်ဖြင့် ထပ်မံကြိုးစားပါ"
+    "share": "မျှဝေရန်"
   },
 
   "components": {
@@ -162,24 +159,16 @@
     "registerSuccess": "မှတ်ပုံတင်ခြင်း အောင်မြင်သည်! လမ်းကြောင်းပြောင်းနေသည်...",
     "registrationFailed": "မှတ်ပုံတင်ခြင်း မအောင်မြင်ပါ။ နောက်မှ ထပ်ကြိုးစားပေးပါ။",
     "termsNotAgreed": "ဝန်ဆောင်မှုစည်းမျဉ်းများနှင့် ကိုယ်ရေးကိုယ်တာမူဝါဒကို သဘောတူပေးပါ။",
-    "checkEmail": "သင့်အီးမေးလ်ကို စစ်ဆေးပါ",
-    "emailVerificationSent": "သင့်အီးမေးလ်လိပ်စာသို့ အတည်ပြုလင့်ခ်ကို ပေးပို့ထားပါပြီ။",
-    "checkSpamFolder": "အကယ်၍ အီးမေးလ်ကို inbox တွင် မတွေ့ရပါက spam သို့မဟုတ် junk folder တွင် စစ်ဆေးပါ။",
-    "continueToLogin": "လော့ဂ်အင်သို့ ဆက်လက်သွားရန်",
-    "resendVerificationEmail": "အတည်ပြုအီးမေးလ် ပြန်ပို့ရန်",
-    "sendingEmail": "ပို့နေသည်...",
-    "emailRequired": "အီးမေးလ် လိုအပ်ပါသည်",
-    "backToLogin": "လော့ဂ်အင်သို့ ပြန်သွားရန်",
     "verification": {
-      "title": "Email Verification Required",
-      "description": "Please verify your email address to continue",
-      "verifyEmail": "Verify your email",
-      "emailSent": "We've sent a verification link to your email address. Please check your inbox and click the link to verify your account.",
-      "checkSpam": "If you don't see the email, check your spam folder or request another verification link.",
-      "resendEmail": "Resend verification email",
-      "sending": "Sending...",
-      "goToLogin": "Go to login",
-      "needHelp": "Need help? Contact our support team"
+      "title": "အီးမေးလ် အတည်ပြုခြင်း လိုအပ်သည်",
+      "description": "ဆက်လက်ဆောင်ရွက်ရန် သင့်အီးမေးလ်လိပ်စာကို အတည်ပြုပေးပါ",
+      "verifyEmail": "သင့်အီးမေးလ်ကို အတည်ပြုပါ",
+      "emailSent": "ကျွန်ုပ်တို့သည် သင့်အီးမေးလ်လိပ်စာသို့ အတည်ပြုလင့်ခ်တစ်ခု ပေးပို့ပြီးပါပြီ။ သင့်အီးမေးလ်ကို စစ်ဆေး၍ လင့်ခ်ကိုနှိပ်ပြီး အကောင့်ကို အတည်ပြုပေးပါ။",
+      "checkSpam": "အကယ်၍ အီးမေးလ်မတွေ့ရှိပါက၊ spam ဖိုင်တာကို စစ်ဆေးပါ သို့မဟုတ် အတည်ပြုလင့်ခ်အသစ်ကို တောင်းဆိုပါ။",
+      "resendEmail": "အတည်ပြုအီးမေးလ် ပြန်ပို့ရန်",
+      "sending": "ပို့နေသည်...",
+      "goToLogin": "လော့ဂ်အင်သို့ သွားရန်",
+      "needHelp": "အကူအညီလိုပါသလား? ကျွန်ုပ်တို့၏ အကူအညီအဖွဲ့သို့ ဆက်သွယ်ပါ"
     }
   },
 
@@ -204,7 +193,10 @@
     "noRecentOrders": "မကြာသေးမီ အော်ဒါများ မရှိပါ",
     "signOut": "ထွက်ရန်",
     "setting": "ဆက်တင်များ",
-    "support": "အကူအညီ"
+    "support": "အကူအညီ",
+    "balance": "လက်ကျန်ငွေ",
+    "topUp": "ငွေထည့်ရန်",
+    "recentOrders": "လတ်တလောအော်ဒါများ"
   },
 
   "validation": {
@@ -514,16 +506,7 @@
     "enterVerificationCode": "ကျွန်ုပ်တို့သင့်ထံပေးပို့ထားသော အတည်ပြုကုဒ်ကို ထည့်ပါ:",
     "didntReceiveCode": "ကုဒ်မရရှိခဲ့ပါသလား?",
     "resend": "ပြန်ပို့ရန်",
-    "continue": "ဆက်လက်လုပ်ဆောင်ရန်",
-    "verificationSuccess": "OTP အတည်ပြုမှု အောင်မြင်ပါပြီ!",
-    "verificationFailed": "OTP အတည်ပြုမှု မအောင်မြင်ပါ!",
-    "invalidLength": "ကျေးဇူးပြု၍ မှန်ကန်သော ၆-ဂဏန်း OTP ထည့်ပါ",
-    "resendRequested": "OTP ပြန်ပို့ရန် တောင်းဆိုပြီးပါပြီ",
-    "verifying": "အတည်ပြုနေပါသည်...",
-    "resendSuccess": "OTP အောင်မြင်စွာ ပို့ပြီးပါပြီ!",
-    "resendFailed": "OTP ပြန်ပို့ရန် မအောင်မြင်ပါ",
-    "resending": "ပို့နေပါသည်...",
-    "resendIn": "ပြန်ပို့ရန် ကျန်"
+    "continue": "ဆက်လက်လုပ်ဆောင်ရန်"
   },
   "location": {
     "country": "နိုင်ငံ",
@@ -1280,13 +1263,6 @@
         "description": "Update and manage your personal information on Worry-free takeaway. Keep your profile details up to date for a better experience."
       }
     },
-    "EmailVerifiedSuccess": {
-      "metadata": {
-        "title": "ပြန်လည်သတ်မှတ်ရန် အောင်မြင်ပါသည် | Global Takeout",
-        "keywords": "ပြန်လည်သတ်မှတ်ရန် အောင်မြင်ပါသည်, ပြန်လည်သတ်မှတ်ရန်, အကောင့်မှတ်ချက်ပြန်လည်သတ်မှတ်ရန်, global takeout ပြန်လည်သတ်မှတ်ရန်",
-        "description": "သင့် Global Takeout အကောင့်ပြန်လည်သတ်မှတ်ရန် အောင်မြင်ပါသည်။ သင့်အကောင့်သို့ သင့်အီးမေးလ်ကို စစ်ဆေးပါ။"
-      }
-    },
     "merchant_payment": {
       "metadata": {
         "title": "Merchant Payment Settings | Worry-free takeaway",
@@ -1432,20 +1408,6 @@
       "description": "Worry-free takeaway တွင် မျှော်လင့်ထုတ်ကုန်များကို ကြည့်ရှုပါ။ မျှော်လင့်ထုတ်ကုန်များကို မျှော်လင့်ထုတ်ကုန်စာရင်းတွင် ကြည့်ရှုပါ။"
     }
   },
-  "deal_of_the_day": {
-    "metadata": {
-      "title": "နေ့စွဲများကို မျှော်လင့်ထုတ်ပါ | Worry-free takeaway",
-      "keywords": "နေ့စွဲများကို မျှော်လင့်ထုတ်ပါ, နေ့စွဲများကို မျှော်လင့်ထုတ်စာရင်း, နေ့စွဲများကို မျှော်လင့်ထုတ်ခွင့်ပြုချက်, နေ့စွဲများကို မျှော်လင့်ထုတ်ထုတ်မှု",
-      "description": "Worry-free takeaway တွင် နေ့စွဲများကို မျှော်လင့်ထုတ်ပါ။ နေ့စွဲများကို မျှော်လင့်ထုတ်စာရင်းတွင် ကြည့်ရှုပါ။"
-    }
-  },
-  "new_arrival_product": {
-    "metadata": {
-      "title": "မနေ့စွဲများကို မျှော်လင့်ထုတ်ပါ | Worry-free takeaway",
-      "keywords": "မနေ့စွဲများကို မျှော်လင့်ထုတ်ပါ, မနေ့စွဲများကို မျှော်လင့်ထုတ်စာရင်း, မနေ့စွဲများကို မျှော်လင့်ထုတ်ခွင့်ပြုချက်, မနေ့စွဲများကို မျှော်လင့်ထုတ်ထုတ်မှု",
-      "description": "Worry-free takeaway တွင် မနေ့စွဲများကို မျှော်လင့်ထုတ်ပါ။ မနေ့စွဲများကို မျှော်လင့်ထုတ်စာရင်းတွင် ကြည့်ရှုပါ။"
-    }
-  },
   "merchantProduct": {
     "productInformation": "ထုတ်ကုန်အချက်အလက်",
     "category": "အမျိုးအစား",
@@ -1485,11 +1447,7 @@
   "forgotPassword": {
     "title": "စကားဝှက်မေ့နေပါသလား?",
     "description": "သင့်အီးမေးလ်လိပ်စာကို ထည့်ပါ၊ ကျွန်ုပ်တို့သည် သင့်စကားဝှက်ပြန်လည်သတ်မှတ်ရန် အတည်ပြုကုဒ်ကို ပေးပို့ပါမည်",
-    "emailAddress": "အီးမေးလ်လိပ်စာ",
-    "emailSentSuccess": "ပြန်လည်သတ်မှတ်ရန်လင့်ခ် အောင်မြင်စွာပေးပို့ပြီးပါပြီ! သင့်အီးမေးလ်ကို စစ်ဆေးပါ။",
-    "requestFailed": "ပြန်လည်သတ်မှတ်ရန် အီးမေးလ်ပို့ခြင်း မအောင်မြင်ပါ။ ထပ်မံကြိုးစားပါ။",
-    "requestFailedTitle": "တောင်းဆိုမှု မအောင်မြင်ပါ",
-    "emailHint": "သင့်အကောင့်နှင့်ဆက်စပ်နေသော အီးမေးလ်လိပ်စာကို ထည့်ပါ"
+    "emailAddress": "အီးမေးလ်လိပ်စာ"
   },
   "delivery": {
     "deliveryStatus": "ပို့ဆောင်မှုအခြေအနေ",
