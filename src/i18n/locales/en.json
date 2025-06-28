@@ -75,7 +75,10 @@
     "errorFetchingContact": "Failed to load contact information",
     "noTelegramInfo": "No Telegram information available",
     "and": "and",
-    "share": "Share"
+    "share": "Share",
+    "processing": "Processing...",
+    "sending": "Sending...",
+    "tryAgainWithNewEmail": "Try again with new email"
   },
 
   "components": {
@@ -158,6 +161,14 @@
     "registerSuccess": "Registration successful! Redirecting...",
     "registrationFailed": "Registration failed. Please try again later.",
     "termsNotAgreed": "Please agree to the terms of service and privacy policy.",
+    "checkEmail": "Check your email",
+    "emailVerificationSent": "We've sent a verification link to your email address.",
+    "checkSpamFolder": "If you don't see the email, check your spam folder or request another verification link.",
+    "continueToLogin": "Continue to login",
+    "resendVerificationEmail": "Resend verification email",
+    "sendingEmail": "Sending...",
+    "emailRequired": "Email address is required",
+    "backToLogin": "Back to login",
     "verification": {
       "title": "Email Verification Required",
       "description": "Please verify your email address to continue",
@@ -1532,7 +1543,11 @@
   "forgotPassword": {
     "title": "Forgot password?",
     "description": "Enter your email address and we'll send you confirmation code to reset your password",
-    "emailAddress": "Email Address"
+    "emailAddress": "Email Address",
+    "emailSentSuccess": "Reset link has been sent successfully! Please check your email.",
+    "requestFailed": "Failed to send reset email. Please try again.",
+    "requestFailedTitle": "Request failed",
+    "emailHint": "Enter the email address associated with your account"
   },
   "delivery": {
     "deliveryStatus": "Delivery Status",

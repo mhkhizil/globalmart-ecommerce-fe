@@ -130,8 +130,8 @@ function Cart() {
     router.push('/application/shopping-bag');
   }, [sessionUser, router, t, items.length]);
 
-  const navigateToProductList = useCallback(() => {
-    router.push('/application/product/list');
+  const navigateToHome = useCallback(() => {
+    router.push('/application/home');
   }, [router]);
 
   // Calculate discount information for display
@@ -359,7 +359,7 @@ function Cart() {
           </p>
 
           <button
-            onClick={navigateToProductList}
+            onClick={navigateToHome}
             className="flex w-full items-center mt-[2.5rem] justify-center bg-red-500 py-[1rem] rounded-[6.25rem] hover:bg-red-500/70 transition-colors"
           >
             <span className="text-white text-[0.875rem] leading-[1.25rem] font-[600]">
